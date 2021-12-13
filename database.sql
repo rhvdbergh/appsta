@@ -105,7 +105,7 @@ CREATE TABLE "project_features" (
 
 CREATE TABLE "users" (
 	"id" serial NOT NULL,
-	"email_address" varchar(255) UNIQUE NOT NULL,
+	"username" varchar(255) UNIQUE NOT NULL,
 	"password" varchar(1000) NOT NULL,
 	"is_admin" BOOLEAN NOT NULL,
 	CONSTRAINT "users_pk" PRIMARY KEY ("id")
