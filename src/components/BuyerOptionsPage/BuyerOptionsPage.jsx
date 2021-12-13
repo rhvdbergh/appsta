@@ -6,8 +6,6 @@ function BuyerOptionsPage() {
         <>
             <h1> Buyer Options Page </h1>
             <p> Will add more over time. Placeholder for now  </p>
-
-
         </>)
 }
 

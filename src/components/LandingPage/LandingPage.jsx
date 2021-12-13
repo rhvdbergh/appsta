@@ -22,19 +22,22 @@ function LandingPage() {
           <LoginForm />
         </div>
       </center>
+
+
       <center>
-      <p> New to appsta? </p>
-      <Button onClick={() => {
-        history.push('/BuyerOptions');
-      }}> Get Started </Button>
-      <br/>
+        <p> New to appsta?
+          <Button onClick={() => {
+            history.push('/BuyerOptions');
+          }}>
+            Get Started </Button> </p>
+        <br />
         <Button
           variant="contained"
-          onClick ={() => {
+          onClick={() => {
             history.push('/AgencyLogin');
           }}>
           Agency Login
-          </Button>
+        </Button>
       </center>
     </div>
   );
