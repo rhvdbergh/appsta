@@ -111,6 +111,7 @@ function App() {
             }
           </Route>
 
+//Adding a Buyer Options Route
           <Route
             exact path="/BuyerOptions"
           >
