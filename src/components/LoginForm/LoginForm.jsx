@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import {useSelector} from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 //adding MUI components 
-import {Button} from "@mui/material";
+import { Button } from "@mui/material";
 
 function LoginForm() {
   const [username, setUsername] = useState('');
@@ -61,13 +61,16 @@ function LoginForm() {
           />
         </label>
       </div>
-<p> New to appsta? Get Started </p> 
-<Button onClick={() => { 
-  history.push ('/BuyerOptions');
-}}> Get Started </Button> 
+      <p> New to appsta? </p>
+      <Button onClick={() => {
+        history.push('/BuyerOptions');
+      }}> Get Started </Button>
+
 
       <div>
-        <input className="btn" type="submit" name="submit" value="Log In" />
+        <center>
+          <input className="btn" type="submit" name="submit" value="Log In" />
+        </center>
       </div>
     </form>
   );

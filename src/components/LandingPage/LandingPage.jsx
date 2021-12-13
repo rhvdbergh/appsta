@@ -6,7 +6,6 @@ import './LandingPage.css';
 import LoginForm from '../LoginForm/LoginForm';
 
 function LandingPage() {
-  const [heading, setHeading] = useState('Welcome');
   const history = useHistory();
 
   const onLogin = (event) => {
@@ -15,24 +14,12 @@ function LandingPage() {
 
   return (
     <div className="container">
-      <h2>{heading}</h2>
 
-      <div className="grid">
-        <div className="grid-col grid-col_8">
-
-        
-        </div>
+      <center>
         <div className="grid-col grid-col_4">
           <LoginForm />
-
-          <center>
-            <h4>Already a Member?</h4>
-            <button className="btn btn_sizeSm" onClick={onLogin}>
-              Login
-            </button>
-          </center>
         </div>
-      </div>
+      </center>
     </div>
   );
 }
