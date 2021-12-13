@@ -19,7 +19,6 @@ CREATE TABLE "buyers" (
 	"project_name" varchar(255) NOT NULL,
 	"first_name" varchar(255) NOT NULL,
 	"last_name" varchar(255) NOT NULL,
-	"email_address" varchar(255) NOT NULL,
 	"city" varchar(255) NOT NULL,
 	"postal_code" integer NOT NULL,
 	CONSTRAINT "buyers_pk" PRIMARY KEY ("id")
@@ -70,7 +69,6 @@ CREATE TABLE "agencies" (
 	"talent_off_lead_on" BOOLEAN NOT NULL,
 	"contact_first_name" varchar(255) NOT NULL,
 	"contact_last_name" varchar(255) NOT NULL,
-	"email_address" varchar(255) NOT NULL,
 	"logo_url" varchar(255) NOT NULL,
 	CONSTRAINT "agencies_pk" PRIMARY KEY ("id")
 ) WITH (
@@ -107,7 +105,7 @@ CREATE TABLE "project_features" (
 
 CREATE TABLE "users" (
 	"id" serial NOT NULL,
-	"user_name" varchar(255) UNIQUE NOT NULL,
+	"email_address" varchar(255) UNIQUE NOT NULL,
 	"password" varchar(1000) NOT NULL,
 	"is_admin" BOOLEAN NOT NULL,
 	CONSTRAINT "users_pk" PRIMARY KEY ("id")
