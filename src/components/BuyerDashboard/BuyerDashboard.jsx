@@ -1,11 +1,13 @@
 import React from "react";
+import { useSelector } from 'react-redux';
 
 function BuyerDashboard() {
+    const user = useSelector(store => store.user);
 
     return (
         <>
             <h1> BUYER DASHBOARD  </h1>
-            <p> put some user data on this page to confirm that we are getting correct data..... placeholder   </p>
+            <p> Placeholder test, user is {user.username}  </p>
         </>)
 }
 
