@@ -22,6 +22,8 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import BuyerOptionsPage from '../BuyerOptionsPage/BuyerOptionsPage';
 import AgencyLoginPage from '../AgencyLoginPage/AgencyLoginPage';
 import AgencyRegistration from '../../AgencyRegistration/AgencyRegistration';
+import BuyerDashboard from '../BuyerDashboard/BuyerDashboard';
+import AgencyDashboard from '../../AgencyDashboard/AgencyDashboard';
 
 import './App.css';
 
@@ -106,7 +108,7 @@ function App() {
             {user.id ?
               // If the user is already logged in, 
               // redirect them to the /user page
-              <Redirect to="/user" />
+              <Redirect to="/BuyerDashboard" />
               :
               // Otherwise, show the Landing page
               <LandingPage />
@@ -124,7 +126,14 @@ function App() {
           <Route
             exact path="/AgencyLogin"
           >
-            <AgencyLoginPage />
+             {user.id ?
+              // If the user is already logged in, 
+              // redirect them to the /user page
+              <Redirect to="/AgencyDashboard" />
+              :
+              // Otherwise, show the Landing page
+              <AgencyLoginPage />
+            }
           </Route>
 // Adding Agency Registration
           <Route
@@ -133,8 +142,21 @@ function App() {
             <AgencyRegistration />
 
           </Route>
+//Protected Buyer Dashboard Route
+          <ProtectedRoute
+            exact path="/BuyerDashboard"
+          >
+            <BuyerDashboard />
 
+          </ProtectedRoute>
 
+//Protected Agency Dashboard Route
+          <ProtectedRoute
+            exact path="/AgencyDashboard"
+          >
+            <AgencyDashboard />
+
+          </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
