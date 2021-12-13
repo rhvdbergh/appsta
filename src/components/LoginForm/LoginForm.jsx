@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+
+//adding MUI components 
+import { Button } from "@mui/material";
 
 function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const errors = useSelector(store => store.errors);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const login = (event) => {
     event.preventDefault();
@@ -26,7 +31,7 @@ function LoginForm() {
 
   return (
     <form className="formPanel" onSubmit={login}>
-      <h2>Login</h2>
+      <h2>Buyer Login</h2>
       {errors.loginMessage && (
         <h3 className="alert" role="alert">
           {errors.loginMessage}
@@ -34,9 +39,9 @@ function LoginForm() {
       )}
       <div>
         <label htmlFor="username">
-          Username:
+          E-mail:
           <input
-            type="text"
+            type="email"
             name="username"
             required
             value={username}
@@ -56,8 +61,16 @@ function LoginForm() {
           />
         </label>
       </div>
+      <p> New to appsta? </p>
+      <Button onClick={() => {
+        history.push('/BuyerOptions');
+      }}> Get Started </Button>
+
+
       <div>
-        <input className="btn" type="submit" name="submit" value="Log In" />
+        <center>
+          <input className="btn" type="submit" name="submit" value="Log In" />
+        </center>
       </div>
     </form>
   );
