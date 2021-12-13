@@ -26,7 +26,7 @@ function LoginForm() {
 
   return (
     <form className="formPanel" onSubmit={login}>
-      <h2>Login</h2>
+      <h2>Buyer Login</h2>
       {errors.loginMessage && (
         <h3 className="alert" role="alert">
           {errors.loginMessage}
@@ -34,9 +34,9 @@ function LoginForm() {
       )}
       <div>
         <label htmlFor="username">
-          Username:
+          E-mail:
           <input
-            type="text"
+            type="email"
             name="username"
             required
             value={username}
@@ -56,6 +56,8 @@ function LoginForm() {
           />
         </label>
       </div>
+<p> New to appsta? Get Started </p>
+
       <div>
         <input className="btn" type="submit" name="submit" value="Log In" />
       </div>
