@@ -1,6 +1,6 @@
 /* the only line you likely need to change is
 
- database: 'appsta',
+ database: 'prime_app',
 
  change `appsta` to the name of your database, and you should be all set!
 */
