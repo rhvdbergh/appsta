@@ -21,6 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import BuyerOptionsPage from '../BuyerOptionsPage/BuyerOptionsPage';
 import AgencyLoginPage from '../AgencyLoginPage/AgencyLoginPage';
+import AgencyRegistration from '../../AgencyRegistration/AgencyRegistration';
 
 import './App.css';
 
@@ -38,8 +39,8 @@ function App() {
       <div>
         <Nav />
         <Switch>
-          {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
-          <Redirect exact from="/" to="/home" />
+          {/* Visiting localhost:3000 will redirect to localhost:3000/LandingPage */}
+          <Redirect exact from="/" to="/LandingPage" />
 
           {/* Visiting localhost:3000/about will show the about page. */}
           <Route
@@ -100,7 +101,7 @@ function App() {
 
           <Route
             exact
-            path="/home"
+            path="/LandingPage"
           >
             {user.id ?
               // If the user is already logged in, 
@@ -125,6 +126,15 @@ function App() {
           >
             <AgencyLoginPage />
           </Route>
+// Adding Agency Registration
+          <Route
+            exact path="/AgencyReg"
+          >
+            <AgencyRegistration />
+
+          </Route>
+
+
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
