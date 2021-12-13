@@ -19,6 +19,8 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import BuyerOptionsPage from '../BuyerOptionsPage/BuyerOptionsPage';
+import AgencyLoginPage from '../AgencyLoginPage/AgencyLoginPage';
 
 import './App.css';
 
@@ -108,6 +110,20 @@ function App() {
               // Otherwise, show the Landing page
               <LandingPage />
             }
+          </Route>
+
+//Adding a Buyer Options Route
+          <Route
+            exact path="/BuyerOptions"
+          >
+            <BuyerOptionsPage />
+
+          </Route>
+// Adding router for Agency Login Page
+          <Route
+            exact path="/AgencyLogin"
+          >
+            <AgencyLoginPage />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
