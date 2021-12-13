@@ -31,7 +31,6 @@ function LoginForm() {
 
   return (
     <form className="formPanel" onSubmit={login}>
-      <h2>Buyer Login</h2>
       {errors.loginMessage && (
         <h3 className="alert" role="alert">
           {errors.loginMessage}
@@ -61,10 +60,7 @@ function LoginForm() {
           />
         </label>
       </div>
-      <p> New to appsta? </p>
-      <Button onClick={() => {
-        history.push('/BuyerOptions');
-      }}> Get Started </Button>
+      
 
 
       <div>

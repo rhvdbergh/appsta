@@ -20,6 +20,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import BuyerOptionsPage from '../BuyerOptionsPage/BuyerOptionsPage';
+import AgencyLoginPage from '../AgencyLoginPage/AgencyLoginPage';
 
 import './App.css';
 
@@ -117,6 +118,12 @@ function App() {
           >
             <BuyerOptionsPage />
 
+          </Route>
+// Adding router for Agency Login Page
+          <Route
+            exact path="/AgencyLogin"
+          >
+            <AgencyLoginPage />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
