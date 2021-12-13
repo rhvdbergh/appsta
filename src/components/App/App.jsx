@@ -20,6 +20,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import BuyerOptionsPage from '../BuyerOptionsPage/BuyerOptionsPage';
+import AgencyLoginPage from '../AgencyLoginPage/AgencyLoginPage';
 
 import './App.css';
 
