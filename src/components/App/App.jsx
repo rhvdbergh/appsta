@@ -119,6 +119,12 @@ function App() {
             <BuyerOptionsPage />
 
           </Route>
+// Adding router for Agency Login Page
+          <Route
+            exact path="/AgencyLogin"
+          >
+            <AgencyLoginPage />
+          </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>

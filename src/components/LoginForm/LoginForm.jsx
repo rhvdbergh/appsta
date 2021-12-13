@@ -60,10 +60,7 @@ function LoginForm() {
           />
         </label>
       </div>
-      <p> New to appsta? </p>
-      <Button onClick={() => {
-        history.push('/BuyerOptions');
-      }}> Get Started </Button>
+      
 
 
       <div>

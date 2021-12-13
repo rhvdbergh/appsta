@@ -15,15 +15,18 @@ function AgencyLoginPage() {
 
   return (
     <div className="container">
-
       <center>
+        <h1>Agency Login</h1>
         <div className="grid-col grid-col_4">
           <LoginForm />
         </div>
       </center>
       <center>
         <Button
-          variant="contained">
+          variant="contained"
+          onClick= {() => {
+              history.push('/home');
+          }}>
           Not an Agency? Click Here
           </Button>
       </center>

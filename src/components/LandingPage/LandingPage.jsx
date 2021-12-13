@@ -17,14 +17,22 @@ function LandingPage() {
     <div className="container">
 
       <center>
-        <h2>Buyer Login</h2>
+        <h1>Buyer Login</h1>
         <div className="grid-col grid-col_4">
           <LoginForm />
         </div>
       </center>
       <center>
+      <p> New to appsta? </p>
+      <Button onClick={() => {
+        history.push('/BuyerOptions');
+      }}> Get Started </Button>
+      <br/>
         <Button
-          variant="contained">
+          variant="contained"
+          onClick ={() => {
+            history.push('/AgencyLogin');
+          }}>
           Agency Login
           </Button>
       </center>
