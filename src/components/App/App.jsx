@@ -21,6 +21,9 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import BuyerOptionsPage from '../BuyerOptionsPage/BuyerOptionsPage';
 import AgencyLoginPage from '../AgencyLoginPage/AgencyLoginPage';
+import AgencyRegistration from '../../AgencyRegistration/AgencyRegistration';
+import BuyerDashboard from '../BuyerDashboard/BuyerDashboard';
+import AgencyDashboard from '../../AgencyDashboard/AgencyDashboard';
 
 import './App.css';
 
@@ -38,8 +41,8 @@ function App() {
       <div>
         <Nav />
         <Switch>
-          {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
-          <Redirect exact from="/" to="/home" />
+          {/* Visiting localhost:3000 will redirect to localhost:3000/LandingPage */}
+          <Redirect exact from="/" to="/LandingPage" />
 
           {/* Visiting localhost:3000/about will show the about page. */}
           <Route
@@ -100,12 +103,12 @@ function App() {
 
           <Route
             exact
-            path="/home"
+            path="/LandingPage"
           >
             {user.id ?
               // If the user is already logged in, 
               // redirect them to the /user page
-              <Redirect to="/user" />
+              <Redirect to="/BuyerDashboard" />
               :
               // Otherwise, show the Landing page
               <LandingPage />
@@ -123,8 +126,37 @@ function App() {
           <Route
             exact path="/AgencyLogin"
           >
-            <AgencyLoginPage />
+             {user.id ?
+              // If the user is already logged in, 
+              // redirect them to the /user page
+              <Redirect to="/AgencyDashboard" />
+              :
+              // Otherwise, show the Landing page
+              <AgencyLoginPage />
+            }
           </Route>
+// Adding Agency Registration
+          <Route
+            exact path="/AgencyReg"
+          >
+            <AgencyRegistration />
+
+          </Route>
+//Protected Buyer Dashboard Route
+          <ProtectedRoute
+            exact path="/BuyerDashboard"
+          >
+            <BuyerDashboard />
+
+          </ProtectedRoute>
+
+//Protected Agency Dashboard Route
+          <ProtectedRoute
+            exact path="/AgencyDashboard"
+          >
+            <AgencyDashboard />
+
+          </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>

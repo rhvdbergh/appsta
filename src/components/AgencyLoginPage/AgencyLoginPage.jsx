@@ -20,12 +20,20 @@ function AgencyLoginPage() {
         <div className="grid-col grid-col_4">
           <LoginForm />
         </div>
+        <p> First time here?
+          <Button onClick={() => {
+            history.push('/AgencyReg');
+          }}>
+             Register Now </Button> </p>
+
       </center>
+
+  
       <center>
         <Button
           variant="contained"
           onClick= {() => {
-              history.push('/home');
+              history.push('/LandingPage');
           }}>
           Not an Agency? Click Here
           </Button>
