@@ -172,3 +172,9 @@ VALUES (1, 2, 'we got it!', 'extra large', 7),
 (1, 1, 'no problem', 'small', 5),
 (2, 4, 'ehhhhh, we have to check', 'tiny', 2),
 (2, 6, 'whew, well this is awkward!', 'medium', 3);
+
+INSERT INTO "projects" (buyer_id, date_of_project)
+VALUES (1, '12/13/2021'), (1, '10/20/2021');
+
+INSERT INTO "project_features" (project_id, feature_id, quantity)
+VALUES (1, 4, 3), (2, 3, 7);
