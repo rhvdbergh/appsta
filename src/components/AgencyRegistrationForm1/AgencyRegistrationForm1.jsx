@@ -1,4 +1,13 @@
-import { TextField } from '@mui/material';
+import {
+  TextField,
+  InputLabel,
+  OutlinedInput,
+  FormControl,
+  InputAdornment,
+  IconButton,
+} from '@mui/material';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Grid from '@mui/material/Grid';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -11,6 +20,10 @@ function AgencyRegistrationForm1({ setCanMoveForward }) {
   const [username, setUsername] = useState('');
 
   const [password, setPassword] = useState('');
+
+  const [passwordShown, setPasswordShown] = useState(false);
+  const [passwordConfirmationShown, setPasswordConfirmationShown] =
+    useState(false);
 
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
 
@@ -63,26 +76,60 @@ function AgencyRegistrationForm1({ setCanMoveForward }) {
             handleData('username', username);
           }}
         />
-        <TextField
-          label="Password*"
-          type="password"
-          variant="outlined"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-          onBlur={() => {
-            handleData('password', password);
-          }}
-        />
-        <TextField
-          label="Re-enter Password*"
-          variant="outlined"
-          type="password"
-          value={passwordConfirmation}
-          onChange={(event) => setPasswordConfirmation(event.target.value)}
-          onBlur={() => {
-            handleData('passwordConfirmation', passwordConfirmation);
-          }}
-        />
+        <FormControl variant="filled">
+          <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
+          <OutlinedInput
+            id="filled-adornment-password"
+            type={passwordShown ? 'text' : 'password'}
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            onBlur={() => {
+              handleData('password', password);
+            }}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={() => setPasswordShown(!passwordShown)}
+                  edge="end"
+                >
+                  {passwordShown ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+          />
+        </FormControl>
+        <FormControl variant="filled">
+          <InputLabel htmlFor="filled-adornment-password">
+            Confirm Password
+          </InputLabel>
+          <OutlinedInput
+            id="filled-adornment-password"
+            type={passwordConfirmationShown ? 'text' : 'password'}
+            value={passwordConfirmation}
+            onChange={(event) => setPasswordConfirmation(event.target.value)}
+            onBlur={() => {
+              handleData('passwordConfirmation', passwordConfirmation);
+            }}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={() =>
+                    setPasswordConfirmationShown(!passwordConfirmationShown)
+                  }
+                  edge="end"
+                >
+                  {passwordConfirmationShown ? (
+                    <VisibilityOff />
+                  ) : (
+                    <Visibility />
+                  )}
+                </IconButton>
+              </InputAdornment>
+            }
+          />
+        </FormControl>
       </Grid>
     </>
   );
