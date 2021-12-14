@@ -24,6 +24,13 @@ const emptyNewAgency = {
 
 const newAgencyReducer = (state = emptyNewAgency, action) => {
     switch (action.type) {
-        
+        case 'SET_NEW_AGENCY':
+            return action.payload;
+        case 'LOGOUT':
+            return emptyNewAgency;
+        default:
+            return state;
     }
 }
+
+export default newAgencyReducer;
