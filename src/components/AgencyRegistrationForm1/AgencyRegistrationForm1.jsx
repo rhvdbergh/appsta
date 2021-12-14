@@ -36,17 +36,22 @@ function AgencyRegistrationForm1({ setCanMoveForward }) {
 
   useEffect(() => {
     isCompletedForm();
-  }, [passwordConfirmation]);
+  }, [username, password, passwordConfirmation]);
 
   // check to see if everything is filled out and
   // the user can move forward
   const isCompletedForm = () => {
     if (
       username !== null &&
+      username !== '' &&
       password !== null &&
-      passwordConfirmation !== null
+      password !== '' &&
+      passwordConfirmation !== null &&
+      password === passwordConfirmation
     ) {
       setCanMoveForward(true);
+    } else {
+      setCanMoveForward(false);
     }
   };
 
