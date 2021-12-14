@@ -56,7 +56,7 @@ CREATE TABLE "agencies" (
 	"id" serial NOT NULL,
 	"user_id" integer NOT NULL,
 	"agency_name" varchar(255) NOT NULL,
-  "agency_blurb" text NOT NULL,
+  	"agency_blurb" text NOT NULL,
 	"postal_code" varchar(11) NOT NULL,
 	"city" varchar(255) NOT NULL,
 	"state_province" varchar(255),
@@ -164,7 +164,7 @@ VALUES ('doughnut chart', 'information in a doughnut chart', 'description of obj
 ('big red button', 'I can click on big red button', 'description of clicking on big red button', 2, 'https://www.royalroadcdn.com/public/covers-full/big-red-button-aacalrkedw8.jpg?time=1617332304'),
 ('outlined button', 'I can click the outlined button', 'description of clicking on outlined button', 2, 'https://storage.googleapis.com/spec-host-backup/mio-components%2Fassets%2F1b2CXpWNxh1k2YJUw_6B_CkkZUiHYYrzh%2Fspecs-outlined-button.png'),
 ('colored table', 'I can create a simple table', 'colored table', 3, 'https://reactjsexample.com/content/images/2019/01/material-table.jpg'),
-('non-colored table', 'this table has no color', 'non-colored table', 3, 'https://i.stack.imgur.com/jm4zL.png');
+('clear table', 'this table is clear', 'clear table', 3, 'https://i.stack.imgur.com/jm4zL.png');
 
 
 INSERT INTO "agency_features" (agency_id, feature_id, feature_notes, t_shirt_size, confidence)
