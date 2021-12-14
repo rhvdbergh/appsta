@@ -1,7 +1,7 @@
 import { TextField } from "@mui/material";
-import Grid from "@mui/material/Grid"
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
+import Stack from "@mui/material/Grid"
+import Checkbox from '@mui/material/Checkbox';
+import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
@@ -12,25 +12,25 @@ function AgencyRegistrationForm4() {
     return (
         <>
 
-            <Grid>
-                <TextField id="outlined-basic" label="City*" variant="outlined" />
-                <TextField id="outlined-basic" label="Zip Code*" variant="outlined" />
-                <FormControl component="fieldset">
-                    <FormLabel component="legend">We offer dedicated customer representatives?*</FormLabel>
-                    <RadioGroup row aria-label="gender" name="row-radio-buttons-group">
-                        <FormControlLabel value="True" control={<Radio />} label="Yes" />
-                        <FormControlLabel value="False" control={<Radio />} label="No" />
-                    </RadioGroup>
-                </FormControl>
+            <Stack>
+                <TextField id="outlined-basic" label="Team Size*" variant="outlined" />
 
                 <FormControl component="fieldset">
-                    <FormLabel component="legend">We offer guarantees?*</FormLabel>
-                    <RadioGroup row aria-label="gender" name="row-radio-buttons-group">
-                        <FormControlLabel value="True" control={<Radio />} label="Yes" />
-                        <FormControlLabel value="False" control={<Radio />} label="No" />
-                    </RadioGroup>
+
+                    <FormGroup row aria-label="minority-owned">
+                        <FormControlLabel value=" " control={<Checkbox />} label="Minority Owned" />
+                    </FormGroup>
+
+                    <FormGroup row aria-label="women-owned">
+                        <FormControlLabel value=" " control={<Checkbox />} label="Women Owned" />
+                    </FormGroup>
+
+                    <FormGroup row aria-label="veteran-owned">
+                        <FormControlLabel value=" " control={<Checkbox />} label="Veteran Owned" />
+                    </FormGroup>
+
                 </FormControl>
-            </Grid>
+            </Stack>
         </>
 
     )
