@@ -70,6 +70,7 @@ CREATE TABLE "agencies" (
 	"talent_off_lead_on" BOOLEAN NOT NULL,
 	"contact_first_name" varchar(255) NOT NULL,
 	"contact_last_name" varchar(255) NOT NULL,
+	"phone_number" varchar(255),
 	"logo_url" varchar(255) NOT NULL,
 	CONSTRAINT "agencies_pk" PRIMARY KEY ("id")
 ) WITH (
@@ -151,9 +152,9 @@ VALUES ('buyer@prime.io', '$2a$10$G8YAWKsbI/PbdqevNIkpXelI7D2cxlX8BAMXTP2AtHqAzB
 INSERT INTO "buyers" (user_id, company_name, project_name, first_name, last_name, postal_code)
 VALUES (1, 'Company Name', 'My Excellent Project', 'Alex', 'Smith', '55404');
 
-INSERT INTO "agencies" (user_id, agency_name, agency_blurb, postal_code, city, team_size, minority_owned, woman_owned, veteran_owned, onshore_only, onshore_offshore_mix, talent_off_lead_on, contact_first_name, contact_last_name, logo_url)
-VALUES (2, 'Awesome Agency', 'Awesome Agency does awesome things!', '02860', 'Providence', 59, true, false, false, true, false, false, 'Ridwan', 'Ali', 'https://images.unsplash.com/photo-1622630732278-ca6d08c52b6f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1447&q=80'),
-(3, 'Jazzy Agency', 'We like jazzing things up', '70118', 'New Orleans', 14, false, false, true, false, false, true, 'Alicia', 'Harvey', 'https://images.unsplash.com/photo-1523875194681-bedd468c58bf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80');
+INSERT INTO "agencies" (user_id, agency_name, agency_blurb, postal_code, city, team_size, minority_owned, woman_owned, veteran_owned, onshore_only, onshore_offshore_mix, talent_off_lead_on, contact_first_name, contact_last_name, phone_number, logo_url)
+VALUES (2, 'Awesome Agency', 'Awesome Agency does awesome things!', '02860', 'Providence', 59, true, false, false, true, false, false, 'Ridwan', 'Ali', '123-456-7890', 'https://images.unsplash.com/photo-1622630732278-ca6d08c52b6f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1447&q=80'),
+(3, 'Jazzy Agency', 'We like jazzing things up', '70118', 'New Orleans', 14, false, false, true, false, false, true, 'Alicia', 'Harvey', '987-654-3210', 'https://images.unsplash.com/photo-1523875194681-bedd468c58bf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80');
 
 INSERT INTO "feature_categories"(category_name)
 VALUES ('charts'),('buttons'),('tables');
