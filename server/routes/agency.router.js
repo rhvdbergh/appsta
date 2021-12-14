@@ -1,6 +1,6 @@
 const express = require('express');
 const pool = require('../modules/pool');
-const router = express.Router;
+const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const encryptLib = require('../modules/encryption');
 
@@ -14,8 +14,8 @@ router.post('/new', (req, res) => {
     const password = encryptLib.encryptPassword(req.body.password);
     const addUserQuery = `
         INSERT INTO users
-        ("username", "password")
-        VALUES ($1, $2)
+        ("username", "password", "is_admin")
+        VALUES ($1, $2, 'false')
         RETURNING "id";
         `;
 
