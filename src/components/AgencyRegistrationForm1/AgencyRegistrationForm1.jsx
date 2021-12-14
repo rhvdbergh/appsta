@@ -17,31 +17,35 @@ function AgencyRegistrationForm1({ setCanMoveForward }) {
 
   const agency = useSelector((store) => store.newAgency);
 
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState(null);
 
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState(null);
 
   const [passwordShown, setPasswordShown] = useState(false);
   const [passwordConfirmationShown, setPasswordConfirmationShown] =
     useState(false);
 
-  const [passwordConfirmation, setPasswordConfirmation] = useState('');
+  const [passwordConfirmation, setPasswordConfirmation] = useState(null);
 
   useEffect(() => {
     setUsername(agency.username);
     setPassword(agency.password);
     setPasswordConfirmation(agency.password);
-    isCompletedForm();
+    // isCompletedForm();
   }, []);
 
   useEffect(() => {
     isCompletedForm();
-  }, [agency]);
+  }, [passwordConfirmation]);
 
   // check to see if everything is filled out and
   // the user can move forward
   const isCompletedForm = () => {
-    if (agency.password && agency.username) {
+    if (
+      username !== null &&
+      password !== null &&
+      passwordConfirmation !== null
+    ) {
       setCanMoveForward(true);
     }
   };
