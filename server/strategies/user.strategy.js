@@ -8,8 +8,14 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((id, done) => {
+  // build a query
+  const queryText = `
+    SELECT * FROM "users" 
+    LEFT JOIN "buyers" ON "buyers".user_id = "users".id 
+    LEFT JOIN "agencies" ON "agencies".user_id = "users".id
+    WHERE "users".id = $1;`;
   pool
-    .query('SELECT * FROM "users" WHERE id = $1', [id])
+    .query(queryText, [id])
     .then((result) => {
       // Handle Errors
       const user = result && result.rows && result.rows[0];
@@ -18,6 +24,15 @@ passport.deserializeUser((id, done) => {
         // user found
         delete user.password; // remove password so it doesn't get sent
         // done takes an error (null in this case) and a user
+        // check if this is a buyer or an agency
+        // we can determine this by checking whether there is agency_name is null
+        if (user.agency_name === null) {
+          // this is a buyer
+          user.isBuyer = true;
+        } else {
+          // this is an agency
+          user.isBuyer = false;
+        }
         done(null, user);
       } else {
         // user not found
