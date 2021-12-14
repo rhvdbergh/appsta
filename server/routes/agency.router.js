@@ -26,6 +26,15 @@ router.post('/new', (req, res) => {
         agency.woman_owned, agency.veteran_owned, agency.onshore_only, 
         agency.onshore_offshore_mix, agency.talent_off_lead_on, 
         agency.contact_first_name, agency.contact_last_name, agency.logo_url
-    ]
-    
+    ];
+    pool.query(addAgencyQuery, values)
+    .then (result => {
+        console.log('New Agency Id', result.rows[0].id);
+        const newAgencyId = result.rows[0].id; 
+        res.send ({agency_id: newAgencyId});    
+    })
+    .catch (err => {
+        console.log('error starting new agency', err);
+        res.sendStatus(500);
+    })
 })
