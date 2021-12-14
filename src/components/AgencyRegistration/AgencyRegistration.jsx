@@ -15,10 +15,6 @@ function AgencyRegistration() {
 
     const [skipped, setSkipped] = React.useState(new Set());
 
-    const isStepOptional = (step) => {
-        return step === 1;
-    };
-
     const isStepSkipped = (step) => {
         return skipped.has(step);
     };
@@ -38,24 +34,22 @@ function AgencyRegistration() {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
 
-    // const handleSkip = () => {
-    //     if (!isStepOptional(activeStep)) {
-    //         // You probably want to guard against something like this,
-    //         // it should never occur unless someone's actively trying to break something.
-    //         throw new Error("You can't skip a step that isn't optional.");
-    //     }
-
-    //     setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    //     setSkipped((prevSkipped) => {
-    //         const newSkipped = new Set(prevSkipped.values());
-    //         newSkipped.add(activeStep);
-    //         return newSkipped;
-    //     });
-    // };
-
     const handleReset = () => {
         setActiveStep(0);
     };
+
+    const handleRender = () => {
+        switch (activeStep){
+            case 0:
+            return <p>Agency Registration form1</p>
+            case 1:
+            return <p>Agency Registration form2</p>
+            case 2:
+            return <p>Agency Registration form3</p>
+            case 3:
+            return <p>Agency Registration form4</p>
+        }
+    }
 
 
     return (
@@ -67,11 +61,6 @@ function AgencyRegistration() {
                     {steps.map((label, index) => {
                         const stepProps = {};
                         const labelProps = {};
-                        // if (isStepOptional(index)) {
-                        //     labelProps.optional = (
-                        //         <Typography variant="caption">Optional</Typography>
-                        //     );
-                        // }
                         if (isStepSkipped(index)) {
                             stepProps.completed = false;
                         }
@@ -95,6 +84,7 @@ function AgencyRegistration() {
                 ) : (
                     <React.Fragment>
                         <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
+                        {handleRender()}
                         <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
                             <Button
                                 color="inherit"
@@ -105,12 +95,6 @@ function AgencyRegistration() {
                                 Back
                             </Button>
                             <Box sx={{ flex: '1 1 auto' }} />
-                            {/* {isStepOptional(activeStep) && (
-                                <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
-                                    Skip
-                                </Button>
-                            )} */}
-
                             <Button onClick={handleNext}>
                                 {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
                             </Button>
