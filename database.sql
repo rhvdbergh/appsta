@@ -56,6 +56,7 @@ CREATE TABLE "agencies" (
 	"id" serial NOT NULL,
 	"user_id" integer NOT NULL,
 	"agency_name" varchar(255) NOT NULL,
+  "agency_blurb" text NOT NULL,
 	"postal_code" varchar(11) NOT NULL,
 	"city" varchar(255) NOT NULL,
 	"state_province" varchar(255),
@@ -150,9 +151,9 @@ VALUES ('buyer@prime.io', '$2a$10$G8YAWKsbI/PbdqevNIkpXelI7D2cxlX8BAMXTP2AtHqAzB
 INSERT INTO "buyers" (user_id, company_name, project_name, first_name, last_name, postal_code)
 VALUES (1, 'Company Name', 'My Excellent Project', 'Alex', 'Smith', '55404');
 
-INSERT INTO "agencies" (user_id, agency_name, postal_code, city, team_size, minority_owned, woman_owned, veteran_owned, onshore_only, onshore_offshore_mix, talent_off_lead_on, contact_first_name, contact_last_name, logo_url)
-VALUES (2, 'Awesome Agency', '02860', 'Providence', 59, true, false, false, true, false, false, 'Ridwan', 'Ali', 'https://images.unsplash.com/photo-1622630732278-ca6d08c52b6f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1447&q=80'),
-(3, 'Jazzy Agency', '70118', 'New Orleans', 14, false, false, true, false, false, true, 'Alicia', 'Harvey', 'https://images.unsplash.com/photo-1523875194681-bedd468c58bf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80');
+INSERT INTO "agencies" (user_id, agency_name, agency_blurb, postal_code, city, team_size, minority_owned, woman_owned, veteran_owned, onshore_only, onshore_offshore_mix, talent_off_lead_on, contact_first_name, contact_last_name, logo_url)
+VALUES (2, 'Awesome Agency', 'Awesome Agency does awesome things!', '02860', 'Providence', 59, true, false, false, true, false, false, 'Ridwan', 'Ali', 'https://images.unsplash.com/photo-1622630732278-ca6d08c52b6f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1447&q=80'),
+(3, 'Jazzy Agency', 'We like jazzing things up', '70118', 'New Orleans', 14, false, false, true, false, false, true, 'Alicia', 'Harvey', 'https://images.unsplash.com/photo-1523875194681-bedd468c58bf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80');
 
 INSERT INTO "feature_categories"(category_name)
 VALUES ('charts'),('buttons'),('tables');
@@ -170,8 +171,7 @@ INSERT INTO "agency_features" (agency_id, feature_id, feature_notes, t_shirt_siz
 VALUES (1, 2, 'we got it!', 'extra large', 7),
 (1, 1, 'no problem', 'small', 5),
 (2, 4, 'ehhhhh, we have to check', 'tiny', 2),
-(2, 6, 'we can do it!', 'medium', 3);
-
+(2, 6, 'whew, well this is awkward!', 'medium', 3);
 
 INSERT INTO "projects" (buyer_id, date_of_project)
 VALUES (1, '12/13/2021'), (1, '10/20/2021');
