@@ -1,12 +1,12 @@
 import React from "react";
 
-function BuyerOptionsPage() {
+function AgencyRegistration() {
 
     return (
         <>
             <div className="container">
 
-                <h1> Buyer Options Page </h1>
+                <h1> Agency Registration Page </h1>
                 <p> Will add more over time. Placeholder for now  </p>
             </div>
         </>)
@@ -15,4 +15,4 @@ function BuyerOptionsPage() {
 
 
 
-export default BuyerOptionsPage;
+export default AgencyRegistration;

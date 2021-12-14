@@ -21,9 +21,9 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import BuyerOptionsPage from '../BuyerOptionsPage/BuyerOptionsPage';
 import AgencyLoginPage from '../AgencyLoginPage/AgencyLoginPage';
-import AgencyRegistration from '../../AgencyRegistration/AgencyRegistration';
+import AgencyRegistration from '../AgencyRegistration/AgencyRegistration';
 import BuyerDashboard from '../BuyerDashboard/BuyerDashboard';
-import AgencyDashboard from '../../AgencyDashboard/AgencyDashboard';
+import AgencyDashboard from '../AgencyDashboard/AgencyDashboard';
 
 import './App.css';
 
