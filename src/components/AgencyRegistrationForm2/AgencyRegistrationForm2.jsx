@@ -1,4 +1,4 @@
-import { TextField } from "@mui/material";
+import { TextField, Stack } from "@mui/material";
 import Grid from "@mui/material/Grid"
 
 function AgencyRegistrationForm2() {
@@ -6,8 +6,9 @@ function AgencyRegistrationForm2() {
     return (
         <>
 
-            <Grid>
-                <TextField id="outlined-basic" label="Agency Name*" variant="outlined" />
+            {/* <Grid> */}
+            <Stack>
+                <TextField label="Agency Name*" variant="outlined" />
                 <TextField
                     multiline={true}
                     rows={3}
@@ -16,9 +17,18 @@ function AgencyRegistrationForm2() {
                     type="text"
                 // value
                 />
-                <TextField id="outlined-basic" label="Logo URL" variant="outlined"
+                <TextField label="Logo URL" variant="outlined"
                 />
-            </Grid>
+                <TextField label="Contact First Name*" variant="outlined"
+                />
+                <TextField label="Contact Last Name*" variant="outlined"
+                />
+                <TextField label="Phone Number" variant="outlined"
+                />
+
+            </Stack>
+                
+            {/* </Grid> */}
         </>
 
     )
