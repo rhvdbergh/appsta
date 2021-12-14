@@ -14,6 +14,7 @@ function AgencyRegistration() {
   const steps = ['Step 1', 'Step 2', 'Step 3', 'Step 4'];
 
   const [activeStep, setActiveStep] = useState(0);
+  const [canMoveForward, setCanMoveForward] = useState(false);
 
   const [skipped, setSkipped] = useState(new Set());
 
@@ -30,6 +31,7 @@ function AgencyRegistration() {
 
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     setSkipped(newSkipped);
+    setCanMoveForward(false);
   };
 
   const handleBack = () => {
@@ -43,13 +45,21 @@ function AgencyRegistration() {
   const handleRender = () => {
     switch (activeStep) {
       case 0:
-        return <AgencyRegistrationForm1 />;
+        return (
+          <AgencyRegistrationForm1 setCanMoveForward={setCanMoveForward} />
+        );
       case 1:
-        return <AgencyRegistrationForm2 />;
+        return (
+          <AgencyRegistrationForm2 setCanMoveForward={setCanMoveForward} />
+        );
       case 2:
-        return <AgencyRegistrationForm3 />;
+        return (
+          <AgencyRegistrationForm3 setCanMoveForward={setCanMoveForward} />
+        );
       case 3:
-        return <AgencyRegistrationForm4 />;
+        return (
+          <AgencyRegistrationForm4 setCanMoveForward={setCanMoveForward} />
+        );
     }
   };
 
@@ -96,9 +106,11 @@ function AgencyRegistration() {
                 Back
               </Button>
               <Box sx={{ flex: '1 1 auto' }} />
-              <Button onClick={handleNext}>
-                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-              </Button>
+              {canMoveForward && (
+                <Button onClick={handleNext}>
+                  {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                </Button>
+              )}
             </Box>
           </Fragment>
         )}
