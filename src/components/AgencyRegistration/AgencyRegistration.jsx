@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import AgencyRegistrationForm1 from "../AgencyRegistrationForm1/AgencyRegistrationForm1";
 import AgencyRegistrationForm2 from "../AgencyRegistrationForm2/AgencyRegistrationForm2"
-
+import AgencyRegistrationForm3 from "../AgencyRegistrationForm3/AgencyRegistrationForm3"
 
 function AgencyRegistration() {
 
