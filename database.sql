@@ -56,7 +56,7 @@ CREATE TABLE "agencies" (
 	"id" serial NOT NULL,
 	"user_id" integer NOT NULL,
 	"agency_name" varchar(255) NOT NULL,
-  "agency_blurb" text NOT NULL,
+  	"agency_blurb" text NOT NULL,
 	"postal_code" varchar(11) NOT NULL,
 	"city" varchar(255) NOT NULL,
 	"state_province" varchar(255),
