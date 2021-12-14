@@ -30,7 +30,7 @@ import './App.css';
 function App() {
   const dispatch = useDispatch();
 
-  const user = useSelector(store => store.user);
+  const user = useSelector((store) => store.user);
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
@@ -43,7 +43,6 @@ function App() {
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/LandingPage */}
           <Redirect exact from="/" to="/LandingPage" />
-
           {/* Visiting localhost:3000/about will show the about page. */}
           <Route
             // shows AboutPage at all times (logged in or not)
@@ -52,112 +51,94 @@ function App() {
           >
             <AboutPage />
           </Route>
-
           {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
             Even though it seems like they are different pages, the user is always on localhost:3000/user */}
-          <ProtectedRoute
+          {/* <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
             exact
             path="/user"
           >
             <UserPage />
-          </ProtectedRoute>
-
-          <ProtectedRoute
+          </ProtectedRoute> */}
+          {/* <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
             path="/info"
           >
             <InfoPage />
-          </ProtectedRoute>
-
-          <Route
-            exact
-            path="/login"
-          >
-            {user.id ?
-              // If the user is already logged in, 
+          </ProtectedRoute> */}
+          {/* <Route exact path="/login">
+            {user.id ? (
+              // If the user is already logged in,
               // redirect to the /user page
               <Redirect to="/user" />
-              :
-              // Otherwise, show the login page
-              <LoginPage />
-            }
-          </Route>
-
-          <Route
-            exact
-            path="/registration"
-          >
-            {user.id ?
-              // If the user is already logged in, 
+            ) : (
+              // Otherwise, show the LandingPage
+              <LandingPage />
+            )}
+          </Route> */}
+          {/* <Route exact path="/registration">
+            {user.id ? (
+              // If the user is already logged in,
               // redirect them to the /user page
               <Redirect to="/user" />
-              :
+            ) : (
               // Otherwise, show the registration page
               <RegisterPage />
-            }
-          </Route>
-
-          <Route
-            exact
-            path="/LandingPage"
-          >
-            {user.id ?
-              // If the user is already logged in, 
-              // redirect them to the /user page
+            )}
+          </Route> */}
+          <Route exact path="/LandingPage">
+            {user.id && user.isBuyer ? (
+              // If the user is already logged in,
+              // and the user is a buyer,
+              // redirect them to the /BuyerDashboard page
               <Redirect to="/BuyerDashboard" />
-              :
+            ) : // but if they're an agency, to the agency page
+            user.id && !user.isBuyer ? (
+              <Redirect to="/AgencyDashboard" />
+            ) : (
               // Otherwise, show the Landing page
               <LandingPage />
-            }
+            )}
           </Route>
-
-//Adding a Buyer Options Route
-          <Route
-            exact path="/BuyerOptions"
-          >
+          //Adding a Buyer Options Route
+          <Route exact path="/BuyerOptions">
             <BuyerOptionsPage />
-
           </Route>
-// Adding router for Agency Login Page
-          <Route
-            exact path="/AgencyLogin"
-          >
-             {user.id ?
-              // If the user is already logged in, 
-              // redirect them to the /user page
+          // Adding router for Agency Login Page
+          <Route exact path="/AgencyLogin">
+            {user.id && !user.isBuyer ? (
+              // If the user is already logged in,
+              // and the user is an agency,
+              // redirect them to the /AgencyDashboard page
               <Redirect to="/AgencyDashboard" />
-              :
-              // Otherwise, show the Landing page
+            ) : (
+              // Otherwise, show the AgencyLoginPage
               <AgencyLoginPage />
-            }
+            )}
           </Route>
-// Adding Agency Registration
-          <Route
-            exact path="/AgencyReg"
-          >
+          // Adding Agency Registration
+          <Route exact path="/AgencyReg">
             <AgencyRegistration />
-
           </Route>
-//Protected Buyer Dashboard Route
-          <ProtectedRoute
-            exact path="/BuyerDashboard"
-          >
-            <BuyerDashboard />
-
+          //Protected Buyer Dashboard Route
+          <ProtectedRoute exact path="/BuyerDashboard">
+            {user.isBuyer ? (
+              <BuyerDashboard />
+            ) : (
+              <Redirect to="/AgencyDashboard" />
+            )}
           </ProtectedRoute>
-
-//Protected Agency Dashboard Route
-          <ProtectedRoute
-            exact path="/AgencyDashboard"
-          >
-            <AgencyDashboard />
-
+          //Protected Agency Dashboard Route
+          <ProtectedRoute exact path="/AgencyDashboard">
+            {!user.isBuyer ? (
+              <AgencyDashboard />
+            ) : (
+              <Redirect to="/BuyerDashboard" />
+            )}
           </ProtectedRoute>
-
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
             <h1>404</h1>
