@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 
 function AgencyRegistration() {
 
-    const steps = ['Select campaign settings', 'Create an ad group', 'Create an ad'];
+    const steps = ['Step 1', 'Step 2', 'Step 3', 'Step 4'];
 
     const [activeStep, setActiveStep] = React.useState(0);
 
