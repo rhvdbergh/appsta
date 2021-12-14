@@ -81,7 +81,7 @@ function AgencyRegistrationForm1({ setCanMoveForward }) {
     <>
       <Grid>
         <TextField
-          label="User Name*"
+          label="Email Address*"
           variant="outlined"
           value={username}
           onChange={(event) => setUsername(event.target.value)}
