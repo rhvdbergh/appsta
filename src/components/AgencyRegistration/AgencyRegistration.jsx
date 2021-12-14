@@ -6,6 +6,7 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import AgencyRegistrationForm1 from "../AgencyRegistrationForm1/AgencyRegistrationForm1";
+import AgencyRegistrationForm2 from "../AgencyRegistrationForm2/AgencyRegistrationForm2"
 
 
 function AgencyRegistration() {
@@ -44,11 +45,11 @@ function AgencyRegistration() {
             case 0:
             return <AgencyRegistrationForm1 />
             case 1:
-            return <p>Agency Registration form2</p>
+            return <AgencyRegistrationForm2 />
             case 2:
-            return <p>Agency Registration form3</p>
+            return <AgencyRegistrationForm3 />
             case 3:
-            return <p>Agency Registration form4</p>
+            return <AgencyRegistrationForm4 />
         }
     }
 
