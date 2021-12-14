@@ -163,11 +163,18 @@ VALUES ('doughnut chart', 'information in a doughnut chart', 'description of obj
 ('big red button', 'I can click on big red button', 'description of clicking on big red button', 2, 'https://www.royalroadcdn.com/public/covers-full/big-red-button-aacalrkedw8.jpg?time=1617332304'),
 ('outlined button', 'I can click the outlined button', 'description of clicking on outlined button', 2, 'https://storage.googleapis.com/spec-host-backup/mio-components%2Fassets%2F1b2CXpWNxh1k2YJUw_6B_CkkZUiHYYrzh%2Fspecs-outlined-button.png'),
 ('colored table', 'I can create a simple table', 'colored table', 3, 'https://reactjsexample.com/content/images/2019/01/material-table.jpg'),
-('non-colored table', 'this table has no color', 'non-colored table', 3, 'https://i.stack.imgur.com/jm4zL.png');
+('clear table', 'this table is clear', 'clear table', 3, 'https://i.stack.imgur.com/jm4zL.png');
 
 
 INSERT INTO "agency_features" (agency_id, feature_id, feature_notes, t_shirt_size, confidence)
 VALUES (1, 2, 'we got it!', 'extra large', 7),
 (1, 1, 'no problem', 'small', 5),
 (2, 4, 'ehhhhh, we have to check', 'tiny', 2),
-(2, 6, 'whew, well this is awkward!', 'medium', 3);
+(2, 6, 'we can do it!', 'medium', 3);
+
+
+INSERT INTO "projects" (buyer_id, date_of_project)
+VALUES (1, '12/13/2021'), (1, '10/20/2021');
+
+INSERT INTO "project_features" (project_id, feature_id, quantity)
+VALUES (1, 4, 3), (2, 3, 7);
