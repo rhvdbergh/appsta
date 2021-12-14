@@ -5,6 +5,7 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import AgencyRegistrationForm1 from "../AgencyRegistrationForm1/AgencyRegistrationForm1";
 
 
 function AgencyRegistration() {
@@ -41,7 +42,7 @@ function AgencyRegistration() {
     const handleRender = () => {
         switch (activeStep){
             case 0:
-            return <p>Agency Registration form1</p>
+            return <AgencyRegistrationForm1 />
             case 1:
             return <p>Agency Registration form2</p>
             case 2:
@@ -83,7 +84,7 @@ function AgencyRegistration() {
                     </React.Fragment>
                 ) : (
                     <React.Fragment>
-                        <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
+                        {/* handleRender conditionally renders the form */}
                         {handleRender()}
                         <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
                             <Button
