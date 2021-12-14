@@ -8,8 +8,24 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((id, done) => {
+  // build a query
+  // we need this instead of * to avoid id confusion - we're using aliases
+  const queryText = `
+    SELECT 
+    "users".id as "id", "users".username, "users".password, "users".is_admin, 
+    "buyers".id as "buyers_id", "buyers".company_name, "buyers".project_name, 
+    "buyers".first_name, "buyers".last_name, "buyers".city, "buyers".postal_code as "buyers_postal_code",
+    "agencies".agency_name, "agencies".agency_blurb, "agencies".postal_code as "agencies_postal_code",
+    "agencies".city, "agencies".state_province, "agencies".country_code, "agencies".team_size, "agencies".minority_owned,
+    "agencies".woman_owned, "agencies".veteran_owned, "agencies".onshore_only, "agencies".onshore_offshore_mix,
+    "agencies".talent_off_lead_on, "agencies".contact_first_name, "agencies".contact_last_name, "agencies".logo_url
+    FROM "users" 
+    LEFT JOIN "buyers" ON "buyers".user_id = "users".id 
+    LEFT JOIN "agencies" ON "agencies".user_id = "users".id
+    WHERE "users".id = $1;
+`;
   pool
-    .query('SELECT * FROM "users" WHERE id = $1', [id])
+    .query(queryText, [id])
     .then((result) => {
       // Handle Errors
       const user = result && result.rows && result.rows[0];
@@ -18,6 +34,15 @@ passport.deserializeUser((id, done) => {
         // user found
         delete user.password; // remove password so it doesn't get sent
         // done takes an error (null in this case) and a user
+        // check if this is a buyer or an agency
+        // we can determine this by checking whether there is agency_name is null
+        if (user.agency_name === null) {
+          // this is a buyer
+          user.isBuyer = true;
+        } else {
+          // this is an agency
+          user.isBuyer = false;
+        }
         done(null, user);
       } else {
         // user not found
