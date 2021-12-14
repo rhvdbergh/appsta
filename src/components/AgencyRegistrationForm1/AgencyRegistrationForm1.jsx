@@ -34,6 +34,10 @@ function AgencyRegistrationForm1({ setCanMoveForward }) {
     isCompletedForm();
   }, []);
 
+  useEffect(() => {
+    isCompletedForm();
+  }, [agency]);
+
   // check to see if everything is filled out and
   // the user can move forward
   const isCompletedForm = () => {
