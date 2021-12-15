@@ -37,10 +37,10 @@ function AgencyRegistrationForm4({ setCanMoveForward }) {
   // validate that required fields in the form are filled out
   const isCompletedForm = () => {
     if (
-      team_size !== null &&
-      minority_owned !== null &&
-      woman_owned !== null &&
-      veteran_owned !== null
+      team_size !== null
+      // minority_owned !== null &&
+      // woman_owned !== null &&
+      // veteran_owned !== null
     ) {
       setCanMoveForward(true);
     } else {
@@ -76,15 +76,36 @@ function AgencyRegistrationForm4({ setCanMoveForward }) {
                 <FormControl component="fieldset">
 
                     <FormGroup row aria-label="minority-owned">
-                        <FormControlLabel value=" " control={<Checkbox />} label="Minority Owned" />
+                        <FormControlLabel  
+                          control={<Checkbox />} 
+                          label="Minority Owned" 
+                          onChange={(event) => setMinority_owned(event.target.checked)}
+                          onBlur={() => {
+                            handleData('minority_owned', minority_owned);
+                          }}
+                        />
                     </FormGroup>
 
                     <FormGroup row aria-label="women-owned">
-                        <FormControlLabel value=" " control={<Checkbox />} label="Women Owned" />
+                        <FormControlLabel 
+                          control={<Checkbox />} 
+                          label="Women Owned" 
+                          onChange={(event) => setWoman_owned(event.target.checked)}
+                          onBlur={() => {
+                            handleData('woman_owned', woman_owned);
+                          }} 
+                        />
                     </FormGroup>
 
                     <FormGroup row aria-label="veteran-owned">
-                        <FormControlLabel value=" " control={<Checkbox />} label="Veteran Owned" />
+                        <FormControlLabel 
+                          control={<Checkbox />} 
+                          label="Veteran Owned" 
+                          onChange={(event) => setVeteran_owned(event.target.checked)}
+                          onBlur={() => {
+                            handleData('veteran_owned', woman_owned);
+                          }} 
+                        />
                     </FormGroup>
 
                 </FormControl>
