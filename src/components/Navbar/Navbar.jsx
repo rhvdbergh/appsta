@@ -20,6 +20,10 @@ export default function Navbar() {
   const dispatch = useDispatch();
   // setting a drawer width for the Navbar
   const drawerWidth = 240;
+  // define a function to select a category
+  const categorySelect = (category) => {
+    console.log('Category clicked is:', category.category_name);
+  }
   // call useEffect to populate the categories list
   useEffect(() => {
     dispatch({ type: 'FETCH_CATEGORY' });
@@ -43,7 +47,11 @@ export default function Navbar() {
         <Divider />
         <List>
           {categories.map((category) => (
-            <ListItem button key={category.id}>
+            <ListItem 
+              button 
+              key={category.id}
+              onClick={() => categorySelect(category)}
+            >
               <ListItemText primary={category.category_name} />
             </ListItem>
           ))}
