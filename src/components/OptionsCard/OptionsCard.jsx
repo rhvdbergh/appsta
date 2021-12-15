@@ -11,7 +11,7 @@ import BuyerOptionsSelectionBlock from "../BuyerOptionsSelectionBlock/BuyerOptio
 
 
 
-function OptionsCard() {
+function OptionsCard({feature}) {
 
     const theme = useTheme();
 
@@ -19,7 +19,7 @@ function OptionsCard() {
         <Card sx={{ display: 'flex' }}>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                 <Typography component="div" variant="h5">
-                    Feature
+                    {feature.feature_name}
                 </Typography>
 
                 <CardMedia
