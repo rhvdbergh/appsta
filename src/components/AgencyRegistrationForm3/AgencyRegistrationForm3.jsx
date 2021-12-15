@@ -110,7 +110,7 @@ function AgencyRegistrationForm3 ({ setCanMoveForward }) {
                   }}
                 />
                 <TextField 
-                  label="Zip/Postal Code" 
+                  label="Zip/Postal Code*" 
                   value={postal_code}
                   variant="outlined"
                   onChange={(event) => setPostal_code(event.target.value)} 
