@@ -17,8 +17,7 @@ passport.deserializeUser((id, done) => {
     "buyers".first_name, "buyers".last_name, "buyers".city, "buyers".postal_code as "buyers_postal_code",
     "agencies".agency_name, "agencies".agency_blurb, "agencies".postal_code as "agencies_postal_code",
     "agencies".city, "agencies".state_province, "agencies".country_code, "agencies".team_size, "agencies".minority_owned,
-    "agencies".woman_owned, "agencies".veteran_owned, "agencies".onshore_only, "agencies".onshore_offshore_mix,
-    "agencies".talent_off_lead_on, "agencies".contact_first_name, "agencies".contact_last_name, "agencies".logo_url
+    "agencies".woman_owned, "agencies".veteran_owned, "agencies".staffing_location, "agencies".contact_first_name, "agencies".contact_last_name, "agencies".logo_url
     FROM "users" 
     LEFT JOIN "buyers" ON "buyers".user_id = "users".id 
     LEFT JOIN "agencies" ON "agencies".user_id = "users".id

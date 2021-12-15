@@ -14,9 +14,7 @@ const emptyNewAgency = {
     minority_owned: null,
     woman_owned: null,
     veteran_owned: null,
-    onshore_only: null,
-    onshore_offshore_mix: null,
-    talent_off_lead_on: null,
+    staffing_location: null,
     contact_first_name: null,
     contact_last_name: null,
     logo_url: null
