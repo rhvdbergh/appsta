@@ -12,10 +12,8 @@ function AgencyRegistrationForm3 ({ setCanMoveForward }) {
     const [state_province, setState_province] = useState(null);
     const [country_code, setCountry_code] = useState(null);
     const [postal_code, setPostal_code] = useState(null);
-    const [onshore_only, setOnshore_only] = useState(true);
-    const [onshore_offshore_mix, setOnshore_offshore_mix] = useState(false);
-    const [talent_off_lead_on, setTalent_off_lead_on] = useState(false);
-
+    const [staffing_location, setStaffing_location] = useState('Onshore Talent Only');
+    
     // on page load, set the local state to what has been previously 
     // entered in the agency object if the new agency user is returning
     useEffect(() => {
@@ -23,15 +21,13 @@ function AgencyRegistrationForm3 ({ setCanMoveForward }) {
         setState_province(agency.state_province);
         setCountry_code(agency.country_code);
         setPostal_code(agency.postal_code);
-        setOnshore_only(agency.onshore_only);
-        setOnshore_offshore_mix(agency.onshore_offshore_mix);
-        setTalent_off_lead_on(agency.talent_off_lead_on);
+        setStaffing_location(agency.staffing_location);
     }, []);
 
     // when any required fields change, check to see if the user can proceed
     useEffect(() => {
         isCompletedForm();
-    }, [city, state_province, country_code, postal_code]);
+    }, [city, state_province, country_code, postal_code, staffing_location]);
 
     // validate that required form fields are filled out
     const isCompletedForm = () => {
@@ -40,7 +36,9 @@ function AgencyRegistrationForm3 ({ setCanMoveForward }) {
             city !== null &&
             city !== '' &&
             postal_code !== null &&
-            postal_code !== ''
+            postal_code !== '' &&
+            staffing_location !== null &&
+            staffing_location !== ''
         ) {
             setCanMoveForward(true);
         } else {
@@ -58,30 +56,30 @@ function AgencyRegistrationForm3 ({ setCanMoveForward }) {
           });
         }
       };
-    // function to change values of the onshore/offshore variables when
+    // function to change values of the staffing location variabless when
     // the radio button changes
-    const handleRadioChange = (event) => {
-      switch(event.target.value) {
-        case 'onshore-only': {
-          setOnshore_only(true);
-          setOnshore_offshore_mix(false);
-          setTalent_off_lead_on(false);
-          }
-          break;
-        case 'onshore-offshore': {
-          setOnshore_only(false);
-          setOnshore_offshore_mix(true);
-          setTalent_off_lead_on(false);
-          }
-          break;
-        case 'onshore-lead': {
-          setOnshore_only(false);
-          setOnshore_offshore_mix(false);
-          setTalent_off_lead_on(true);
-          }
-          break;
-      }
-    } // end of handleRadioChange
+    // const handleRadioChange = (event) => {
+    //   switch(event.target.value) {
+    //     case 'onshore-only': {
+    //       setOnshore_only(true);
+    //       setOnshore_offshore_mix(false);
+    //       setTalent_off_lead_on(false);
+    //       }
+    //       break;
+    //     case 'onshore-offshore': {
+    //       setOnshore_only(false);
+    //       setOnshore_offshore_mix(true);
+    //       setTalent_off_lead_on(false);
+    //       }
+    //       break;
+    //     case 'onshore-lead': {
+    //       setOnshore_only(false);
+    //       setOnshore_offshore_mix(false);
+    //       setTalent_off_lead_on(true);
+    //       }
+    //       break;
+    //   }
+    // } // end of handleRadioChange
     return (
         <>
             <Grid>
@@ -122,21 +120,20 @@ function AgencyRegistrationForm3 ({ setCanMoveForward }) {
                 />
             </Grid>
             <FormControl component="fieldset">
-                <FormLabel component="legend">Staff Location</FormLabel>
+                <FormLabel component="legend">Staff Location*</FormLabel>
                 <RadioGroup
-                    aria-label="staff-location"
-                    defaultValue="onshore-only"
+                    aria-label="staffing-location"
                     name="radio-buttons-group"
-                    onChange={handleRadioChange}
+                    value={staffing_location}
+                    onChange={(event) => setStaffing_location(event.target.value)}
                     onBlur={() => {
-                      handleData('onshore_only', onshore_only);
-                      handleData('onshore_offshore_mix', onshore_offshore_mix);
-                      handleData('talent_off_lead_on', talent_off_lead_on);
+                      handleData('staffing_location', staffing_location);
                     }}
                 >
-                    <FormControlLabel value="onshore-only" control={<Radio />} label="Onshore Talent Only" />
-                    <FormControlLabel value="onshore-offshore" control={<Radio />} label="Onshore and Offshore Talent" />
-                    <FormControlLabel value="onshore-lead" control={<Radio />} label="Offshore Talent, Onshore Leadership" />
+                    <FormControlLabel value="Onshore Talent Only" control={<Radio />} label="Onshore Talent Only" />
+                    <FormControlLabel value="Onshore and Offshore Talent" control={<Radio />} label="Onshore and Offshore Talent" />
+                    <FormControlLabel value="Offshore Talent, Onshore Leadership" control={<Radio />} label="Offshore Talent, Onshore Leadership" />
+                    <FormControlLabel value="All Staff Offshore" control={<Radio />} label="All Staff Offshore" />
                 </RadioGroup>
                 </FormControl>
         </>
