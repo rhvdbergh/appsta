@@ -74,7 +74,7 @@ function AgencyRegistrationForm2({ setCanMoveForward }) {
           }}
         />
         <TextField
-          label="Tell us more about your company*"
+          label="Tell us more about your company"
           multiline={true}
           rows={3}
           sx={{ width: 0.3, height: 100 }}
@@ -107,6 +107,7 @@ function AgencyRegistrationForm2({ setCanMoveForward }) {
         <TextField
           label="Phone Number"
           variant="outlined"
+          type="tel"
           value={phone_number}
           onChange={(event) => setPhone_number(event.target.value)}
           onBlur={() => {
