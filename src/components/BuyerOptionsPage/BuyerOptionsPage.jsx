@@ -5,10 +5,13 @@ import Box from '@mui/material/Box';
 
 function BuyerOptionsPage() {
     const selectedCategory = useSelector((store) => store.selectedCategory);
+    const submitQuote = () => {
+      console.log('Quote Submitted');
+    }
 
     return (
         <Box sx={{ display: 'flex' }}>
-            <Navbar />
+            <Navbar pageType = {'buyer'} fxn = {submitQuote} />
             <Box>
                 <h1> Buyer Options Page </h1>
                 <p> Selected Category ID is: {selectedCategory}</p>

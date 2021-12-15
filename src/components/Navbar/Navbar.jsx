@@ -11,9 +11,10 @@ import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import Button from '@mui/material/Button';
 
 
-export default function Navbar() {
+export default function Navbar({ pageType, fxn }) {
   // get the categories list from the Redux store
   const categories = useSelector((store) => store.category);
   // set dispatch hook
@@ -26,6 +27,8 @@ export default function Navbar() {
     //dispatch clicked category_id to redux store
     dispatch({type: 'SET_SELECTED_CATEGORY', payload: category.id});
   }
+  // define a function to submit a
+
   // call useEffect to populate the categories list
   useEffect(() => {
     dispatch({ type: 'FETCH_CATEGORY' });
@@ -58,6 +61,13 @@ export default function Navbar() {
             </ListItem>
           ))}
         </List> 
+        { pageType === 'buyer' &&
+          <Button onClick={fxn}
+            variant="contained">
+            SUBMIT QUOTE
+          </Button>
+        }
+        
       </Drawer>
      
   ) 
