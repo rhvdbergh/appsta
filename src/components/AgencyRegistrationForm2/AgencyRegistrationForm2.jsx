@@ -68,17 +68,18 @@ function AgencyRegistrationForm2({ setCanMoveForward }) {
           label="Agency Name*"
           value={agency_name}
           variant="outlined"
+          onChange={(event) => setAgency_name(event.target.value)}
           onBlur={() => {
             handleData('agency_name', agency_name);
           }}
         />
         <TextField
+          label="Tell us more about your company*"
           multiline={true}
           rows={3}
           sx={{ width: 0.3, height: 100 }}
-          label="Tell us more about your company*"
           value={agency_blurb}
-          type="text"
+          onChange={(event) => setAgency_blurb(event.target.value)}
           onBlur={() => {
             handleData('agency_blurb', agency_blurb);
           }}
@@ -89,6 +90,7 @@ function AgencyRegistrationForm2({ setCanMoveForward }) {
           label="Contact First Name*"
           variant="outlined"
           value={contact_first_name}
+          onChange={(event) => setContact_first_name(event.target.value)}
           onBlur={() => {
             handleData('contact_first_name', contact_first_name);
           }}
@@ -97,6 +99,7 @@ function AgencyRegistrationForm2({ setCanMoveForward }) {
           label="Contact Last Name*"
           variant="outlined"
           value={contact_last_name}
+          onChange={(event) => setContact_last_name(event.target.value)}
           onBlur={() => {
             handleData('contact_last_name', contact_last_name);
           }}
@@ -105,6 +108,7 @@ function AgencyRegistrationForm2({ setCanMoveForward }) {
           label="Phone Number"
           variant="outlined"
           value={phone_number}
+          onChange={(event) => setPhone_number(event.target.value)}
           onBlur={() => {
             handleData('phone_number', phone_number);
           }}
