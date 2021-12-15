@@ -17,15 +17,21 @@ function OptionsCard() {
 
     return (
         <Card sx={{ display: 'flex' }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                <Typography component="div" variant="h5">
+                    Feature
+                </Typography>
+
                 <CardMedia
                     component="img"
                     sx={{ width: 151 }}
                     image="/static/images/cards/live-from-space.jpg"
                     alt="Live from space album cover"
                 />
-                <CardContent sx={{ flex: '1 0 auto' }}>
-                    <BuyerOptionsSelectionBlock />
-                </CardContent>
+            </Box>
+            <CardContent sx={{ flex: '1 0 auto' }}>
+                <BuyerOptionsSelectionBlock />
+            </CardContent>
 
         </Card>
     );
