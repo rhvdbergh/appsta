@@ -1,5 +1,5 @@
-import { TextField } from "@mui/material";
-import Stack from "@mui/material/Grid"
+import { TextField } from '@mui/material';
+import Stack from '@mui/material/Grid';
 import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -8,14 +8,13 @@ import FormLabel from '@mui/material/FormLabel';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 
-
 function AgencyRegistrationForm4({ setCanMoveForward }) {
   const dispatch = useDispatch();
 
   const agency = useSelector((store) => store.newAgency);
 
   // define the state variables the component will be altering
-  const [team_size, setTeam_size] = useState(null);  
+  const [team_size, setTeam_size] = useState(null);
   const [minority_owned, setMinority_owned] = useState(null);
   const [woman_owned, setWoman_owned] = useState(null);
   const [veteran_owned, setVeteran_owned] = useState(null);
@@ -26,7 +25,7 @@ function AgencyRegistrationForm4({ setCanMoveForward }) {
     setTeam_size(agency.team_size);
     setMinority_owned(agency.minority_owned);
     setWoman_owned(agency.woman_owned);
-    setVeteran_owned(agency.veteran_owned)
+    setVeteran_owned(agency.veteran_owned);
   }, []);
 
   // when any required fields change, check to see if we can move forward
@@ -45,7 +44,7 @@ function AgencyRegistrationForm4({ setCanMoveForward }) {
       setCanMoveForward(true);
     } else {
       setCanMoveForward(false);
-    }    
+    }
   };
 
   // add data to the redux store
@@ -59,60 +58,56 @@ function AgencyRegistrationForm4({ setCanMoveForward }) {
     }
   };
 
-    return (
-        <>
+  return (
+    <>
+      <Stack>
+        <TextField
+          label="Team Size (0-9999)*"
+          variant="outlined"
+          value={team_size}
+          onChange={(event) => setTeam_size(event.target.value)}
+          onBlur={() => {
+            handleData('team_size', team_size);
+          }}
+        />
 
-            <Stack>
-                <TextField 
-                  label="Team Size (0-9999)*" 
-                  variant="outlined"
-                  value={team_size}
-                  onChange={(event) => setTeam_size(event.target.value)}
-                  onBlur={() => {
-                    handleData('team_size', team_size);
-                  }}
-                />
+        <FormControl component="fieldset">
+          <FormGroup row aria-label="minority-owned">
+            <FormControlLabel
+              control={<Checkbox />}
+              label="Minority Owned"
+              onChange={(event) => setMinority_owned(event.target.checked)}
+              onBlur={() => {
+                handleData('minority_owned', minority_owned);
+              }}
+            />
+          </FormGroup>
 
-                <FormControl component="fieldset">
+          <FormGroup row aria-label="women-owned">
+            <FormControlLabel
+              control={<Checkbox />}
+              label="Women Owned"
+              onChange={(event) => setWoman_owned(event.target.checked)}
+              onBlur={() => {
+                handleData('woman_owned', woman_owned);
+              }}
+            />
+          </FormGroup>
 
-                    <FormGroup row aria-label="minority-owned">
-                        <FormControlLabel  
-                          control={<Checkbox />} 
-                          label="Minority Owned" 
-                          onChange={(event) => setMinority_owned(event.target.checked)}
-                          onBlur={() => {
-                            handleData('minority_owned', minority_owned);
-                          }}
-                        />
-                    </FormGroup>
-
-                    <FormGroup row aria-label="women-owned">
-                        <FormControlLabel 
-                          control={<Checkbox />} 
-                          label="Women Owned" 
-                          onChange={(event) => setWoman_owned(event.target.checked)}
-                          onBlur={() => {
-                            handleData('woman_owned', woman_owned);
-                          }} 
-                        />
-                    </FormGroup>
-
-                    <FormGroup row aria-label="veteran-owned">
-                        <FormControlLabel 
-                          control={<Checkbox />} 
-                          label="Veteran Owned" 
-                          onChange={(event) => setVeteran_owned(event.target.checked)}
-                          onBlur={() => {
-                            handleData('veteran_owned', woman_owned);
-                          }} 
-                        />
-                    </FormGroup>
-
-                </FormControl>
-            </Stack>
-        </>
-
-    )
+          <FormGroup row aria-label="veteran-owned">
+            <FormControlLabel
+              control={<Checkbox />}
+              label="Veteran Owned"
+              onChange={(event) => setVeteran_owned(event.target.checked)}
+              onBlur={() => {
+                handleData('veteran_owned', veteran_owned);
+              }}
+            />
+          </FormGroup>
+        </FormControl>
+      </Stack>
+    </>
+  );
 }
 
 export default AgencyRegistrationForm4;
