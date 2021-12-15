@@ -1,4 +1,4 @@
-import { axios } from 'axios';
+import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
 //Create function to POST new agency to db
