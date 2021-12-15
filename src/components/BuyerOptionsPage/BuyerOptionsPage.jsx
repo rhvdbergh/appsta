@@ -11,7 +11,7 @@ function BuyerOptionsPage() {
 
     return (
         <Box sx={{ display: 'flex' }}>
-            <Navbar pageType = {'buyer'} fxn = {submitQuote} />
+            <Navbar btn1text = {'SUBMIT QUOTE'} fxn1 = {submitQuote} />
             <Box>
                 <h1> Buyer Options Page </h1>
                 <p> Selected Category ID is: {selectedCategory}</p>

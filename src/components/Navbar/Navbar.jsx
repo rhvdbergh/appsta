@@ -14,7 +14,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Button from '@mui/material/Button';
 
 
-export default function Navbar({ pageType, fxn }) {
+export default function Navbar({ btn1text, fxn1, btn2text, fxn2, btn3text, fxn3 }) {
   // get the categories list from the Redux store
   const categories = useSelector((store) => store.category);
   // set dispatch hook
@@ -61,10 +61,22 @@ export default function Navbar({ pageType, fxn }) {
             </ListItem>
           ))}
         </List> 
-        { pageType === 'buyer' &&
-          <Button onClick={fxn}
+        { btn1text &&
+          <Button onClick={fxn1}
             variant="contained">
-            SUBMIT QUOTE
+            {btn1text}
+          </Button>
+        }
+        { btn2text &&
+          <Button onClick={fxn2}
+            variant="contained">
+            {btn2text}
+          </Button>
+        }
+        { btn3text &&
+          <Button onClick={fxn3}
+            variant="contained">
+            {btn3text}
           </Button>
         }
         
