@@ -56,7 +56,7 @@ function AgencyRegistrationForm3 ({ setCanMoveForward }) {
           });
         }
       };
-    // function to change values of the staffing location variabless when
+    // function to change values of the staffing location variables when
     // the radio button changes
     // const handleRadioChange = (event) => {
     //   switch(event.target.value) {
