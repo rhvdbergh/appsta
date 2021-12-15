@@ -1,9 +1,11 @@
 import React from "react";
+import Navbar from '../Navbar/Navbar';
 
 function BuyerOptionsPage() {
 
     return (
         <>
+            <Navbar />
             <h1> Buyer Options Page </h1>
             <p> Will add more over time. Placeholder for now  </p>
         </>)
