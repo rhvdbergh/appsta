@@ -36,15 +36,42 @@ function AgencyRegistrationForm4({ setCanMoveForward }) {
 
   // validate that required fields in the form are filled out
   const isCompletedForm = () => {
+    if (
+      team_size !== null &&
+      minority_owned !== null &&
+      woman_owned !== null &&
+      veteran_owned !== null
+    ) {
+      setCanMoveForward(true);
+    } else {
+      setCanMoveForward(false);
+    }    
+  };
 
-    
-  }
+  // add data to the redux store
+  const handleData = (data, value) => {
+    // check to see that the data field is not empty
+    if (data !== '') {
+      dispatch({
+        type: 'SET_NEW_AGENCY',
+        payload: { ...agency, [data]: value },
+      });
+    }
+  };
 
     return (
         <>
 
             <Stack>
-                <TextField id="outlined-basic" label="Team Size*" variant="outlined" />
+                <TextField 
+                  label="Team Size (0-9999)*" 
+                  variant="outlined"
+                  value={team_size}
+                  onChange={(event) => setTeam_size(event.target.value)}
+                  onBlur={() => {
+                    handleData('team_size', team_size);
+                  }}
+                />
 
                 <FormControl component="fieldset">
 
