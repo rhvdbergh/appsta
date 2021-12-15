@@ -23,6 +23,8 @@ export default function Navbar() {
   // define a function to select a category
   const categorySelect = (category) => {
     console.log('Category clicked is:', category.category_name);
+    //dispatch clicked category_id to redux store
+    dispatch({type: 'SET_SELECTED_CATEGORY', payload: category.id});
   }
   // call useEffect to populate the categories list
   useEffect(() => {
@@ -55,9 +57,8 @@ export default function Navbar() {
               <ListItemText primary={category.category_name} />
             </ListItem>
           ))}
-        </List>
-        
+        </List> 
       </Drawer>
-
+     
   ) 
 }
