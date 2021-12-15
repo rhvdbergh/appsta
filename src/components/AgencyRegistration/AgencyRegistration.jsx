@@ -9,6 +9,7 @@ import AgencyRegistrationForm1 from '../AgencyRegistrationForm1/AgencyRegistrati
 import AgencyRegistrationForm2 from '../AgencyRegistrationForm2/AgencyRegistrationForm2';
 import AgencyRegistrationForm3 from '../AgencyRegistrationForm3/AgencyRegistrationForm3';
 import AgencyRegistrationForm4 from '../AgencyRegistrationForm4/AgencyRegistrationForm4';
+import { useHistory } from 'react-router-dom';
 
 function AgencyRegistration() {
   const steps = ['Step 1', 'Step 2', 'Step 3', 'Step 4'];
@@ -17,6 +18,8 @@ function AgencyRegistration() {
   const [canMoveForward, setCanMoveForward] = useState(false);
 
   const [skipped, setSkipped] = useState(new Set());
+
+  const history = useHistory();
 
   const isStepSkipped = (step) => {
     return skipped.has(step);
@@ -35,6 +38,11 @@ function AgencyRegistration() {
   };
 
   const handleBack = () => {
+    // if we're at the first page, send the user back to the
+    // LandingPage
+    if (activeStep === 0) {
+      history.push('/LandingPage');
+    }
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
@@ -97,13 +105,8 @@ function AgencyRegistration() {
             {/* handleRender conditionally renders the form */}
             {handleRender()}
             <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-              <Button
-                color="inherit"
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                sx={{ mr: 1 }}
-              >
-                Back
+              <Button color="inherit" onClick={handleBack} sx={{ mr: 1 }}>
+                {activeStep === 0 ? 'Cancel' : 'Back'}
               </Button>
               <Box sx={{ flex: '1 1 auto' }} />
               {canMoveForward && (
