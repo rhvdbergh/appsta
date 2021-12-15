@@ -17,8 +17,8 @@ function BuyerOptionsPage() {
 
     return (
         <>
-            <h1> Buyer Options Page </h1>
-            <p> Will add more over time. Placeholder for now  </p>
+            <h1> Start Building your Project! </h1>
+            <p> Select the features to include in your project.  Your estimate will be based on selected features. </p>
             < OptionsList features={features}/>
         </>)
 }

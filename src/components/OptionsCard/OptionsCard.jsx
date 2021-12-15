@@ -25,8 +25,8 @@ function OptionsCard({feature}) {
                 <CardMedia
                     component="img"
                     sx={{ width: 151 }}
-                    image="/static/images/cards/live-from-space.jpg"
-                    alt="Live from space album cover"
+                    image= {feature.image_url}
+                    alt={feature.feature_description}
                 />
             </Box>
             <CardContent sx={{ flex: '1 0 auto' }}>
