@@ -25,6 +25,7 @@ import AgencyRegistration from '../AgencyRegistration/AgencyRegistration';
 import BuyerDashboard from '../BuyerDashboard/BuyerDashboard';
 import AgencyDashboard from '../AgencyDashboard/AgencyDashboard';
 import BuyerReviewSelection from '../BuyerReviewSelection/BuyerReviewSelection';
+import AgencyOptionsPage from '../AgencyOptionsPage/AgencyOptionsPage';
 
 import './App.css';
 
@@ -143,6 +144,16 @@ function App() {
               <Redirect to="/BuyerDashboard" />
             )}
           </ProtectedRoute>
+//adding AgencyOptionsPage Route 
+          <ProtectedRoute exact path="/AgencyOptionsPage">
+            {!user.isBuyer ? (
+              <AgencyOptionsPage />
+            ) : (
+              <Redirect to="/BuyerDashboard" />
+            )}
+          </ProtectedRoute>
+
+
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
             <h1>404</h1>
