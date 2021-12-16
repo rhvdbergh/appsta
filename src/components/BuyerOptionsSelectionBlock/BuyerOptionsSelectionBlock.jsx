@@ -27,13 +27,18 @@ function BuyerOptionsSelectionBlock({ feature }) {
   // handles quantity change
   const handleQuantity = (event) => {
     setQuantity(event.target.value);
+    // if already in localStorage, update
+    if (localStorage.getItem(feature.id) !== null) {
+      feature.quantity = event.target.value;
+      localStorage.setItem(feature.id, JSON.stringify(feature));
+    }
   };
 
   const handleClick = (event) => {
     setAddedToProject(!addedToProject);
     // update the localStorage
     if (savedFeature === null) {
-      // we add the quantity here so we can retrieve it laster
+      // we add the quantity here so we can retrieve it later
       feature.quantity = quantity;
       // it has not been added yet, so add it
       // we need to JSON.stringify because localStorage can't store objects
