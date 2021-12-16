@@ -4,10 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import OptionsList from '../OptionsList/OptionsList';
 import Navbar from '../Navbar/Navbar';
 import Box from '@mui/material/Box';
+import { useHistory } from 'react-router-dom';
 
 function BuyerOptionsPage() {
   const selectedCategory = useSelector((store) => store.selectedCategory);
 
+  const history = useHistory();
   const submitQuote = () => {
     // build the selectedFeatures object to save in the redux store
     const selectedFeatures = [];
@@ -23,7 +25,11 @@ function BuyerOptionsPage() {
           JSON.parse(localStorage.getItem(`feature_${feature.id}`))
         )
       );
+    // dispatch to save in the redux store
+    dispatch({ type: 'SET_SELECTED_FEATURES', payload: selectedFeatures });
     console.log('Quote Submitted', selectedFeatures);
+    // move the user to the review page
+    history.push('/BuyerReview');
   };
 
   const dispatch = useDispatch();
