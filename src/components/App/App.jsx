@@ -143,6 +143,16 @@ function App() {
               <Redirect to="/BuyerDashboard" />
             )}
           </ProtectedRoute>
+//adding AgencyOptionsPage Route 
+          <ProtectedRoute exact path="/AgencyOptionsPage">
+            {!user.isBuyer ? (
+              <AgencyOptionsPage />
+            ) : (
+              <Redirect to="/BuyerDashboard" />
+            )}
+          </ProtectedRoute>
+
+
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
             <h1>404</h1>

@@ -5,11 +5,14 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import { useSelector } from 'react-redux';
 
 import BuyerOptionsSelectionBlock from '../BuyerOptionsSelectionBlock/BuyerOptionsSelectionBlock';
+import AgencyOptionsSelectionBlock from '../AgencyOptionsSelectionBlock/AgencyOptionsSelectionBlock';
 
 function OptionsCard({ feature }) {
   const theme = useTheme();
+  const user = useSelector(store => store.user);
 
   return (
     <Card sx={{ display: 'flex' }}>
@@ -26,7 +29,12 @@ function OptionsCard({ feature }) {
         />
       </Box>
       <CardContent sx={{ flex: '1 0 auto' }}>
-        <BuyerOptionsSelectionBlock feature={feature} />
+ {/* //conditionally render block - if buyer vs agency display different blocks */}
+        {!user.isBuyer && user.id ? (
+        <AgencyOptionsSelectionBlock feature={feature} />
+        ) : (<BuyerOptionsSelectionBlock feature={feature} />
+        )}
+
       </CardContent>
     </Card>
   );
