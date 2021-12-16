@@ -24,6 +24,7 @@ import AgencyLoginPage from '../AgencyLoginPage/AgencyLoginPage';
 import AgencyRegistration from '../AgencyRegistration/AgencyRegistration';
 import BuyerDashboard from '../BuyerDashboard/BuyerDashboard';
 import AgencyDashboard from '../AgencyDashboard/AgencyDashboard';
+import BuyerReviewSelection from '../BuyerReviewSelection/BuyerReviewSelection';
 
 import './App.css';
 
@@ -102,6 +103,9 @@ function App() {
               // Otherwise, show the Landing page
               <LandingPage />
             )}
+          </Route>
+          <Route exact path="/BuyerReview">
+            <BuyerReviewSelection />
           </Route>
           //Adding a Buyer Options Route
           <Route exact path="/BuyerOptions">
