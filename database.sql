@@ -177,3 +177,22 @@ VALUES (1, '12/13/2021'), (1, '10/20/2021');
 
 INSERT INTO "project_features" (project_id, feature_id, quantity)
 VALUES (1, 4, 3), (2, 3, 7);
+
+--Here is code to create the additional agency conversion table with the sample data for our two dummy agencies
+CREATE TABLE "agency_conversion" (
+	"id" serial NOT NULL,
+	"agency_id" INT UNIQUE NOT NULL,
+	"tiny_hours" INT NOT NULL,
+	"small_hours" INT NOT NULL,
+	"medium_hours" INT NOT NULL,
+	"large_hours" INT NOT NULL,
+	"extra_large_hours" INT NOT NULL,
+	"hourly_rate" INT NOT NULL,
+	CONSTRAINT "agency_conversion_pk" PRIMARY KEY ("id")
+) WITH (
+  OIDS=FALSE
+);
+
+INSERT INTO "agency_conversion" (agency_id, tiny_hours, small_hours, medium_hours, large_hours, extra_large_hours, hourly_rate)
+VALUES (1, 1, 2, 5, 8, 13, 150), (2, 1, 3, 6, 10, 20, 100);
+
