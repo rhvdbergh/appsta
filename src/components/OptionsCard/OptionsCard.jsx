@@ -26,6 +26,7 @@ function OptionsCard({ feature }) {
         />
       </Box>
       <CardContent sx={{ flex: '1 0 auto' }}>
+ //conditionally render block - if buyer vs agency display different blocks 
         <BuyerOptionsSelectionBlock feature={feature} />
       </CardContent>
     </Card>

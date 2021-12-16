@@ -10,7 +10,8 @@ function AgencyOptionsPage() {
   const selectedCategory = useSelector((store) => store.selectedCategory);
 
   const history = useHistory();
-  const submitQuote = () => {
+  //CHANGE THIS TO FEATURES 
+  const submitFeatures = () => {
     // build the selectedFeatures object to save in the redux store
     const selectedFeatures = [];
     features
@@ -29,7 +30,7 @@ function AgencyOptionsPage() {
     dispatch({ type: 'SET_SELECTED_FEATURES', payload: selectedFeatures });
     console.log('Quote Submitted', selectedFeatures);
     // move the user to the review page
-    history.push('/BuyerReview');
+    history.push('/AgencyDashboard');
   };
 
   const dispatch = useDispatch();
@@ -42,7 +43,9 @@ function AgencyOptionsPage() {
   return (
     <>
       <Box sx={{ display: 'flex' }}>
-        <Navbar btn1text={'SUBMIT QUOTE'} fxn1={submitQuote} />
+        <Navbar 
+        btn1text={'SUBMIT FEATURES'} fxn1={submitFeatures} 
+        btn2text={'LOGOUT'} fxn2={ () => dispatch ( {type: 'LOGOUT'} ) }/>
         <Box>
           <h1> Start Building your Project! </h1>
           <p>
