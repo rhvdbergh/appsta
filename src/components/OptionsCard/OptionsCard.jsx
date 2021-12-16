@@ -9,56 +9,41 @@ import { useSelector } from 'react-redux';
 
 import BuyerOptionsSelectionBlock from '../BuyerOptionsSelectionBlock/BuyerOptionsSelectionBlock';
 import AgencyOptionsSelectionBlock from '../AgencyOptionsSelectionBlock/AgencyOptionsSelectionBlock';
+import BuyerReviewSelectionBlock from '../BuyerReviewSelectionBlock/BuyerReviewSelectionBlock';
 
 function OptionsCard({ feature, listType }) {
   const theme = useTheme();
   const user = useSelector(store => store.user);
 
   return (
-    
-    <Card sx={{ display: 'flex' }}>
-      { listType !== 'buyer-review' && (
-        <>
-      <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-        <Typography component="div" variant="h5">
-          {feature.feature_name}
-        </Typography>
 
-        <CardMedia
-          component="img"
-          sx={{ width: 151 }}
-          image={feature.image_url}
-          alt={feature.feature_description}
-        />
-      </Box>
-      <CardContent sx={{ flex: '1 0 auto' }}>
- {/* //conditionally render block - if buyer vs agency display different blocks */}
-        {!user.isBuyer && user.id ? (
-        <AgencyOptionsSelectionBlock feature={feature} />
-        ) : (<BuyerOptionsSelectionBlock feature={feature} />
-        )}
-      </CardContent>
-      </>
-      )
-      }
-      { listType === 'buyer-review' && (
-        <Box sx={{ display: 'flex' }}>
-          <Box>
-            <Typography component="div" variant="body2">
-              AVERAGE ESTIMATED COST: ${feature.id*100}
-            </Typography>
+    <Card sx={{ display: 'flex' }}>
+      {listType !== 'buyer-review' && (
+        <>
+          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography component="div" variant="h5">
               {feature.feature_name}
             </Typography>
+
+            <CardMedia
+              component="img"
+              sx={{ width: 151 }}
+              image={feature.image_url}
+              alt={feature.feature_description}
+            />
           </Box>
-          <CardMedia
-          component="img"
-          sx={{ width: 75 }}
-          image={feature.image_url}
-          alt={feature.feature_description}
-          />
-        </Box>
+          <CardContent sx={{ flex: '1 0 auto' }}>
+            {/* //conditionally render block - if buyer vs agency display different blocks */}
+            {!user.isBuyer && user.id ? (
+              <AgencyOptionsSelectionBlock feature={feature} />
+            ) : (<BuyerOptionsSelectionBlock feature={feature} />
+            )}
+          </CardContent>
+        </>
       )}
+      
+      {listType === 'buyer-review' && 
+        <BuyerReviewSelectionBlock feature={feature} />}
     </Card>
   );
 }
