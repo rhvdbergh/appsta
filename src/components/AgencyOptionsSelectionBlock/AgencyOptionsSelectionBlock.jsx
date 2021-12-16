@@ -92,6 +92,7 @@ function AgencyOptionsSelectionBlock({ feature }) {
   return (
     <>
       <Box sx={{ width: 300 }}>
+        <Typography variant="body1">Time Estimate:</Typography>
         <Slider
           aria-label="Custom marks"
           defaultValue={20}
