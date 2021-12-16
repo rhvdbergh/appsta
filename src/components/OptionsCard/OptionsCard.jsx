@@ -17,6 +17,8 @@ function OptionsCard({ feature, listType }) {
   return (
     
     <Card sx={{ display: 'flex' }}>
+      { listType !== 'buyer-review' && (
+        <>
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
         <Typography component="div" variant="h5">
           {feature.feature_name}
@@ -35,8 +37,28 @@ function OptionsCard({ feature, listType }) {
         <AgencyOptionsSelectionBlock feature={feature} />
         ) : (<BuyerOptionsSelectionBlock feature={feature} />
         )}
-
       </CardContent>
+      </>
+      )
+      }
+      { listType === 'buyer-review' && (
+        <Box sx={{ display: 'flex' }}>
+          <Box>
+            <Typography component="div" variant="body2">
+              AVERAGE ESTIMATED COST: ${feature.id*100}
+            </Typography>
+            <Typography component="div" variant="h5">
+              {feature.feature_name}
+            </Typography>
+          </Box>
+          <CardMedia
+          component="img"
+          sx={{ width: 75 }}
+          image={feature.image_url}
+          alt={feature.feature_description}
+          />
+        </Box>
+      )}
     </Card>
   );
 }
