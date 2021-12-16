@@ -46,11 +46,11 @@ function AgencyOptionsPage() {
         <Box sx={{ display: 'flex' }}>
           <Navbar btn1text={'SUBMIT FEATURES'} fxn1={submitFeatures} />
           <Box>
-            <h1> Start Building your Project! </h1>
+            <h1> Choose Which Services You Offer </h1>
             <p>
               {' '}
-              Select the features to include in your project. Your estimate will
-              be based on selected features.{' '}
+              Select the features your agency can offer by indicating the
+              estimated time to build and your confidence level.{' '}
             </p>
             <OptionsList features={features} />
             <p> Selected Category ID is: {selectedCategory}</p>

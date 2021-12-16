@@ -12,49 +12,6 @@ function AgencyOptionsSelectionBlock({ feature }) {
   const savedFeature = JSON.parse(
     localStorage.getItem(`agency_feature_${feature.id}`)
   );
-  // local state for the quantity Select dropdown
-  const [quantity, setQuantity] = useState(
-    savedFeature === null ? 1 : savedFeature.quantity
-  );
-  // local state to determine whether this has been added to our project
-  // we set this state for each feature according to whether an entry
-  // for that feature exists in localStorage
-  const [addedToProject, setAddedToProject] = useState(
-    savedFeature === null ? false : true
-  );
-
-  // handles quantity change
-  const handleQuantity = (event) => {
-    setQuantity(event.target.value);
-    // if already in localStorage, update
-    if (localStorage.getItem(`agency_feature_${feature.id}`) !== null) {
-      feature.quantity = event.target.value;
-      localStorage.setItem(
-        `agency_feature_${feature.id}`,
-        JSON.stringify(feature)
-      );
-    }
-  };
-
-  const handleClick = (event) => {
-    setAddedToProject(!addedToProject);
-    // update the localStorage
-    if (savedFeature === null) {
-      // we add the quantity here so we can retrieve it later
-      feature.quantity = quantity;
-      // it has not been added yet, so add it
-      // we need to JSON.stringify because localStorage can't store objects
-      localStorage.setItem(
-        `agency_feature_${feature.id}`,
-        JSON.stringify(feature)
-      );
-    } else {
-      // it's already there, so remove it
-      localStorage.removeItem(`agency_feature_${feature.id}`);
-      // reset the quantity to 1
-      setQuantity(1);
-    }
-  };
 
   // sets the t-shirt size
   const tShirtSizesMarks = [
