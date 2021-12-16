@@ -9,6 +9,8 @@ import AgencyRegistrationForm1 from '../AgencyRegistrationForm1/AgencyRegistrati
 import AgencyRegistrationForm2 from '../AgencyRegistrationForm2/AgencyRegistrationForm2';
 import AgencyRegistrationForm3 from '../AgencyRegistrationForm3/AgencyRegistrationForm3';
 import AgencyRegistrationForm4 from '../AgencyRegistrationForm4/AgencyRegistrationForm4';
+import { useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 function AgencyRegistration() {
   const steps = ['Step 1', 'Step 2', 'Step 3', 'Step 4'];
@@ -17,6 +19,15 @@ function AgencyRegistration() {
   const [canMoveForward, setCanMoveForward] = useState(false);
 
   const [skipped, setSkipped] = useState(new Set());
+
+  const dispatch = useDispatch();
+
+  const history = useHistory();
+
+  // the newAgency object in the redux store
+  // when everything is changed through the registration process,
+  // we want to submit this object that we have built
+  const agency = useSelector((store) => store.newAgency);
 
   const isStepSkipped = (step) => {
     return skipped.has(step);
@@ -29,12 +40,24 @@ function AgencyRegistration() {
       newSkipped.delete(activeStep);
     }
 
+    // check to see if we're on the last step and
+    // everything on the last registration form has been
+    // filled out
+    // if so, do a dispatch of the agency object that we built
+    if (canMoveForward && activeStep === steps.length - 1) {
+      dispatch({ type: 'ADD_NEW_AGENCY', payload: agency });
+    }
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     setSkipped(newSkipped);
     setCanMoveForward(false);
   };
 
   const handleBack = () => {
+    // if we're at the first page, send the user back to the
+    // LandingPage
+    if (activeStep === 0) {
+      history.push('/LandingPage');
+    }
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
@@ -97,18 +120,13 @@ function AgencyRegistration() {
             {/* handleRender conditionally renders the form */}
             {handleRender()}
             <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-              <Button
-                color="inherit"
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                sx={{ mr: 1 }}
-              >
-                Back
+              <Button color="inherit" onClick={handleBack} sx={{ mr: 1 }}>
+                {activeStep === 0 ? 'Cancel' : 'Back'}
               </Button>
               <Box sx={{ flex: '1 1 auto' }} />
               {canMoveForward && (
                 <Button onClick={handleNext}>
-                  {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                  {activeStep === steps.length - 1 ? 'Submit' : 'Next'}
                 </Button>
               )}
             </Box>

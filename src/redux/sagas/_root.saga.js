@@ -3,6 +3,8 @@ import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import agencySaga from './agency.saga';
+import featureSaga from './feature.saga';
+import navBarSaga from './navBar.saga'
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -17,5 +19,7 @@ export default function* rootSaga() {
     registrationSaga(),
     userSaga(),
     agencySaga(),
+    featureSaga(),
+    navBarSaga(),
   ]);
 }
