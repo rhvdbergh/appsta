@@ -64,23 +64,23 @@ function AgencyOptionsSelectionBlock({ feature }) {
     },
     {
       value: 20,
-      label: 'S',
+      label: 'XS',
     },
     {
       value: 40,
-      label: 'M',
+      label: 'S',
     },
     {
       value: 60,
-      label: 'L',
+      label: 'M',
     },
     {
       value: 80,
-      label: 'XL',
+      label: 'L',
     },
     {
       value: 100,
-      label: 'XXL',
+      label: 'XL',
     },
   ];
 
