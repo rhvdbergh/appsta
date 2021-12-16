@@ -13,22 +13,22 @@ function AgencyOptionsPage() {
   //CHANGE THIS TO FEATURES 
   const submitFeatures = () => {
     // build the selectedFeatures object to save in the redux store
-    const selectedFeatures = [];
-    features
-      // filter through features and check if it is in localStorage
-      .filter(
-        (feature) => localStorage.getItem(`feature_${feature.id}`) !== null
-      )
-      // retrieve all those in localStorage and add them to selectedFeatures array
-      // this includes the quantity
-      .forEach((feature) =>
-        selectedFeatures.push(
-          JSON.parse(localStorage.getItem(`feature_${feature.id}`))
-        )
-      );
-    // dispatch to save in the redux store
-    dispatch({ type: 'SET_SELECTED_FEATURES', payload: selectedFeatures });
-    console.log('Quote Submitted', selectedFeatures);
+    // const selectedFeatures = [];
+    // features
+    //   // filter through features and check if it is in localStorage
+    //   .filter(
+    //     (feature) => localStorage.getItem(`feature_${feature.id}`) !== null
+    //   )
+    //   // retrieve all those in localStorage and add them to selectedFeatures array
+    //   // this includes the quantity
+    //   .forEach((feature) =>
+    //     selectedFeatures.push(
+    //       JSON.parse(localStorage.getItem(`feature_${feature.id}`))
+    //     )
+    //   );
+    // // dispatch to save in the redux store
+    // dispatch({ type: 'SET_SELECTED_FEATURES', payload: selectedFeatures });
+    // console.log('Quote Submitted', selectedFeatures);
     // move the user to the review page
     history.push('/AgencyDashboard');
   };
