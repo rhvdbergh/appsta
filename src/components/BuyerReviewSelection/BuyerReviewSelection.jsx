@@ -20,9 +20,9 @@ function BuyerReviewSelection() {
   const handleFeatureChange = () => {
     history.push('/BuyerOptions')
   }
-  // const handleRegister = () => {
-  //   history.push('/')
-  // }
+  const handleRegister = () => {
+    history.push('/BuyerRegistration')
+  }
   return (
     <>
       <Box sx={{ display: 'flex' }}>
@@ -38,7 +38,7 @@ function BuyerReviewSelection() {
           </Typography>
           
           <Button onClick={handleFeatureChange}>Change Features</Button>
-          <Button>Register to view quotes</Button>
+          <Button onClick={handleRegister}>Register to view quotes</Button>
         </Box>
       </Box>
     </>
