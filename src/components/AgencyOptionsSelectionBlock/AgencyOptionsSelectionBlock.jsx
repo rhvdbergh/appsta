@@ -1,16 +1,11 @@
 import React, { useState } from 'react';
-import {
-  Box,
-  Slider,
-  Button,
-  Typography,
-  InputLabel,
-  MenuItem,
-  FormControl,
-  Select,
-} from '@mui/material';
+import { Box, Slider, Typography } from '@mui/material';
 
 function AgencyOptionsSelectionBlock({ feature }) {
+  // local state for the t-shirtsize and confidence level
+  const [tShirtSize, setTShirtSize] = useState(0);
+  const [confidence, setConfidence] = useState(50);
+
   // grab the feature from the store, if it already exists
   // else localStorage will set this to null
   // it would have been saved as a string, so make it an object
@@ -89,16 +84,41 @@ function AgencyOptionsSelectionBlock({ feature }) {
     },
   ];
 
+  // sets the confidence level
+  const confidenceMarks = [
+    {
+      value: 0,
+      label: 'Less',
+    },
+    {
+      value: 100,
+      label: 'More',
+    },
+  ];
+
   return (
     <>
       <Box sx={{ width: 300 }}>
         <Typography variant="body1">Time Estimate:</Typography>
         <Slider
           aria-label="Custom marks"
-          defaultValue={20}
+          defaultValue={tShirtSize}
           step={20}
           valueLabelDisplay="off"
           marks={tShirtSizesMarks}
+          onChange={(event) => setTShirtSize(event.target.value)}
+        />
+      </Box>
+      <Box sx={{ width: 300 }}>
+        <Typography variant="body1">Confidence:</Typography>
+        <Slider
+          aria-label="Custom marks"
+          defaultValue={50}
+          disabled={tShirtSize === 0}
+          step={5}
+          valueLabelDisplay="off"
+          marks={confidenceMarks}
+          onChange={(event) => setConfidence(event.target.value)}
         />
       </Box>
     </>
