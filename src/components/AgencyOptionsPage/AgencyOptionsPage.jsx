@@ -10,7 +10,7 @@ function AgencyOptionsPage() {
   const selectedCategory = useSelector((store) => store.selectedCategory);
 
   const history = useHistory();
-  //CHANGE THIS TO FEATURES 
+  //CHANGE THIS TO FEATURES
   const submitFeatures = () => {
     // build the selectedFeatures object to save in the redux store
     // const selectedFeatures = [];
@@ -43,9 +43,7 @@ function AgencyOptionsPage() {
   return (
     <>
       <Box sx={{ display: 'flex' }}>
-        <Navbar 
-        btn1text={'SUBMIT FEATURES'} fxn1={submitFeatures} 
-        btn2text={'LOGOUT'} fxn2={ () => dispatch ( {type: 'LOGOUT'} ) }/>
+        <Navbar btn1text={'SUBMIT FEATURES'} fxn1={submitFeatures} />
         <Box>
           <h1> Start Building your Project! </h1>
           <p>
