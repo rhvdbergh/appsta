@@ -10,11 +10,12 @@ import { useSelector } from 'react-redux';
 import BuyerOptionsSelectionBlock from '../BuyerOptionsSelectionBlock/BuyerOptionsSelectionBlock';
 import AgencyOptionsSelectionBlock from '../AgencyOptionsSelectionBlock/AgencyOptionsSelectionBlock';
 
-function OptionsCard({ feature }) {
+function OptionsCard({ feature, listType }) {
   const theme = useTheme();
   const user = useSelector(store => store.user);
 
   return (
+    
     <Card sx={{ display: 'flex' }}>
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
         <Typography component="div" variant="h5">
