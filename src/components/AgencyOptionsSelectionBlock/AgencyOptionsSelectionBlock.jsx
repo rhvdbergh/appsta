@@ -2,15 +2,20 @@ import React, { useState } from 'react';
 import { Box, Slider, Typography } from '@mui/material';
 
 function AgencyOptionsSelectionBlock({ feature }) {
-  // local state for the t-shirtsize and confidence level
-  const [tShirtSize, setTShirtSize] = useState(0);
-  const [confidence, setConfidence] = useState(50);
-
   // grab the feature from the store, if it already exists
   // else localStorage will set this to null
   // it would have been saved as a string, so make it an object
   const savedFeature = JSON.parse(
     localStorage.getItem(`agency_feature_${feature.id}`)
+  );
+
+  // local state for the t-shirtsize and confidence level
+  // if the feature has been edited already, use the localStorage values
+  const [tShirtSize, setTShirtSize] = useState(
+    savedFeature === null ? 0 : savedFeature.t_shirt_size
+  );
+  const [confidence, setConfidence] = useState(
+    savedFeature === null ? 50 : savedFeature.confidence
   );
 
   // sets the t-shirt size
