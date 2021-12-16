@@ -101,7 +101,7 @@ function AgencyOptionsSelectionBlock({ feature }) {
       <Box sx={{ width: 300 }}>
         <Typography variant="body1">Time Estimate:</Typography>
         <Slider
-          aria-label="Custom marks"
+          aria-label="T-shirt-size marks"
           defaultValue={tShirtSize}
           step={20}
           valueLabelDisplay="off"
@@ -112,7 +112,7 @@ function AgencyOptionsSelectionBlock({ feature }) {
       <Box sx={{ width: 300 }}>
         <Typography variant="body1">Confidence:</Typography>
         <Slider
-          aria-label="Custom marks"
+          aria-label="Confidence marks"
           defaultValue={50}
           disabled={tShirtSize === 0}
           step={5}
