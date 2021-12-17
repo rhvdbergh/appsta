@@ -26,7 +26,8 @@ import BuyerDashboard from '../BuyerDashboard/BuyerDashboard';
 import AgencyDashboard from '../AgencyDashboard/AgencyDashboard';
 import BuyerReviewSelection from '../BuyerReviewSelection/BuyerReviewSelection';
 import AgencyOptionsPage from '../AgencyOptionsPage/AgencyOptionsPage';
-import BuyerRegistration from '../BuyerRegistration/BuyerRegistration'
+import BuyerRegistration from '../BuyerRegistration/BuyerRegistration';
+import BuyerCompareQuotes from '../BuyerCompareQuotes/BuyerCompareQuotes';
 
 import './App.css';
 
@@ -93,8 +94,6 @@ function App() {
             )}
           </Route> */}
 
-
-
           <Route exact path="/LandingPage">
             {user.id && user.isBuyer ? (
               // If the user is already logged in,
@@ -102,12 +101,12 @@ function App() {
               // redirect them to the /BuyerDashboard page
               <Redirect to="/BuyerDashboard" />
             ) : // but if they're an agency, to the agency page
-              user.id && !user.isBuyer ? (
-                <Redirect to="/AgencyDashboard" />
-              ) : (
-                // Otherwise, show the Landing page
-                <LandingPage />
-              )}
+            user.id && !user.isBuyer ? (
+              <Redirect to="/AgencyDashboard" />
+            ) : (
+              // Otherwise, show the Landing page
+              <LandingPage />
+            )}
           </Route>
           <Route exact path="/BuyerReview">
             <BuyerReviewSelection />
@@ -117,7 +116,7 @@ function App() {
             <BuyerOptionsPage />
           </Route>
           {/* Adding Buyer Registration Route */}
-          <Route exact path='/BuyerRegistration'>
+          <Route exact path="/BuyerRegistration">
             <BuyerRegistration />
           </Route>
           {/* Adding router for Agency Login Page */}
@@ -152,15 +151,22 @@ function App() {
               <Redirect to="/BuyerDashboard" />
             )}
           </ProtectedRoute>
-        {/* adding AgencyOptionsPage Route */}
+          {/* adding AgencyOptionsPage Route */}
           <ProtectedRoute exact path="/AgencyOptionsPage">
             {!user.isBuyer ? (
               <AgencyOptionsPage />
             ) : (
               <Redirect to="/BuyerDashboard" />
             )}
-          </ProtectedRoute> 
-
+          </ProtectedRoute>
+          {/* adding BuyerCompareQuotes Route */}
+          <ProtectedRoute exact path="/BuyerCompareQuotes">
+            {user.isBuyer ? (
+              <BuyerCompareQuotes />
+            ) : (
+              <Redirect to="/AgencyDashboard" />
+            )}
+          </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
