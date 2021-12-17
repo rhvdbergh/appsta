@@ -8,11 +8,12 @@ import { useState, Fragment } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-function BuyerRegistrationForm() {
+function BuyerRegistration() {
 
     const steps = ['Step 1', 'Step 2', 'Step 3'];
 
     const [activeStep, setActiveStep] = useState(0);
+    
     const [canMoveForward, setCanMoveForward] = useState(false);
 
     const [skipped, setSkipped] = useState(new Set());
@@ -45,6 +46,8 @@ function BuyerRegistrationForm() {
             newSkipped = new Set(newSkipped.values());
             newSkipped.delete(activeStep);
         }
+
+        setActiveStep((prevActiveStep) => prevActiveStep + 1);
     }
 
     const handleRender = () => {
@@ -56,21 +59,19 @@ function BuyerRegistrationForm() {
                 );
             case 1:
                 return (
-                    <BuyerRegistrationForm2 setCanMoveForward={setCanMoveForward} />
+                    // <BuyerRegistrationForm2 setCanMoveForward={setCanMoveForward} />
+                    <p>yes</p>
                 );
             case 2:
                 return (
-                    <BuyerRegistrationForm3 setCanMoveForward={setCanMoveForward} />
-                );
-            case 3:
-                return (
-                    <BuyerRegistrationForm4 setCanMoveForward={setCanMoveForward} />
-                );
+                    // <BuyerRegistrationForm3 setCanMoveForward={setCanMoveForward} />
+                    <p>no</p>
+                );          
         }
     };
     return (
         <>
-            <h1>Buyer registration page</h1>
+            <h1>Buyer registration page!</h1>
             <Box sx={{ width: '100%' }}>
                 <Stepper activeStep={activeStep}>
                     {steps.map((label, index) => {
@@ -105,18 +106,17 @@ function BuyerRegistrationForm() {
                                 {activeStep === 0 ? 'Cancel' : 'Back'}
                             </Button>
                             <Box sx={{ flex: '1 1 auto' }} />
-                            {canMoveForward && (
+                            
                                 <Button onClick={handleNext}>
                                     {activeStep === steps.length - 1 ? 'Submit' : 'Next'}
                                 </Button>
-                            )}
+        
                         </Box>
                     </Fragment>
                 )}
             </Box>
         </>
-
     )
 }
 
-export default BuyerRegistrationForm;
+export default BuyerRegistration;

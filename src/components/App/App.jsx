@@ -26,7 +26,7 @@ import BuyerDashboard from '../BuyerDashboard/BuyerDashboard';
 import AgencyDashboard from '../AgencyDashboard/AgencyDashboard';
 import BuyerReviewSelection from '../BuyerReviewSelection/BuyerReviewSelection';
 import AgencyOptionsPage from '../AgencyOptionsPage/AgencyOptionsPage';
-import BuyerRegistrationPage from '../BuyerRegistrationPage/BuyerRegistrationPage'
+import BuyerRegistration from '../BuyerRegistration/BuyerRegistration'
 
 import './App.css';
 
@@ -118,7 +118,7 @@ function App() {
           </Route>
           {/* Adding Buyer Registration Route */}
           <Route exact path='/BuyerRegistration'>
-            <BuyerRegistrationPage />
+            <BuyerRegistration />
           </Route>
           {/* Adding router for Agency Login Page */}
           <Route exact path="/AgencyLogin">
