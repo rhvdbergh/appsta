@@ -25,6 +25,8 @@ export default function Navbar({
   const categories = useSelector((store) => store.category);
   // get the selected category from the redux store
   const selectedCategory = useSelector((store) => store.selectedCategory);
+  // get the user object from the redux store
+  const user = useSelector((store) => store.user);
   // set dispatch hook
   const dispatch = useDispatch();
   // setting a drawer width for the Navbar
@@ -82,6 +84,15 @@ export default function Navbar({
       {btn3text && (
         <Button onClick={fxn3} variant="contained">
           {btn3text}
+        </Button>
+      )}
+      {user.id && (
+        <Button
+          onClick={fxn3}
+          variant="contained"
+          onClick={() => dispatch({ type: 'LOGOUT' })}
+        >
+          LOGOUT
         </Button>
       )}
     </Drawer>
