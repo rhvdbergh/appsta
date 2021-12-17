@@ -88,51 +88,54 @@ function AgencyRegistration() {
 
   return (
     <>
-      <h1> Agency Registration Page </h1>
-      <p> Will add more over time. Placeholder for now </p>
-      <Box sx={{ width: '100%' }}>
-        <Stepper activeStep={activeStep}>
-          {steps.map((label, index) => {
-            const stepProps = {};
-            const labelProps = {};
-            if (isStepSkipped(index)) {
-              stepProps.completed = false;
-            }
-            return (
-              <Step key={label} {...stepProps}>
-                <StepLabel {...labelProps}>{label}</StepLabel>
-              </Step>
-            );
-          })}
-        </Stepper>
-        {activeStep === steps.length ? (
-          <Fragment>
-            <Typography sx={{ mt: 2, mb: 1 }}>
-              All steps completed - you&apos;re finished
-            </Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-              <Box sx={{ flex: '1 1 auto' }} />
-              <Button onClick={handleReset}>Reset</Button>
-            </Box>
-          </Fragment>
-        ) : (
-          <Fragment>
-            {/* handleRender conditionally renders the form */}
-            {handleRender()}
-            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-              <Button color="inherit" onClick={handleBack} sx={{ mr: 1 }}>
-                {activeStep === 0 ? 'Cancel' : 'Back'}
-              </Button>
-              <Box sx={{ flex: '1 1 auto' }} />
-              {canMoveForward && (
-                <Button onClick={handleNext}>
-                  {activeStep === steps.length - 1 ? 'Submit' : 'Next'}
+      <div class="container">
+        <h1> Agency Registration Page </h1>
+        <p> lines with * are required  </p>
+
+        <Box sx={{ width: '100%' }}>
+          <Stepper activeStep={activeStep}>
+            {steps.map((label, index) => {
+              const stepProps = {};
+              const labelProps = {};
+              if (isStepSkipped(index)) {
+                stepProps.completed = false;
+              }
+              return (
+                <Step key={label} {...stepProps}>
+                  <StepLabel {...labelProps}>{label}</StepLabel>
+                </Step>
+              );
+            })}
+          </Stepper>
+          {activeStep === steps.length ? (
+            <Fragment>
+              <Typography sx={{ mt: 2, mb: 1 }}>
+                All steps completed - you&apos;re finished
+              </Typography>
+              <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+                <Box sx={{ flex: '1 1 auto' }} />
+                <Button onClick={handleReset}>Reset</Button>
+              </Box>
+            </Fragment>
+          ) : (
+            <Fragment>
+              {/* handleRender conditionally renders the form */}
+              {handleRender()}
+              <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+                <Button color="inherit" onClick={handleBack} sx={{ mr: 1 }}>
+                  {activeStep === 0 ? 'Cancel' : 'Back'}
                 </Button>
-              )}
-            </Box>
-          </Fragment>
-        )}
-      </Box>
+                <Box sx={{ flex: '1 1 auto' }} />
+                {canMoveForward && (
+                  <Button onClick={handleNext}>
+                    {activeStep === steps.length - 1 ? 'Submit' : 'Next'}
+                  </Button>
+                )}
+              </Box>
+            </Fragment>
+          )}
+        </Box>
+      </div>
     </>
   );
 }
