@@ -79,6 +79,8 @@ function AgencyOptionsSelectionBlock({ feature }) {
   const savedFeature = useSelector((store) =>
     store.agencyFeatures.find((f) => f.feature_id === feature.id)
   );
+  // grab the user from the store
+  const user = useSelector((store) => store.user);
 
   // local state for the t-shirtsize and confidence level
   const [tShirtSize, setTShirtSize] = useState(0);
@@ -164,7 +166,7 @@ function AgencyOptionsSelectionBlock({ feature }) {
         <Typography variant="body1">Confidence:</Typography>
         <Slider
           aria-label="Confidence marks"
-          defaultValue={50}
+          value={confidence}
           disabled={tShirtSize === 0}
           step={5}
           valueLabelDisplay="off"
