@@ -14,6 +14,8 @@ import BuyerRegistrationForm3 from '../BuyerRegistrationForm3/BuyerRegistrationF
 
 function BuyerRegistration() {
 
+    const buyer = useSelector((store) => store.newBuyer);
+
     const steps = ['Step 1', 'Step 2', 'Step 3'];
 
     const [activeStep, setActiveStep] = useState(0);
@@ -50,7 +52,9 @@ function BuyerRegistration() {
             newSkipped = new Set(newSkipped.values());
             newSkipped.delete(activeStep);
         }
-
+        if (canMoveForward && activeStep === steps.length - 1) {
+            dispatch({ type: 'ADD_NEW_BUYER', payload: buyer });
+        }
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
     }
 
