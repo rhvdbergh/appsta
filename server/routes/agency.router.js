@@ -71,4 +71,27 @@ router.post('/new', (req, res) => {
     });
 });
 
+// get the features associated with an agency
+// GET /api/agency/features
+router.get('/features', rejectUnauthenticated, (req, res) => {
+  // build the sql query
+  const queryText = `
+  SELECT "agency_features".id AS "id", "agency_id", "feature_id", "feature_notes", "t_shirt_size", "confidence" FROM "agency_features" 
+  JOIN "agencies" ON "agencies".id = "agency_features".agency_id
+  JOIN "users" ON "users".id = "agencies".user_id
+  WHERE "users".id = ${req.user.id};
+  `;
+
+  // run the query
+  pool
+    .query(queryText)
+    .then((response) => {
+      res.send(response.rows);
+    })
+    .catch((err) => {
+      console.log('error fetching the agency features', err);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;
