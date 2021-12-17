@@ -17,7 +17,7 @@ import {
   function BuyerRegistrationForm1({ setCanMoveForward }) {
     const dispatch = useDispatch();
   
-    const buyer = useSelector((store) => store.buyer);
+    const buyer = useSelector((store) => store.newBuyer);
   
     const [username, setUsername] = useState(null);
   
