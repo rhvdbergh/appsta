@@ -83,7 +83,7 @@ import {
       <>
         <Grid>
           <TextField
-            label="Username*"
+            label="Email*"
             variant="outlined"
             value={username}
             onChange={(event) => setUsername(event.target.value)}

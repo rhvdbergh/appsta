@@ -5,7 +5,6 @@ const emptyNewBuyer = {
     username: null,
     password: null,
     company_name: null,
-    email_address: null,
     project_name: null,
     first_name: null,
     last_name: null,

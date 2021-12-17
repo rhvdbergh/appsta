@@ -10,8 +10,6 @@ function BuyerRegistrationForm2({ setCanMoveForward }) {
 
   const [first_name, setFirst_name] = useState(null);
   const [last_name, setLast_name] = useState('');
-  const [email_address , setEmail_address] = useState(null);
-  const [phone_number, setPhone_number] = useState(null);
  
 
   // on page load, set the local state to what has already been
@@ -19,15 +17,13 @@ function BuyerRegistrationForm2({ setCanMoveForward }) {
   useEffect(() => {
     setFirst_name(buyer.first_name);
     setLast_name(buyer.last_name);
-    setEmail_address(buyer.email_address);
-    setPhone_number(buyer.phone_number);
   }, []);
 
   // when any of the required fields change, check
   // to see if we can move forward
   useEffect(() => {
     isCompletedForm();
-  }, [first_name, last_name, email_address, phone_number]);
+  }, [first_name, last_name]);
 
   // validate that all required fields in the form are filled out
   const isCompletedForm = () => {
@@ -35,9 +31,7 @@ function BuyerRegistrationForm2({ setCanMoveForward }) {
     // have some content
     if (
         first_name !== null &&
-        last_name !== null &&
-        email_address !== null &&
-        phone_number !== null 
+        last_name !== null 
     ) {
       setCanMoveForward(true);
     } else {
@@ -77,25 +71,6 @@ function BuyerRegistrationForm2({ setCanMoveForward }) {
             handleData('last_name', last_name);
           }}
         />
-        <TextField
-          label="Email*"
-          variant="outlined"
-          value={email_address}
-          onChange={(event) => setEmail_address(event.target.value)}
-          onBlur={() => {
-            handleData('email_address', email_address);
-          }}
-        />
-        <TextField
-          label="Phone Number*"
-          variant="outlined"
-          value={phone_number}
-          onChange={(event) => setPhone_number(event.target.value)}
-          onBlur={() => {
-            handleData('phone_number', phone_number);
-          }}
-        />
- 
       </Stack>
     </>
   );
