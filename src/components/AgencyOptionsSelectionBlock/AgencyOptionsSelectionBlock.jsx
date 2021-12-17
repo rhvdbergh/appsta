@@ -19,11 +19,16 @@ function AgencyOptionsSelectionBlock({ feature }) {
 
   // on page load
   useEffect(() => {
+    dispatch({ type: 'GET_AGENCY_FEATURES' });
+  }, []);
+
+  // when the savedFeature data refreshes
+  useEffect(() => {
     // if this feature already had values previously, set
     // the state to those values
     savedFeature && setTShirtSize(savedFeature.t_shirt_size);
     savedFeature && setConfidence(savedFeature.confidence);
-  }, []);
+  }, [savedFeature]);
 
   // sets the t-shirt size
   const tShirtSizesMarks = [
