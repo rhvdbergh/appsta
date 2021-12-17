@@ -41,19 +41,21 @@ function BuyerOptionsPage() {
 
   return (
     <>
-      <Box sx={{ display: 'flex' }}>
-        <Navbar btn1text={'SUBMIT QUOTE'} fxn1={submitQuote} />
-        <Box>
-          <h1> Start Building your Project! </h1>
-          <p>
-            {' '}
-            Select the features to include in your project. Your estimate will
-            be based on selected features.{' '}
-          </p>
-          <OptionsList features={features} />
-          <p> Selected Category ID is: {selectedCategory}</p>
+      <div class="container">
+        <Box sx={{ display: 'flex' }}>
+          <Navbar btn1text={'SUBMIT QUOTE'} fxn1={submitQuote} />
+          <Box>
+            <h1> Start Building your Project! </h1>
+            <p>
+              {' '}
+              Select the features to include in your project. Your estimate will
+              be based on selected features.{' '}
+            </p>
+            <OptionsList features={features} />
+            <p> Selected Category ID is: {selectedCategory}</p>
+          </Box>
         </Box>
-      </Box>
+      </div>
     </>
   );
 }

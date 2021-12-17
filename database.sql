@@ -81,7 +81,7 @@ CREATE TABLE "agency_features" (
 	"id" serial NOT NULL,
 	"agency_id" integer NOT NULL,
 	"feature_id" integer NOT NULL,
-	"feature_notes" varchar(1000) NOT NULL,
+	"feature_notes" varchar(1000),
 	"t_shirt_size" varchar(255) NOT NULL,
 	"confidence" integer NOT NULL,
 	CONSTRAINT "agency_features_pk" PRIMARY KEY ("id")
@@ -167,10 +167,10 @@ VALUES ('doughnut chart', 'information in a doughnut chart', 'description of obj
 
 
 INSERT INTO "agency_features" (agency_id, feature_id, feature_notes, t_shirt_size, confidence)
-VALUES (1, 2, 'we got it!', 'extra large', 7),
-(1, 1, 'no problem', 'small', 5),
-(2, 4, 'ehhhhh, we have to check', 'tiny', 2),
-(2, 6, 'whew, well this is awkward!', 'medium', 3);
+VALUES (1, 2, 'we got it!', 'XL', 70),
+(1, 1, 'no problem', 'S', 50),
+(2, 4, 'ehhhhh, we have to check', 'XS', 20),
+(2, 6, 'whew, well this is awkward!', 'M', 30);
 
 INSERT INTO "projects" (buyer_id, date_of_project)
 VALUES (1, '12/13/2021'), (1, '10/20/2021');
