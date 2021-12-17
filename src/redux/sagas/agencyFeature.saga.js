@@ -12,8 +12,21 @@ function* getAgencyFeatures(action) {
   }
 }
 
+// add a single agency_feature
+// as payload we expect a new feature and
+// the logged in user's id
+function* addAgencyFeature(action) {
+  try {
+    yield axios.post('/api/agency/feature', action.payload);
+  } catch (error) {
+    console.log('error in add agency features', error);
+    yield put({ type: 'ADD_AGENCY_FEATURES_ERROR' });
+  }
+}
+
 function* agencyFeatureSaga() {
   yield takeLatest('GET_AGENCY_FEATURES', getAgencyFeatures);
+  yield takeLatest('ADD_AGENCY_FEATURE', addAgencyFeature);
 }
 
 export default agencyFeatureSaga;

@@ -76,7 +76,9 @@ router.post('/new', (req, res) => {
 router.get('/features', rejectUnauthenticated, (req, res) => {
   // build the sql query
   const queryText = `
-  SELECT "agency_features".id AS "id", "agency_id", "feature_id", "feature_notes", "t_shirt_size", "confidence" FROM "agency_features" 
+  SELECT "agency_features".id AS "agency_features_id", "agency_id", 
+    "feature_id", "feature_notes", "t_shirt_size", "confidence" 
+  FROM "agency_features" 
   JOIN "agencies" ON "agencies".id = "agency_features".agency_id
   JOIN "users" ON "users".id = "agencies".user_id
   WHERE "users".id = ${req.user.id};
@@ -92,6 +94,19 @@ router.get('/features', rejectUnauthenticated, (req, res) => {
       console.log('error fetching the agency features', err);
       res.sendStatus(500);
     });
+});
+
+// insert a single new agency_feature
+// POST /api/agency/feature
+router.post('/feature', rejectUnauthenticated, (req, res) => {
+  // build the sql query
+  const queryText = `
+  INSERT INTO "agency_features" (agency_id, feature_id, feature_notes, t_shirt_size, confidence)
+  VALUES (1, 2, 'we got it!', 'XL', 70),
+  `;
+
+  console.log(req.body);
+  res.sendStatus(200);
 });
 
 module.exports = router;

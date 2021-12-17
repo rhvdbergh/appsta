@@ -15,15 +15,15 @@ const convertSizeToNumber = {
 const convertNumberToSize = (num) => {
   switch (num) {
     case 20:
-      return XS;
+      return 'XS';
     case 40:
-      return S;
+      return 'S';
     case 60:
-      return M;
+      return 'M';
     case 80:
-      return L;
+      return 'L';
     case 100:
-      return XL;
+      return 'XL';
     default:
       return 0;
   }
@@ -101,29 +101,34 @@ function AgencyOptionsSelectionBlock({ feature }) {
   }, [savedFeature]);
 
   const handleTShirtChange = (event) => {
-    if (savedFeature) {
-      // update the feature
-      dispatch({
-        type: 'UPDATE_AGENCY_FEATURE',
-        payload: {
-          ...savedFeature,
-          t_shirt_size: convertNumberToSize(event.target.value),
-        },
-      });
+    if (savedFeature && event.target.value === 0) {
+      // user has set slider to "not offered", remove this as a saved feature
+      dispatch({ type: 'REMOVE_AGENCY_FEATURE', payload: savedFeature });
     } else {
-      // add this as a new feature that the agency offers
-      dispatch({
-        type: 'ADD_AGENCY_FEATURE',
-        payload: {
-          ...feature,
-          t_shirt_size: convertNumberToSize(event.target.value),
-          confidence: confidence,
-        },
-      });
-    }
-    // display the right size, and update local state
-    setTShirtSize(event.target.value);
-    console.log(event.target.label);
+      if (savedFeature) {
+        // update the feature
+        dispatch({
+          type: 'UPDATE_AGENCY_FEATURE',
+          payload: {
+            ...savedFeature,
+            t_shirt_size: convertNumberToSize(event.target.value),
+          },
+        });
+      } else {
+        // add this as a new feature that the agency offers
+        dispatch({
+          type: 'ADD_AGENCY_FEATURE',
+          payload: {
+            feature: {
+              ...feature,
+              t_shirt_size: convertNumberToSize(event.target.value),
+              confidence: confidence,
+            },
+            agency_id: user.agency_id,
+          },
+        });
+      } // end if savedFeature ... else
+    } // end if savedFeature && val === 0
   };
 
   const handleConfidenceChange = (event) => {
@@ -144,8 +149,6 @@ function AgencyOptionsSelectionBlock({ feature }) {
         },
       });
     }
-    // display the right confidence level, and update local state
-    setConfidence(event.target.value);
   };
 
   return (
@@ -158,7 +161,8 @@ function AgencyOptionsSelectionBlock({ feature }) {
           step={20}
           valueLabelDisplay="off"
           marks={tShirtSizesMarks}
-          onChange={handleTShirtChange}
+          onChange={(event) => setTShirtSize(event.target.value)}
+          onChangeCommitted={handleTShirtChange}
         />
         <p>tshirtsize {tShirtSize}</p>
       </Box>
@@ -171,7 +175,8 @@ function AgencyOptionsSelectionBlock({ feature }) {
           step={5}
           valueLabelDisplay="off"
           marks={confidenceMarks}
-          onChange={handleConfidenceChange}
+          onChange={(event) => setConfidence(event.target.value)}
+          onChangeCommitted={handleConfidenceChange}
         />
       </Box>
     </>
