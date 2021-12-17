@@ -182,11 +182,11 @@ VALUES (1, 4, 3), (2, 3, 7);
 CREATE TABLE "agency_conversion" (
 	"id" serial NOT NULL,
 	"agency_id" INT UNIQUE NOT NULL,
-	"tiny_hours" INT NOT NULL,
+	"xsmall_hours" INT NOT NULL,
 	"small_hours" INT NOT NULL,
 	"medium_hours" INT NOT NULL,
 	"large_hours" INT NOT NULL,
-	"extra_large_hours" INT NOT NULL,
+	"xlarge_hours" INT NOT NULL,
 	"hourly_rate" INT NOT NULL,
 	CONSTRAINT "agency_conversion_pk" PRIMARY KEY ("id")
 ) WITH (
