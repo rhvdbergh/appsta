@@ -8,12 +8,16 @@ import { useState, Fragment } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
+import BuyerRegistrationForm1 from '../BuyerRegistrationForm1/BuyerRegistrationForm1';
+import BuyerRegistrationForm2 from '../BuyerRegistrationForm2/BuyerRegistrationForm2';
+import BuyerRegistrationForm3 from '../BuyerRegistrationForm3/BuyerRegistrationForm3';
+
 function BuyerRegistration() {
 
     const steps = ['Step 1', 'Step 2', 'Step 3'];
 
     const [activeStep, setActiveStep] = useState(0);
-    
+
     const [canMoveForward, setCanMoveForward] = useState(false);
 
     const [skipped, setSkipped] = useState(new Set());
@@ -30,15 +34,15 @@ function BuyerRegistration() {
         // if we're at the first page, send the user back to the
         // LandingPage
         if (activeStep === 0) {
-          history.push('/LandingPage');
+            history.push('/LandingPage');
         }
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
-      };
-    
-      const handleReset = () => {
+    };
+
+    const handleReset = () => {
         setActiveStep(0);
-      };
-    
+    };
+
 
     const handleNext = () => {
         let newSkipped = skipped;
@@ -54,19 +58,16 @@ function BuyerRegistration() {
         switch (activeStep) {
             case 0:
                 return (
-                    // <BuyerRegistrationForm1 setCanMoveForward={setCanMoveForward} />
-                    <p>hello</p>
+                    <BuyerRegistrationForm1 setCanMoveForward={setCanMoveForward} />
                 );
             case 1:
                 return (
-                    // <BuyerRegistrationForm2 setCanMoveForward={setCanMoveForward} />
-                    <p>yes</p>
+                    <BuyerRegistrationForm2 setCanMoveForward={setCanMoveForward} />
                 );
             case 2:
                 return (
-                    // <BuyerRegistrationForm3 setCanMoveForward={setCanMoveForward} />
-                    <p>no</p>
-                );          
+                    <BuyerRegistrationForm3 setCanMoveForward={setCanMoveForward} />
+                );
         }
     };
     return (
@@ -106,11 +107,11 @@ function BuyerRegistration() {
                                 {activeStep === 0 ? 'Cancel' : 'Back'}
                             </Button>
                             <Box sx={{ flex: '1 1 auto' }} />
-                            
+                            {canMoveForward && (
                                 <Button onClick={handleNext}>
                                     {activeStep === steps.length - 1 ? 'Submit' : 'Next'}
                                 </Button>
-        
+                            )}
                         </Box>
                     </Fragment>
                 )}
