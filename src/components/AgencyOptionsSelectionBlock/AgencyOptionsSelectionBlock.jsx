@@ -101,7 +101,7 @@ function AgencyOptionsSelectionBlock({ feature }) {
   }, [savedFeature]);
 
   const handleTShirtChange = (event) => {
-    if (savedFeature && event.target.value === 0) {
+    if (savedFeature && tShirtSize === 0) {
       // user has set slider to "not offered", remove this as a saved feature
       dispatch({ type: 'REMOVE_AGENCY_FEATURE', payload: savedFeature });
     } else {

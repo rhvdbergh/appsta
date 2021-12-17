@@ -37,10 +37,25 @@ function* updateAgencyFeature(action) {
   }
 }
 
+// removes a saved agency_feature from the db
+// as payload we expect the savedFeature, from which we need the agency_features_id
+function* removeAgencyFeature(action) {
+  try {
+    yield axios.delete(
+      `/api/agency/feature/${action.payload.agency_features_id}`
+    );
+    yield put({ type: 'GET_AGENCY_FEATURES' });
+  } catch (error) {
+    console.log('error in delete agency features', error);
+    yield put({ type: 'DELETE_AGENCY_FEATURES_ERROR' });
+  }
+}
+
 function* agencyFeatureSaga() {
   yield takeLatest('GET_AGENCY_FEATURES', getAgencyFeatures);
   yield takeLatest('ADD_AGENCY_FEATURE', addAgencyFeature);
   yield takeLatest('UPDATE_AGENCY_FEATURE', updateAgencyFeature);
+  yield takeLatest('REMOVE_AGENCY_FEATURE', removeAgencyFeature);
 }
 
 export default agencyFeatureSaga;

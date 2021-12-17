@@ -120,7 +120,7 @@ router.post('/feature', rejectUnauthenticated, (req, res) => {
       res.sendStatus(201);
     })
     .catch((err) => {
-      console.log('error adding the agency features', err);
+      console.log('error adding the agency feature', err);
       res.sendStatus(500);
     });
 });
@@ -149,9 +149,35 @@ router.put('/feature', rejectUnauthenticated, (req, res) => {
       res.sendStatus(204);
     })
     .catch((err) => {
-      console.log('error updating the agency features', err);
+      console.log('error updating the agency feature', err);
       res.sendStatus(500);
     });
 });
+
+// deletes a specific agency_feature from the db
+// DELETE /api/agency/feature
+router.delete(
+  '/feature/:agency_features_id',
+  rejectUnauthenticated,
+  (req, res) => {
+    console.log(`in DELETE /api/agency/feature, req.body:`, req.body);
+    // build the sql query
+    const queryText = `
+    DELETE FROM "agency_features"
+    WHERE "id" = $1;
+  `;
+
+    // run the query with a parameterized value
+    pool
+      .query(queryText, [req.params.agency_features_id])
+      .then((response) => {
+        res.sendStatus(204);
+      })
+      .catch((err) => {
+        console.log('error deleting the agency feature', err);
+        res.sendStatus(500);
+      });
+  }
+);
 
 module.exports = router;
