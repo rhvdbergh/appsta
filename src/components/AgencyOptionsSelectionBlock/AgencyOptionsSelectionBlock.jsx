@@ -1,22 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Slider, Typography } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
 
 function AgencyOptionsSelectionBlock({ feature }) {
-  // grab the feature from the store, if it already exists
-  // else localStorage will set this to null
-  // it would have been saved as a string, so make it an object
-  const savedFeature = JSON.parse(
-    localStorage.getItem(`agency_feature_${feature.id}`)
+  // set up the redux dispatch
+  const dispatch = useDispatch();
+
+  // get this feature from the redux store, if it exists
+  // we filter through the features in the store with find,
+  // which returns the feature (f) or undefined if no feature is saved
+  const savedFeature = useSelector((store) =>
+    store.agencyFeatures.find((f) => f.id === feature.id)
   );
 
   // local state for the t-shirtsize and confidence level
-  // if the feature has been edited already, use the localStorage values
-  const [tShirtSize, setTShirtSize] = useState(
-    savedFeature === null ? 0 : savedFeature.t_shirt_size
-  );
-  const [confidence, setConfidence] = useState(
-    savedFeature === null ? 50 : savedFeature.confidence
-  );
+  const [tShirtSize, setTShirtSize] = useState(0);
+  const [confidence, setConfidence] = useState(50);
+
+  // on page load
+  useEffect(() => {
+    // if this feature already had values previously, set
+    // the state to those values
+    savedFeature && setTShirtSize(savedFeature.t_shirt_size);
+    savedFeature && setConfidence(savedFeature.confidence);
+  }, []);
 
   // sets the t-shirt size
   const tShirtSizesMarks = [
@@ -58,6 +65,14 @@ function AgencyOptionsSelectionBlock({ feature }) {
     },
   ];
 
+  const handleTShirtChange = (event) => {
+    setTShirtSize(event.target.value);
+  };
+
+  const handleConfidenceChange = (event) => {
+    setConfidence(event.target.value);
+  };
+
   return (
     <>
       <Box sx={{ width: 300 }}>
@@ -68,7 +83,7 @@ function AgencyOptionsSelectionBlock({ feature }) {
           step={20}
           valueLabelDisplay="off"
           marks={tShirtSizesMarks}
-          onChange={(event) => setTShirtSize(event.target.value)}
+          onChange={handleTShirtChange}
         />
       </Box>
       <Box sx={{ width: 300 }}>
@@ -80,7 +95,7 @@ function AgencyOptionsSelectionBlock({ feature }) {
           step={5}
           valueLabelDisplay="off"
           marks={confidenceMarks}
-          onChange={(event) => setConfidence(event.target.value)}
+          onChange={handleConfidenceChange}
         />
       </Box>
     </>
