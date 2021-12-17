@@ -33,7 +33,7 @@ CREATE TABLE "features" (
 	"feature_story" varchar(1000) NOT NULL,
 	"feature_description" varchar(1000) NOT NULL,
 	"category_id" integer NOT NULL,
-	"image_url" varchar(255) NOT NULL,
+	"image_url" varchar(1000) NOT NULL,
 	CONSTRAINT "features_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -155,7 +155,7 @@ VALUES (2, 'Awesome Agency', 'Awesome Agency does awesome things!', '02860', 'Pr
 (3, 'Jazzy Agency', 'We like jazzing things up', '70118', 'New Orleans', 14, false, false, true, 'Talent Offshore, Leadership Onshore', 'Alicia', 'Harvey', '987-654-3210', 'https://images.unsplash.com/photo-1523875194681-bedd468c58bf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80');
 
 INSERT INTO "feature_categories"(category_name)
-VALUES ('charts'),('buttons'),('tables');
+VALUES ('charts'),('buttons'),('tables'),('calendars'),('icons'),('input fields');
 
 INSERT INTO "features" (feature_name, feature_story, feature_description, category_id, image_url)
 VALUES ('doughnut chart', 'information in a doughnut chart', 'description of object', 1, 'https://pnp.github.io/sp-dev-fx-controls-react/assets/DoughnutChart.png'),
@@ -163,7 +163,13 @@ VALUES ('doughnut chart', 'information in a doughnut chart', 'description of obj
 ('big red button', 'I can click on big red button', 'description of clicking on big red button', 2, 'https://www.royalroadcdn.com/public/covers-full/big-red-button-aacalrkedw8.jpg?time=1617332304'),
 ('outlined button', 'I can click the outlined button', 'description of clicking on outlined button', 2, 'https://storage.googleapis.com/spec-host-backup/mio-components%2Fassets%2F1b2CXpWNxh1k2YJUw_6B_CkkZUiHYYrzh%2Fspecs-outlined-button.png'),
 ('colored table', 'I can create a simple table', 'colored table', 3, 'https://reactjsexample.com/content/images/2019/01/material-table.jpg'),
-('clear table', 'this table is clear', 'clear table', 3, 'https://i.stack.imgur.com/jm4zL.png');
+('clear table', 'this table is clear', 'clear table', 3, 'https://i.stack.imgur.com/jm4zL.png'),
+('calendars', 'this is a basic date picker', 'description of object', 4, 'https://lh3.googleusercontent.com/kVt6Ju61frOMJ6YA0ugP7dGUbSNrsklxRBABsGpJdkB_keySbNWwuwUQKfAikfKjSW4XtTo_71gNvLc0gHkH6UEBHux7krWhhppJ=w1064-v0'),
+('calendars', 'this is a basic dark mode date picker', 'description of object', 4, 'https://camo.githubusercontent.com/d3b80e150c29d8530b289054210aa68f6398cdba8f62fb2feac4ef15b94c9cc4/68747470733a2f2f73746f726167652e676f6f676c65617069732e636f6d2f6d6174657269616c2d64657369676e2f7075626c6973682f6d6174657269616c5f765f31322f6173736574732f304233333231735a4c6f505f484f545a6f55453156534778765246452f636f6d706f6e656e74732d7069636b6572732d64617465342e706e67'),
+('icons', 'this is an icon list', 'description of object', 5, 'https://miro.medium.com/max/1400/1*2QQNpKIBeyTha-XcU9IHBw.png'),
+('icons', 'this is another icon list', 'description of object', 5, 'https://icons.iconarchive.com/icons/custom-icon-design/mini/icons-390.jpg'),
+('input fields', 'here are some text fields', 'descirption of text fields', 6, 'https://i.pinimg.com/originals/61/6b/5e/616b5e964eb01bbcb554306ac6744326.png'),
+('input fields', 'here are some more text fields', 'descirption of text fields', 6, 'https://lh3.googleusercontent.com/Cg9IlC6OWQ58eqWlbkPacWsO6vemJOcOzkRHsF7nnAVa6VD-GZgcMDGfPpHxcpS4FbhEqWiUO-W48Pd18FfR-cYrdPTo1bWjEIti=w1064-v0');
 
 
 INSERT INTO "agency_features" (agency_id, feature_id, feature_notes, t_shirt_size, confidence)
