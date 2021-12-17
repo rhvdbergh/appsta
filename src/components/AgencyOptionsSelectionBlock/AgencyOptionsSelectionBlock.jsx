@@ -68,22 +68,42 @@ function AgencyOptionsSelectionBlock({ feature }) {
   const handleTShirtChange = (event) => {
     if (savedFeature) {
       // update the feature
-      dispatch({type: 'UPDATE_AGENCY_FEATURE', payload: {...savedFeature, t_shirt_size: event.target.value}})
+      dispatch({
+        type: 'UPDATE_AGENCY_FEATURE',
+        payload: { ...savedFeature, t_shirt_size: event.target.value },
+      });
     } else {
       // add this as a new feature that the agency offers
-      dispatch(type: 'ADD_AGENCY_FEATURE', payload: {...feature, t_shirt_size: event.target.value, confidence: confidence);
+      dispatch({
+        type: 'ADD_AGENCY_FEATURE',
+        payload: {
+          ...feature,
+          t_shirt_size: event.target.value,
+          confidence: confidence,
+        },
+      });
     }
     // display the right size, and update local state
-    setTShirtSize(event.target.value)
+    setTShirtSize(event.target.value);
   };
 
   const handleConfidenceChange = (event) => {
-     if (savedFeature) {
+    if (savedFeature) {
       // update the feature
-      dispatch({type: 'UPDATE_AGENCY_FEATURE', payload: {...savedFeature, confidence: event.target.value}})
+      dispatch({
+        type: 'UPDATE_AGENCY_FEATURE',
+        payload: { ...savedFeature, confidence: event.target.value },
+      });
     } else {
       // add this as a new feature that the agency offers
-      dispatch(type: 'ADD_AGENCY_FEATURE', payload: {...feature, t_shirt_size: tShirtSize, confidence: event.target.value);
+      dispatch({
+        type: 'ADD_AGENCY_FEATURE',
+        payload: {
+          ...feature,
+          t_shirt_size: tShirtSize,
+          confidence: event.target.value,
+        },
+      });
     }
     // display the right confidence level, and update local state
     setConfidence(event.target.value);
