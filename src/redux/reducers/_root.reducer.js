@@ -6,6 +6,7 @@ import features from './feature.reducer';
 import category from './category.reducer';
 import selectedCategory from './selectedCategory.reducer';
 import selectedFeatures from './selectedFeatures.reducer';
+import newBuyer from './buyer.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   category, // will store the array of categories currently in DB
   selectedCategory, // will store the category clicked on the Navbar
   selectedFeatures, // will store the selected features when the user clicks the Submit Quote button without being logged in
+  newBuyer, //will store the registration info for a new buyer 
 });
 
 export default rootReducer;

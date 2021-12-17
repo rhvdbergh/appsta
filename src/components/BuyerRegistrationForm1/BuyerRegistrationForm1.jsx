@@ -16,7 +16,7 @@ import {
 
   function BuyerRegistrationForm1({ setCanMoveForward }) {
     const dispatch = useDispatch();
-  //Do we have a reducer / saga set up?
+  
     const buyer = useSelector((store) => store.buyer);
   
     const [username, setUsername] = useState(null);
@@ -63,27 +63,27 @@ import {
       if (data === 'password' || data === 'passwordConfirmation') {
         if (password === passwordConfirmation && password !== '') {
           dispatch({
-            type: 'SET_NEW_AGENCY',
-            payload: { ...agency, password: value },
+            type: 'SET_NEW_BUYER',
+            payload: { ...buyer, password: value },
           });
         } // end if check equal passwords
       } // end if data === password
       else if (data !== '') {
         // check to see that the data field is not empty
         dispatch({
-          type: 'SET_NEW_AGENCY',
-          payload: { ...agency, [data]: value },
+          type: 'SET_NEW_BUYER',
+          payload: { ...buyer, [data]: value },
         });
       }
       isCompletedForm();
     };
   
-    console.log('this is agency', agency);
+    console.log('this is buyer', buyer);
     return (
       <>
         <Grid>
           <TextField
-            label="Email Address*"
+            label="Username*"
             variant="outlined"
             value={username}
             onChange={(event) => setUsername(event.target.value)}
