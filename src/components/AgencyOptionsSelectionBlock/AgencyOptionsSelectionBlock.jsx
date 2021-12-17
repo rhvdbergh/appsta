@@ -111,7 +111,7 @@ function AgencyOptionsSelectionBlock({ feature }) {
           type: 'UPDATE_AGENCY_FEATURE',
           payload: {
             ...savedFeature,
-            t_shirt_size: convertNumberToSize(event.target.value),
+            t_shirt_size: convertNumberToSize(tShirtSize),
           },
         });
       } else {
@@ -121,7 +121,7 @@ function AgencyOptionsSelectionBlock({ feature }) {
           payload: {
             feature: {
               ...feature,
-              t_shirt_size: convertNumberToSize(event.target.value),
+              t_shirt_size: convertNumberToSize(tShirtSize),
               confidence: confidence,
             },
             agency_id: user.agency_id,
@@ -136,7 +136,7 @@ function AgencyOptionsSelectionBlock({ feature }) {
       // update the feature
       dispatch({
         type: 'UPDATE_AGENCY_FEATURE',
-        payload: { ...savedFeature, confidence: event.target.value },
+        payload: { ...savedFeature, confidence: confidence },
       });
     } else {
       // add this as a new feature that the agency offers
@@ -145,7 +145,7 @@ function AgencyOptionsSelectionBlock({ feature }) {
         payload: {
           ...feature,
           t_shirt_size: convertNumberToSize(tShirtSize),
-          confidence: event.target.value,
+          confidence: confidence,
         },
       });
     }

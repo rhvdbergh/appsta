@@ -81,7 +81,7 @@ CREATE TABLE "agency_features" (
 	"id" serial NOT NULL,
 	"agency_id" integer NOT NULL,
 	"feature_id" integer NOT NULL,
-	"feature_notes" varchar(1000) NOT NULL,
+	"feature_notes" varchar(1000),
 	"t_shirt_size" varchar(255) NOT NULL,
 	"confidence" integer NOT NULL,
 	CONSTRAINT "agency_features_pk" PRIMARY KEY ("id")

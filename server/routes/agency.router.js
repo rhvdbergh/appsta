@@ -101,12 +101,57 @@ router.get('/features', rejectUnauthenticated, (req, res) => {
 router.post('/feature', rejectUnauthenticated, (req, res) => {
   // build the sql query
   const queryText = `
-  INSERT INTO "agency_features" (agency_id, feature_id, feature_notes, t_shirt_size, confidence)
-  VALUES (1, 2, 'we got it!', 'XL', 70),
+  INSERT INTO "agency_features" (agency_id, feature_id, t_shirt_size, confidence)
+  VALUES ($1, $2, $3, $4);
   `;
 
-  console.log(req.body);
-  res.sendStatus(200);
+  // parameterize the inputs
+  const values = [
+    req.body.agency_id,
+    req.body.feature.id,
+    req.body.feature.t_shirt_size,
+    req.body.feature.confidence,
+  ];
+
+  // run the query
+  pool
+    .query(queryText, values)
+    .then((response) => {
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.log('error adding the agency features', err);
+      res.sendStatus(500);
+    });
+});
+
+// updates an existing agency_feature
+// PUT /api/agency/feature
+router.put('/feature', rejectUnauthenticated, (req, res) => {
+  // build the sql query
+  const queryText = `
+    UPDATE "agency_features"
+    SET "t_shirt_size" = $1, confidence = $2
+    WHERE "id" = $3;
+  `;
+
+  // parameterize the values
+  const values = [
+    req.body.t_shirt_size,
+    req.body.confidence,
+    req.body.agency_features_id,
+  ];
+
+  // run the query
+  pool
+    .query(queryText, values)
+    .then((response) => {
+      res.sendStatus(204);
+    })
+    .catch((err) => {
+      console.log('error updating the agency features', err);
+      res.sendStatus(500);
+    });
 });
 
 module.exports = router;
