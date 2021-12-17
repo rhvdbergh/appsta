@@ -164,6 +164,7 @@ function AgencyOptionsSelectionBlock({ feature }) {
           onChange={(event) => setTShirtSize(event.target.value)}
           onChangeCommitted={handleTShirtChange}
         />
+        {/* above: onChange happens continuously, onChangeCommitted only once */}
         <p>tshirtsize {tShirtSize}</p>
       </Box>
       <Box sx={{ width: 300 }}>
@@ -178,6 +179,7 @@ function AgencyOptionsSelectionBlock({ feature }) {
           onChange={(event) => setConfidence(event.target.value)}
           onChangeCommitted={handleConfidenceChange}
         />
+        {/* above: onChange happens continuously, onChangeCommitted only once */}
       </Box>
     </>
   );
