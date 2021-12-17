@@ -10,26 +10,8 @@ function AgencyOptionsPage() {
   const selectedCategory = useSelector((store) => store.selectedCategory);
 
   const history = useHistory();
-  //CHANGE THIS TO FEATURES 
-  const submitFeatures = () => {
-    // build the selectedFeatures object to save in the redux store
-    // const selectedFeatures = [];
-    // features
-    //   // filter through features and check if it is in localStorage
-    //   .filter(
-    //     (feature) => localStorage.getItem(`feature_${feature.id}`) !== null
-    //   )
-    //   // retrieve all those in localStorage and add them to selectedFeatures array
-    //   // this includes the quantity
-    //   .forEach((feature) =>
-    //     selectedFeatures.push(
-    //       JSON.parse(localStorage.getItem(`feature_${feature.id}`))
-    //     )
-    //   );
-    // // dispatch to save in the redux store
-    // dispatch({ type: 'SET_SELECTED_FEATURES', payload: selectedFeatures });
-    // console.log('Quote Submitted', selectedFeatures);
-    // move the user to the review page
+  //CHANGE THIS TO FEATURES
+  const returnHome = () => {
     history.push('/AgencyDashboard');
   };
 
@@ -42,21 +24,21 @@ function AgencyOptionsPage() {
 
   return (
     <>
-      <Box sx={{ display: 'flex' }}>
-        <Navbar 
-        btn1text={'SUBMIT FEATURES'} fxn1={submitFeatures} 
-        btn2text={'LOGOUT'} fxn2={ () => dispatch ( {type: 'LOGOUT'} ) }/>
-        <Box>
-          <h1> Start Building your Project! </h1>
-          <p>
-            {' '}
-            Select the features to include in your project. Your estimate will
-            be based on selected features.{' '}
-          </p>
-          <OptionsList features={features} />
-          <p> Selected Category ID is: {selectedCategory}</p>
+      <div class="container">
+        <Box sx={{ display: 'flex' }}>
+          <Navbar btn1text={'HOME'} fxn1={returnHome} />
+          <Box>
+            <h1> Choose Which Services You Offer </h1>
+            <p>
+              {' '}
+              Select the features your agency can offer by indicating the
+              estimated time to build and your confidence level.{' '}
+            </p>
+            <OptionsList features={features} />
+            <p> Selected Category ID is: {selectedCategory}</p>
+          </Box>
         </Box>
-      </Box>
+      </div>
     </>
   );
 }

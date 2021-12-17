@@ -9,33 +9,41 @@ import { useSelector } from 'react-redux';
 
 import BuyerOptionsSelectionBlock from '../BuyerOptionsSelectionBlock/BuyerOptionsSelectionBlock';
 import AgencyOptionsSelectionBlock from '../AgencyOptionsSelectionBlock/AgencyOptionsSelectionBlock';
+import BuyerReviewSelectionBlock from '../BuyerReviewSelectionBlock/BuyerReviewSelectionBlock';
 
-function OptionsCard({ feature }) {
+function OptionsCard({ feature, listType }) {
   const theme = useTheme();
   const user = useSelector(store => store.user);
 
   return (
+
     <Card sx={{ display: 'flex' }}>
-      <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-        <Typography component="div" variant="h5">
-          {feature.feature_name}
-        </Typography>
+      {listType !== 'buyer-review' && (
+        <>
+          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+            <Typography component="div" variant="h5">
+              {feature.feature_name}
+            </Typography>
 
-        <CardMedia
-          component="img"
-          sx={{ width: 151 }}
-          image={feature.image_url}
-          alt={feature.feature_description}
-        />
-      </Box>
-      <CardContent sx={{ flex: '1 0 auto' }}>
- {/* //conditionally render block - if buyer vs agency display different blocks */}
-        {!user.isBuyer && user.id ? (
-        <AgencyOptionsSelectionBlock feature={feature} />
-        ) : (<BuyerOptionsSelectionBlock feature={feature} />
-        )}
-
-      </CardContent>
+            <CardMedia
+              component="img"
+              sx={{ width: 151 }}
+              image={feature.image_url}
+              alt={feature.feature_description}
+            />
+          </Box>
+          <CardContent sx={{ flex: '1 0 auto' }}>
+            {/* //conditionally render block - if buyer vs agency display different blocks */}
+            {!user.isBuyer && user.id ? (
+              <AgencyOptionsSelectionBlock feature={feature} />
+            ) : (<BuyerOptionsSelectionBlock feature={feature} />
+            )}
+          </CardContent>
+        </>
+      )}
+      
+      {listType === 'buyer-review' && 
+        <BuyerReviewSelectionBlock feature={feature} />}
     </Card>
   );
 }

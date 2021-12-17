@@ -25,7 +25,8 @@ import AgencyRegistration from '../AgencyRegistration/AgencyRegistration';
 import BuyerDashboard from '../BuyerDashboard/BuyerDashboard';
 import AgencyDashboard from '../AgencyDashboard/AgencyDashboard';
 import BuyerReviewSelection from '../BuyerReviewSelection/BuyerReviewSelection';
-import BuyerRegistrationForm from '../BuyerRegistrationForm/BuyerRegistrationForm';
+import AgencyOptionsPage from '../AgencyOptionsPage/AgencyOptionsPage';
+import BuyerRegistrationPage from '../BuyerRegistrationPage/BuyerRegistrationPage'
 
 import './App.css';
 
@@ -91,6 +92,9 @@ function App() {
               <RegisterPage />
             )}
           </Route> */}
+
+
+
           <Route exact path="/LandingPage">
             {user.id && user.isBuyer ? (
               // If the user is already logged in,
@@ -98,24 +102,25 @@ function App() {
               // redirect them to the /BuyerDashboard page
               <Redirect to="/BuyerDashboard" />
             ) : // but if they're an agency, to the agency page
-            user.id && !user.isBuyer ? (
-              <Redirect to="/AgencyDashboard" />
-            ) : (
-              // Otherwise, show the Landing page
-              <LandingPage />
-            )}
+              user.id && !user.isBuyer ? (
+                <Redirect to="/AgencyDashboard" />
+              ) : (
+                // Otherwise, show the Landing page
+                <LandingPage />
+              )}
           </Route>
           <Route exact path="/BuyerReview">
             <BuyerReviewSelection />
           </Route>
-          //Adding a Buyer Options Route
+          {/* Adding a Buyer Options Route */}
           <Route exact path="/BuyerOptions">
             <BuyerOptionsPage />
           </Route>
-          <Route path ='/BuyerRegistrationForm'>
-          <BuyerRegistrationForm />
+          {/* Adding Buyer Registration Route */}
+          <Route exact path='/BuyerRegistration'>
+            <BuyerRegistrationPage />
           </Route>
-          // Adding router for Agency Login Page
+          {/* Adding router for Agency Login Page */}
           <Route exact path="/AgencyLogin">
             {user.id && !user.isBuyer ? (
               // If the user is already logged in,
@@ -127,11 +132,11 @@ function App() {
               <AgencyLoginPage />
             )}
           </Route>
-          // Adding Agency Registration
+          {/* Adding Agency Registration */}
           <Route exact path="/AgencyReg">
             <AgencyRegistration />
           </Route>
-          //Protected Buyer Dashboard Route
+          {/* Protected Buyer Dashboard Route */}
           <ProtectedRoute exact path="/BuyerDashboard">
             {user.isBuyer ? (
               <BuyerDashboard />
@@ -139,7 +144,7 @@ function App() {
               <Redirect to="/AgencyDashboard" />
             )}
           </ProtectedRoute>
-          //Protected Agency Dashboard Route
+          {/* Protected Agency Dashboard Route */}
           <ProtectedRoute exact path="/AgencyDashboard">
             {!user.isBuyer ? (
               <AgencyDashboard />
@@ -147,14 +152,14 @@ function App() {
               <Redirect to="/BuyerDashboard" />
             )}
           </ProtectedRoute>
-{/* //adding AgencyOptionsPage Route  */}
-          {/* <ProtectedRoute exact path="/AgencyOptionsPage">
+        {/* adding AgencyOptionsPage Route */}
+          <ProtectedRoute exact path="/AgencyOptionsPage">
             {!user.isBuyer ? (
               <AgencyOptionsPage />
             ) : (
               <Redirect to="/BuyerDashboard" />
             )}
-          </ProtectedRoute> */}
+          </ProtectedRoute> 
 
 
           {/* If none of the other routes matched, we will show a 404. */}
