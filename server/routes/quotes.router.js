@@ -34,4 +34,29 @@ router.get('/findagencies', (req, res) => {
     });
 });
 
+// retrieve a list of agency feature data needed for a quote,
+// given the agency ID and the selected feature ID's
+
+router.get('/agencyquote', (req, res) => {
+  // define SQL query text
+  const queryText = `
+  SELECT af.*, ac.* FROM agency_features af
+  JOIN agencies ON af.agency_id = agencies.id
+  JOIN agency_conversion ac ON af.agency_id = ac.agency_id
+  WHERE af.feature_id = ANY ($1) AND agencies.id = $2;
+  `;
+  // define the values to be passed into the query
+  const values = [req.body.selected_features, req.body.agency_id];
+  // run the query
+  pool
+    .query(queryText, values)
+    .then((response) => {
+      res.send(response.rows);
+    })
+    .catch((err) => {
+      console.log('error grabbing agency feature quote data', err);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;
