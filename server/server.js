@@ -18,6 +18,8 @@ const featuresRouter = require('./routes/features.router');
 
 const categoryRouter = require('./routes/category.router');
 
+const quotesRouter = require('./routes/quotes.router');
+
 // Body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -39,6 +41,8 @@ app.use('/api/agency', agencyRouter);
 app.use('/api/features', featuresRouter);
 
 app.use('/api/category', categoryRouter);
+
+app.use('/api/quotes', quotesRouter);
 
 
 // Serve static files
