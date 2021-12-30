@@ -11,7 +11,7 @@ import newBuyer from './buyer.reducer';
 import agencyFeatures from './agencyFeature.reducer';
 import quotingAgencies from './quotingAgencies.reducer';
 import agencyQuoteData from './agencyQuoteData.reducer';
-import quotingAgenciesDetails from './quotingAgenciesDetails.reduder';
+import quotingAgenciesDetails from './quotingAgenciesDetails.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
