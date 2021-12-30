@@ -23,7 +23,7 @@ function* getQuotingAgencies(action) {
 // selected features
 function* getAgencyQuoteData(action) {
   try {
-    const response = yield axios.get('api/quotes/agencyquote', action.payload);
+    const response = yield axios.post('api/quotes/agencyquote', action.payload);
     yield put({ type: 'SET_AGENCY_QUOTE_DATA', payload: response.data });
   } catch (error) {
     console.log('error in get agency quote data', error);

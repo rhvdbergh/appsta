@@ -36,11 +36,12 @@ router.post('/findagencies', (req, res) => {
 // retrieve a list of agency feature data needed for a quote,
 // given the list of agency ID's and the selected feature ID's
 
-router.get('/agencyquote', (req, res) => {
+router.post('/agencyquote', (req, res) => {
+  console.log('in GET /api/quotes/agencyquote, req.body is: ', req.body);
   // define SQL query text
   const queryText = `
   SELECT af.*, ac.*, features.category_id FROM agency_features af
-  JOIN agencies a ON af.agency_id = agencies.id
+  JOIN agencies ON af.agency_id = agencies.id
   JOIN agency_conversion ac ON af.agency_id = ac.agency_id
   JOIN features ON af.feature_id = features.id
   WHERE af.feature_id = ANY ($1) AND agencies.id = ANY ($2);

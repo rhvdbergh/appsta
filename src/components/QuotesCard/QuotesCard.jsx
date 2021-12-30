@@ -16,11 +16,11 @@ import PersonIcon from '@mui/icons-material/Person';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 
-// expects an agencyQuote object that is similar to the
-// route received from /api/quotes/agencyquote
-function QuotesCard({ agency }) {
+function QuotesCard({ agency, cost }) {
   // local state to determine whether card is expanded or not
   const [isExpanded, setIsExpanded] = useState(false);
+
+  console.log('agency ', agency.id, 'cost is', cost);
 
   return (
     <Card>
