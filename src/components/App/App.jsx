@@ -35,11 +35,29 @@ const theme = createTheme({
   palette: {
     primary: {
       main: '#9ccfca',
+      light: '#efefeb',
+      dark: '#3e3880',
     },
-    secondary: { 
-      main: '#9596d6', 
+    secondary: {
+      main: '#9596d6',
+      light: '#f5e580',
     },
+    error: {
+      main: '#ff476c',
+    },
+    warning:{
+      main: '#ffd666',
+    },
+    info: {
+      main: '#e17183',
+    },
+    success: {
+      main: '#76d58e',
+    },
+
   },
+  
+
 });
 
 import './App.css';

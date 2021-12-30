@@ -10,7 +10,7 @@ function Nav() {
   return (
     <div className="nav">
       <Link to="/LandingPage">
-        <h2 className="nav-title">Prime Solo Project</h2>
+        <h2 className="nav-title">APPSTA temp nav bar for logging out </h2>
       </Link>
       <div>
         {/* If no user is logged in, show these links */}
@@ -24,14 +24,6 @@ function Nav() {
         {/* If a user is logged in, show these links */}
         {user.id && (
           <>
-            <Link className="navLink" to="/user">
-              Home
-            </Link>
-
-            <Link className="navLink" to="/info">
-              Info Page
-            </Link>
-
             <LogOutButton className="navLink" />
           </>
         )}

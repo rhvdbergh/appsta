@@ -77,6 +77,7 @@ function BuyerRegistration() {
     return (
         <>
             <h1>Buyer registration page!</h1>
+            <p> Complete each required* field to move on to the next step.</p>
             <Box sx={{ width: '100%' }}>
                 <Stepper activeStep={activeStep}>
                     {steps.map((label, index) => {
