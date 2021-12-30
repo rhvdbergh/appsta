@@ -10,7 +10,7 @@ function Nav() {
   return (
     <div className="nav">
       <Link to="/LandingPage">
-        <h2 className="nav-title">APPSTA temp nav bar for logging out </h2>
+        <h2 className="nav-title">APPSTA temp nav bar - click for home  </h2>
       </Link>
       <div>
         {/* If no user is logged in, show these links */}

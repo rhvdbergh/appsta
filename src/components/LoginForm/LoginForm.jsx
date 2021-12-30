@@ -4,7 +4,28 @@ import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 //adding MUI components 
-import { Button } from "@mui/material";
+import { Button, FormControl, TextField, Typography } from "@mui/material";
+import { makeStyles } from '@mui/styles';
+
+//copied in Ronalds Flashy loginForm - KD 
+
+const useStyles = makeStyles(() => ({
+  form: {
+    marginTop: '100px',
+    marginBottom: '30px',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    height: '400px',
+    width: '300px',
+    textAlign: 'center',
+  },
+  input: {
+    margin: '20px',
+    width: '100%',
+  },
+}));
+
 
 function LoginForm() {
   const [username, setUsername] = useState('');
@@ -12,6 +33,9 @@ function LoginForm() {
   const errors = useSelector(store => store.errors);
   const dispatch = useDispatch();
   const history = useHistory();
+
+//set up the MUI style
+const { form, input} = useStyles();
 
   const login = (event) => {
     event.preventDefault();
@@ -29,46 +53,46 @@ function LoginForm() {
     }
   }; // end login
 
+
+
   return (
-    <form className="formPanel" onSubmit={login}>
-      {errors.loginMessage && (
-        <h3 className="alert" role="alert">
-          {errors.loginMessage}
-        </h3>
-      )}
-      <div>
-        <label htmlFor="username">
-          E-mail:
-          <input
-            type="email"
-            name="username"
-            required
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
-          />
-        </label>
-      </div>
-      <div>
-        <label htmlFor="password">
-          Password:
-          <input
-            type="password"
-            name="password"
-            required
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </label>
-      </div>
-      
+    <FormControl>
+      <form className={form} onSubmit={login}>
+        <Typography variant='h3'> Login </Typography>
+        {errors.loginMessage && (
+          <h3 className="alert" role="alert">
+            {errors.loginMessage}
+          </h3>
+        )}
+       
+          <TextField
+              label="username"
+              type="email"
+              name="username"
+              required
+              className={input}
+              value={username}
+              onChange={(event) => setUsername(event.target.value)}
+            />
+          
+            <TextField
+              label="password"
+              type="password"
+              name="password"
+              required
+              className={input}
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+            />
 
-
-      <div>
-        <center>
-          <input className="btn" type="submit" name="submit" value="Log In" />
-        </center>
-      </div>
-    </form>
+          <center>
+            <Button type="submit" name="submit" value="Log In" variant='contained'>
+              <Typography variant='h6'>Login</Typography>
+              </Button>
+          </center>
+       
+      </form>
+    </FormControl>
   );
 }
 

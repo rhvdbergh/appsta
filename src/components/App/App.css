@@ -29,10 +29,10 @@ Button
 .btn {
   display: inline-block;
   padding: 10px 20px;
-  border-color: #014041;
+  border-color: #9596d6;
   border-width: 1px 1px 3px;
   border-radius: 4px;
-  background-color: #00acb0;
+  background-color: #9ccfca;
   color: #f8f8f8;
   font-size: 1.1rem;
   outline: 0;
@@ -72,8 +72,8 @@ Button
 
 .btn_asLink:hover {
   background-color: transparent;
-  border-color: #008183;
-  color: #008183;
+  border-color: #9ccfca;
+  color: #9ccfca;
 }
 
 /* --------------------------------------------------------------------------------
@@ -84,10 +84,10 @@ Alert
   box-sizing: border-box;
   padding: 15px 10px;
   margin: 15px 0;
-  border: 2px solid #e01616;
+  border: 2px solid #ff476c;
   background-color: #efefef;
   border-radius: 3px;
-  color: #e01616;
+  color: #ff476c;
   font-size: 0.8rem;
 }
 
