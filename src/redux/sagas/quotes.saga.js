@@ -15,7 +15,7 @@ function* getQuotingAgencies(action) {
 }
 
 // Get agency feature data for a given buyer quote. 
-// payload is expected to be an object including the agency ID
+// payload is expected to be an object including an array of agency ID's
 // and the array of feature ID's corresponding to the buyer's
 // selected features
 function* getAgencyQuoteData(action) {
