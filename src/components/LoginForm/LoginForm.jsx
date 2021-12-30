@@ -7,8 +7,7 @@ import { useHistory } from 'react-router-dom';
 import { Button, FormControl, TextField, Typography } from "@mui/material";
 import { makeStyles } from '@mui/styles';
 
-//copied in Ronalds Flashy loginForm - KD 
-
+//added MUI styles for login form 
 const useStyles = makeStyles(() => ({
   form: {
     marginTop: '100px',
@@ -85,11 +84,9 @@ const { form, input} = useStyles();
               onChange={(event) => setPassword(event.target.value)}
             />
 
-          <center>
             <Button type="submit" name="submit" value="Log In" variant='contained'>
               <Typography variant='h6'>Login</Typography>
               </Button>
-          </center>
        
       </form>
     </FormControl>
