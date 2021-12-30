@@ -38,23 +38,33 @@ function BuyerCompareQuotes() {
   const dispatch = useDispatch();
 
   // retrieve the list of agencies that can offer the buyer's selection of features
-  // const selectedFeatures = useSelector((store = store.selectedFeatures));
+  // TODO: remove the // below, it's just for testing
+  //const selectedFeatures = useSelector((store = store.selectedFeatures));
   const quotingAgencies = useSelector((store) => store.quotingAgencies);
+  const quotingAgenciesDetails = useSelector(
+    (store) => store.quotingAgenciesDetails
+  );
 
   // on page load
   useEffect(() => {
     // we need to send only the feature ids, so we need to filter for the payload
-    console.log(
-      `selectedFeature ids:`,
-      selectedFeatures.map((f) => f.id)
-    );
     dispatch({
       type: 'GET_QUOTING_AGENCIES',
-      payload: [6],
+      payload: selectedFeatures.map((f) => f.id),
     });
   }, []);
 
+  // when we have the updated list of quoting agencies
+  useEffect(() => {
+    // now retrieve the full details of all these agencies
+    dispatch({
+      type: 'GET_QUOTING_AGENCIES_DETAILS',
+      payload: quotingAgencies,
+    });
+  }, [quotingAgencies]);
+
   console.log(`quotingAgencies:`, quotingAgencies);
+  console.log(`details:`, quotingAgenciesDetails);
   return (
     <>
       <Box sx={{ display: 'flex' }}>

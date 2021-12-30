@@ -181,7 +181,7 @@ router.delete(
 );
 
 // get a list of agencies based on an array of agency ids
-// expects a req.body.agency_ids
+// expects a req.body of agency ids
 // can only be accessed by a logged in user
 // GET /api/agency/list
 router.get('/list', rejectUnauthenticated, (req, res) => {
@@ -193,8 +193,10 @@ router.get('/list', rejectUnauthenticated, (req, res) => {
     WHERE id = ANY ($1::INTEGER[]);
   `;
 
+  console.log('in GET /api/agency/list and the req.body is ', req.body);
+
   // parameterize the inputs
-  const values = [req.body.agency_ids];
+  const values = [req.body];
 
   // run the query
   pool
