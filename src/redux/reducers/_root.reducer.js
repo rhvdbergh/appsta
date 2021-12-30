@@ -11,6 +11,7 @@ import newBuyer from './buyer.reducer';
 import agencyFeatures from './agencyFeature.reducer';
 import quotingAgencies from './quotingAgencies.reducer';
 import agencyQuoteData from './agencyQuoteData.reducer';
+import quotingAgenciesDetails from './quotingAgenciesDetails.reduder';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -26,11 +27,12 @@ const rootReducer = combineReducers({
   category, // will store the array of categories currently in DB
   selectedCategory, // will store the category clicked on the Navbar
   selectedFeatures, // will store the selected features when the user clicks the Submit Quote button without being logged in
-  newBuyer, //will store the registration info for a new buyer 
+  newBuyer, //will store the registration info for a new buyer
   selectedFeatures, // will store the selected features when
   agencyFeatures, // will store features that an agency offers
   quotingAgencies, // will store agencies that qualify for a buyer's feature needs
-  agencyQuoteData, // will store data to build an agency quote 
+  agencyQuoteData, // will store data to build an agency quote
+  quotingAgenciesDetails, // will store all the details of agencies that qualify for a buyer's feature needs
 });
 
 export default rootReducer;
