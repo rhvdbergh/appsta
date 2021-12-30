@@ -51,12 +51,13 @@ function BuyerCompareQuotes() {
     });
   }, []);
 
-  console.log(`quotingAgencies:`, quotingAgencies);
   return (
     <>
       <Box sx={{ display: 'flex' }}>
-        <QuotesCard agencyQuote={agencyQuote} />
-        <QuotesCard agencyQuote={agencyQuote} />
+        {quotingAgencies.length > 0 &&
+          quotingAgencies.map((agency) => {
+            return <QuotesCard key={agency.id} agency={agency} />;
+          })}
       </Box>
     </>
   );

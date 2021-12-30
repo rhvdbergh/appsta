@@ -18,16 +18,16 @@ import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 
 // expects an agencyQuote object that is similar to the
 // route received from /api/quotes/agencyquote
-function QuotesCard({ agencyQuote }) {
+function QuotesCard({ agency }) {
   // local state to determine whether card is expanded or not
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
     <Card>
-      <CardHeader title={agencyQuote.agency_name} />
-      <CardMedia component="img" height="200" image={agencyQuote.logo_url} />
+      <CardHeader title={agency.agency_name} />
+      <CardMedia component="img" height="200" image={agency.logo_url} />
       <CardContent>
-        <Typography>{agencyQuote.agency_blurb}</Typography>
+        <Typography>{agency.agency_blurb}</Typography>
       </CardContent>
       <CardActions>
         <Button onClick={() => setIsExpanded(!isExpanded)}>
@@ -38,22 +38,22 @@ function QuotesCard({ agencyQuote }) {
         <CardContent>
           <Box sx={{ display: 'flex' }}>
             <PhoneIcon />
-            <Typography>{agencyQuote.phone_number}</Typography>
+            <Typography>{agency.phone_number}</Typography>
           </Box>
           <Box sx={{ display: 'flex' }}>
             <PersonIcon />
             <Typography>
-              {agencyQuote.contact_first_name} {agencyQuote.contact_last_name}
+              {agency.contact_first_name} {agency.contact_last_name}
             </Typography>
           </Box>
           <Box sx={{ display: 'flex' }}>
             <LocationOnIcon />
-            <Typography>{agencyQuote.city}</Typography>
+            <Typography>{agency.city}</Typography>
           </Box>
         </CardContent>
         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Typography>Minority Owned: </Typography>
-          {agencyQuote.minority_owned ? (
+          {agency.minority_owned ? (
             <CheckBoxIcon />
           ) : (
             <CheckBoxOutlineBlankIcon />
@@ -61,15 +61,11 @@ function QuotesCard({ agencyQuote }) {
         </Box>
         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Typography>Woman Owned: </Typography>
-          {agencyQuote.woman_owned ? (
-            <CheckBoxIcon />
-          ) : (
-            <CheckBoxOutlineBlankIcon />
-          )}
+          {agency.woman_owned ? <CheckBoxIcon /> : <CheckBoxOutlineBlankIcon />}
         </Box>
         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Typography>Veteran Owned: </Typography>
-          {agencyQuote.veteran_owned ? (
+          {agency.veteran_owned ? (
             <CheckBoxIcon />
           ) : (
             <CheckBoxOutlineBlankIcon />
