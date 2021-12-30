@@ -20,8 +20,6 @@ function QuotesCard({ agency, cost }) {
   // local state to determine whether card is expanded or not
   const [isExpanded, setIsExpanded] = useState(false);
 
-  console.log('agency ', agency.id, 'cost is', cost);
-
   return (
     <Card>
       <CardHeader title={agency.agency_name} />
@@ -74,7 +72,7 @@ function QuotesCard({ agency, cost }) {
       </Collapse>
       <CardContent>
         {/* Calculate the cost for this specific company */}
-        <Typography>Cost: ${}</Typography>
+        <Typography>Cost: ${cost}</Typography>
       </CardContent>
     </Card>
   );

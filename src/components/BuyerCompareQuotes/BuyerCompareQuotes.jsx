@@ -4,34 +4,33 @@ import { useSelector, useDispatch } from 'react-redux';
 import QuotesCard from '../QuotesCard/QuotesCard';
 
 // dummy selectedFeatures list
-const selectedFeatures = [
-  {
-    id: 6,
-    feature_name: 'clear table',
-    feature_story: 'this table is clear',
-    feature_description: 'clear table',
-    category_id: 3,
-    image_url: 'https://i.stack.imgur.com/jm4zL.png',
-    quantity: 2,
-  },
-  {
-    id: 4,
-    feature_name: 'clear table',
-    feature_story: 'this table is clear',
-    feature_description: 'clear table',
-    category_id: 3,
-    image_url: 'https://i.stack.imgur.com/jm4zL.png',
-    quantity: 1,
-  },
-];
+// const selectedFeatures = [
+//   {
+//     id: 6,
+//     feature_name: 'clear table',
+//     feature_story: 'this table is clear',
+//     feature_description: 'clear table',
+//     category_id: 3,
+//     image_url: 'https://i.stack.imgur.com/jm4zL.png',
+//     quantity: 2,
+//   },
+//   {
+//     id: 4,
+//     feature_name: 'clear table',
+//     feature_story: 'this table is clear',
+//     feature_description: 'clear table',
+//     category_id: 3,
+//     image_url: 'https://i.stack.imgur.com/jm4zL.png',
+//     quantity: 1,
+//   },
+// ];
 
 function BuyerCompareQuotes() {
   // set up the dispatch
   const dispatch = useDispatch();
 
   // retrieve the list of agencies that can offer the buyer's selection of features
-  // TODO: remove the // below, it's just for testing
-  //const selectedFeatureIDs = useSelector((store = store.selectedFeatures));
+  const selectedFeatures = useSelector((store) => store.selectedFeatures);
   const quotingAgencies = useSelector((store) => store.quotingAgencies);
   const agencyQuoteData = useSelector((store) => store.agencyQuoteData);
 
@@ -61,13 +60,17 @@ function BuyerCompareQuotes() {
     console.log(`you've reached it, and here is`);
   }, [agencyQuoteData]);
 
+  // calculates the cost for each agency
+  // based on the features they can provide and their
+  // preferences
   const calcCost = (agency) => {
+    // grab all the features belonging to this agency's quote
     const quotes = agencyQuoteData.filter((d) => d.agency_id === agency.id);
     let cost = 0;
-    console.log('here are the quotes for agency', agency.id, ':', quotes);
-
+    // now run through each quote for each feature and add it all up
     quotes.forEach((feature) => {
       let hours;
+      // determine the hours based on this feature's t-shirt size
       switch (feature.t_shirt_size) {
         case 'XS':
           hours = feature.tiny_hours;
@@ -89,6 +92,7 @@ function BuyerCompareQuotes() {
       const quantity = selectedFeatures.find(
         (f) => f.id === feature.feature_id
       ).quantity;
+      // add to the cost this agency's hours multiplied by the hourly rate
       cost += hours * quantity * feature.hourly_rate;
     });
 
