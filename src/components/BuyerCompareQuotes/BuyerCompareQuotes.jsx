@@ -41,9 +41,6 @@ function BuyerCompareQuotes() {
   // TODO: remove the // below, it's just for testing
   //const selectedFeatures = useSelector((store = store.selectedFeatures));
   const quotingAgencies = useSelector((store) => store.quotingAgencies);
-  const quotingAgenciesDetails = useSelector(
-    (store) => store.quotingAgenciesDetails
-  );
 
   // on page load
   useEffect(() => {
@@ -54,17 +51,7 @@ function BuyerCompareQuotes() {
     });
   }, []);
 
-  // when we have the updated list of quoting agencies
-  useEffect(() => {
-    // now retrieve the full details of all these agencies
-    dispatch({
-      type: 'GET_QUOTING_AGENCIES_DETAILS',
-      payload: quotingAgencies,
-    });
-  }, [quotingAgencies]);
-
   console.log(`quotingAgencies:`, quotingAgencies);
-  console.log(`details:`, quotingAgenciesDetails);
   return (
     <>
       <Box sx={{ display: 'flex' }}>

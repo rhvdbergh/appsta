@@ -31,23 +31,10 @@ function* getAgencyQuoteData(action) {
   }
 }
 
-// Get all the details of a list of agencies
-// payload is expected to be an array of agency id's
-function* getQuotingAgenciesDetails(action) {
-  try {
-    const response = yield axios.get('api/agency/list', action.payload);
-    yield put({ type: 'SET_QUOTING_AGENCIES_DETAILS', payload: response.data });
-  } catch (error) {
-    console.log('error in getting quoting agencies details', error);
-    yield put({ type: 'GET_QUOTING_AGENCIES_DETAILS_ERROR' });
-  }
-}
-
 // generator function for all quote-related Saga requests
 function* quotesSaga() {
   yield takeLatest('GET_QUOTING_AGENCIES', getQuotingAgencies);
   yield takeLatest('GET_AGENCY_QUOTE_DATA', getAgencyQuoteData);
-  yield takeLatest('GET_QUOTING_AGENCIES_DETAILS', getQuotingAgenciesDetails);
 }
 
 export default quotesSaga;
