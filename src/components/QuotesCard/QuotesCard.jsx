@@ -10,6 +10,11 @@ import {
   CardMedia,
   Typography,
 } from '@mui/material';
+import PhoneIcon from '@mui/icons-material/Phone';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import PersonIcon from '@mui/icons-material/Person';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 
 // expects an agencyQuote object that is similar to the
 // route received from /api/quotes/agencyquote
@@ -31,10 +36,50 @@ function QuotesCard({ agencyQuote }) {
       </CardActions>
       <Collapse in={isExpanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography>my content</Typography>
-          <Typography>my content</Typography>
+          <Box sx={{ display: 'flex' }}>
+            <PhoneIcon />
+            <Typography>{agencyQuote.phone_number}</Typography>
+          </Box>
+          <Box sx={{ display: 'flex' }}>
+            <PersonIcon />
+            <Typography>
+              {agencyQuote.contact_first_name} {agencyQuote.contact_last_name}
+            </Typography>
+          </Box>
+          <Box sx={{ display: 'flex' }}>
+            <LocationOnIcon />
+            <Typography>{agencyQuote.city}</Typography>
+          </Box>
         </CardContent>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Typography>Minority Owned: </Typography>
+          {agencyQuote.minority_owned ? (
+            <CheckBoxIcon />
+          ) : (
+            <CheckBoxOutlineBlankIcon />
+          )}
+        </Box>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Typography>Woman Owned: </Typography>
+          {agencyQuote.woman_owned ? (
+            <CheckBoxIcon />
+          ) : (
+            <CheckBoxOutlineBlankIcon />
+          )}
+        </Box>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Typography>Veteran Owned: </Typography>
+          {agencyQuote.veteran_owned ? (
+            <CheckBoxIcon />
+          ) : (
+            <CheckBoxOutlineBlankIcon />
+          )}
+        </Box>
       </Collapse>
+      <CardContent>
+        {/* Calculate the cost for this specific company */}
+        <Typography>Cost: ${}</Typography>
+      </CardContent>
     </Card>
   );
 }
