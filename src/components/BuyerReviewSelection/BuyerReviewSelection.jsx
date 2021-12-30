@@ -77,6 +77,10 @@ function BuyerReviewSelection() {
       }    
     });
   }, [quotingAgencies]);
+  // once we have the cost estimate data, perform one final calc/render
+  useEffect(() => {
+    console.log('Final useEffect and render');
+  }, [quoteData]);
  
   const handleFeatureChange = () => {
     history.push('/BuyerOptions')
