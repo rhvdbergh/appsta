@@ -20,7 +20,6 @@ const useStyles = makeStyles(() => ({
     textAlign: 'center',
   },
   input: {
-    
     width: '100%',
   },
 }));

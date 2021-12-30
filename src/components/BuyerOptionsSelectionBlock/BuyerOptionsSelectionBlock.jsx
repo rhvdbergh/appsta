@@ -55,11 +55,16 @@ function BuyerOptionsSelectionBlock({ feature }) {
 
   return (
     <>
-      <Button variant="contained" onClick={handleClick}>
+      <Button 
+          color='secondary'
+          variant="contained" 
+          onClick={handleClick}>
         <Typography variant="body1">
           {addedToProject ? 'Remove from my project' : 'Add to my project'}
         </Typography>
       </Button>
+    
+
       <FormControl fullWidth>
         <InputLabel id="quantity">Quantity</InputLabel>
         <Select

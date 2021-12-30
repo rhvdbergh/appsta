@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button } from '@mui/material';
-import '../LandingPage/LandingPage.css';
 
 // CUSTOM COMPONENTS
 import LoginForm from '../LoginForm/LoginForm';
@@ -27,10 +26,7 @@ function AgencyLoginPage() {
             history.push('/AgencyReg');
           }}>
              Register Now </Button> </p>
-      </center>
-
-  
-      <center>
+     
         <Button
           color='secondary'
           variant="contained"
