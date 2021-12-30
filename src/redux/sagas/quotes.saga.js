@@ -6,7 +6,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 // the buyer's selected features
 function* getQuotingAgencies(action) {
   try {
-    const response = yield axios.get('api/quotes/findagencies', action.payload);
+    const response = yield axios.post('api/quotes/findagencies', action.payload);    
     yield put({ type: 'SET_QUOTING_AGENCIES', payload: response.data });
   } catch (error) {
     console.log('error in getting quoting agencies', error);

@@ -1,6 +1,7 @@
 import React from 'react';
 import OptionsCard from '../OptionsCard/OptionsCard';
 import { useSelector } from 'react-redux';
+import { Typography } from '@mui/material';
 
 function OptionsList({ features, listType }) {
   // get the selected category from the redux store
@@ -8,7 +9,9 @@ function OptionsList({ features, listType }) {
 
   return (
     <>
-      <h1> OptionsList </h1>
+      <Typography variant="h6"> 
+        OptionsList 
+      </Typography>
       {features.length > 0 &&
         features
           // only display the features of the currently selected category, so filter

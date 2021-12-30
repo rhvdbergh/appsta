@@ -14,24 +14,34 @@ function BuyerReviewSelection() {
   const selectedCategory = useSelector((store) => store.selectedCategory);
   const dispatch = useDispatch();
   const selectedFeatures = useSelector((store) => store.selectedFeatures);
+  const selectedFeatureIDs = selectedFeatures.map(feature => feature.id);
+  const quotingAgencies = useSelector((store) => store.quotingAgencies);
+
   useEffect(() => {
-    dispatch({ type: 'GET_FEATURES' });
+    // dispatch({ type: 'GET_FEATURES' });
+    dispatch({ type: 'GET_QUOTING_AGENCIES', 
+      payload: selectedFeatureIDs}); 
   }, []);
+  
   const handleFeatureChange = () => {
     history.push('/BuyerOptions')
   }
   const handleRegister = () => {
     history.push('/BuyerRegistration')
   }
+  console.log('Selected feature IDs are: ', selectedFeatureIDs);
+  console.log('Quoting agencies are: ', quotingAgencies);
   return (
     <>
       <Box sx={{ display: 'flex' }}>
         <Navbar />
         <Box>
-          <h1>Review your project</h1>
+          <Typography variant="h5">
+            Review your project
+          </Typography>
           <OptionsList features={selectedFeatures} listType={'buyer-review'} />
           <Typography variant="h6" sx={{ my:1 }}>
-            Cost Range for *Feature* Group: $1,234 - $3,456
+            Cost Range for {selectedCategory} Group: $1,234 - $3,456
           </Typography>
           <Typography variant="h6" sx={{ my:1 }}>
             Total cost range: $4,567 - $6,789
