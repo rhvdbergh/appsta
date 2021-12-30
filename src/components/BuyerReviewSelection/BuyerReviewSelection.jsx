@@ -10,9 +10,14 @@ import OptionsList from '../OptionsList/OptionsList';
 
 
 function BuyerReviewSelection() {
+  // set up history hook
   const history = useHistory()
+  // grab selected category ID from redux Store
   const selectedCategory = useSelector((store) => store.selectedCategory);
+  // set up dispatch hook
   const dispatch = useDispatch();
+  // retrieve the buyers feature set, the agencies that can provide
+  // that feature set, and the cost estimate data.
   const selectedFeatures = useSelector((store) => store.selectedFeatures);
   const selectedFeatureIDs = selectedFeatures.map(feature => feature.id);
   const quotingAgencies = useSelector((store) => store.quotingAgencies);
@@ -55,19 +60,24 @@ function BuyerReviewSelection() {
   //   }
 
   // }
-
+  // on page load, get the agencies that provide
+  // the feature set
   useEffect(() => {
-    // dispatch({ type: 'GET_FEATURES' });
     dispatch({ type: 'GET_QUOTING_AGENCIES', 
-      payload: selectedFeatureIDs});
-    dispatch({ type: 'GET_AGENCY_QUOTE_DATA',
+      payload: selectedFeatureIDs
+    });   
+  }, []);
+  // when we have the agencies, get the cost estimate data
+  useEffect(() => {
+    dispatch({ 
+      type: 'GET_AGENCY_QUOTE_DATA',
       payload: {
         selected_features: selectedFeatureIDs,
         agency_ids: quotingAgencyIDs
       }    
-    }) 
-  }, []);
-
+    });
+  }, [quotingAgencies]);
+ 
   const handleFeatureChange = () => {
     history.push('/BuyerOptions')
   }
@@ -77,7 +87,7 @@ function BuyerReviewSelection() {
   console.log('Selected feature IDs are: ', selectedFeatureIDs);
   console.log('Quoting agency IDs are: ', quotingAgencyIDs);
   console.log('Agency quote data is:', quoteData);
-  console.log('Test Calc:', agencyFeatureCost(quoteData[0]));
+  // console.log('Test Calc:', agencyFeatureCost(quoteData[0]));
 
  
   return (
