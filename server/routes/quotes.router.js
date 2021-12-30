@@ -6,7 +6,7 @@ const {
 } = require('../modules/authentication-middleware');
 const encryptLib = require('../modules/encryption');
 
-// Retrieve a list of agency ID's that provide all of the selected 
+// Retrieve a list of agency ID's that provide all of the selected
 // features
 
 router.post('/findagencies', (req, res) => {
@@ -20,7 +20,6 @@ router.post('/findagencies', (req, res) => {
   // define the array of selected features from req.body
   const values = [req.body];
   console.log('Selected features are: ', req.body);
-  
 
   // run the query
   pool
@@ -38,6 +37,7 @@ router.post('/findagencies', (req, res) => {
 // given the list of agency ID's and the selected feature ID's
 
 router.post('/agencyquote', (req, res) => {
+  console.log('in GET /api/quotes/agencyquote, req.body is: ', req.body);
   // define SQL query text
   const queryText = `
   SELECT af.*, ac.*, features.category_id FROM agency_features af
