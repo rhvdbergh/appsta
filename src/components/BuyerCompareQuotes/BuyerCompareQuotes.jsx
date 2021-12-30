@@ -1,10 +1,11 @@
 import { Box } from '@mui/material';
+import QuotesCard from '../QuotesCard/QuotesCard';
 
 function BuyerCompareQuotes() {
   return (
     <>
       <Box sx={{ display: 'flex' }}>
-        <p>This is the Buyer Compare Quotes page</p>
+        <QuotesCard />
       </Box>
     </>
   );
