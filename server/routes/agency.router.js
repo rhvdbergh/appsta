@@ -180,4 +180,30 @@ router.delete(
   }
 );
 
+// get a list of agencies based on an array of agency ids
+// expects a req.body.agency_ids
+// can only be accessed by a logged in user
+// GET /api/agency/list
+router.get('/list', rejectUnauthenticated, (req, res) => {
+  // build the SQL query
+  // we're casting to an array of integer because pg changes the
+  // array into a string
+  const queryText = `
+    SELECT * FROM agencies 
+    WHERE id = ANY ($1::INTEGER[]);
+  `;
+
+  // parameterize the inputs
+  const values = [req.body.agency_ids];
+
+  // run the query
+  pool
+    .query(queryText, values)
+    .then((response) => res.send(response.rows))
+    .catch((err) => {
+      console.log('error retrieving the agency list', err);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;
