@@ -9,7 +9,7 @@ const encryptLib = require('../modules/encryption');
 // Retrieve a list of agency ID's that provide all of the selected 
 // features
 
-router.get('/findagencies', (req, res) => {
+router.post('/findagencies', (req, res) => {
   // define SQL query text
   const queryText = `
   SELECT af.agency_id, agencies.*, array_agg (af.feature_id) FROM agency_features af
@@ -18,8 +18,8 @@ router.get('/findagencies', (req, res) => {
   HAVING array_agg(af.feature_id) @> ($1::INTEGER[]);
   `;
   // define the array of selected features from req.body
-  const values = [req.body.selected_features];
-  console.log('Selected features are: ', req.body.selected_features);
+  const values = [req.body];
+  console.log('Selected features are: ', req.body);
   
 
   // run the query
