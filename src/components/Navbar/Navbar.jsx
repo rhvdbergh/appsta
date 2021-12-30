@@ -47,7 +47,7 @@ export default function Navbar({
 
 
   return (
-    <div color='primary' >
+    <div  >
       <Drawer
         sx={{
           width: drawerWidth,
@@ -55,6 +55,7 @@ export default function Navbar({
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
+            bgcolor: 'primary.dark',
           },
         }}
         variant="permanent"

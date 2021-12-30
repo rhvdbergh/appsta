@@ -16,14 +16,14 @@ function AgencyLoginPage() {
   return (
     <div className="container">
       <center>
-        <h1>Agency Login</h1>
-
-        <div className="grid-col grid-col_4">
+        <h1>Agency Login Page </h1>
+       
           <LoginForm />
-        </div>
 
         <p> First time here?
-          <Button onClick={() => {
+          <Button 
+            color="secondary"
+            onClick={() => {
             history.push('/AgencyReg');
           }}>
              Register Now </Button> </p>
@@ -32,6 +32,7 @@ function AgencyLoginPage() {
   
       <center>
         <Button
+          color='secondary'
           variant="contained"
           onClick= {() => {
               history.push('/LandingPage');

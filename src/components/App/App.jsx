@@ -36,12 +36,15 @@ const theme = createTheme({
     primary: {
       main: '#9ccfca',
       light: '#efefeb',
+      //dark is for NavBar 
       dark: '#3e3880',
     },
     secondary: {
       main: '#9596d6',
+      //light is for highlights/ shadows 
       light: '#f5e580',
     },
+    //error is DANGER 
     error: {
       main: '#ff476c',
     },
@@ -56,8 +59,6 @@ const theme = createTheme({
     },
 
   },
-  
-
 });
 
 import './App.css';

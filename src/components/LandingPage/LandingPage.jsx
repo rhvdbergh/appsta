@@ -14,17 +14,12 @@ function LandingPage() {
   };
 
   return (
-    <div className="container">
+    <div>
 
       <center>
         <h1>Buyer Login</h1>
-        <div className="grid-col grid-col_4">
           <LoginForm />
-        </div>
-      </center>
-
-
-      <center>
+  
         <p> New to appsta?
           <Button onClick={() => {
             history.push('/BuyerOptions');
