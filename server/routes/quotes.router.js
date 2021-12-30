@@ -34,7 +34,7 @@ router.get('/findagencies', (req, res) => {
 });
 
 // retrieve a list of agency feature data needed for a quote,
-// given the agency ID and the selected feature ID's
+// given the list of agency ID's and the selected feature ID's
 
 router.get('/agencyquote', (req, res) => {
   // define SQL query text
@@ -43,10 +43,10 @@ router.get('/agencyquote', (req, res) => {
   JOIN agencies a ON af.agency_id = agencies.id
   JOIN agency_conversion ac ON af.agency_id = ac.agency_id
   JOIN features ON af.feature_id = features.id
-  WHERE af.feature_id = ANY ($1) AND agencies.id = $2;
+  WHERE af.feature_id = ANY ($1) AND agencies.id = ANY ($2);
   `;
   // define the values to be passed into the query
-  const values = [req.body.selected_features, req.body.agency_id];
+  const values = [req.body.selected_features, req.body.agency_ids];
   // run the query
   pool
     .query(queryText, values)
