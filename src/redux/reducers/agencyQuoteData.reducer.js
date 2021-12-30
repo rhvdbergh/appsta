@@ -1,7 +1,7 @@
 const agencyQuoteDataReducer = (state = [], action) => {
   switch (action.type) {
     case 'SET_AGENCY_QUOTE_DATA':
-      return action.payload;
+      return [...state, action.payload];
     case 'LOGOUT':
       return [];
     default:
