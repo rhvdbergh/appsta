@@ -37,7 +37,7 @@ router.post('/findagencies', (req, res) => {
 // retrieve a list of agency feature data needed for a quote,
 // given the list of agency ID's and the selected feature ID's
 
-router.get('/agencyquote', (req, res) => {
+router.post('/agencyquote', (req, res) => {
   // define SQL query text
   const queryText = `
   SELECT af.*, ac.*, features.category_id FROM agency_features af

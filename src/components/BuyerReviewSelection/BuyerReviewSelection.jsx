@@ -16,13 +16,58 @@ function BuyerReviewSelection() {
   const selectedFeatures = useSelector((store) => store.selectedFeatures);
   const selectedFeatureIDs = selectedFeatures.map(feature => feature.id);
   const quotingAgencies = useSelector((store) => store.quotingAgencies);
+  const quotingAgencyIDs = quotingAgencies.map(agency => agency.id);
+  const quoteData = useSelector((store) => store.agencyQuoteData)
+
+  // helper function to convert T-shirt size to quote field
+
+  const tShirtField = (shirtSize) => {
+    switch (shirtSize) {
+      case 'XS':
+        return 'xsmall_hours';
+      case 'S':
+        return 'small_hours';
+      case 'M':
+        return 'medium_hours';
+      case 'L':
+        return 'large_hours';
+      case 'XL':
+        return 'xlarge_hours';
+    }
+  }
+
+  // helper function to calculate the cost associated with a given agency_feature quote
+
+  const agencyFeatureCost = (item) => {
+    return item.hourly_rate * item[tShirtField(item.t_shirt_size)]
+  }
+
+
+
+  // function to create the total cost range for the set of selected features
+  // const totalCost = () => {
+  //   let minCost, maxCost = 0;
+  //   for (feature in selectedFeatureIDs) {
+  //     quoteData
+  //       .filter(item => item.feature_id === feature)
+  //       .map(item => item.)
+
+  //   }
+
+  // }
 
   useEffect(() => {
     // dispatch({ type: 'GET_FEATURES' });
     dispatch({ type: 'GET_QUOTING_AGENCIES', 
-      payload: selectedFeatureIDs}); 
+      payload: selectedFeatureIDs});
+    dispatch({ type: 'GET_AGENCY_QUOTE_DATA',
+      payload: {
+        selected_features: selectedFeatureIDs,
+        agency_ids: quotingAgencyIDs
+      }    
+    }) 
   }, []);
-  
+
   const handleFeatureChange = () => {
     history.push('/BuyerOptions')
   }
@@ -30,7 +75,11 @@ function BuyerReviewSelection() {
     history.push('/BuyerRegistration')
   }
   console.log('Selected feature IDs are: ', selectedFeatureIDs);
-  console.log('Quoting agencies are: ', quotingAgencies);
+  console.log('Quoting agency IDs are: ', quotingAgencyIDs);
+  console.log('Agency quote data is:', quoteData);
+  console.log('Test Calc:', agencyFeatureCost(quoteData[0]));
+
+ 
   return (
     <>
       <Box sx={{ display: 'flex' }}>
