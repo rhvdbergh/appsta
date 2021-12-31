@@ -8,12 +8,19 @@ import Typography from '@mui/material/Typography';
 import { useSelector } from 'react-redux';
 
 function BuyerReviewSelectionBlock({ feature }) {
-
+  // Grab quoteData from the store, should be active
+  const quoteData = useSelector((store) => store.agencyQuoteData);
+  // grab selected features from the store. Only needed for the quantity
+  const selectedFeatures = useSelector((store) => store.selectedFeatures);
+  // determine the quantity the client wants
+  const quantity = selectedFeatures.find(
+    (f) => f.id === feature.id)
+    .quantity;
     return (
         <Box sx={{ display: 'flex' }}>
             <Box>
                 <Typography component="div" variant="body2">
-                    AVERAGE ESTIMATED COST: ${feature.id * 100}
+                    AVERAGE ESTIMATED COST: ${quantity * 100}
                 </Typography>
                 <Typography component="div" variant="h5">
                     {feature.feature_name}

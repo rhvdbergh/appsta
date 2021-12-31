@@ -76,14 +76,14 @@ function BuyerReviewSelection() {
 
 // helper function to calculate the cost associated with a given agency_feature quote
 
-  const agencyFeatureCost = (item) => {
-    return item.hourly_rate * item[tShirtField(item.t_shirt_size)]
-  }
+  // const agencyFeatureCost = (item) => {
+  //   return item.hourly_rate * item[tShirtField(item.t_shirt_size)]
+  // }
 
   // function to calculate average cost of a given feature
   const avgCost = (feature) => {
     const quotes = quoteData.filter((quote) => quote.feature_id === feature.id);
-    
+
   }
  
   const handleFeatureChange = () => {
@@ -95,7 +95,7 @@ function BuyerReviewSelection() {
   console.log('Selected feature IDs are: ', selectedFeatureIDs);
   console.log('Quoting agency IDs are: ', quotingAgencyIDs);
   console.log('Agency quote data is:', quoteData);
-  console.log('Test Calc:', agencyFeatureCost(quoteData[1]));
+  // console.log('Test Calc:', agencyFeatureCost(quoteData[1]));
 
  
   return (
@@ -106,7 +106,7 @@ function BuyerReviewSelection() {
           <Typography variant="h5">
             Review your project
           </Typography>
-          <OptionsList features={selectedFeatures} listType={'buyer-review'} />
+          <OptionsList features={selectedFeatures} listType={'buyer-review'} quoteData={quoteData} />
           <Typography variant="h6" sx={{ my:1 }}>
             Cost Range for {selectedCategory} Group: $1,234 - $3,456
           </Typography>
