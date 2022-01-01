@@ -68,7 +68,8 @@ function BuyerReviewSelection() {
   // features
   const totalCost = (quotes, agencies) => {
     // initialize our min and max costs
-    let minTotal, maxTotal = 0;
+    let minTotal = 0;
+    let maxTotal = 0;
     // loop through the agencies array given into the function
     for (let agency of agencies) {
       // filter the quote data to extract the rows associated with the agency
@@ -79,8 +80,11 @@ function BuyerReviewSelection() {
       ac.hourly_rate * ac[tShirtField(ac.t_shirt_size)])
       // then reduce the array to get the total
       .reduce((a,b) => (a + b));
+      console.log('Min, max and agency are:', minTotal, maxTotal, agencyTotal);
+      // use conditionals to change minTotal and maxTotal as appropriate
       if (maxTotal === 0 && agencyTotal > 0) {
-        minTotal, maxTotal = agencyTotal;
+        minTotal = agencyTotal;
+        maxTotal = agencyTotal;
       } else if (agencyTotal > maxTotal) {
         maxTotal = agencyTotal;
       } else if (agencyTotal < minTotal && minTotal > 0) {
@@ -111,9 +115,9 @@ function BuyerReviewSelection() {
           {quoteData.length > 0 && 
             <OptionsList features={selectedFeatures} listType={'buyer-review'} quoteData={quoteData} />
           }
-          <Typography variant="h6" sx={{ my:1 }}>
+          {/* <Typography variant="h6" sx={{ my:1 }}>
             Cost Range for {selectedCategory} Group: $1,234 - $3,456
-          </Typography>
+          </Typography> */}
           {quoteData.length > 0 &&
             <Typography variant="h6" sx={{ my:1 }}>
               Total cost range: {totalCost(quoteData, quotingAgencies)}
