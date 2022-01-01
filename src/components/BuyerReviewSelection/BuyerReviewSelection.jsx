@@ -24,16 +24,6 @@ function BuyerReviewSelection() {
   const quotingAgencyIDs = quotingAgencies.map(agency => agency.id);
   const quoteData = useSelector((store) => store.agencyQuoteData)
 
-  // function to create the total cost range for the set of selected features
-  // const totalCost = () => {
-  //   let minCost, maxCost = 0;
-  //   for (feature in selectedFeatureIDs) {
-  //     quoteData
-  //       .filter(item => item.feature_id === feature)
-  //       .map(item => item.)
-
-  //   }
-
   // }
   // on page load, get the agencies that provide
   // the feature set
@@ -74,16 +64,30 @@ function BuyerReviewSelection() {
     }
   }
 
-// helper function to calculate the cost associated with a given agency_feature quote
-
-  const agencyFeatureCost = (item) => {
-    return item.hourly_rate * item[tShirtField(item.t_shirt_size)]
-  }
-
-  // function to calculate average cost of a given feature
-  const avgCost = (feature) => {
-    const quotes = quoteData.filter((quote) => quote.feature_id === feature.id);
-
+  // calculate min and max total costs for the set of selected 
+  // features
+  const totalCost = (quotes, agencies) => {
+    // initialize our min and max costs
+    let minTotal, maxTotal = 0;
+    // loop through the agencies array given into the function
+    for (let agency of agencies) {
+      // filter the quote data to extract the rows associated with the agency
+      let agencyQuote = quotes.filter((q) => q.agency_id === agency.id);
+      // calculate the agency's cost to provide all features
+      // first map the array to get an array of feature costs
+      let agencyTotal = agencyQuote.map((ac) =>
+      ac.hourly_rate * ac[tShirtField(ac.t_shirt_size)])
+      // then reduce the array to get the total
+      .reduce((a,b) => (a + b));
+      if (maxTotal === 0 && agencyTotal > 0) {
+        minTotal, maxTotal = agencyTotal;
+      } else if (agencyTotal > maxTotal) {
+        maxTotal = agencyTotal;
+      } else if (agencyTotal < minTotal && minTotal > 0) {
+        minTotal = agencyTotal;
+      }
+    }
+    return (`$${minTotal} - $${maxTotal}`);
   }
  
   const handleFeatureChange = () => {
@@ -95,8 +99,6 @@ function BuyerReviewSelection() {
   console.log('Selected feature IDs are: ', selectedFeatureIDs);
   console.log('Quoting agency IDs are: ', quotingAgencyIDs);
   console.log('Agency quote data is:', quoteData);
-  // console.log('Test Calc:', agencyFeatureCost(quoteData[1]));
-
  
   return (
     <>
@@ -112,10 +114,11 @@ function BuyerReviewSelection() {
           <Typography variant="h6" sx={{ my:1 }}>
             Cost Range for {selectedCategory} Group: $1,234 - $3,456
           </Typography>
-          <Typography variant="h6" sx={{ my:1 }}>
-            Total cost range: $4,567 - $6,789
-          </Typography>
-          
+          {quoteData.length > 0 &&
+            <Typography variant="h6" sx={{ my:1 }}>
+              Total cost range: {totalCost(quoteData, quotingAgencies)}
+            </Typography>
+          }        
           <Button onClick={handleFeatureChange}>Change Features</Button>
           <Button onClick={handleRegister}>Register to view quotes</Button>
         </Box>

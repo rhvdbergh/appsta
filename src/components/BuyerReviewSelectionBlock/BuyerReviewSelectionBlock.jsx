@@ -11,7 +11,6 @@ import { useDispatch, useSelector } from 'react-redux';
 function BuyerReviewSelectionBlock({ feature, quoteData }) {
   
   const selectedFeatures = useSelector((store) => store.selectedFeatures);
-  const selectedFeatureIDs = selectedFeatures.map(feature => feature.id);
 
   // determine the quantity the client wants for the given feature
   const quantity = selectedFeatures.find(
