@@ -92,9 +92,9 @@ function BuyerReviewSelection() {
   const handleRegister = () => {
     history.push('/BuyerRegistration')
   }
-  console.log('Selected feature IDs are: ', selectedFeatureIDs);
-  console.log('Quoting agency IDs are: ', quotingAgencyIDs);
-  console.log('Agency quote data is:', quoteData);
+  // console.log('Selected feature IDs are: ', selectedFeatureIDs);
+  // console.log('Quoting agency IDs are: ', quotingAgencyIDs);
+  // console.log('Agency quote data is:', quoteData);
   // console.log('Test Calc:', agencyFeatureCost(quoteData[1]));
 
  
