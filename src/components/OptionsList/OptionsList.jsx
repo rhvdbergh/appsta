@@ -3,7 +3,7 @@ import OptionsCard from '../OptionsCard/OptionsCard';
 import { useSelector } from 'react-redux';
 import { Typography } from '@mui/material';
 
-function OptionsList({ features, listType, quoteData }) {
+function OptionsList({ features, listType, quoteData, quotingAgencies, totalCost }) {
   // get the selected category from the redux store
   const selectedCategory = useSelector((store) => store.selectedCategory);
 

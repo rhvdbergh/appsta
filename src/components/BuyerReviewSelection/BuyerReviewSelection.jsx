@@ -22,7 +22,9 @@ function BuyerReviewSelection() {
   const selectedFeatureIDs = selectedFeatures.map(feature => feature.id);
   const quotingAgencies = useSelector((store) => store.quotingAgencies);
   const quotingAgencyIDs = quotingAgencies.map(agency => agency.id);
-  const quoteData = useSelector((store) => store.agencyQuoteData)
+  const quoteData = useSelector((store) => store.agencyQuoteData);
+  // filter the quoteData for the selected category from the navBar
+  const categoryQuotes = quoteData.filter((q) => q.category_id === selectedCategory);
 
   // }
   // on page load, get the agencies that provide
@@ -113,14 +115,15 @@ function BuyerReviewSelection() {
             Review your project
           </Typography>
           {quoteData.length > 0 && 
-            <OptionsList features={selectedFeatures} listType={'buyer-review'} quoteData={quoteData} />
+            <OptionsList features={selectedFeatures} listType={'buyer-review'} quoteData={quoteData} quotingAgencies={quotingAgencies} totalCost = {totalCost}/>
           }
-          {/* <Typography variant="h6" sx={{ my:1 }}>
-            Cost Range for {selectedCategory} Group: $1,234 - $3,456
-          </Typography> */}
+          {categoryQuotes.length > 0 && 
+            <Typography variant="h6" sx={{ my:1 }}>
+              Cost Range for {selectedCategory} Group: {totalCost(categoryQuotes, quotingAgencies)}
+            </Typography>}
           {quoteData.length > 0 &&
             <Typography variant="h6" sx={{ my:1 }}>
-              Total cost range: {totalCost(quoteData, quotingAgencies)}
+              Cost range for project: {totalCost(quoteData, quotingAgencies)}
             </Typography>
           }        
           <Button onClick={handleFeatureChange}>Change Features</Button>
