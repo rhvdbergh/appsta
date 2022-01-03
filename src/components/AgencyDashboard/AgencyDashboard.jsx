@@ -4,6 +4,7 @@ import Navbar from '../Navbar/Navbar';
 
 function AgencyDashboard() {
   const user = useSelector((store) => store.user);
+  const agency = useSelector((store) => store.agency_id)
   const dispatch = useDispatch();
 
   useEffect(() => {
