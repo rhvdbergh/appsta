@@ -33,11 +33,11 @@ function BuyerCompareQuotes() {
   const projectFeatures = useSelector((store) => store.projectFeatures);
   const quotingAgencies = useSelector((store) => store.quotingAgencies);
   const agencyQuoteData = useSelector((store) => store.agencyQuoteData);
-  const buyer_id = useSelector(store => store.user.buyers_id);
+  const activeProject = useSelector(store => store.activeProject);
 
   // on page load, grab the projectFeatures for this buyer's project
   useEffect(() => {
-    dispatch({type: 'GET_PROJECT_FEATURES', payload: buyer_id});
+    dispatch({type: 'GET_PROJECT_FEATURES', payload: activeProject});
   }, [])
 
   // when projectFeatures changes, update the quoting agencies

@@ -11,7 +11,8 @@ import newBuyer from './buyer.reducer';
 import agencyFeatures from './agencyFeature.reducer';
 import quotingAgencies from './quotingAgencies.reducer';
 import agencyQuoteData from './agencyQuoteData.reducer';
-import projectFeatures from './projectFeature.reducer'
+import projectFeatures from './projectFeature.reducer';
+import activeProject from './activeProject.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -33,6 +34,7 @@ const rootReducer = combineReducers({
   quotingAgencies, // will store agencies that qualify for a buyer's feature needs
   agencyQuoteData, // will store data to build an agency quote
   projectFeatures, // will store the features associated with a buyer's project
+  activeProject, // stores the active project id
 });
 
 export default rootReducer;
