@@ -79,7 +79,7 @@ function BuyerCompareQuotes() {
       // determine the hours based on this feature's t-shirt size
       switch (feature.t_shirt_size) {
         case 'XS':
-          hours = feature.tiny_hours;
+          hours = feature.xsmall_hours;
           break;
         case 'S':
           hours = feature.small_hours;
@@ -91,7 +91,7 @@ function BuyerCompareQuotes() {
           hours = feature.large_hours;
           break;
         case 'XL':
-          hours = feature.extra_large_hours;
+          hours = feature.xlarge_hours;
           break;
       }
       // determine the quantity that the client wants
