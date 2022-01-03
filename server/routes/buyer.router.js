@@ -21,8 +21,8 @@ router.post('/new', (req, res) => {
             const addBuyerQuery = `
             INSERT INTO "buyers"
             ("user_id", "company_name", "project_name", "first_name", "last_name", "city", "postal_code")
-            VALUES ($1, $2, $3, $4, $5, $6, $7);
-            RETURNING "id"
+            VALUES ($1, $2, $3, $4, $5, $6, $7)
+            RETURNING "id";
             `;
             const values = [
                 newBuyerUserId,
@@ -39,16 +39,21 @@ router.post('/new', (req, res) => {
                     const newBuyerUserId = result.rows[0].id;
                     const addProjectQuery = `
                     INSERT INTO "projects"
-                    ("buyer_id", CURRENT_DATE)
-                    VALUES ($1, $2)`;
+                    ("buyer_id", date_of_project)
+                    VALUES ($1, CURRENT_DATE)
+                    RETURNING "id";`;
                     pool
                         .query(addProjectQuery, [newBuyerUserId])
-                }).then((result) => {
-                    res.sendStatus(201)
+                        .then((result) => {
+                            console.log('this is the project id', result.rows);
+                            res.status(201).send(result.rows[0]);
+                        })
+                        .catch((err) => {
+                          console.log('error adding project in new buyer')
+                            res.sendStatus(500)
+                        });
+                        
                 }).catch((err) => {
-                    res.sendStatus(500)
-                })
-                .catch((err) => {
                     console.log('error adding new buyer', err);
                     res.sendStatus(500);
                 });
