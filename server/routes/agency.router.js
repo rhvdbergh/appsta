@@ -74,13 +74,16 @@ router.post('/new', (req, res) => {
 //Agency Dashboard 2.4 
 
 router.get('/:id', (req, res) => {
+  const id = req.params.id;
+  console.log('id', id);
+  
   const queryText = `
   SELECT * FROM "agencies"
   WHERE "id" = $1;
   `;
-  pool.query(queryText)
-  .then((response) => {
-    res.send(response.rows);
+  pool.query(queryText, [id])
+  .then((result) => {
+    res.send(result.rows);
   })
   .catch((err) => {
     console.log('error fetching agency by id', err);
