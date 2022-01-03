@@ -14,6 +14,7 @@ router.post('/new', (req, res) => {
         `;
     pool
         .query(addUserQuery, [username, password])
+        // promise waiting-  like an async await 
         .then((result) => {
             console.log('New buyer user id', result.rows[0].id);
             const newBuyerUserId = result.rows[0].id;

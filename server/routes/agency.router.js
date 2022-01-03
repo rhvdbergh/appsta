@@ -71,6 +71,23 @@ router.post('/new', (req, res) => {
     });
 });
 
+//Agency Dashboard 2.4 
+
+router.get('/:id', (req, res) => {
+  const queryText = `
+  SELECT * FROM "agencies"
+  WHERE "id" = $1;
+  `;
+  pool.query(queryText)
+  .then((response) => {
+    res.send(response.rows);
+  })
+  .catch((err) => {
+    console.log('error fetching agency by id', err);
+    res.sendStatus(500);
+  });
+});
+
 // get the features associated with an agency
 // GET /api/agency/features
 router.get('/features', rejectUnauthenticated, (req, res) => {
@@ -179,5 +196,6 @@ router.delete(
       });
   }
 );
+
 
 module.exports = router;
