@@ -48,7 +48,7 @@ const theme = createTheme({
     error: {
       main: '#ff476c',
     },
-    warning:{
+    warning: {
       main: '#ffd666',
     },
     info: {
@@ -56,6 +56,10 @@ const theme = createTheme({
     },
     success: {
       main: '#76d58e',
+    },
+    text: {
+      primary: '#EEEED1',
+      secondary: '#000000',
     },
 
   },

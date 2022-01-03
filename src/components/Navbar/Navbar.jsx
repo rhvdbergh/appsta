@@ -56,6 +56,7 @@ export default function Navbar({
             width: drawerWidth,
             boxSizing: 'border-box',
             bgcolor: 'primary.dark',
+            color: 'text.primary',
           },
         }}
         variant="permanent"
@@ -75,6 +76,8 @@ export default function Navbar({
             </ListItem>
           ))}
         </List>
+
+
         {btn1text && (
           <Button onClick={fxn1} variant="contained">
             {btn1text}

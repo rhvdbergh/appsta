@@ -8,6 +8,8 @@ import {
   Select,
 } from '@mui/material';
 
+import Box from '@mui/material/Box';
+
 function BuyerOptionsSelectionBlock({ feature }) {
   // grab the feature from the store, if it already exists
   // else localStorage will set this to null
@@ -55,6 +57,7 @@ function BuyerOptionsSelectionBlock({ feature }) {
 
   return (
     <>
+    <Box sx={{ border: 4, display: 'flex', flexDirection: 'row', alignItems: 'center', }}>
       <Button 
           color='secondary'
           variant="contained" 
@@ -63,7 +66,7 @@ function BuyerOptionsSelectionBlock({ feature }) {
           {addedToProject ? 'Remove from my project' : 'Add to my project'}
         </Typography>
       </Button>
-    
+      
 
       <FormControl fullWidth>
         <InputLabel id="quantity">Quantity</InputLabel>
@@ -80,6 +83,7 @@ function BuyerOptionsSelectionBlock({ feature }) {
           <MenuItem value={5}>5</MenuItem>
         </Select>
       </FormControl>
+      </Box>
     </>
   );
 }

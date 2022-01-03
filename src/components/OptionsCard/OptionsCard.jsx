@@ -12,6 +12,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { Typography } from "@mui/material";
+import { useTheme } from '@mui/material/styles';
 
 
 function OptionsCard({ feature, listType, quoteData }) {
@@ -23,7 +24,8 @@ function OptionsCard({ feature, listType, quoteData }) {
     <Card  sx={{ display: 'flex'}}>
       {listType !== 'buyer-review' && (
         <>
-          <Box sx={{ display: 'flex', flexDirection: 'column', }}>
+{/* Text and Image  */}
+          <Box sx={{ display: 'flex', flexDirection: 'column', color: 'text.secondary', }}>
             <Typography component="div" variant="h5">
               {feature.feature_name}
             </Typography>
@@ -35,7 +37,8 @@ function OptionsCard({ feature, listType, quoteData }) {
               alt={feature.feature_description}
             />
           </Box>
-          <CardContent sx={{ flex: '1 0 auto' }}>
+
+          <CardContent sx={{ flex: '1 0 auto', border: "2px solid red", display: 'flex', flexDirection: 'column', justifyContent: 'center', }}>
             {/* //conditionally render block - if buyer vs agency display different blocks */}
             {!user.isBuyer && user.id ? (
               <AgencyOptionsSelectionBlock feature={feature} />
