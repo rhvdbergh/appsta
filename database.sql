@@ -181,7 +181,7 @@ VALUES (1, 2, 'we got it!', 'XL', 70),
 
 
 INSERT INTO "projects" (buyer_id, date_of_project)
-VALUES (1, '12/13/2021'), (1, '10/20/2021');
+VALUES (1, '12/13/2021');
 
 INSERT INTO "project_features" (project_id, feature_id, quantity)
 VALUES (1, 4, 3), (2, 3, 7);
