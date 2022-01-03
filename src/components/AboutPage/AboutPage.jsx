@@ -9,7 +9,7 @@ function AboutPage() {
   return (
     <div className="container">
       <div>
-        <p>This about page is for anyone to read!</p>
+        <p>This is a a prototype of Appsta.  A web development Marketplace for startups.... more coming soon.  </p>
       </div>
     </div>
   );

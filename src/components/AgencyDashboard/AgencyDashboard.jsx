@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import Navbar from '../Navbar/Navbar';
 
 function AgencyDashboard() {
   const user = useSelector((store) => store.user);
@@ -13,7 +14,9 @@ function AgencyDashboard() {
         {' '}
         put some user data on this page to confirm that we are getting correct
         data..... placeholder{' '}
-      </p>
+      </p> 
+      <p> will need specific information for the agency.  </p>
+      <Navbar />
     </>
   );
 }
