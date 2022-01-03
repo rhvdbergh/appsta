@@ -3,7 +3,7 @@ import OptionsCard from '../OptionsCard/OptionsCard';
 import { useSelector } from 'react-redux';
 import { Typography } from '@mui/material';
 
-function OptionsList({ features, listType }) {
+function OptionsList({ features, listType, quoteData, quotingAgencies, totalCost }) {
   // get the selected category from the redux store
   const selectedCategory = useSelector((store) => store.selectedCategory);
 
@@ -17,7 +17,7 @@ function OptionsList({ features, listType }) {
           // only display the features of the currently selected category, so filter
           .filter((feature) => feature.category_id === selectedCategory)
           .map((feature) => {
-            return <OptionsCard key={feature.id} feature={feature} listType={listType} />;
+            return <OptionsCard key={feature.id} feature={feature} quoteData={quoteData} listType={listType} />;
           })}
     </>
   );

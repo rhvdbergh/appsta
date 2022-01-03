@@ -99,6 +99,8 @@ function BuyerCompareQuotes() {
     return cost;
   };
 
+  console.log('Agency quote data is: ', agencyQuoteData);
+
   return (
     <>
       <Box sx={{ display: 'flex' }}>
