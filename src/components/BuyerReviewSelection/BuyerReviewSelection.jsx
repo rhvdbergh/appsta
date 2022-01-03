@@ -66,6 +66,16 @@ function BuyerReviewSelection() {
     }
   }
 
+  // helper function to convert an integer to currency format
+
+  function formatCurrency(number) {
+    return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        maximumFractionDigits: 0,
+    }).format(number);
+}
+
   // calculate min and max total costs for the set of selected 
   // features
   const totalCost = (quotes, agencies) => {
@@ -93,7 +103,7 @@ function BuyerReviewSelection() {
         minTotal = agencyTotal;
       }
     }
-    return (`$${minTotal} - $${maxTotal}`);
+    return (`${formatCurrency(minTotal)} - ${formatCurrency(maxTotal)}`);
   }
  
   const handleFeatureChange = () => {
