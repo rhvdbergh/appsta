@@ -11,7 +11,7 @@ import BuyerOptionsSelectionBlock from '../BuyerOptionsSelectionBlock/BuyerOptio
 import AgencyOptionsSelectionBlock from '../AgencyOptionsSelectionBlock/AgencyOptionsSelectionBlock';
 import BuyerReviewSelectionBlock from '../BuyerReviewSelectionBlock/BuyerReviewSelectionBlock';
 
-function OptionsCard({ feature, listType }) {
+function OptionsCard({ feature, listType, quoteData }) {
   const theme = useTheme();
   const user = useSelector(store => store.user);
 
@@ -43,7 +43,7 @@ function OptionsCard({ feature, listType }) {
       )}
       
       {listType === 'buyer-review' && 
-        <BuyerReviewSelectionBlock feature={feature} />}
+        <BuyerReviewSelectionBlock feature={feature} quoteData={quoteData} />}
     </Card>
   );
 }

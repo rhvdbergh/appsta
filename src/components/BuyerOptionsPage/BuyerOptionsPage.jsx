@@ -26,7 +26,7 @@ function BuyerOptionsPage() {
         )
       );
     // dispatch to save in the redux store
-    dispatch({ type: 'SET_SELECTED_FEATURES', payload: selectedFeatures });
+    dispatch({ type: 'SET_SELECTED_FEATURES', payload: selectedFeatures }); 
     console.log('Quote Submitted', selectedFeatures);
     // move the user to the review page
     history.push('/BuyerReview');
