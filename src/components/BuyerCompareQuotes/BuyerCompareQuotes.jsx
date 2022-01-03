@@ -33,15 +33,21 @@ function BuyerCompareQuotes() {
   const selectedFeatures = useSelector((store) => store.selectedFeatures);
   const quotingAgencies = useSelector((store) => store.quotingAgencies);
   const agencyQuoteData = useSelector((store) => store.agencyQuoteData);
+  const buyer_id = useSelector(store => store.user.buyers_id);
 
-  // on page load
+  // on page load, grab the selectedFeatures for this buyer's project
+  useEffect(() => {
+    dispatch({type: 'GET_PROJECT_FEATURES', payload: buyer_id});
+  }, [])
+
+  // when selectedFeatures changes, update the quoting agencies
   useEffect(() => {
     dispatch({
       type: 'GET_QUOTING_AGENCIES',
       payload: selectedFeatures.map((f) => f.id),
     });
     // we only need the ids for both the agency ids and the feature ids
-  }, []);
+  }, [selectedFeatures]);
 
   // when we have list of the agencies
   useEffect(() => {
