@@ -1,17 +1,13 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Navbar from '../Navbar/Navbar';
-
 function AgencyDashboard() {
+  //initalize store and dispatch 
+
   const user = useSelector((store) => store.user);
-  const agency = useSelector((store) => store.agencyDashboardReducer);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch({ type : 'FETCH_AGENCY', payload: user.agency_id})
-  }, []);
 
-  console.log('agency', agency);
   console.log('user.agency_id', user.agency_id);
   console.log('this is the user', user);
 
@@ -25,6 +21,7 @@ function AgencyDashboard() {
       </p> 
       <p> will need specific information for the agency.  </p>
       <Navbar />
+
     </>
   );
 }
