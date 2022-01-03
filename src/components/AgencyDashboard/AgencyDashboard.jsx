@@ -1,10 +1,16 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Navbar from '../Navbar/Navbar';
 
 function AgencyDashboard() {
   const user = useSelector((store) => store.user);
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch({ type : 'FETCH_AGENCY', payload: user.agency_id})
+  })
+
+  console.log('user.agency)_id', user.agency_id);
   console.log('this is the user', user);
 
   return (

@@ -72,6 +72,7 @@ router.post('/new', (req, res) => {
 });
 
 //Agency Dashboard 2.4 
+//GET INFORMATION FROM DATABASE 
 
 router.get('/:id', (req, res) => {
   const id = req.params.id;
@@ -90,6 +91,8 @@ router.get('/:id', (req, res) => {
     res.sendStatus(500);
   });
 });
+
+
 
 // get the features associated with an agency
 // GET /api/agency/features
