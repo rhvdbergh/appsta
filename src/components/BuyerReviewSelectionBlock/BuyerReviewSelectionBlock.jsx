@@ -31,6 +31,16 @@ function BuyerReviewSelectionBlock({ feature, quoteData }) {
         return 'xlarge_hours';
     }
   };
+
+  // helper function to convert an integer to currency format
+
+  function formatCurrency(number) {
+    return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        maximumFractionDigits: 0,
+    }).format(number);
+}
   // extract the quote data for the particular feature
   const featureQuotes = quoteData.filter((d) => d.feature_id === feature.id);
 
@@ -49,7 +59,7 @@ function BuyerReviewSelectionBlock({ feature, quoteData }) {
         <Box sx={{ display: 'flex' }}>
             <Box>
                 <Typography component="div" variant="body2">
-                    AVERAGE ESTIMATED COST: ${quantity * avgCost}
+                    AVERAGE ESTIMATED COST: {formatCurrency(quantity * avgCost)}
                 </Typography>
                 <Typography component="div" variant="h5">
                     {feature.feature_name}

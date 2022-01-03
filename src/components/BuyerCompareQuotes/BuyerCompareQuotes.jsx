@@ -3,8 +3,8 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import QuotesCard from '../QuotesCard/QuotesCard';
 
-// dummy selectedFeatures list
-// const selectedFeatures = [
+// dummy projectFeatures list
+// const projectFeatures = [
 //   {
 //     id: 6,
 //     feature_name: 'clear table',
@@ -30,25 +30,31 @@ function BuyerCompareQuotes() {
   const dispatch = useDispatch();
 
   // retrieve the list of agencies that can offer the buyer's selection of features
-  const selectedFeatures = useSelector((store) => store.selectedFeatures);
+  const projectFeatures = useSelector((store) => store.projectFeatures);
   const quotingAgencies = useSelector((store) => store.quotingAgencies);
   const agencyQuoteData = useSelector((store) => store.agencyQuoteData);
+  const buyer_id = useSelector(store => store.user.buyers_id);
 
-  // on page load
+  // on page load, grab the projectFeatures for this buyer's project
+  useEffect(() => {
+    dispatch({type: 'GET_PROJECT_FEATURES', payload: buyer_id});
+  }, [])
+
+  // when projectFeatures changes, update the quoting agencies
   useEffect(() => {
     dispatch({
       type: 'GET_QUOTING_AGENCIES',
-      payload: selectedFeatures.map((f) => f.id),
+      payload: projectFeatures.map((f) => f.id),
     });
     // we only need the ids for both the agency ids and the feature ids
-  }, []);
+  }, [projectFeatures]);
 
   // when we have list of the agencies
   useEffect(() => {
     dispatch({
       type: 'GET_AGENCY_QUOTE_DATA',
       payload: {
-        selected_features: selectedFeatures.map((f) => f.id),
+        selected_features: projectFeatures.map((f) => f.id),
         agency_ids: quotingAgencies.map((a) => a.id),
       },
     });
@@ -89,7 +95,7 @@ function BuyerCompareQuotes() {
           break;
       }
       // determine the quantity that the client wants
-      const quantity = selectedFeatures.find(
+      const quantity = projectFeatures.find(
         (f) => f.id === feature.feature_id
       ).quantity;
       // add to the cost this agency's hours multiplied by the hourly rate
