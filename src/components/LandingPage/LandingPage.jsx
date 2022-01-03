@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button } from '@mui/material';
-import './LandingPage.css';
 
 // CUSTOM COMPONENTS
 import LoginForm from '../LoginForm/LoginForm';
@@ -9,29 +8,28 @@ import LoginForm from '../LoginForm/LoginForm';
 function LandingPage() {
   const history = useHistory();
 
-  const onLogin = (event) => {
-    history.push('/login');
-  };
+  //not used on this page..... used on LOGIN FORM 
+  // const onLogin = (event) => {
+  //   history.push('/login');
+  // };
 
   return (
-    <div className="container">
-
+    <div>
       <center>
         <h1>Buyer Login</h1>
-        <div className="grid-col grid-col_4">
+        
           <LoginForm />
-        </div>
-      </center>
-
-
-      <center>
+  
         <p> New to appsta?
-          <Button onClick={() => {
+          <Button 
+            color='secondary'
+            onClick={() => {
             history.push('/BuyerOptions');
           }}>
             Get Started </Button> </p>
         <br />
         <Button
+          color='secondary'
           variant="contained"
           onClick={() => {
             history.push('/AgencyLogin');
