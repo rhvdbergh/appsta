@@ -86,10 +86,20 @@ function BuyerReviewSelection() {
     for (let agency of agencies) {
       // filter the quote data to extract the rows associated with the agency
       let agencyQuote = quotes.filter((q) => q.agency_id === agency.id);
+      console.log('agencyQuote is:', agencyQuote);
+      // now loop through all the feature quotes for the agency
+      for (let quote of agencyQuote) {
+        console.log('quote is:', quote);
+        console.log('selectedFeatures is:', selectedFeatures);
+        let quantity = 
+          selectedFeatures.find((f) => f.id === quote.feature_id)
+          .quantity;
+        quote.quantity = quantity;
+      }
       // calculate the agency's cost to provide all features
       // first map the array to get an array of feature costs
       let agencyTotal = agencyQuote.map((ac) =>
-      ac.hourly_rate * ac[tShirtField(ac.t_shirt_size)])
+      ac.hourly_rate * ac[tShirtField(ac.t_shirt_size)] * ac.quantity)
       // then reduce the array to get the total
       .reduce((a,b) => (a + b));
       console.log('Min, max and agency are:', minTotal, maxTotal, agencyTotal);
