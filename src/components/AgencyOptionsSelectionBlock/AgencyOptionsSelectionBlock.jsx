@@ -82,7 +82,7 @@ function AgencyOptionsSelectionBlock({ feature }) {
   // grab the user from the store
   const user = useSelector((store) => store.user);
 
-  // local state for the t-shirtsize and confidence level
+  // local state for the t-shirt`size and confidence level
   const [tShirtSize, setTShirtSize] = useState(0);
   const [confidence, setConfidence] = useState(50);
 

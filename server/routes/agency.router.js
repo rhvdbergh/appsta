@@ -180,4 +180,40 @@ router.delete(
   }
 );
 
+
+router.put('/:id', (req, res) => {
+  const id = req.body.id
+
+  const queryText = `
+  UPDATE "agencies"
+  SET agency_name = $1, agency_blurb = $2, postal_code = $3, city = $4, state_province = $5, country_code = $6, team_size = $7, minority_owned = $8, woman_owned = $9, veteran_owned = $10, staffing_location = $11, contact_first_name = $12, contact_last_name = $13, phone_number = $14, logo_url= $15
+  WHERE user_id = $16;
+` ;
+
+  pool.query(queryText, [
+    req.body.agency_name,
+    req.body.agency_blurb,
+    req.body.postal_code,
+    req.body.city,
+    req.body.state_province,
+    req.body.country_code,
+    req.body.team_size,
+    req.body.minority_owned,
+    req.body.woman_owned,
+    req.body.veteran_owned,
+    req.body.staffing_location,
+    req.body.contact_first_name,
+    req.body.contact_last_name,
+    req.body.phone_number,
+    req.body.logo_url,
+    id
+  ])
+    .then((result) => {
+      res.sendStatus(201)
+    }).catch((err) => {
+      console.log('error in update', err)
+      res.sendStatus(500)
+    })
+})
+
 module.exports = router;
