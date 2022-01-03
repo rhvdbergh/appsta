@@ -176,7 +176,9 @@ INSERT INTO "agency_features" (agency_id, feature_id, feature_notes, t_shirt_siz
 VALUES (1, 2, 'we got it!', 'XL', 70),
 (1, 1, 'no problem', 'S', 50),
 (2, 4, 'ehhhhh, we have to check', 'XS', 20),
-(2, 6, 'whew, well this is awkward!', 'M', 30);
+(2, 6, 'whew, well this is awkward!', 'M', 30),
+(2, 2, 'whew, well this is awkward!', 'M', 30);
+
 
 INSERT INTO "projects" (buyer_id, date_of_project)
 VALUES (1, '12/13/2021'), (1, '10/20/2021');
