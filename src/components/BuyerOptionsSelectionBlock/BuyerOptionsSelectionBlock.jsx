@@ -57,7 +57,7 @@ function BuyerOptionsSelectionBlock({ feature }) {
 
   return (
     <>
-    <Box sx={{ border: 4, display: 'flex', flexDirection: 'row', alignItems: 'center', }}>
+    <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', }}>
       <Button 
           color='secondary'
           variant="contained" 

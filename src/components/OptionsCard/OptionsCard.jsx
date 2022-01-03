@@ -25,20 +25,20 @@ function OptionsCard({ feature, listType, quoteData }) {
       {listType !== 'buyer-review' && (
         <>
 {/* Text and Image  */}
-          <Box sx={{ display: 'flex', flexDirection: 'column', color: 'text.secondary', }}>
-            <Typography component="div" variant="h5">
+          <Box sx={{ display: 'flex', flexDirection: 'column', color: 'text.primary', }}>
+            <Typography component="div" variant="h5" >
               {feature.feature_name}
             </Typography>
 
             <CardMedia
               component="img"
-              sx={{ width: 250 }}
+              sx={{ width: 250, }}
               image={feature.image_url}
               alt={feature.feature_description}
             />
           </Box>
 
-          <CardContent sx={{ flex: '1 0 auto', border: "2px solid red", display: 'flex', flexDirection: 'column', justifyContent: 'center', }}>
+          <CardContent sx={{ flex: '1 0 auto', display: 'flex', flexDirection: 'column', justifyContent: 'center', color: 'text.primary',}}>
             {/* //conditionally render block - if buyer vs agency display different blocks */}
             {!user.isBuyer && user.id ? (
               <AgencyOptionsSelectionBlock feature={feature} />

@@ -56,7 +56,7 @@ export default function Navbar({
             width: drawerWidth,
             boxSizing: 'border-box',
             bgcolor: 'primary.dark',
-            color: 'text.primary',
+            color: 'text.secondary',
           },
         }}
         variant="permanent"

@@ -153,9 +153,9 @@ function AgencyOptionsSelectionBlock({ feature }) {
 
   return (
     <>
-      <Box sx={{ width: 300 }}>
+      <Box sx={{ width: 300, }}>
         <Typography variant="body1">Time Estimate:</Typography>
-        <Slider
+        <Slider 
           aria-label="T-shirt-size marks"
           value={tShirtSize}
           step={20}
@@ -167,7 +167,7 @@ function AgencyOptionsSelectionBlock({ feature }) {
         {/* above: onChange happens continuously, onChangeCommitted only once */}
         <p>tshirtsize {tShirtSize}</p>
       </Box>
-      <Box sx={{ width: 300 }}>
+      <Box sx={{ width: 300, }}>
         <Typography variant="body1">Confidence:</Typography>
         <Slider
           aria-label="Confidence marks"
