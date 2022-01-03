@@ -5,6 +5,7 @@ import BuyerOptionsSelectionBlock from '../BuyerOptionsSelectionBlock/BuyerOptio
 import AgencyOptionsSelectionBlock from '../AgencyOptionsSelectionBlock/AgencyOptionsSelectionBlock';
 import BuyerReviewSelectionBlock from '../BuyerReviewSelectionBlock/BuyerReviewSelectionBlock';
 
+ 
 //adding MUI components 
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -13,7 +14,8 @@ import CardMedia from '@mui/material/CardMedia';
 import { Typography } from "@mui/material";
 
 
-function OptionsCard({ feature, listType }) {
+function OptionsCard({ feature, listType, quoteData }) {
+  const theme = useTheme();
   const user = useSelector(store => store.user);
 
   return (
@@ -44,7 +46,7 @@ function OptionsCard({ feature, listType }) {
       )}
       
       {listType === 'buyer-review' && 
-        <BuyerReviewSelectionBlock feature={feature} />}
+        <BuyerReviewSelectionBlock feature={feature} quoteData={quoteData} />}
     </Card>
   );
 }
