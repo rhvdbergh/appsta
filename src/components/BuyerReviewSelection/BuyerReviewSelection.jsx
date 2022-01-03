@@ -16,6 +16,11 @@ function BuyerReviewSelection() {
   const selectedCategory = useSelector((store) => store.selectedCategory);
   // set up dispatch hook
   const dispatch = useDispatch();
+  // grab the categories list from the redux store
+  const categories = useSelector((store) => store.category);
+  // extract the selected category name based on selected category ID
+  let categoryName = categories.find((c) => c.id === selectedCategory)
+                      .category_name;
   // retrieve the buyers feature set, the agencies that can provide
   // that feature set, and the cost estimate data.
   const selectedFeatures = useSelector((store) => store.selectedFeatures);
@@ -66,6 +71,16 @@ function BuyerReviewSelection() {
     }
   }
 
+  // helper function to convert an integer to currency format
+
+  function formatCurrency(number) {
+    return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        maximumFractionDigits: 0,
+    }).format(number);
+}
+
   // calculate min and max total costs for the set of selected 
   // features
   const totalCost = (quotes, agencies) => {
@@ -76,10 +91,19 @@ function BuyerReviewSelection() {
     for (let agency of agencies) {
       // filter the quote data to extract the rows associated with the agency
       let agencyQuote = quotes.filter((q) => q.agency_id === agency.id);
+      console.log('agencyQuote is:', agencyQuote);
+      // now loop through all the feature quotes for the agency and add the quantity from the selected features
+      for (let quote of agencyQuote) {
+        let quantity = 
+        // match the feature ID from selectedFeatures and the quote
+          (selectedFeatures.find((f) => f.id === quote.feature_id)
+          .quantity || 0);
+        quote.quantity = quantity;
+      }
       // calculate the agency's cost to provide all features
       // first map the array to get an array of feature costs
       let agencyTotal = agencyQuote.map((ac) =>
-      ac.hourly_rate * ac[tShirtField(ac.t_shirt_size)])
+      ac.hourly_rate * ac[tShirtField(ac.t_shirt_size)] * ac.quantity)
       // then reduce the array to get the total
       .reduce((a,b) => (a + b));
       console.log('Min, max and agency are:', minTotal, maxTotal, agencyTotal);
@@ -93,7 +117,7 @@ function BuyerReviewSelection() {
         minTotal = agencyTotal;
       }
     }
-    return (`$${minTotal} - $${maxTotal}`);
+    return (`${formatCurrency(minTotal)} - ${formatCurrency(maxTotal)}`);
   }
  
   const handleFeatureChange = () => {
@@ -117,9 +141,14 @@ function BuyerReviewSelection() {
           {quoteData.length > 0 && 
             <OptionsList features={selectedFeatures} listType={'buyer-review'} quoteData={quoteData} quotingAgencies={quotingAgencies} totalCost = {totalCost}/>
           }
+          {quoteData.length === 0 &&
+            <Typography variant="h6">
+              Sorry, no agencies can provide all of your selected features.
+            </Typography>
+          }
           {categoryQuotes.length > 0 && 
             <Typography variant="h6" sx={{ my:1 }}>
-              Cost Range for {selectedCategory} Group: {totalCost(categoryQuotes, quotingAgencies)}
+              Cost range for {categoryName} group: {totalCost(categoryQuotes, quotingAgencies)}
             </Typography>}
           {quoteData.length > 0 &&
             <Typography variant="h6" sx={{ my:1 }}>
