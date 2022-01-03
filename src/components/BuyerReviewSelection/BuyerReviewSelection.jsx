@@ -19,8 +19,7 @@ function BuyerReviewSelection() {
   // grab the categories list from the redux store
   const categories = useSelector((store) => store.category);
   // extract the selected category name based on selected category ID
-  let categoryName = categories.find((c) => c.id === selectedCategory)
-                      .category_name;
+  let categoryName = selectedCategory ? categories.find((c) => c.id === selectedCategory).category_name : '';
   // retrieve the buyers feature set, the agencies that can provide
   // that feature set, and the cost estimate data.
   const selectedFeatures = useSelector((store) => store.selectedFeatures);
@@ -121,6 +120,7 @@ function BuyerReviewSelection() {
   }
  
   const handleFeatureChange = () => {
+    dispatch({type: 'REFRESH_AGENCY_QUOTE_DATA'});
     history.push('/BuyerOptions')
   }
   const handleRegister = () => {
