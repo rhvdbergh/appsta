@@ -6,7 +6,7 @@ function* postNewBuyer(action) {
     try {
         // we're receiving the project id
         const response = yield axios.post('/api/buyer/new', action.payload);
-        yield console.log('the returned project id is', response.data.id)
+        yield put({type: 'SET_ACTIVE_PROJECT', payload: response.data.id});
     } catch (error) {
         console.log('error in post new buyer', error);
         yield put({ type: 'POST_BUYER_ERROR' });
