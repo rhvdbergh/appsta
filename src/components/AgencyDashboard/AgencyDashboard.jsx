@@ -34,6 +34,7 @@ function AgencyDashboard() {
   const agency = {
     agency_name: agency_name,
     agency_blurb: agency_blurb,
+    logo_url: logo_url,
     contact_first_name: contact_first_name,
     contact_last_name: contact_last_name,
     phone_number: phone_number,
@@ -82,6 +83,7 @@ function AgencyDashboard() {
           />
           <TextField label="Logo URL" variant="outlined"
             value={user.logo_url}
+            onChange={(event) => setLogo_url(event.target.value)}
           />
           <TextField
             label="Contact First Name*"
