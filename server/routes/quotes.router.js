@@ -60,4 +60,26 @@ router.post('/agencyquote', (req, res) => {
     });
 });
 
+// gets the latest project saved by this user and
+// sends back the id as an object, e.g. {id: 7}
+// GET /api/quotes/project/:buyer_id
+router.get('/project/:buyer_id', rejectUnauthenticated, (req, res) => {
+  // build the SQL query - this will return all, but the latest
+  // project will be the first row
+  const query = `
+  SELECT * FROM projects
+  WHERE buyer_id = $1
+  ORDER BY date_of_project DESC;
+  `;
+
+  // run the query
+  pool
+    .query(query, [req.params.buyer_id])
+    .then((response) => res.send(response.rows[0]))
+    .catch((err) => {
+      console.log('error getting the latest project id', err);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;

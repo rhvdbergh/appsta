@@ -31,10 +31,24 @@ function* getAgencyQuoteData(action) {
   }
 }
 
+// gets the latest project saved by this user and
+// sets this as the active project
+// the expected payload is the buyer's id
+function* getLatestProject(action) {
+  try {
+    const response = yield axios.get(`/api/quotes/project/${action.payload}`);
+    yield put({ type: 'SET_ACTIVE_PROJECT', payload: response.data.id });
+  } catch (error) {
+    console.log('error in get latest project', error);
+    yield put({ type: 'GET_LATEST_PROJECT_ERROR' });
+  }
+}
+
 // generator function for all quote-related Saga requests
 function* quotesSaga() {
   yield takeLatest('GET_QUOTING_AGENCIES', getQuotingAgencies);
   yield takeLatest('GET_AGENCY_QUOTE_DATA', getAgencyQuoteData);
+  yield takeLatest('GET_LATEST_PROJECT', getLatestProject);
 }
 
 export default quotesSaga;
