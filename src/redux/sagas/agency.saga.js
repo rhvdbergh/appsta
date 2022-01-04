@@ -16,7 +16,7 @@ function* updateAgencyInformation(action) {
   console.log('this is updated information from dashboard', action.payload.agencyID)
   try {
     yield axios.put(`api/agency/${action.payload.agencyID}`, action.payload.agency)
-    yield put({ type: 'SET_USER', payload: action.payload.agency })
+    yield put({ type: 'FETCH_USER' })
   } catch (error) {
     console.log('error in agency information update', error)
     yield put({ type: 'UPDATE_AGENCY_ERROR' })

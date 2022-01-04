@@ -28,7 +28,7 @@ function AgencyDashboard() {
   const [city, setCity] = useState(user.city);
   const [state_province, setState_province] = useState(user.state_province);
   const [country_code, setCountry_code] = useState(user.country_code);
-  const [postal_code, setPostal_code] = useState(user.postal_code);
+  const [postal_code, setPostal_code] = useState(user.agencies_postal_code);
   const [staffing_location, setStaffing_location] = useState('Onshore Talent Only');
 
   const agency = {
@@ -69,7 +69,7 @@ function AgencyDashboard() {
         <Stack>
           <TextField
             label="Agency Name*"
-            value={user.agency_name}
+            value={agency_name}
             variant="outlined"
             onChange={(event) => setAgency_name(event.target.value)}
           />
@@ -88,20 +88,20 @@ function AgencyDashboard() {
           <TextField
             label="Contact First Name*"
             variant="outlined"
-            value={user.contact_first_name}
+            value={contact_first_name}
             onChange={(event) => setContact_first_name(event.target.value)}
           />
           <TextField
             label="Contact Last Name*"
             variant="outlined"
-            value={user.contact_last_name}
+            value={contact_last_name}
             onChange={(event) => setContact_last_name(event.target.value)}
           />
           <TextField
             label="Phone Number"
             variant="outlined"
             type="tel"
-            value={user.phone_number}
+            value={phone_number}
             onChange={(event) => setPhone_number(event.target.value)}
           />
         </Stack>
@@ -109,7 +109,7 @@ function AgencyDashboard() {
           <TextField
             label="Team Size (0-9999)*"
             variant="outlined"
-            value={user.team_size}
+            value={team_size}
             onChange={(event) => setTeam_size(event.target.value)}
           />
 
@@ -118,8 +118,8 @@ function AgencyDashboard() {
               <FormControlLabel
                 control={<Checkbox />}
                 label="Minority Owned"
-                value={user.minority_owned}
-                checked={user.minority_owned}
+                value={minority_owned}
+                checked={minority_owned}
                 onChange={(event) => setMinority_owned(event.target.checked)}
               />
             </FormGroup>
@@ -128,8 +128,8 @@ function AgencyDashboard() {
               <FormControlLabel
                 control={<Checkbox />}
                 label="Women Owned"
-                value={user.women_owned}
-                checked={user.women_owned}
+                value={woman_owned}
+                checked={woman_owned}
                 onChange={(event) => setWoman_owned(event.target.checked)}
               />
             </FormGroup>
@@ -138,8 +138,8 @@ function AgencyDashboard() {
               <FormControlLabel
                 control={<Checkbox />}
                 label="Veteran Owned"
-                checked={user.veteran_owned}
-                value={user.veteran_owned}
+                checked={veteran_owned}
+                value={veteran_owned}
                 onChange={(event) => setVeteran_owned(event.target.checked)}
               />
             </FormGroup>
@@ -147,26 +147,26 @@ function AgencyDashboard() {
           <Grid>
             <TextField
               label="City*"
-              value={user.city}
+              value={city}
               variant="outlined"
               onChange={(event) => setCity(event.target.value)}
               
             />
             <TextField
               label="State/Province"
-              value={user.state_province}
+              value={state_province}
               variant="outlined"
               onChange={(event) => setState_province(event.target.value)}
              />
             <TextField
               label="Country Code"
-              value={user.country_code}
+              value={country_code}
               variant="outlined"
               onChange={(event) => setCountry_code(event.target.value)}   
             />
             <TextField
               label="Zip/Postal Code*"
-              value={user.postal_code}
+              value={postal_code}
               variant="outlined"
               onChange={(event) => setPostal_code(event.target.value)}  
             />
@@ -176,7 +176,7 @@ function AgencyDashboard() {
             <RadioGroup
               aria-label="staffing-location"
               name="radio-buttons-group"
-              value={user.staffing_location}
+              value={staffing_location}
               onChange={(event) => setStaffing_location(event.target.value)}
             >
               <FormControlLabel value={"Onshore Talent Only"} control={<Radio />} label="Onshore Talent Only" />
