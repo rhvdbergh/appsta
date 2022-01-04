@@ -65,6 +65,7 @@ CREATE TABLE "agencies" (
 	"minority_owned" BOOLEAN,
 	"woman_owned" BOOLEAN,
 	"veteran_owned" BOOLEAN,
+  "lgbt_owned" BOOLEAN,
   "staffing_location" varchar(255) NOT NULL,
 	"contact_first_name" varchar(255) NOT NULL,
 	"contact_last_name" varchar(255) NOT NULL,
