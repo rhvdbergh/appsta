@@ -123,6 +123,15 @@ CREATE TABLE "feature_categories" (
   OIDS=FALSE
 );
 
+CREATE TABLE "project_agencies" (
+	"id" serial NOT NULL,
+	"project_id" integer NOT NULL,
+  "agency_id" integer NOT NULL,
+	CONSTRAINT "project_agencies_pk" PRIMARY KEY ("id")
+) WITH (
+  OIDS=FALSE
+);
+
 
 
 ALTER TABLE "buyers" ADD CONSTRAINT "buyers_fk0" FOREIGN KEY ("user_id") REFERENCES "users"("id");
@@ -138,6 +147,9 @@ ALTER TABLE "agency_features" ADD CONSTRAINT "agency_features_fk1" FOREIGN KEY (
 
 ALTER TABLE "project_features" ADD CONSTRAINT "project_features_fk0" FOREIGN KEY ("project_id") REFERENCES "projects"("id");
 ALTER TABLE "project_features" ADD CONSTRAINT "project_features_fk1" FOREIGN KEY ("feature_id") REFERENCES "features"("id");
+
+ALTER TABLE "project_agencies" ADD CONSTRAINT "project_agencies_fk0" FOREIGN KEY ("project_id") REFERENCES "projects"("id");
+ALTER TABLE "project_agencies" ADD CONSTRAINT "project_agencies_fk1" FOREIGN KEY ("agency_id") REFERENCES "agencies"("id");
 
 -- THIS INSERTS DUMMY DATA INTO THE DATABASE
 
