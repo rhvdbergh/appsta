@@ -48,61 +48,64 @@ export default function Navbar({
 
   return (
     <div  >
-      <Drawer
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          '& .MuiDrawer-paper': {
+      <Box sx={{ display: 'flex', }}>
+
+        <Drawer
+          sx={{
             width: drawerWidth,
-            boxSizing: 'border-box',
-            bgcolor: 'primary.dark',
-            color: 'text.secondary',
-          },
-        }}
-        variant="permanent"
-        anchor="left"
-      >
-        <Toolbar />
-        <Divider />
-        <List>
-          {categories.map((category) => (
-            <ListItem
-              button
-              key={category.id}
-              selected={selectedCategory === category.id}
-              onClick={() => categorySelect(category)}
+            flexShrink: 0,
+            '& .MuiDrawer-paper': {
+              width: drawerWidth,
+              boxSizing: 'border-box',
+              bgcolor: 'primary.dark',
+              color: 'text.secondary',
+            },
+          }}
+          variant="permanent"
+          anchor="left"
+        >
+          <Toolbar />
+          <Divider />
+          <List>
+            {categories.map((category) => (
+              <ListItem
+                button
+                key={category.id}
+                selected={selectedCategory === category.id}
+                onClick={() => categorySelect(category)}
+              >
+                <ListItemText primary={category.category_name} />
+              </ListItem>
+            ))}
+          </List>
+
+
+          {btn1text && (
+            <Button onClick={fxn1} variant="contained">
+              {btn1text}
+            </Button>
+          )}
+          {btn2text && (
+            <Button onClick={fxn2} variant="contained">
+              {btn2text}
+            </Button>
+          )}
+          {btn3text && (
+            <Button onClick={fxn3} variant="contained">
+              {btn3text}
+            </Button>
+          )}
+          {user.id && (
+            <Button
+              onClick={fxn3}
+              variant="contained"
+              onClick={() => dispatch({ type: 'LOGOUT' })}
             >
-              <ListItemText primary={category.category_name} />
-            </ListItem>
-          ))}
-        </List>
-
-
-        {btn1text && (
-          <Button onClick={fxn1} variant="contained">
-            {btn1text}
-          </Button>
-        )}
-        {btn2text && (
-          <Button onClick={fxn2} variant="contained">
-            {btn2text}
-          </Button>
-        )}
-        {btn3text && (
-          <Button onClick={fxn3} variant="contained">
-            {btn3text}
-          </Button>
-        )}
-        {user.id && (
-          <Button
-            onClick={fxn3}
-            variant="contained"
-            onClick={() => dispatch({ type: 'LOGOUT' })}
-          >
-            LOGOUT
-          </Button>
-        )}
-      </Drawer>
+              LOGOUT
+            </Button>
+          )}
+        </Drawer>
+      </Box>
     </div>
   );
 }

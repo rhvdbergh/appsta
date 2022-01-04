@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import Navbar from '../Navbar/Navbar';
+import { Box, Typography } from '@mui/material';
 
 function AgencyDashboard() {
   const user = useSelector((store) => store.user);
@@ -9,14 +10,11 @@ function AgencyDashboard() {
 
   return (
     <>
-      <h1> AGENCY DASHBOARD </h1>
-      <p>
-        {' '}
-        put some user data on this page to confirm that we are getting correct
-        data..... placeholder{' '}
-      </p> 
-      <p> will need specific information for the agency.  </p>
-      <Navbar />
+      <Box sx={{ display: 'flex',  }}>
+        <Typography variant="h3">Welcome, {user.agency_name}</Typography>
+
+        <Navbar />
+      </Box>
     </>
   );
 }
