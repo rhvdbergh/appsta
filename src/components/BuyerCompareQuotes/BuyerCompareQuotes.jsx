@@ -27,7 +27,9 @@ function BuyerCompareQuotes() {
   // initialize a filter array which will be populated with strings corresponding to the criteria to check
 
   const filters = [];
-  const filteredAgencies = quotingAgencies;
+  let filteredAgencies = quotingAgencies.filter((agency) => filterAgency(agency));
+  console.log('Quoting agencies are: ', quotingAgencies);
+  console.log('Filtered agencies are', filteredAgencies);
 
   // use the UX checkboxes to create and maintain an array of strings corresponding to the filter criteria
   const changeFilters = (criteria, value) => {
@@ -36,18 +38,18 @@ function BuyerCompareQuotes() {
     } else if (value === false) {
       filters.splice(filters.indexOf(criteria), 1);
     }
-    console.log('Filters change, filters is now:', filters);
+    console.log('Filters change, filters are now:', filters);
+    
   }
+
 // create a function to filter an agency list based on the checked criteria
-  function filterAgency (agency, filters) {
-    for (filter in filters) {
-      if (agency[filter] === false) {
-        return false;
-      }
+  function filterAgency(agency) {
+    if (minority_owned && !agency.minority_owned) {
+      return false;
+    } else {
       return true;
     }
   }
-  
 
   // on page load, retrieve the latests saved project
   // this should be the project just saved to the db
@@ -70,10 +72,6 @@ function BuyerCompareQuotes() {
     // we only need the ids for both the agency ids and the feature ids
   }, [projectFeatures]);
 
-  // when the filtering criteria changes, change the filtered agencies
-  useEffect(() => {
-    const filteredAgencies = quotingAgencies.filter((agency) => filterAgency(agency));
-  }, [filters])
 
   return (
     <Box>
