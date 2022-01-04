@@ -37,6 +37,12 @@ function BuyerCompareQuotes() {
       return false;
     } else if (woman_owned && !agency.woman_owned) {
       return false;
+    } else if (veteran_owned && !agency.veteran_owned) {
+      return false;
+    } else if (lgbt_owned && !agency.lgbt_owned) {
+      return false;
+    } else if (onsite_talent && agency.staffing_location !== "Onshore Talent Only") {
+      return false;
     } else {
       return true;
     }
@@ -83,6 +89,30 @@ function BuyerCompareQuotes() {
               onChange={(event) => {
                 console.log('Woman owned clicked');
                 setWoman_owned(event.target.checked);
+              }}
+            />
+            <FormControlLabel
+              control={<Checkbox />}
+              label="Veteran Owned"
+              onChange={(event) => {
+                console.log('Veteran owned clicked');
+                setVeteran_owned(event.target.checked);
+              }}
+            />
+            <FormControlLabel
+              control={<Checkbox />}
+              label="LGBT Owned"
+              onChange={(event) => {
+                console.log('LGBT owned clicked');
+                setLgbt_owned(event.target.checked);
+              }}
+            />
+            <FormControlLabel
+              control={<Checkbox />}
+              label="Only Onshore Talent"
+              onChange={(event) => {
+                console.log('Onshore talent clicked');
+                setOnsite_talent(event.target.checked);
               }}
             />
           </FormGroup>
