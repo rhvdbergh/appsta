@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import Navbar from '../Navbar/Navbar';
+import { Container, Typography } from '@mui/material';
 
 function BuyerDashboard() {
   const user = useSelector((store) => store.user);
@@ -8,17 +9,11 @@ function BuyerDashboard() {
   console.log('this is the user', user);
 
   return (
-    <>
-    
-      <h1> BUYER DASHBOARD </h1>
-      <p>
-        {' '}
-        put some user data on this page to confirm that we are getting correct
-        data..... placeholder{' '}
-      </p>
-      <p> will need to conditionally render some information for what the specific buyer has selected </p>
+    <Container>
+      <Typography variant="h3">Welcome, {user.first_name}</Typography>
+
       <Navbar />
-    </>
+    </Container>
   );
 }
 
