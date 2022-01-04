@@ -12,8 +12,21 @@ function* postNewAgency(action) {
   }
 }
 
+function* updateAgencyInformation(action) {
+  console.log('this is updated information from dashboard', action.payload.agencyID)
+  try {
+    yield axios.put(`api/agency/${action.payload.agencyID}`, action.payload.agency)
+    yield put({ type: 'FETCH_USER' })
+  } catch (error) {
+    console.log('error in agency information update', error)
+    yield put({ type: 'UPDATE_AGENCY_ERROR' })
+  }
+}
+
+
 function* agencySaga() {
   yield takeLatest('ADD_NEW_AGENCY', postNewAgency);
+  yield takeLatest('UPDATE_AGENCY_INFORMATION', updateAgencyInformation)
 }
 
 export default agencySaga;
