@@ -14,7 +14,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Button from '@mui/material/Button';
 
 export default function Navbar({
-  headerText,
+  headerText, //
   btn1text,
   fxn1,
   btn2text,
@@ -71,7 +71,7 @@ export default function Navbar({
         <Toolbar />
         <Divider />
         {/* Conditinally renders a heading text when on buyer dashboard */}
-        {onBuyerDashboard && <Typography>Account {headerText}</Typography>}
+        {onBuyerDashboard && <Typography>{headerText}</Typography>}
         {/* The category list only shows when not on the buyer dashboard */}
         {!onBuyerDashboard && (
           <List>

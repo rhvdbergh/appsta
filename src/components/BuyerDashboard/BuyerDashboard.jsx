@@ -50,7 +50,7 @@ function BuyerDashboard() {
       />
       <Navbar
         onBuyerDashboard={true}
-        headerText={`: ${user.company_name}`}
+        headerText={`Account: ${user.company_name ? user.company_name : ''}`}
         btn1text={'Review Features'}
         fxn1={handleReviewFeatures}
         btn2text={'Start New Quote'}
