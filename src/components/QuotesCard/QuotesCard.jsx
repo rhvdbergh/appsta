@@ -69,6 +69,14 @@ function QuotesCard({ agency, cost }) {
             <CheckBoxOutlineBlankIcon />
           )}
         </Box>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Typography>LGBT Owned: </Typography>
+          {agency.lgbt_owned ? (
+            <CheckBoxIcon />
+          ) : (
+            <CheckBoxOutlineBlankIcon />
+          )}
+        </Box>
       </Collapse>
       <CardContent>
         {/* Calculate the cost for this specific company */}

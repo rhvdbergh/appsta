@@ -49,6 +49,7 @@ router.post('/new', (req, res) => {
         agency.minority_owned,
         agency.woman_owned,
         agency.veteran_owned,
+        agency.lgbt_owned,
         agency.staffing_location,
         agency.contact_first_name,
         agency.contact_last_name,
