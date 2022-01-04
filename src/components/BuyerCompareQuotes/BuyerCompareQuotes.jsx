@@ -1,5 +1,9 @@
-import { Box } from '@mui/material';
-import { useEffect, useReducer } from 'react';
+import Checkbox from '@mui/material/Checkbox';
+import Box from '@mui/material/Box';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import { useEffect, useReducer, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import BuyerQuotesList from '../BuyerQuotesList/BuyerQuotesList';
 
@@ -23,6 +27,7 @@ function BuyerCompareQuotes() {
   // initialize a filter array which will be populated with strings corresponding to the criteria to check
 
   const filters = [];
+  const filteredAgencies = quotingAgencies;
 
   // use the UX checkboxes to create and maintain an array of strings corresponding to the filter criteria
   const changeFilters = (criteria, value) => {
@@ -31,6 +36,7 @@ function BuyerCompareQuotes() {
     } else if (value === false) {
       filters.splice(filters.indexOf(criteria), 1);
     }
+    console.log('Filters change, filters is now:', filters);
   }
 // create a function to filter an agency list based on the checked criteria
   function filterAgency (agency, filters) {
@@ -78,8 +84,9 @@ function BuyerCompareQuotes() {
               control={<Checkbox />}
               label="Minority Owned"
               onChange={(event) => {
+                console.log('Minority owned clicked');
                 setMinority_owned(event.target.checked);
-                changeFilters('minority_owned', minority_owned);
+                changeFilters('minority_owned', !minority_owned);
               }}
             />
           </FormGroup>
