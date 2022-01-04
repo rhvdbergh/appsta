@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { put, take, takeLatest } from 'redux-saga/effects';
+import { put, takeLatest } from 'redux-saga/effects';
 
 //Create function to POST new agency to db
 function* postNewAgency(action) {
@@ -16,7 +16,7 @@ function* updateAgencyInformation(action) {
   console.log('this is updated information from dashboard', action.payload.agencyID)
   try {
     yield axios.put(`api/agency/${action.payload.agencyID}`, action.payload.agency)
-    // yield put({ type: '' })
+    yield put({ type: 'SET_USER', payload: action.payload.agency })
   } catch (error) {
     console.log('error in agency information update', error)
     yield put({ type: 'UPDATE_AGENCY_ERROR' })
