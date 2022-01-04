@@ -75,11 +75,13 @@ function BuyerQuotesList({ projectFeatures, quotingAgencies }) {
           projectFeatures.length > 0 &&
           quotingAgencies.map((agency) => {
             return (
-              <QuotesCard
-                key={agency.id}
-                agency={agency}
-                cost={calcCost(agency)}
-              />
+              <Box>
+                <QuotesCard
+                  key={agency.id}
+                  agency={agency}
+                  cost={calcCost(agency)}
+                />
+              </Box>
             );
           })}
       </Box>
