@@ -72,7 +72,7 @@ export default function Navbar({
         <Divider />
         {/* Conditinally renders a heading text when on buyer dashboard */}
         {onBuyerDashboard && <Typography>Account {headerText}</Typography>}
-        {/* The categorie list only shows when not on the buyer dashboard */}
+        {/* The category list only shows when not on the buyer dashboard */}
         {!onBuyerDashboard && (
           <List>
             {categories.map((category) => (

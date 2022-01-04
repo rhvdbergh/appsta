@@ -31,6 +31,16 @@ function BuyerDashboard() {
     dispatch({ type: 'GET_SAVED_QUOTING_AGENCIES', payload: activeProject });
   }, [activeProject]);
 
+  const handleReviewFeatures = () => {
+    // TODO:
+    console.log('in handleReviewFeatures');
+  };
+
+  const handleStartNewQuote = () => {
+    // TODO:
+    console.log('in handleStartNewQuote');
+  };
+
   return (
     <Container>
       <Typography variant="h3">Welcome, {user.first_name}</Typography>
@@ -38,7 +48,14 @@ function BuyerDashboard() {
         projectFeatures={projectFeatures}
         quotingAgencies={quotingAgencies}
       />
-      <Navbar onBuyerDashboard={true} headerText={`: ${user.company_name}`} />
+      <Navbar
+        onBuyerDashboard={true}
+        headerText={`: ${user.company_name}`}
+        btn1text={'Review Features'}
+        fxn1={handleReviewFeatures}
+        btn2text={'Start New Quote'}
+        fxn2={handleStartNewQuote}
+      />
     </Container>
   );
 }
