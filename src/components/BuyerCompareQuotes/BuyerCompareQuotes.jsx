@@ -31,20 +31,11 @@ function BuyerCompareQuotes() {
   console.log('Quoting agencies are: ', quotingAgencies);
   console.log('Filtered agencies are', filteredAgencies);
 
-  // use the UX checkboxes to create and maintain an array of strings corresponding to the filter criteria
-  const changeFilters = (criteria, value) => {
-    if (value === true) {
-      filters.push(criteria);
-    } else if (value === false) {
-      filters.splice(filters.indexOf(criteria), 1);
-    }
-    console.log('Filters change, filters are now:', filters);
-    
-  }
-
 // create a function to filter an agency list based on the checked criteria
   function filterAgency(agency) {
     if (minority_owned && !agency.minority_owned) {
+      return false;
+    } else if (woman_owned && !agency.woman_owned) {
       return false;
     } else {
       return true;
@@ -77,14 +68,21 @@ function BuyerCompareQuotes() {
     <Box>
       <Box>
         <FormControl component="fieldset">
-          <FormGroup row aria-label="minority-owned">
+          <FormGroup row aria-label="agency-filters">
             <FormControlLabel
               control={<Checkbox />}
               label="Minority Owned"
               onChange={(event) => {
                 console.log('Minority owned clicked');
                 setMinority_owned(event.target.checked);
-                changeFilters('minority_owned', !minority_owned);
+              }}
+            />
+            <FormControlLabel
+              control={<Checkbox />}
+              label="Woman Owned"
+              onChange={(event) => {
+                console.log('Woman owned clicked');
+                setWoman_owned(event.target.checked);
               }}
             />
           </FormGroup>
