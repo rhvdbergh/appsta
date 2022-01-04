@@ -198,6 +198,9 @@ VALUES (1, '12/13/2021');
 INSERT INTO "project_features" (project_id, feature_id, quantity)
 VALUES (1, 4, 3);
 
+INSERT INTO "project_agencies" (project_id, agency_id)
+VALUES (1, 2);
+
 --Here is code to create the additional agency conversion table with the sample data for our two dummy agencies
 CREATE TABLE "agency_conversion" (
 	"id" serial NOT NULL,
