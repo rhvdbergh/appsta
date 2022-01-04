@@ -14,6 +14,7 @@ const emptyNewAgency = {
   minority_owned: false,
   woman_owned: false,
   veteran_owned: false,
+  lgbt_owned: false,
   staffing_location: null,
   contact_first_name: null,
   contact_last_name: null,
