@@ -14,12 +14,14 @@ import ListItemText from '@mui/material/ListItemText';
 import Button from '@mui/material/Button';
 
 export default function Navbar({
+  headerText, //
   btn1text,
   fxn1,
   btn2text,
   fxn2,
   btn3text,
   fxn3,
+  onBuyerDashboard, // text is different on buyer dashboard
 }) {
   // get the categories list from the Redux store
   const categories = useSelector((store) => store.category);
@@ -44,10 +46,14 @@ export default function Navbar({
   }, [dispatch]);
 
   console.log('Category list is:', categories);
-
+  console.log('onBuyerDashboard is:', onBuyerDashboard);
+  console.log(
+    'onBuyerDashboard ? true : false',
+    onBuyerDashboard ? true : false
+  );
 
   return (
-    <div  >
+    <div>
       <Drawer
         sx={{
           width: drawerWidth,
@@ -64,19 +70,23 @@ export default function Navbar({
       >
         <Toolbar />
         <Divider />
-        <List>
-          {categories.map((category) => (
-            <ListItem
-              button
-              key={category.id}
-              selected={selectedCategory === category.id}
-              onClick={() => categorySelect(category)}
-            >
-              <ListItemText primary={category.category_name} />
-            </ListItem>
-          ))}
-        </List>
-
+        {/* Conditinally renders a heading text when on buyer dashboard */}
+        {onBuyerDashboard && <Typography>{headerText}</Typography>}
+        {/* The category list only shows when not on the buyer dashboard */}
+        {!onBuyerDashboard && (
+          <List>
+            {categories.map((category) => (
+              <ListItem
+                button
+                key={category.id}
+                selected={selectedCategory === category.id}
+                onClick={() => categorySelect(category)}
+              >
+                <ListItemText primary={category.category_name} />
+              </ListItem>
+            ))}
+          </List>
+        )}
 
         {btn1text && (
           <Button onClick={fxn1} variant="contained">
