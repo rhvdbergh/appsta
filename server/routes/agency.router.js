@@ -33,7 +33,7 @@ router.post('/new', (req, res) => {
             "postal_code","city", "state_province", 
             "country_code", "team_size", "minority_owned", 
             "woman_owned", "veteran_owned", "lgbt_owned", "staffing_location", 
-            "contact_first_name","contact_last_name", "logo_url", "phone_number")
+            "contact_first_name", "contact_last_name", "logo_url", "phone_number")
             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17)
             RETURNING "id";
             `;
