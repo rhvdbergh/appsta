@@ -38,7 +38,7 @@ function BuyerDashboard() {
         projectFeatures={projectFeatures}
         quotingAgencies={quotingAgencies}
       />
-      <Navbar />
+      <Navbar onBuyerDashboard={true} headerText={`: ${user.company_name}`} />
     </Container>
   );
 }
