@@ -60,4 +60,47 @@ router.post('/agencyquote', (req, res) => {
     });
 });
 
+// gets the latest project saved by this user and
+// sends back the id as an object, e.g. {id: 7}
+// GET /api/quotes/project/:buyer_id
+router.get('/project/:buyer_id', rejectUnauthenticated, (req, res) => {
+  // build the SQL query - this will return all, but the latest
+  // project will be the first row
+  const query = `
+  SELECT * FROM projects
+  WHERE buyer_id = $1
+  ORDER BY date_of_project DESC;
+  `;
+
+  // run the query
+  pool
+    .query(query, [req.params.buyer_id])
+    .then((response) => res.send(response.rows[0]))
+    .catch((err) => {
+      console.log('error getting the latest project id', err);
+      res.sendStatus(500);
+    });
+});
+
+// retrieves a list of ids of agencies that have been
+// saved by the user with respect to this project
+// GET /api/quotes/savedagencies/:project_id
+router.get('/savedagencies/:project_id', rejectUnauthenticated, (req, res) => {
+  // build the sql query
+  const query = `
+    SELECT * FROM project_agencies
+    JOIN agencies ON agencies.id = project_agencies.agency_id; 
+  `;
+  // run the query
+  pool
+    .query(query)
+    .then((response) => {
+      res.send(response.rows);
+    })
+    .catch((err) => {
+      console.log('error retrieving saved agencies for this project', err);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;

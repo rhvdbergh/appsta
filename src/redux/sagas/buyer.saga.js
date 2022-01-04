@@ -2,15 +2,18 @@ import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
 function* postNewBuyer(action) {
-    console.log('received payload in postNewAgency', action.payload)
-    try {
-        yield axios.post('/api/buyer/new', action.payload);
-    } catch (error) {
-        console.log('error in post new buyer', error);
-        yield put({ type: 'POST_BUYER_ERROR' });
-    }
+  console.log('received payload in post new buyer', action.payload);
+  try {
+    // we're receiving the project id
+    const response = yield axios.post('/api/buyer/new', action.payload);
+    yield put({ type: 'SET_ACTIVE_PROJECT', payload: response.data.id });
+  } catch (error) {
+    console.log('error in post new buyer', error);
+    yield put({ type: 'POST_BUYER_ERROR' });
+  }
 }
+
 function* buyerSaga() {
-    yield takeLatest('ADD_NEW_BUYER', postNewBuyer);
+  yield takeLatest('ADD_NEW_BUYER', postNewBuyer);
 }
 export default buyerSaga;

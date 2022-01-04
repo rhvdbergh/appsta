@@ -18,6 +18,7 @@ function AgencyRegistrationForm4({ setCanMoveForward }) {
   const [minority_owned, setMinority_owned] = useState(null);
   const [woman_owned, setWoman_owned] = useState(null);
   const [veteran_owned, setVeteran_owned] = useState(null);
+  const [lgbt_owned, setLgbt_owned] = useState(null);
 
   // on page load, set local state to what has already been entered
   // in the agency object, if anything
@@ -26,12 +27,13 @@ function AgencyRegistrationForm4({ setCanMoveForward }) {
     setMinority_owned(agency.minority_owned);
     setWoman_owned(agency.woman_owned);
     setVeteran_owned(agency.veteran_owned);
+    setLgbt_owned(agency.lgbt_owned);
   }, []);
 
   // when any required fields change, check to see if we can move forward
   useEffect(() => {
     isCompletedForm();
-  }, [team_size, minority_owned, woman_owned, veteran_owned]);
+  }, [team_size, minority_owned, woman_owned, veteran_owned, lgbt_owned]);
 
   // validate that required fields in the form are filled out
   const isCompletedForm = () => {
@@ -101,6 +103,17 @@ function AgencyRegistrationForm4({ setCanMoveForward }) {
               onChange={(event) => setVeteran_owned(event.target.checked)}
               onBlur={() => {
                 handleData('veteran_owned', veteran_owned);
+              }}
+            />
+          </FormGroup>
+
+          <FormGroup row aria-label="lgbt-owned">
+            <FormControlLabel
+              control={<Checkbox />}
+              label="LGBT Owned"
+              onChange={(event) => setLgbt_owned(event.target.checked)}
+              onBlur={() => {
+                handleData('lgbt_owned', lgbt_owned);
               }}
             />
           </FormGroup>
