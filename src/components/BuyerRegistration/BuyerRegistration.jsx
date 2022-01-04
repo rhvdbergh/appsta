@@ -4,7 +4,7 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { useState, Fragment } from 'react';
+import { useState, Fragment, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -15,6 +15,24 @@ import BuyerRegistrationForm3 from '../BuyerRegistrationForm3/BuyerRegistrationF
 function BuyerRegistration() {
 
     const buyer = useSelector((store) => store.newBuyer);
+
+    // grab the list of features from the store
+    const features = useSelector((store) => store.features);
+
+    // build the selectedFeatures from local storage
+    const selectedFeatures = [];
+    features
+      // filter through features and check if it is in localStorage
+      .filter(
+        (feature) => localStorage.getItem(`feature_${feature.id}`) !== null
+      )
+      // retrieve all those in localStorage and add them to selectedFeatures array
+      // this includes the quantity
+      .forEach((feature) =>
+        selectedFeatures.push(
+          JSON.parse(localStorage.getItem(`feature_${feature.id}`))
+        )
+      );
 
     const steps = ['Step 1', 'Step 2', 'Step 3'];
 
@@ -53,7 +71,14 @@ function BuyerRegistration() {
             newSkipped.delete(activeStep);
         }
         if (canMoveForward && activeStep === steps.length - 1) {
-            dispatch({ type: 'ADD_NEW_BUYER', payload: buyer });
+            dispatch({ type: 'ADD_NEW_BUYER', 
+                        payload: 
+                          {
+                            buyer: buyer,
+                            project_features: selectedFeatures,
+                           }
+                      })
+            history.push('/BuyerCompareQuotes');
         }
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
     }
@@ -74,6 +99,11 @@ function BuyerRegistration() {
                 );
         }
     };
+
+    useEffect(() => {
+      dispatch({ type: 'GET_FEATURES' });
+    }, []);
+
     return (
         <>
             <h1>Buyer registration page!</h1>
