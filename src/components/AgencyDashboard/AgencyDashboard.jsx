@@ -40,7 +40,7 @@ function AgencyDashboard() {
     phone_number: phone_number,
     team_size: team_size,
     minority_owned: minority_owned,
-    women_owned: woman_owned,
+    woman_owned: woman_owned,
     veteran_owned: veteran_owned,
     city: city,
     state_province: state_province,
