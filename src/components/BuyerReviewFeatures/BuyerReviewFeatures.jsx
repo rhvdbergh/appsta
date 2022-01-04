@@ -25,32 +25,48 @@ function BuyerReviewFeatures() {
     : '';
   // retrieve the buyers feature set, the agencies that can provide
   // that feature set, and the cost estimate data.
-  const selectedFeatures = useSelector((store) => store.selectedFeatures);
-  const selectedFeatureIDs = selectedFeatures.map((feature) => feature.id);
+  const projectFeatures = useSelector((store) => store.projectFeatures);
   const quotingAgencies = useSelector((store) => store.quotingAgencies);
-  const quotingAgencyIDs = quotingAgencies.map((agency) => agency.id);
   const quoteData = useSelector((store) => store.agencyQuoteData);
+  const activeProject = useSelector((store) => store.activeProject);
+  const user = useSelector((store) => store.user);
+
   // filter the quoteData for the selected category from the navBar
   const categoryQuotes = quoteData.filter(
     (q) => q.category_id === selectedCategory
   );
 
-  // }
-  // on page load, get the agencies that provide
+  // on page load, retrieve the latest project associated with this user as buyer
+  // and save as the activeProject
+  useEffect(() => {
+    dispatch({ type: 'GET_LATEST_PROJECT', payload: user.buyers_id });
+  }, []);
+
+  // next, make sure the projectFeatures reducer is up to date
+  useEffect(() => {
+    dispatch({ type: 'GET_PROJECT_FEATURES', payload: activeProject });
+  }, [activeProject]);
+
+  // next, get the agencies that provide
   // the feature set
   useEffect(() => {
-    dispatch({ type: 'GET_QUOTING_AGENCIES', payload: selectedFeatureIDs });
+    dispatch({
+      type: 'GET_QUOTING_AGENCIES',
+      payload: projectFeatures.map((f) => f.feature_id),
+    });
   }, []);
+
   // when we have the agencies, get the cost estimate data
   useEffect(() => {
     dispatch({
       type: 'GET_AGENCY_QUOTE_DATA',
       payload: {
-        selected_features: selectedFeatureIDs,
-        agency_ids: quotingAgencyIDs,
+        selected_features: projectFeatures.map((f) => f.feature_id),
+        agency_ids: quotingAgencies.map((agency) => agency.id),
       },
     });
   }, [quotingAgencies]);
+
   // once we have the cost estimate data, perform one final calc/render
   useEffect(() => {
     console.log('Final useEffect and render');
@@ -98,7 +114,7 @@ function BuyerReviewFeatures() {
       for (let quote of agencyQuote) {
         let quantity =
           // match the feature ID from selectedFeatures and the quote
-          selectedFeatures.find((f) => f.id === quote.feature_id).quantity || 0;
+          projectFeatures.find((f) => f.id === quote.feature_id).quantity || 0;
         quote.quantity = quantity;
       }
       // calculate the agency's cost to provide all features
@@ -131,8 +147,10 @@ function BuyerReviewFeatures() {
   const handleRegister = () => {
     history.push('/BuyerRegistration');
   };
-  console.log('Selected feature IDs are: ', selectedFeatureIDs);
-  console.log('Quoting agency IDs are: ', quotingAgencyIDs);
+  console.log(
+    'Project feature IDs are: ',
+    projectFeatures.map((f) => f.feature_id)
+  );
   console.log('Agency quote data is:', quoteData);
 
   return (
@@ -143,7 +161,7 @@ function BuyerReviewFeatures() {
           <Typography variant="h5">Review your project</Typography>
           {quoteData.length > 0 && (
             <OptionsList
-              features={selectedFeatures}
+              features={projectFeatures}
               listType={'buyer-review'}
               quoteData={quoteData}
               quotingAgencies={quotingAgencies}
