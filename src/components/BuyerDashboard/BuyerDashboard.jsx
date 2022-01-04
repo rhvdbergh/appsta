@@ -4,8 +4,12 @@ import Navbar from '../Navbar/Navbar';
 import { Container, Typography } from '@mui/material';
 import BuyerQuotesList from '../BuyerQuotesList/BuyerQuotesList';
 import { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 function BuyerDashboard() {
+  // set up the history hook to navigate
+  const history = useHistory();
+
   // set up the dispatch
   const dispatch = useDispatch();
 
@@ -32,8 +36,7 @@ function BuyerDashboard() {
   }, [activeProject]);
 
   const handleReviewFeatures = () => {
-    // TODO:
-    console.log('in handleReviewFeatures');
+    history.push('/BuyerReviewFeatures');
   };
 
   const handleStartNewQuote = () => {
