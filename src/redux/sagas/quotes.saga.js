@@ -44,11 +44,27 @@ function* getLatestProject(action) {
   }
 }
 
+// Get agencies that have been saved by the user
+// payload is expected to be the active project id
+function* getSavedQuotingAgencies(action) {
+  try {
+    const response = yield axios.get(
+      `api/quotes/savedagencies/${action.payload}`
+    );
+    // we set the quoting agencies
+    yield put({ type: 'SET_QUOTING_AGENCIES', payload: response.data });
+  } catch (error) {
+    console.log('error in getting saved quoting agencies', error);
+    yield put({ type: 'GET_SAVED_QUOTING_AGENCIES_ERROR' });
+  }
+}
+
 // generator function for all quote-related Saga requests
 function* quotesSaga() {
   yield takeLatest('GET_QUOTING_AGENCIES', getQuotingAgencies);
   yield takeLatest('GET_AGENCY_QUOTE_DATA', getAgencyQuoteData);
   yield takeLatest('GET_LATEST_PROJECT', getLatestProject);
+  yield takeLatest('GET_SAVED_QUOTING_AGENCIES', getSavedQuotingAgencies);
 }
 
 export default quotesSaga;

@@ -82,4 +82,24 @@ router.get('/project/:buyer_id', rejectUnauthenticated, (req, res) => {
     });
 });
 
+// retrieves a list of ids of agencies that have been
+// saved by the user with respect to this project
+// GET /api/quotes/savedagencies/:project_id
+router.get('/savedagencies/:project_id', rejectUnauthenticated, (req, res) => {
+  // build the sql query
+  const query = `
+    SELECT agency_id FROM project_agencies; 
+  `;
+  // run the query
+  pool
+    .query(query)
+    .then((response) => {
+      res.send(response.rows);
+    })
+    .catch((err) => {
+      console.log('error retrieving saved agencies for this project', err);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;

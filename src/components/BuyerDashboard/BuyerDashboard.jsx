@@ -15,12 +15,19 @@ function BuyerDashboard() {
   // retrieve the list of agencies that can offer the buyer's selection of features
   const projectFeatures = useSelector((store) => store.projectFeatures);
   const quotingAgencies = useSelector((store) => store.quotingAgencies);
+  const activeProject = useSelector((store) => store.activeProject);
 
   // on page load, retrieve the latest project associated with this user as buyer
   // and save as the activeProject
   useEffect(() => {
     dispatch({ type: 'GET_LATEST_PROJECT', payload: user.buyers_id });
   }, []);
+
+  // when we have the latest project id in activeProject
+  // we should get the list of agency ids that is saved with this project
+  useEffect(() => {
+    dispatch({ type: 'GET_SAVED_QUOTING_AGENCIES', payload: activeProject });
+  }, [activeProject]);
 
   console.log('this is the user', user);
 
