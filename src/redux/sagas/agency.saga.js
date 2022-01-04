@@ -12,21 +12,11 @@ function* postNewAgency(action) {
   }
 }
 
-// function* updateAgency(action) {
-//   console.log('edit this agency', action.payload.id)
-//   try {
-//     yield axios.put(`api/agency/${action.payload.id}`, action.payload)
-
-//   } catch (error) {
-//     console.log('Error in Put', error)
-//   }
-// }
-
 function* updateAgencyInformation(action) {
-  console.log('this is updated information from dashboard', action.payload)
+  console.log('this is updated information from dashboard', action.payload.agencyID)
   try {
-    yield axios.put('/', action.payload)
-    yield put({ type: '' })
+    yield axios.put(`api/agency/${action.payload.agencyID}`, action.payload.agency)
+    // yield put({ type: '' })
   } catch (error) {
     console.log('error in agency information update', error)
     yield put({ type: 'UPDATE_AGENCY_ERROR' })

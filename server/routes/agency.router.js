@@ -181,13 +181,18 @@ router.delete(
 );
 
 
-router.put('/:id', (req, res) => {
-  const id = req.body.id
+router.put('/:agencyID', (req, res) => {
+  
+  const id = req.params.agencyID
+  
+  console.log(req.body)
+  
+  console.log('this is updated agency information', id)
 
   const queryText = `
   UPDATE "agencies"
   SET agency_name = $1, agency_blurb = $2, postal_code = $3, city = $4, state_province = $5, country_code = $6, team_size = $7, minority_owned = $8, woman_owned = $9, veteran_owned = $10, staffing_location = $11, contact_first_name = $12, contact_last_name = $13, phone_number = $14, logo_url= $15
-  WHERE user_id = $16;
+  WHERE id = $16;
 ` ;
 
   pool.query(queryText, [

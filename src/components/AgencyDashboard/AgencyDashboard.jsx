@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
 import Navbar from '../Navbar/Navbar';
-import { TextField, Stack } from '@mui/material';
+import { TextField, Stack, Radio, FormLabel, RadioGroup } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button'
 import Checkbox from '@mui/material/Checkbox';
@@ -25,6 +25,11 @@ function AgencyDashboard() {
   const [minority_owned, setMinority_owned] = useState(user.minority_owned);
   const [woman_owned, setWoman_owned] = useState(user.woman_owned);
   const [veteran_owned, setVeteran_owned] = useState(user.veteran_owned);
+  const [city, setCity] = useState(user.city);
+  const [state_province, setState_province] = useState(user.state_province);
+  const [country_code, setCountry_code] = useState(user.country_code);
+  const [postal_code, setPostal_code] = useState(user.postal_code);
+  const [staffing_location, setStaffing_location] = useState('Onshore Talent Only');
 
   const agency = {
     agency_name: agency_name,
@@ -35,7 +40,12 @@ function AgencyDashboard() {
     team_size: team_size,
     minority_owned: minority_owned,
     women_owned: woman_owned,
-    veteran_owned: veteran_owned
+    veteran_owned: veteran_owned,
+    city: city,
+    state_province: state_province,
+    country_code: country_code,
+    postal_code: postal_code,
+    staffing_location: staffing_location
   }
 
   const handleUpdate = () => {
@@ -131,6 +141,47 @@ function AgencyDashboard() {
                 onChange={(event) => setVeteran_owned(event.target.checked)}
               />
             </FormGroup>
+          </FormControl>
+          <Grid>
+            <TextField
+              label="City*"
+              value={user.city}
+              variant="outlined"
+              onChange={(event) => setCity(event.target.value)}
+              
+            />
+            <TextField
+              label="State/Province"
+              value={user.state_province}
+              variant="outlined"
+              onChange={(event) => setState_province(event.target.value)}
+             />
+            <TextField
+              label="Country Code"
+              value={user.country_code}
+              variant="outlined"
+              onChange={(event) => setCountry_code(event.target.value)}   
+            />
+            <TextField
+              label="Zip/Postal Code*"
+              value={user.postal_code}
+              variant="outlined"
+              onChange={(event) => setPostal_code(event.target.value)}  
+            />
+          </Grid>
+          <FormControl component="fieldset">
+            <FormLabel component="legend">Staff Location*</FormLabel>
+            <RadioGroup
+              aria-label="staffing-location"
+              name="radio-buttons-group"
+              value={user.staffing_location}
+              onChange={(event) => setStaffing_location(event.target.value)}
+            >
+              <FormControlLabel value={"Onshore Talent Only"} control={<Radio />} label="Onshore Talent Only" />
+              <FormControlLabel value="Onshore and Offshore Talent" control={<Radio />} label="Onshore and Offshore Talent" />
+              <FormControlLabel value="Offshore Talent, Onshore Leadership" control={<Radio />} label="Offshore Talent, Onshore Leadership" />
+              <FormControlLabel value="All Staff Offshore" control={<Radio />} label="All Staff Offshore" />
+            </RadioGroup>
           </FormControl>
         </Stack>
         <Button onClick={handleUpdate}>Update</Button>
