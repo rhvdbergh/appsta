@@ -158,11 +158,13 @@ function BuyerReviewFeatures() {
       <Box sx={{ display: 'flex' }}>
         <Navbar />
         <Box>
-          <Typography variant="h5">Review your project</Typography>
+          <Typography variant="h5">
+            Review the features of your project
+          </Typography>
           {quoteData.length > 0 && (
             <OptionsList
               features={projectFeatures}
-              listType={'buyer-review'}
+              listType={'buyer-review-features'}
               quoteData={quoteData}
               quotingAgencies={quotingAgencies}
               totalCost={totalCost}
