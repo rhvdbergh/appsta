@@ -21,7 +21,7 @@ function BuyerReviewFeatures() {
   const categories = useSelector((store) => store.category);
   // extract the selected category name based on selected category ID
   let categoryName = selectedCategory
-    ? categories.find((c) => c.id === selectedCategory).category_name
+    ? categories.find((c) => c.id === selectedCategory)?.category_name
     : '';
   // retrieve the buyers feature set, the agencies that can provide
   // that feature set, and the cost estimate data.
@@ -40,6 +40,7 @@ function BuyerReviewFeatures() {
   // and save as the activeProject
   useEffect(() => {
     dispatch({ type: 'GET_LATEST_PROJECT', payload: user.buyers_id });
+    dispatch({ type: 'FETCH_CATEGORY' });
   }, []);
 
   // next, make sure the projectFeatures reducer is up to date
@@ -140,13 +141,6 @@ function BuyerReviewFeatures() {
     return `${formatCurrency(minTotal)} - ${formatCurrency(maxTotal)}`;
   };
 
-  const handleFeatureChange = () => {
-    dispatch({ type: 'REFRESH_AGENCY_QUOTE_DATA' });
-    history.push('/BuyerOptions');
-  };
-  const handleRegister = () => {
-    history.push('/BuyerRegistration');
-  };
   console.log(
     'Project feature IDs are: ',
     projectFeatures.map((f) => f.feature_id)
@@ -156,7 +150,10 @@ function BuyerReviewFeatures() {
   return (
     <>
       <Box sx={{ display: 'flex' }}>
-        <Navbar />
+        <Navbar
+          btn1text={'Go Back'}
+          fxn1={() => history.push('/BuyerDashboard')}
+        />
         <Box>
           <Typography variant="h5">
             Review the features of your project
@@ -186,8 +183,6 @@ function BuyerReviewFeatures() {
               Cost range for project: {totalCost(quoteData, quotingAgencies)}
             </Typography>
           )}
-          <Button onClick={handleFeatureChange}>Change Features</Button>
-          <Button onClick={handleRegister}>Register to view quotes</Button>
         </Box>
       </Box>
     </>

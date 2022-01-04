@@ -20,7 +20,7 @@ function OptionsCard({ feature, listType, quoteData }) {
 
   return (
     <Card sx={{ display: 'flex' }}>
-      {(listType !== 'buyer-review' || listType !== 'buyer-review-list') && (
+      {listType !== 'buyer-review' && listType !== 'buyer-review-features' && (
         <>
           {/* Text and Image  */}
           <Box
@@ -54,8 +54,10 @@ function OptionsCard({ feature, listType, quoteData }) {
             {/* //conditionally render block - if buyer vs agency display different blocks */}
             {!user.isBuyer && user.id ? (
               <AgencyOptionsSelectionBlock feature={feature} />
-            ) : (
+            ) : listType !== 'buyer-review-features' ? (
               <BuyerOptionsSelectionBlock feature={feature} />
+            ) : (
+              <></>
             )}
           </CardContent>
         </>
