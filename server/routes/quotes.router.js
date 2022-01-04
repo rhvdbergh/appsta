@@ -88,7 +88,8 @@ router.get('/project/:buyer_id', rejectUnauthenticated, (req, res) => {
 router.get('/savedagencies/:project_id', rejectUnauthenticated, (req, res) => {
   // build the sql query
   const query = `
-    SELECT agency_id FROM project_agencies; 
+    SELECT * FROM project_agencies
+    JOIN agencies ON agencies.id = project_agencies.agency_id; 
   `;
   // run the query
   pool

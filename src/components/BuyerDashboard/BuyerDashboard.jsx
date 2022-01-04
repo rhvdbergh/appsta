@@ -24,17 +24,20 @@ function BuyerDashboard() {
   }, []);
 
   // when we have the latest project id in activeProject
+  // we should get the features associated with this project
   // we should get the list of agency ids that is saved with this project
   useEffect(() => {
+    dispatch({ type: 'GET_PROJECT_FEATURES', payload: activeProject });
     dispatch({ type: 'GET_SAVED_QUOTING_AGENCIES', payload: activeProject });
   }, [activeProject]);
-
-  console.log('this is the user', user);
 
   return (
     <Container>
       <Typography variant="h3">Welcome, {user.first_name}</Typography>
-
+      <BuyerQuotesList
+        projectFeatures={projectFeatures}
+        quotingAgencies={quotingAgencies}
+      />
       <Navbar />
     </Container>
   );
