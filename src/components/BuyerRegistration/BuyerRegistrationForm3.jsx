@@ -32,8 +32,7 @@ function BuyerRegistrationForm3({ setCanMoveForward }) {
     if (
       city !== null &&
       postal_code !== null &&
-      company_name !== null &&
-      project_name !== null
+      project_name !== null 
     ) {
       setCanMoveForward(true);
     } else {
@@ -57,7 +56,7 @@ function BuyerRegistrationForm3({ setCanMoveForward }) {
       <Stack>
 
         <TextField
-          label="Company Name*"
+          label="Company Name"
           value={company_name}
           variant="outlined"
           onChange={(event) => setCompany_name(event.target.value)}
