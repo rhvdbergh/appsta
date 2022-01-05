@@ -15,9 +15,7 @@ function OptionsList({
 
   return (
     <>
-      <Typography variant="h6">
-        {listType !== 'buyer-review-features' && `Choose from Options List`}
-      </Typography>
+      <Typography variant="h6"></Typography>
       {features.length > 0 &&
         features
           // only display the features of the currently selected category, so filter
