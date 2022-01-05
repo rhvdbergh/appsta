@@ -46,6 +46,8 @@ function AgencyRegistration() {
     // if so, do a dispatch of the agency object that we built
     if (canMoveForward && activeStep === steps.length - 1) {
       dispatch({ type: 'ADD_NEW_AGENCY', payload: agency });
+      // move the user to the agency options page
+      history.push('/AgencyOptionsPage');
     }
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     setSkipped(newSkipped);
@@ -90,7 +92,7 @@ function AgencyRegistration() {
     <>
       <div class="container">
         <h1> Agency Registration Page </h1>
-        <p> lines with * are required  </p>
+        <p> lines with * are required </p>
 
         <Box sx={{ width: '100%' }}>
           <Stepper activeStep={activeStep}>
