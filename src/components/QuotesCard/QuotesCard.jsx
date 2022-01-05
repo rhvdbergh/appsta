@@ -16,11 +16,15 @@ import PersonIcon from '@mui/icons-material/Person';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 function QuotesCard({ agency, cost, displayingBuyerCompareQuotes }) {
   const [isExpanded, setIsExpanded] = useState(false);
   // local state to determine whether this agency has been selected by the user or not
   const [isSelected, setIsSelected] = useState(false);
+
+  // get the saved agencies from the redux store
+  const projectAgencies = useSelector((store) => store.projectAgencies);
 
   return (
     <Box>
@@ -92,7 +96,12 @@ function QuotesCard({ agency, cost, displayingBuyerCompareQuotes }) {
       </Card>
       {/* The select button should only display on buyer compare quotes page */}
       {displayingBuyerCompareQuotes && (
-        <Button variant="contained">Select</Button>
+        <Button variant="contained">
+          {/* checks whether this agency has already been selected */}
+          {projectAgencies.map((a) => a.agency_id).includes(agency.id)
+            ? 'Remove'
+            : 'Select'}
+        </Button>
       )}
     </Box>
   );
