@@ -57,12 +57,15 @@ function BuyerCompareQuotes() {
   // this should be the project just saved to the db
   useEffect(() => {
     dispatch({ type: 'GET_LATEST_PROJECT', payload: user.buyers_id });
-  });
+  }, []);
 
   // when we have a new active project,
   // grab the projectFeatures for this buyer's project
+  // also, in case there are already some saved agencies, get
+  // their ids (they are needed on QuotesCard)
   useEffect(() => {
     dispatch({ type: 'GET_PROJECT_FEATURES', payload: activeProject });
+    dispatch({ type: 'GET_PROJECT_AGENCIES', payload: activeProject });
   }, [activeProject]);
 
   // when projectFeatures changes, update the quoting agencies
