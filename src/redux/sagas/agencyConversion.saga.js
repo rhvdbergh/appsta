@@ -28,7 +28,7 @@ function* updateAgencyConversion(action) {
   }  
 }
 
-function* agencySaga() {
+function* agencyConversionSaga() {
   yield takeLatest('GET_AGENCY_CONVERSION', getAgencyConversion);
   yield takeLatest('UPDATE_AGENCY_CONVERSION', updateAgencyConversion);
 }
