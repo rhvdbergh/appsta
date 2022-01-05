@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
   Card,
   CardHeader,
@@ -15,16 +14,34 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PersonIcon from '@mui/icons-material/Person';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 function QuotesCard({ agency, cost, displayingBuyerCompareQuotes }) {
+  // set up the redux dispatch
+  const dispatch = useDispatch();
+  // keep track of whether Learn More section is open or not
   const [isExpanded, setIsExpanded] = useState(false);
-  // local state to determine whether this agency has been selected by the user or not
-  const [isSelected, setIsSelected] = useState(false);
-
   // get the saved agencies from the redux store
   const projectAgencies = useSelector((store) => store.projectAgencies);
+  // local state to keep track of whether this agency has been selected or not
+  const [isSelected, setIsSelected] = useState(
+    projectAgencies.map((a) => a.agency_id).includes(agency.id)
+  );
+
+  const handleSelect = () => {
+    if (isSelected) {
+      // we need to remove this from the db
+      dispatch({
+        type: 'DELETE_PROJECT_AGENCY',
+        payload: { activeProject: activeProject, agency_id: agency.id },
+      });
+      setIsSelected(false);
+    } else {
+      // we need to add this to the db
+      setIsSelected(true);
+    }
+  };
 
   return (
     <Box>
@@ -96,11 +113,9 @@ function QuotesCard({ agency, cost, displayingBuyerCompareQuotes }) {
       </Card>
       {/* The select button should only display on buyer compare quotes page */}
       {displayingBuyerCompareQuotes && (
-        <Button variant="contained">
+        <Button variant="contained" onClick={handleSelect}>
           {/* checks whether this agency has already been selected */}
-          {projectAgencies.map((a) => a.agency_id).includes(agency.id)
-            ? 'Remove'
-            : 'Select'}
+          {isSelected ? 'Remove' : 'Select'}
         </Button>
       )}
     </Box>

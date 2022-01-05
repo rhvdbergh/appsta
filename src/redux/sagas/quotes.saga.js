@@ -76,6 +76,23 @@ function* getProjectAgencies(action) {
   }
 }
 
+// removes an agency from a project's project_agency table
+// expected payload is an object with two properties, activeProject and agency_id
+function* deleteProjectAgency(action) {
+  try {
+    yield axios.delete(
+      `/api/quotes/project/${action.payload.activeProject}/${action.payload.agency_id}`
+    );
+    yield put({
+      type: 'GET_PROJECT_AGENCIES',
+      payload: action.payload.activeProject,
+    });
+  } catch (error) {
+    console.log('error in delete project agency saga', error);
+    yield put({ type: 'DELETE_PROJECT_AGENCY_ERROR' });
+  }
+}
+
 // generator function for all quote-related Saga requests
 function* quotesSaga() {
   yield takeLatest('GET_QUOTING_AGENCIES', getQuotingAgencies);
@@ -83,6 +100,7 @@ function* quotesSaga() {
   yield takeLatest('GET_LATEST_PROJECT', getLatestProject);
   yield takeLatest('GET_SAVED_QUOTING_AGENCIES', getSavedQuotingAgencies);
   yield takeLatest('GET_PROJECT_AGENCIES', getProjectAgencies);
+  yield tatkeLatest('DELETE_PROJECT_AGENCY', deleteProjectAgency);
 }
 
 export default quotesSaga;
