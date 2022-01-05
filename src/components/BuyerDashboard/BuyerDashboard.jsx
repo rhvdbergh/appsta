@@ -35,6 +35,8 @@ function BuyerDashboard() {
     dispatch({ type: 'GET_SAVED_QUOTING_AGENCIES', payload: activeProject });
   }, [activeProject]);
 
+  useEffect(() => {}, [quotingAgencies]);
+
   const handleReviewFeatures = () => {
     history.push('/BuyerReviewFeatures');
   };
