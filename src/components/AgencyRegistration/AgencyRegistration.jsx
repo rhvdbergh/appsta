@@ -1,14 +1,19 @@
+//import MUI components 
 import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+
+//import from components 
+import AgencyRegistrationForm1 from './AgencyRegistrationForm1';
+import AgencyRegistrationForm2 from './AgencyRegistrationForm2';
+import AgencyRegistrationForm3 from './AgencyRegistrationForm3';
+import AgencyRegistrationForm4 from './AgencyRegistrationForm4';
+
+//import react 
 import { useState, Fragment } from 'react';
-import AgencyRegistrationForm1 from '../AgencyRegistrationForm1/AgencyRegistrationForm1';
-import AgencyRegistrationForm2 from '../AgencyRegistrationForm2/AgencyRegistrationForm2';
-import AgencyRegistrationForm3 from '../AgencyRegistrationForm3/AgencyRegistrationForm3';
-import AgencyRegistrationForm4 from '../AgencyRegistrationForm4/AgencyRegistrationForm4';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 

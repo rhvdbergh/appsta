@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
 import AppBar from '@mui/material/AppBar';
@@ -86,33 +85,33 @@ export default function Navbar({
               </ListItem>
             ))}
           </List>
-        )}
 
-        {btn1text && (
-          <Button onClick={fxn1} variant="contained">
-            {btn1text}
-          </Button>
         )}
-        {btn2text && (
-          <Button onClick={fxn2} variant="contained">
-            {btn2text}
-          </Button>
-        )}
-        {btn3text && (
-          <Button onClick={fxn3} variant="contained">
-            {btn3text}
-          </Button>
-        )}
-        {user.id && (
-          <Button
-            onClick={fxn3}
-            variant="contained"
-            onClick={() => dispatch({ type: 'LOGOUT' })}
-          >
-            LOGOUT
-          </Button>
-        )}
-      </Drawer>
+          {btn1text && (
+            <Button onClick={fxn1} variant="contained">
+              {btn1text}
+            </Button>
+          )}
+          {btn2text && (
+            <Button onClick={fxn2} variant="contained">
+              {btn2text}
+            </Button>
+          )}
+          {btn3text && (
+            <Button onClick={fxn3} variant="contained">
+              {btn3text}
+            </Button>
+          )}
+          {user.id && (
+            <Button
+              onClick={fxn3}
+              variant="contained"
+              onClick={() => dispatch({ type: 'LOGOUT' })}
+            >
+              LOGOUT
+            </Button>
+          )}
+        </Drawer>
     </div>
   );
 }

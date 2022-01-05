@@ -1,16 +1,21 @@
+//import MUI 
 import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+
+//import React 
 import { useState, Fragment, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import BuyerRegistrationForm1 from '../BuyerRegistrationForm1/BuyerRegistrationForm1';
-import BuyerRegistrationForm2 from '../BuyerRegistrationForm2/BuyerRegistrationForm2';
-import BuyerRegistrationForm3 from '../BuyerRegistrationForm3/BuyerRegistrationForm3';
+//import form 
+import BuyerRegistrationForm1 from './BuyerRegistrationForm1';
+import BuyerRegistrationForm2 from './BuyerRegistrationForm2';
+import BuyerRegistrationForm3 from './BuyerRegistrationForm3';
+
 
 function BuyerRegistration() {
 
