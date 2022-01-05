@@ -1,5 +1,6 @@
 import Checkbox from '@mui/material/Checkbox';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
@@ -14,6 +15,7 @@ function BuyerCompareQuotes() {
   // retrieve the user, list of agencies that can offer the buyer's selection of features
   const user = useSelector((store) => store.user);
   const projectFeatures = useSelector((store) => store.projectFeatures);
+  const projectAgencies = useSelector((store) => store.projectAgencies);
   const quotingAgencies = useSelector((store) => store.quotingAgencies);
   const activeProject = useSelector((store) => store.activeProject);
 
@@ -80,56 +82,62 @@ function BuyerCompareQuotes() {
   return (
     <Box>
       <Box>
-        <FormControl component="fieldset">
-          <FormGroup row aria-label="agency-filters">
-            <FormControlLabel
-              control={<Checkbox />}
-              label="Minority Owned"
-              onChange={(event) => {
-                console.log('Minority owned clicked');
-                setMinority_owned(event.target.checked);
-              }}
-            />
-            <FormControlLabel
-              control={<Checkbox />}
-              label="Woman Owned"
-              onChange={(event) => {
-                console.log('Woman owned clicked');
-                setWoman_owned(event.target.checked);
-              }}
-            />
-            <FormControlLabel
-              control={<Checkbox />}
-              label="Veteran Owned"
-              onChange={(event) => {
-                console.log('Veteran owned clicked');
-                setVeteran_owned(event.target.checked);
-              }}
-            />
-            <FormControlLabel
-              control={<Checkbox />}
-              label="LGBT Owned"
-              onChange={(event) => {
-                console.log('LGBT owned clicked');
-                setLgbt_owned(event.target.checked);
-              }}
-            />
-            <FormControlLabel
-              control={<Checkbox />}
-              label="Only Onshore Talent"
-              onChange={(event) => {
-                console.log('Onshore talent clicked');
-                setOnsite_talent(event.target.checked);
-              }}
-            />
-          </FormGroup>
-        </FormControl>
+        <Box>
+          <FormControl component="fieldset">
+            <FormGroup row aria-label="agency-filters">
+              <FormControlLabel
+                control={<Checkbox />}
+                label="Minority Owned"
+                onChange={(event) => {
+                  console.log('Minority owned clicked');
+                  setMinority_owned(event.target.checked);
+                }}
+              />
+              <FormControlLabel
+                control={<Checkbox />}
+                label="Woman Owned"
+                onChange={(event) => {
+                  console.log('Woman owned clicked');
+                  setWoman_owned(event.target.checked);
+                }}
+              />
+              <FormControlLabel
+                control={<Checkbox />}
+                label="Veteran Owned"
+                onChange={(event) => {
+                  console.log('Veteran owned clicked');
+                  setVeteran_owned(event.target.checked);
+                }}
+              />
+              <FormControlLabel
+                control={<Checkbox />}
+                label="LGBT Owned"
+                onChange={(event) => {
+                  console.log('LGBT owned clicked');
+                  setLgbt_owned(event.target.checked);
+                }}
+              />
+              <FormControlLabel
+                control={<Checkbox />}
+                label="Only Onshore Talent"
+                onChange={(event) => {
+                  console.log('Onshore talent clicked');
+                  setOnsite_talent(event.target.checked);
+                }}
+              />
+            </FormGroup>
+          </FormControl>
+        </Box>
+        <BuyerQuotesList
+          projectFeatures={projectFeatures}
+          quotingAgencies={filteredAgencies}
+          displayingBuyerCompareQuotes={true}
+        />
       </Box>
-      <BuyerQuotesList
-        projectFeatures={projectFeatures}
-        quotingAgencies={filteredAgencies}
-        displayingBuyerCompareQuotes={true}
-      />
+      {/* only enable this button once at least one projectAgency has been selected */}
+      <Button variant="contained" disabled={!projectAgencies.length > 0}>
+        Save Project
+      </Button>
     </Box>
   );
 }
