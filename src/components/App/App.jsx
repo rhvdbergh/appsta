@@ -28,6 +28,7 @@ import BuyerReviewSelection from '../BuyerReviewSelection/BuyerReviewSelection';
 import AgencyOptionsPage from '../AgencyOptionsPage/AgencyOptionsPage';
 import BuyerRegistration from '../BuyerRegistration/BuyerRegistration';
 import BuyerCompareQuotes from '../BuyerCompareQuotes/BuyerCompareQuotes';
+import BuyerReviewFeatures from '../BuyerReviewFeatures/BuyerReviewFeatures';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
@@ -36,15 +37,15 @@ const theme = createTheme({
     primary: {
       main: '#9ccfca',
       light: '#efefeb',
-      //dark is for NavBar 
+      //dark is for NavBar
       dark: '#3e3880',
     },
     secondary: {
       main: '#9596d6',
-      //light is for highlights/ shadows 
+      //light is for highlights/ shadows
       light: '#f5e580',
     },
-    //error is DANGER 
+    //error is DANGER
     error: {
       main: '#ff476c',
     },
@@ -62,7 +63,6 @@ const theme = createTheme({
       secondary: '#EEEED1',
       // disabled: '#efefeb',
     },
-
   },
 });
 
@@ -139,16 +139,20 @@ function App() {
                 // redirect them to the /BuyerDashboard page
                 <Redirect to="/BuyerDashboard" />
               ) : // but if they're an agency, to the agency page
-                user.id && !user.isBuyer ? (
-                  <Redirect to="/AgencyDashboard" />
-                ) : (
-                  // Otherwise, show the Landing page
-                  <LandingPage />
-                )}
+              user.id && !user.isBuyer ? (
+                <Redirect to="/AgencyDashboard" />
+              ) : (
+                // Otherwise, show the Landing page
+                <LandingPage />
+              )}
             </Route>
             <Route exact path="/BuyerReview">
               <BuyerReviewSelection />
             </Route>
+            {/* This path is to display features associated with a saved project */}
+            <ProtectedRoute exact path="/BuyerReviewFeatures">
+              <BuyerReviewFeatures />
+            </ProtectedRoute>
             {/* Adding a Buyer Options Route */}
             <Route exact path="/BuyerOptions">
               <BuyerOptionsPage />
