@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Navbar from '../Navbar/Navbar';
 import { Box, Typography } from '@mui/material';
 import BuyerQuotesList from '../BuyerQuotesList/BuyerQuotesList';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 function BuyerDashboard() {
@@ -21,6 +21,9 @@ function BuyerDashboard() {
   const quotingAgencies = useSelector((store) => store.quotingAgencies);
   const activeProject = useSelector((store) => store.activeProject);
 
+  // // local state
+  // const [agenciesState, setAgenciesState] = useState([]);
+
   // on page load, retrieve the latest project associated with this user as buyer
   // and save as the activeProject
   useEffect(() => {
@@ -34,9 +37,6 @@ function BuyerDashboard() {
     dispatch({ type: 'GET_PROJECT_FEATURES', payload: activeProject });
     dispatch({ type: 'GET_SAVED_QUOTING_AGENCIES', payload: activeProject });
   }, [activeProject]);
-
-  // force a refresh when we get back the quotingAgencies
-  useEffect(() => {}, [quotingAgencies]);
 
   const handleReviewFeatures = () => {
     history.push('/BuyerReviewFeatures');
@@ -59,7 +59,7 @@ function BuyerDashboard() {
       />
       <Box>
         <Typography variant="h3">Welcome, {user.first_name}</Typography>
-        {quotingAgencies.length > 0 && (
+        {quotingAgencies.length > 0 && projectFeatures.length > 0 && (
           <BuyerQuotesList
             projectFeatures={projectFeatures}
             quotingAgencies={quotingAgencies}
