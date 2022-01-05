@@ -93,6 +93,23 @@ function* deleteProjectAgency(action) {
   }
 }
 
+// adds a specific agency to the saved list of a project
+// expected payload is an object with two properties, activeProject and agency_id
+function* addProjectAgency(action) {
+  try {
+    yield axios.post(
+      `/api/quotes/project/${action.payload.activeProject}/${action.payload.agency_id}`
+    );
+    yield put({
+      type: 'GET_PROJECT_AGENCIES',
+      payload: action.payload.activeProject,
+    });
+  } catch (error) {
+    console.log('error in adding the project agency saga', error);
+    yield put({ type: 'ADD_PROJECT_AGENCY_ERROR' });
+  }
+}
+
 // generator function for all quote-related Saga requests
 function* quotesSaga() {
   yield takeLatest('GET_QUOTING_AGENCIES', getQuotingAgencies);
@@ -101,6 +118,7 @@ function* quotesSaga() {
   yield takeLatest('GET_SAVED_QUOTING_AGENCIES', getSavedQuotingAgencies);
   yield takeLatest('GET_PROJECT_AGENCIES', getProjectAgencies);
   yield takeLatest('DELETE_PROJECT_AGENCY', deleteProjectAgency);
+  yield takeLatest('ADD_PROJECT_AGENCY', addProjectAgency);
 }
 
 export default quotesSaga;

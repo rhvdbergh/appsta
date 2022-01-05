@@ -41,6 +41,10 @@ function QuotesCard({ agency, cost, displayingBuyerCompareQuotes }) {
       setIsSelected(false);
     } else {
       // we need to add this to the db
+      dispatch({
+        type: 'ADD_PROJECT_AGENCY',
+        payload: { activeProject: activeProject, agency_id: agency.id },
+      });
       setIsSelected(true);
     }
   };
