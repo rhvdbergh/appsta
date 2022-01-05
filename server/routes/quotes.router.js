@@ -89,11 +89,12 @@ router.get('/savedagencies/:project_id', rejectUnauthenticated, (req, res) => {
   // build the sql query
   const query = `
     SELECT * FROM project_agencies
-    JOIN agencies ON agencies.id = project_agencies.agency_id; 
+    JOIN agencies ON agencies.id = project_agencies.agency_id
+    WHERE projects_agencies.project_id = $1;
   `;
   // run the query
   pool
-    .query(query)
+    .query(query, [req.params.project_id])
     .then((response) => {
       res.send(response.rows);
     })
