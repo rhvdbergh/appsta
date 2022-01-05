@@ -12,12 +12,16 @@ passport.deserializeUser((id, done) => {
   // we need this instead of * to avoid id confusion - we're using aliases
   const queryText = `
     SELECT 
-    "users".id as "id", "users".username, "users".password, "users".is_admin, 
-    "buyers".id as "buyers_id", "buyers".company_name, "buyers".project_name, 
-    "buyers".first_name, "buyers".last_name, "buyers".city, "buyers".postal_code as "buyers_postal_code",
-    "agencies".agency_name, "agencies".agency_blurb, "agencies".postal_code as "agencies_postal_code",
-    "agencies".city, "agencies".state_province, "agencies".country_code, "agencies".team_size, "agencies".minority_owned, "agencies".phone_number,
-    "agencies".woman_owned, "agencies".veteran_owned, "agencies".staffing_location, "agencies".contact_first_name, "agencies".contact_last_name, "agencies".logo_url, "agencies".id AS "agency_id"
+      "users".id as "id", "users".username, "users".password, 
+      "users".is_admin, "buyers".id as "buyers_id", "buyers".company_name, 
+      "buyers".project_name, "buyers".first_name, "buyers".last_name, 
+     "buyers".city, "buyers".postal_code as "buyers_postal_code",
+      "agencies".agency_name, "agencies".agency_blurb, "agencies".postal_code as "agencies_postal_code",
+      "agencies".city, "agencies".state_province, "agencies".country_code, 
+      "agencies".team_size, "agencies".minority_owned, "agencies".lgbt_owned, "agencies".phone_number,
+      "agencies".woman_owned, "agencies".veteran_owned, "agencies".staffing_location, 
+      "agencies".contact_first_name, "agencies".contact_last_name,
+       "agencies".logo_url, "agencies".id AS "agency_id"
     FROM "users" 
     LEFT JOIN "buyers" ON "buyers".user_id = "users".id 
     LEFT JOIN "agencies" ON "agencies".user_id = "users".id
