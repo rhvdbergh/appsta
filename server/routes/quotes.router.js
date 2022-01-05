@@ -130,4 +130,33 @@ router.delete(
   }
 );
 
+// adds a specific agency to a specific project in the
+// project_agencies table
+// POST /api/quotes/project/:project_id/:agency_id
+router.post(
+  '/project/:project_id/:agency_id',
+  rejectUnauthenticated,
+  (req, res) => {
+    // build the SQL query
+    const query = `
+      INSERT INTO project_agencies
+      ("project_id", "agency_id")
+      VALUES
+      ($1, $2);
+    `;
+    // parameterize the input
+    const values = [req.params.project_id, req.params.agency_id];
+    // run the query
+    pool
+      .query(query, values)
+      .then((response) => {
+        res.sendStatus(201);
+      })
+      .catch((err) => {
+        console.log('error adding the agency to the project', err);
+        res.sendStatus(500);
+      });
+  }
+);
+
 module.exports = router;
