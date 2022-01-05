@@ -30,6 +30,7 @@ function AgencyDashboard() {
   const [minority_owned, setMinority_owned] = useState(user.minority_owned);
   const [woman_owned, setWoman_owned] = useState(user.woman_owned);
   const [veteran_owned, setVeteran_owned] = useState(user.veteran_owned);
+  const [lgbt_owned, setLgbt_owned] = useState(user.lgbt_owned)
   const [city, setCity] = useState(user.city);
   const [state_province, setState_province] = useState(user.state_province);
   const [country_code, setCountry_code] = useState(user.country_code);
@@ -37,21 +38,22 @@ function AgencyDashboard() {
   const [staffing_location, setStaffing_location] = useState('Onshore Talent Only');
 
   const agency = {
-    agency_name: agency_name,
-    agency_blurb: agency_blurb,
-    logo_url: logo_url,
-    contact_first_name: contact_first_name,
-    contact_last_name: contact_last_name,
-    phone_number: phone_number,
-    team_size: team_size,
-    minority_owned: minority_owned,
-    woman_owned: woman_owned,
-    veteran_owned: veteran_owned,
-    city: city,
-    state_province: state_province,
-    country_code: country_code,
-    postal_code: postal_code,
-    staffing_location: staffing_location
+    agency_name,
+    agency_blurb,
+    logo_url,
+    contact_first_name,
+    contact_last_name,
+    phone_number,
+    team_size,
+    minority_owned,
+    woman_owned,
+    veteran_owned,
+    lgbt_owned,
+    city,
+    state_province,
+    country_code,
+    postal_code,
+    staffing_location
   }
 
   const handleUpdate = () => {
@@ -163,6 +165,16 @@ function AgencyDashboard() {
                       value={minority_owned}
                       checked={minority_owned}
                       onChange={(event) => setMinority_owned(event.target.checked)}
+                    />
+                  </FormGroup>
+              
+                  <FormGroup row aria-label="lgbt-owned">
+                    <FormControlLabel
+                      control={<Checkbox />}
+                      label="LGBT Owned"
+                      value={lgbt_owned}
+                      checked={lgbt_owned}
+                      onChange={(event) => setLgbt_owned(event.target.checked)}
                     />
                   </FormGroup>
 
