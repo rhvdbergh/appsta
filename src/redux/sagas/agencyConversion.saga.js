@@ -20,15 +20,12 @@ function* updateAgencyConversion(action) {
       `api/conversion/${action.payload.agencyID}`,
       action.payload.conversionData
     );
-    yield put({ type: 'SET_AGENCY_CONVERSION' })
+    yield put({ type: 'SET_AGENCY_CONVERSION', payload: action.payload.conversionData })
   } catch (error) {
     console.log('error in updating agency conversion', error);
-    yield put({ type: 'UPDATE_AGENCY_CONVERSION_ERROR', })
-    
-  }
-  
+    yield put({ type: 'UPDATE_AGENCY_CONVERSION_ERROR', })    
+  }  
 }
-
 
 function* agencySaga() {
   yield takeLatest('GET_AGENCY_CONVERSION', getAgencyConversion);
