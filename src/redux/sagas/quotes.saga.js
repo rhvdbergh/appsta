@@ -100,7 +100,7 @@ function* quotesSaga() {
   yield takeLatest('GET_LATEST_PROJECT', getLatestProject);
   yield takeLatest('GET_SAVED_QUOTING_AGENCIES', getSavedQuotingAgencies);
   yield takeLatest('GET_PROJECT_AGENCIES', getProjectAgencies);
-  yield tatkeLatest('DELETE_PROJECT_AGENCY', deleteProjectAgency);
+  yield takeLatest('DELETE_PROJECT_AGENCY', deleteProjectAgency);
 }
 
 export default quotesSaga;

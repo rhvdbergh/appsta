@@ -24,6 +24,8 @@ function QuotesCard({ agency, cost, displayingBuyerCompareQuotes }) {
   const [isExpanded, setIsExpanded] = useState(false);
   // get the saved agencies from the redux store
   const projectAgencies = useSelector((store) => store.projectAgencies);
+  // get the active project id
+  const activeProject = useSelector((store) => store.activeProject);
   // local state to keep track of whether this agency has been selected or not
   const [isSelected, setIsSelected] = useState(
     projectAgencies.map((a) => a.agency_id).includes(agency.id)

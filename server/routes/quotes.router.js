@@ -103,4 +103,31 @@ router.get('/savedagencies/:project_id', rejectUnauthenticated, (req, res) => {
     });
 });
 
+// deletes a specific agency associated with a specific project
+// from the project_agencies table
+// DELETE /api/quotes/project/:project_id/:agency_id
+router.delete(
+  '/project/:project_id/:agency_id',
+  rejectUnauthenticated,
+  (req, res) => {
+    // build the SQL query
+    const query = `
+    DELETE FROM project_agencies
+    WHERE project_id = $1 AND agency_id = $2;
+  `;
+    // parameterize the input
+    const values = [req.params.project_id, req.params.agency_id];
+    // run the query
+    pool
+      .query(query, values)
+      .then((response) => {
+        res.sendStatus(204);
+      })
+      .catch((err) => {
+        console.log('error removing the agency from the project', err);
+        res.sendStatus(500);
+      });
+  }
+);
+
 module.exports = router;
