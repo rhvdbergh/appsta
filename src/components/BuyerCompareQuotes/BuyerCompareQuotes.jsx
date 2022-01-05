@@ -27,11 +27,13 @@ function BuyerCompareQuotes() {
   // initialize a filter array which will be populated with strings corresponding to the criteria to check
 
   const filters = [];
-  let filteredAgencies = quotingAgencies.filter((agency) => filterAgency(agency));
+  let filteredAgencies = quotingAgencies.filter((agency) =>
+    filterAgency(agency)
+  );
   console.log('Quoting agencies are: ', quotingAgencies);
   console.log('Filtered agencies are', filteredAgencies);
 
-// create a function to filter an agency list based on the checked criteria
+  // create a function to filter an agency list based on the checked criteria
   function filterAgency(agency) {
     if (minority_owned && !agency.minority_owned) {
       return false;
@@ -41,7 +43,10 @@ function BuyerCompareQuotes() {
       return false;
     } else if (lgbt_owned && !agency.lgbt_owned) {
       return false;
-    } else if (onsite_talent && agency.staffing_location !== "Onshore Talent Only") {
+    } else if (
+      onsite_talent &&
+      agency.staffing_location !== 'Onshore Talent Only'
+    ) {
       return false;
     } else {
       return true;
@@ -68,7 +73,6 @@ function BuyerCompareQuotes() {
     });
     // we only need the ids for both the agency ids and the feature ids
   }, [projectFeatures]);
-
 
   return (
     <Box>
@@ -116,13 +120,12 @@ function BuyerCompareQuotes() {
               }}
             />
           </FormGroup>
-        
         </FormControl>
-
       </Box>
       <BuyerQuotesList
         projectFeatures={projectFeatures}
         quotingAgencies={filteredAgencies}
+        displayingBuyerCompareQuotes={true}
       />
     </Box>
   );

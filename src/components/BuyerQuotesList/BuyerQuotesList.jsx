@@ -3,7 +3,11 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import QuotesCard from '../QuotesCard/QuotesCard';
 
-function BuyerQuotesList({ projectFeatures, quotingAgencies }) {
+function BuyerQuotesList({
+  projectFeatures,
+  quotingAgencies,
+  displayingBuyerCompareQuotes,
+}) {
   // set up the dispatch
   const dispatch = useDispatch();
 
@@ -75,13 +79,12 @@ function BuyerQuotesList({ projectFeatures, quotingAgencies }) {
           projectFeatures.length > 0 &&
           quotingAgencies.map((agency) => {
             return (
-              <Box>
-                <QuotesCard
-                  key={agency.id}
-                  agency={agency}
-                  cost={calcCost(agency)}
-                />
-              </Box>
+              <QuotesCard
+                key={agency.id}
+                agency={agency}
+                cost={calcCost(agency)}
+                displayingBuyerCompareQuotes={displayingBuyerCompareQuotes}
+              />
             );
           })}
       </Box>
