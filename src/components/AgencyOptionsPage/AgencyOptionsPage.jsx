@@ -26,10 +26,9 @@ function AgencyOptionsPage() {
     <>
       <Box
         sx={{
-           display: 'flex'
-            
-           
-           }}>
+          display: 'flex',
+        }}
+      >
         <Navbar btn1text={'HOME'} fxn1={returnHome} />
         <Box>
           <h1> Choose Which Services You Offer </h1>
@@ -39,7 +38,6 @@ function AgencyOptionsPage() {
             estimated time to build and your confidence level.{' '}
           </p>
           <OptionsList features={features} />
-          <p> Selected Category ID is: {selectedCategory}</p>
         </Box>
       </Box>
     </>
