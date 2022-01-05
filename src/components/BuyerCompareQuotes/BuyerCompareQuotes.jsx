@@ -7,10 +7,14 @@ import FormControl from '@mui/material/FormControl';
 import { useEffect, useReducer, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import BuyerQuotesList from '../BuyerQuotesList/BuyerQuotesList';
+import { useHistory } from 'react-router-dom';
 
 function BuyerCompareQuotes() {
   // set up the dispatch
   const dispatch = useDispatch();
+
+  // set up the history to navigate
+  const history = useHistory();
 
   // retrieve the user, list of agencies that can offer the buyer's selection of features
   const user = useSelector((store) => store.user);
@@ -135,7 +139,11 @@ function BuyerCompareQuotes() {
         />
       </Box>
       {/* only enable this button once at least one projectAgency has been selected */}
-      <Button variant="contained" disabled={!projectAgencies.length > 0}>
+      <Button
+        variant="contained"
+        disabled={!projectAgencies.length > 0}
+        onClick={() => history.push('/BuyerDashboard')}
+      >
         Save Project
       </Button>
     </Box>

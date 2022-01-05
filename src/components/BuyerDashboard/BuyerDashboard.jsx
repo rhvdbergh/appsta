@@ -1,9 +1,9 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Navbar from '../Navbar/Navbar';
-import { Container, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import BuyerQuotesList from '../BuyerQuotesList/BuyerQuotesList';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 function BuyerDashboard() {
@@ -20,6 +20,9 @@ function BuyerDashboard() {
   const projectFeatures = useSelector((store) => store.projectFeatures);
   const quotingAgencies = useSelector((store) => store.quotingAgencies);
   const activeProject = useSelector((store) => store.activeProject);
+
+  // // local state
+  // const [agenciesState, setAgenciesState] = useState([]);
 
   // on page load, retrieve the latest project associated with this user as buyer
   // and save as the activeProject
@@ -45,12 +48,7 @@ function BuyerDashboard() {
   };
 
   return (
-    <Container>
-      <Typography variant="h3">Welcome, {user.first_name}</Typography>
-      <BuyerQuotesList
-        projectFeatures={projectFeatures}
-        quotingAgencies={quotingAgencies}
-      />
+    <Box sx={{ display: 'flex' }}>
       <Navbar
         onBuyerDashboard={true}
         headerText={`Account: ${user.company_name ? user.company_name : ''}`}
@@ -59,7 +57,16 @@ function BuyerDashboard() {
         btn2text={'Start New Quote'}
         fxn2={handleStartNewQuote}
       />
-    </Container>
+      <Box>
+        <Typography variant="h3">Welcome, {user.first_name}</Typography>
+        {quotingAgencies.length > 0 && projectFeatures.length > 0 && (
+          <BuyerQuotesList
+            projectFeatures={projectFeatures}
+            quotingAgencies={quotingAgencies}
+          />
+        )}
+      </Box>
+    </Box>
   );
 }
 
