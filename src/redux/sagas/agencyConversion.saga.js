@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { response } from 'express';
 import { put, takeLatest } from 'redux-saga/effects';
 
 // Get agency conversion data for a given agency ID from the DB
