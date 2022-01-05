@@ -42,6 +42,7 @@ import {
   
     // check to see if everything is filled out and
     // the user can move forward
+    // black list 
     const isCompletedForm = () => {
       if (
         username !== null &&
