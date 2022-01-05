@@ -1,6 +1,5 @@
-import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Navbar from '../Navbar/Navbar';
 import {
   TextField, Stack, Radio, FormLabel, RadioGroup, Box, Button, Grid,
@@ -57,8 +56,9 @@ function AgencyDashboard() {
     dispatch({ type: 'UPDATE_AGENCY_INFORMATION', payload: { agency, agencyID } })
 
   }
-  const [open, setOpen] = React.useState(false);
-  const [scroll, setScroll] = React.useState('paper');
+
+  const [open, setOpen] = useState(false);
+  const [scroll, setScroll] = useState('paper');
 
   const handleClickOpen = (scrollType) => () => {
     setOpen(true);
@@ -69,8 +69,8 @@ function AgencyDashboard() {
     setOpen(false);
   };
 
-  const descriptionElementRef = React.useRef(null);
-  React.useEffect(() => {
+  const descriptionElementRef = useRef(null);
+  useEffect(() => {
     if (open) {
       const { current: descriptionElement } = descriptionElementRef;
       if (descriptionElement !== null) {
@@ -81,13 +81,6 @@ function AgencyDashboard() {
 
   return (
     <>
-
-      {/* <p>
-        {' '}
-        put some user data on this page to confirm that we are getting correct
-        data..... placeholder{' '}
-      </p>
-      <p> will need specific information for the agency.  </p> */}
       <Box
         sx={{
           display: 'flex'
