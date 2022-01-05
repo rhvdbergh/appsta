@@ -228,37 +228,5 @@ router.put('/:agencyID',
       })
   })
 
-// add new agency conversion information into the agency_conversion table
-// POST /api/agency/conversion
-router.post('/conversion', rejectUnauthenticated, (req, res) => {
-  // define the data we'll insert into the DB
-  const conv = req.body;
-  // build SQL query
-  const agencyConversionQuery = `
-  INSERT INTO "agency_conversion" 
-  (agency_id, xsmall_hours, small_hours, medium_hours, large_hours, xlarge_hours, hourly_rate)
-  VALUES ($1, $2, $3, $4, $5, $6, $7);
-  `;
-  // parameterize the values
-  const values = [
-    conv.agency_id,
-    conv.xsmall_hours,
-    conv.small_hours,
-    conv.medium_hours,
-    conv.large_hours,
-    conv.xlarge_hours,
-    conv.hourly_rate
-  ];
-  pool
-    .query(agencyConversionQuery, values)
-    .then((result) => {
-      res.sendStatus(201);
-    })
-    .catch((err) => {
-      console.log('error adding new agency conversion data', err);
-      res.sendStatus(500);      
-    });
-});
-
 
 module.exports = router;
