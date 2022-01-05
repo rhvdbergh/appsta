@@ -6,6 +6,26 @@ const {
 } = require('../modules/authentication-middleware');
 const encryptLib = require('../modules/encryption');
 
+// retrieve agency conversion data for a given agency ID
+// GET /api/conversion/:agencyID
+
+router.get('/', rejectUnauthenticated, (req, res) => {
+  // build SQL query, using agency_id from the user object
+  const conversionSearchQuery = `
+  SELECT * FROM agency_conversion
+  WHERE agency_id = ${req.user.agency_id}; 
+  `;
+  pool
+    .query(conversionSearchQuery)
+    .then((response) => {
+      res.send(response.rows);
+    })
+    .catch((err) => {
+      console.log('error fetching conversion data', err);
+      res.sendStatus(500);
+    });
+});
+
 // update agency conversion information into the agency_conversion table
 // PUT /api/conversion/:agencyID
 router.put('/:agencyID', rejectUnauthenticated, (req, res) => {
