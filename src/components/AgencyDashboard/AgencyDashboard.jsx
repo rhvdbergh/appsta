@@ -5,7 +5,7 @@ import Navbar from '../Navbar/Navbar';
 import { Box, Typography } from '@mui/material';
 import { TextField, Stack, Radio, FormLabel, RadioGroup } from '@mui/material';
 import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button'
+import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -15,6 +15,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import AgencyConversionSettings from '../AgencyConversionSettings/AgencyConversionSettings';
 
 function AgencyDashboard() {
   const user = useSelector((store) => store.user);
@@ -24,8 +25,12 @@ function AgencyDashboard() {
   const [agency_name, setAgency_name] = useState(user.agency_name);
   const [agency_blurb, setAgency_blurb] = useState(user.agency_blurb);
   const [logo_url, setLogo_url] = useState(user.logo_url);
-  const [contact_first_name, setContact_first_name] = useState(user.contact_first_name);
-  const [contact_last_name, setContact_last_name] = useState(user.contact_last_name);
+  const [contact_first_name, setContact_first_name] = useState(
+    user.contact_first_name
+  );
+  const [contact_last_name, setContact_last_name] = useState(
+    user.contact_last_name
+  );
   const [phone_number, setPhone_number] = useState(user.phone_number);
   const [team_size, setTeam_size] = useState(user.team_size);
   const [minority_owned, setMinority_owned] = useState(user.minority_owned);
@@ -35,7 +40,9 @@ function AgencyDashboard() {
   const [state_province, setState_province] = useState(user.state_province);
   const [country_code, setCountry_code] = useState(user.country_code);
   const [postal_code, setPostal_code] = useState(user.agencies_postal_code);
-  const [staffing_location, setStaffing_location] = useState('Onshore Talent Only');
+  const [staffing_location, setStaffing_location] = useState(
+    'Onshore Talent Only'
+  );
 
   const agency = {
     agency_name: agency_name,
@@ -52,14 +59,16 @@ function AgencyDashboard() {
     state_province: state_province,
     country_code: country_code,
     postal_code: postal_code,
-    staffing_location: staffing_location
-  }
+    staffing_location: staffing_location,
+  };
 
   const handleUpdate = () => {
-    const agencyID = user.agency_id
-    dispatch({ type: 'UPDATE_AGENCY_INFORMATION', payload: { agency, agencyID } })
-
-  }
+    const agencyID = user.agency_id;
+    dispatch({
+      type: 'UPDATE_AGENCY_INFORMATION',
+      payload: { agency, agencyID },
+    });
+  };
   const [open, setOpen] = React.useState(false);
   const [scroll, setScroll] = React.useState('paper');
 
@@ -100,6 +109,7 @@ function AgencyDashboard() {
 
       <div>
         <Button onClick={handleClickOpen('body')}>scroll=body</Button>
+        <AgencyConversionSettings />
         <Dialog
           open={open}
           onClose={handleClose}
@@ -126,18 +136,22 @@ function AgencyDashboard() {
                   multiline={true}
                   rows={3}
                   sx={{ width: 0.3, height: 100 }}
-                  value={user.agency_blurb}
+                  value={agency_blurb}
                   onChange={(event) => setAgency_blurb(event.target.value)}
                 />
-                <TextField label="Logo URL" variant="outlined"
-                  value={user.logo_url}
+                <TextField
+                  label="Logo URL"
+                  variant="outlined"
+                  value={logo_url}
                   onChange={(event) => setLogo_url(event.target.value)}
                 />
                 <TextField
                   label="Contact First Name*"
                   variant="outlined"
                   value={contact_first_name}
-                  onChange={(event) => setContact_first_name(event.target.value)}
+                  onChange={(event) =>
+                    setContact_first_name(event.target.value)
+                  }
                 />
                 <TextField
                   label="Contact Last Name*"
@@ -168,7 +182,9 @@ function AgencyDashboard() {
                       label="Minority Owned"
                       value={minority_owned}
                       checked={minority_owned}
-                      onChange={(event) => setMinority_owned(event.target.checked)}
+                      onChange={(event) =>
+                        setMinority_owned(event.target.checked)
+                      }
                     />
                   </FormGroup>
 
@@ -188,7 +204,9 @@ function AgencyDashboard() {
                       label="Veteran Owned"
                       checked={veteran_owned}
                       value={veteran_owned}
-                      onChange={(event) => setVeteran_owned(event.target.checked)}
+                      onChange={(event) =>
+                        setVeteran_owned(event.target.checked)
+                      }
                     />
                   </FormGroup>
                 </FormControl>
@@ -198,7 +216,6 @@ function AgencyDashboard() {
                     value={city}
                     variant="outlined"
                     onChange={(event) => setCity(event.target.value)}
-
                   />
                   <TextField
                     label="State/Province"
@@ -225,12 +242,30 @@ function AgencyDashboard() {
                     aria-label="staffing-location"
                     name="radio-buttons-group"
                     value={staffing_location}
-                    onChange={(event) => setStaffing_location(event.target.value)}
+                    onChange={(event) =>
+                      setStaffing_location(event.target.value)
+                    }
                   >
-                    <FormControlLabel value={"Onshore Talent Only"} control={<Radio />} label="Onshore Talent Only" />
-                    <FormControlLabel value="Onshore and Offshore Talent" control={<Radio />} label="Onshore and Offshore Talent" />
-                    <FormControlLabel value="Offshore Talent, Onshore Leadership" control={<Radio />} label="Offshore Talent, Onshore Leadership" />
-                    <FormControlLabel value="All Staff Offshore" control={<Radio />} label="All Staff Offshore" />
+                    <FormControlLabel
+                      value={'Onshore Talent Only'}
+                      control={<Radio />}
+                      label="Onshore Talent Only"
+                    />
+                    <FormControlLabel
+                      value="Onshore and Offshore Talent"
+                      control={<Radio />}
+                      label="Onshore and Offshore Talent"
+                    />
+                    <FormControlLabel
+                      value="Offshore Talent, Onshore Leadership"
+                      control={<Radio />}
+                      label="Offshore Talent, Onshore Leadership"
+                    />
+                    <FormControlLabel
+                      value="All Staff Offshore"
+                      control={<Radio />}
+                      label="All Staff Offshore"
+                    />
                   </RadioGroup>
                 </FormControl>
               </Stack>
