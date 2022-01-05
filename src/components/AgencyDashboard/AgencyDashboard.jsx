@@ -116,7 +116,7 @@ function AgencyDashboard() {
           <Button onClick={handleClickOpen('body')}>
             Update Account Details
           </Button>
-          <AgencyConversionSettings />
+          <AgencyConversionSettings user={user} />
           <Dialog
             open={open}
             onClose={handleClose}
