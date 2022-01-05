@@ -15,7 +15,7 @@
 CREATE TABLE "buyers" (
 	"id" serial NOT NULL,
 	"user_id" integer NOT NULL,
-	"company_name" varchar(255) NOT NULL,
+	"company_name" varchar(255),
 	"project_name" varchar(255) NOT NULL,
 	"first_name" varchar(255) NOT NULL,
 	"last_name" varchar(255) NOT NULL,
