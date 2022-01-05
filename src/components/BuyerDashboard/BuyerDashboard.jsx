@@ -35,6 +35,7 @@ function BuyerDashboard() {
     dispatch({ type: 'GET_SAVED_QUOTING_AGENCIES', payload: activeProject });
   }, [activeProject]);
 
+  // force a refresh when we get back the quotingAgencies
   useEffect(() => {}, [quotingAgencies]);
 
   const handleReviewFeatures = () => {
@@ -58,10 +59,12 @@ function BuyerDashboard() {
       />
       <Box>
         <Typography variant="h3">Welcome, {user.first_name}</Typography>
-        <BuyerQuotesList
-          projectFeatures={projectFeatures}
-          quotingAgencies={quotingAgencies}
-        />
+        {quotingAgencies.length > 0 && (
+          <BuyerQuotesList
+            projectFeatures={projectFeatures}
+            quotingAgencies={quotingAgencies}
+          />
+        )}
       </Box>
     </Box>
   );
