@@ -147,7 +147,14 @@ function BuyerReviewSelection() {
       console.log('the user is logged in');
       // this will create a new project with the selected features
       // and then move the buyer to the buyercomparequotes screen
-      dispatch({ type: '' });
+      dispatch({
+        type: 'ADD_NEW_PROJECT',
+        payload: {
+          buyer_id: user.buyers_id,
+          features: selectedFeatures,
+          history,
+        },
+      });
     } else {
       history.push('/BuyerRegistration');
     }

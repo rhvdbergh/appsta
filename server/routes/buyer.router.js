@@ -56,6 +56,7 @@ router.post('/new', (req, res) => {
 });
 
 // route to create a new project
+// POST /api/buyer/newproject
 router.post('/newproject', rejectUnauthenticated, (req, res) => {
   insertProject(req.body.buyer_id, req.body.features, res);
 });
