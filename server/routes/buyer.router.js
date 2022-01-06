@@ -2,6 +2,63 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 const encryptLib = require('../modules/encryption');
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
+
+router.post('/new', (req, res) => {
+  const username = req.body.buyer.username;
+  const password = encryptLib.encryptPassword(req.body.buyer.password);
+  const features = req.body.project_features;
+  const addUserQuery = `
+        INSERT INTO users
+        ("username", "password", "is_admin")
+        VALUES ($1, $2, 'false')
+        RETURNING "id";
+        `;
+  pool
+    .query(addUserQuery, [username, password])
+    .then((result) => {
+      console.log('New buyer user id', result.rows[0].id);
+      const newBuyerUserId = result.rows[0].id;
+      const buyer = req.body.buyer;
+      const addBuyerQuery = `
+            INSERT INTO "buyers"
+            ("user_id", "company_name", "project_name", "first_name", "last_name", "city", "postal_code")
+            VALUES ($1, $2, $3, $4, $5, $6, $7)
+            RETURNING "id";
+            `;
+      const values = [
+        newBuyerUserId,
+        buyer.company_name,
+        buyer.project_name,
+        buyer.first_name,
+        buyer.last_name,
+        buyer.city,
+        buyer.postal_code,
+      ];
+      pool
+        .query(addBuyerQuery, values)
+        .then((result) => {
+          const newBuyerUserId = result.rows[0].id;
+          // uses a function to do further queries
+          insertProject(newBuyerUserId, features, res);
+        })
+        .catch((err) => {
+          console.log('error adding new buyer', err);
+          res.sendStatus(500);
+        });
+    })
+    .catch((err) => {
+      console.log('error adding new buyer user', err);
+      res.sendStatus(500);
+    });
+});
+
+// route to create a new project
+router.post('/newproject', rejectUnauthenticated, (req, res) => {
+  insertProject(req.body.buyer_id, req.body.features, res);
+});
 
 // function to post a new project and the selected project features
 // the parameters required are:
@@ -55,54 +112,5 @@ function insertProject(buyerId, features, res) {
       res.sendStatus(500);
     });
 }
-
-router.post('/new', (req, res) => {
-  const username = req.body.buyer.username;
-  const password = encryptLib.encryptPassword(req.body.buyer.password);
-  const features = req.body.project_features;
-  const addUserQuery = `
-        INSERT INTO users
-        ("username", "password", "is_admin")
-        VALUES ($1, $2, 'false')
-        RETURNING "id";
-        `;
-  pool
-    .query(addUserQuery, [username, password])
-    .then((result) => {
-      console.log('New buyer user id', result.rows[0].id);
-      const newBuyerUserId = result.rows[0].id;
-      const buyer = req.body.buyer;
-      const addBuyerQuery = `
-            INSERT INTO "buyers"
-            ("user_id", "company_name", "project_name", "first_name", "last_name", "city", "postal_code")
-            VALUES ($1, $2, $3, $4, $5, $6, $7)
-            RETURNING "id";
-            `;
-      const values = [
-        newBuyerUserId,
-        buyer.company_name,
-        buyer.project_name,
-        buyer.first_name,
-        buyer.last_name,
-        buyer.city,
-        buyer.postal_code,
-      ];
-      pool
-        .query(addBuyerQuery, values)
-        .then((result) => {
-          const newBuyerUserId = result.rows[0].id;
-          // uses a function to do further queries
-          insertProject(newBuyerUserId, features, res);
-        })
-        .catch((err) => {
-          console.log('error adding new buyer', err);
-          res.sendStatus(500);
-        });
-    })
-    .catch((err) => {
-      console.log('error adding new buyer user', err);
-      res.sendStatus(500);
-    });
-});
 
 module.exports = router;

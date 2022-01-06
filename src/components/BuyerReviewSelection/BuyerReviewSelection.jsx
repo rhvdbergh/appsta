@@ -8,6 +8,10 @@ import Typography from '@mui/material/Typography';
 import { useHistory } from 'react-router-dom';
 import OptionsList from '../OptionsList/OptionsList';
 
+// before finally submitting the project features,
+// this component allows the user to review features
+// and either move forward or return to the options screen
+// to select other features
 function BuyerReviewSelection() {
   // set up history hook
   const history = useHistory();
@@ -131,7 +135,7 @@ function BuyerReviewSelection() {
   };
 
   const handleFeatureChange = () => {
-    dispatch({ type: 'REFRESH_AGENCY_QUOTE_DATA' });
+    dispatch({ type: 'REFRESH_DATA' });
     history.push('/BuyerOptions');
   };
   //handles registration of user if not yet logged in or
@@ -141,6 +145,9 @@ function BuyerReviewSelection() {
     // is the user logged in?
     if (user.id) {
       console.log('the user is logged in');
+      // this will create a new project with the selected features
+      // and then move the buyer to the buyercomparequotes screen
+      dispatch({ type: '' });
     } else {
       history.push('/BuyerRegistration');
     }
