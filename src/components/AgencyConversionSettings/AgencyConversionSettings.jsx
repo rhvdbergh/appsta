@@ -2,48 +2,60 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { Box, Typography, TextField, Button } from '@mui/material';
 
-function AgencyConversionSettings(user) {
+function AgencyConversionSettings({user, conversionData}) {
   // initialize the dispatch variable
   const dispatch = useDispatch();
 
-  // grab the conversion data from the store
-  const conversionData = useSelector((store) => store.agencyConversion);
+  // conversionData = useSelector(store => store.agencyConversion);
 
-  const [xsmall_hours, SetXsmall_hours] = useState(conversionData.xsmall_hours);
-  const [small_hours, SetSmall_hours] = useState(conversionData.small_hours);
-  const [medium_hours, SetMedium_hours] = useState(conversionData.medium_hours);
-  const [large_hours, SetLarge_hours] = useState(conversionData.large_hours);
-  const [xlarge_hours, SetXlarge_hours] = useState(conversionData.xlarge_hours);
-  const [hourly_cost, SetHourly_cost] = useState(conversionData.hourly_cost);
 
-  const updateData = {
-    xsmall_hours,
-    small_hours,
-    medium_hours,
-    large_hours,
-    xlarge_hours
-  }
+  // const [xsmall_hours, setXsmall_hours] = useState(null);
+  // const [small_hours, setSmall_hours] = useState(null);
+  // const [medium_hours, setMedium_hours] = useState(null);
+  // const [large_hours, setLarge_hours] = useState(null);
+  // const [xlarge_hours, setXlarge_hours] = useState(null);
+  // const [hourly_rate, setHourly_rate] = useState(null);
 
-  // const handleData = (field, value) => {
-  //   conversionData[field] = parseInt(value);
+  // const updateData = {
+  //   xsmall_hours,
+  //   small_hours,
+  //   medium_hours,
+  //   large_hours,
+  //   xlarge_hours,
+  //   hourly_rate
   // }
+
+  const handleData = (field, value) => {
+    conversionData[field] = parseInt(value);
+  }
 
   const handleUpdate = () => {
     dispatch({ 
       type: 'UPDATE_AGENCY_CONVERSION', 
       payload: {
-        agencyID: user.user.agency_id,
+        agencyID: user.agency_id,
         conversionData: conversionData
       }     
     });
   }
   
   useEffect(() => {
-    dispatch({ type: 'GET_AGENCY_CONVERSION', payload: user.user.agency_id });
+    dispatch({ type: 'GET_AGENCY_CONVERSION', payload: user.agency_id });
   }, []);
+
+  
+
+  // useEffect(() => {
+  //   setXsmall_hours(conversionData.xsmall_hours);
+  //   setSmall_hours(conversionData.small_hours);
+  //   setMedium_hours(conversionData.medium_hours);
+  //   setLarge_hours(conversionData.large_hours);
+  //   setXlarge_hours(conversionData.xlarge_hours);
+  //   setHourly_rate(conversionData.hourly_rate);
+  // }, [])
   
   console.log('User is: ', user);
-  console.log('User ID is: ', user.user.agency_id);
+  console.log('User ID is: ', user.agency_id);
   console.log('Conversion data is:', conversionData);
   return (
     <Box sx = {{my:2}}>
@@ -52,43 +64,43 @@ function AgencyConversionSettings(user) {
         sx={{m:1}}
         label="Hours for XS T-Shirt Size"
         variant="outlined"
-        value={conversionData.xsmall_hours}
-        onChange={(event) => SetXsmall_hours(event.target.value)}
+        defaultValue={conversionData.xsmall_hours}
+        onChange={(event) => handleData('xsmall_hours', event.target.value)}
       />
       <TextField
         sx={{m:1}}
         label="Hours for S T-Shirt Size"
         variant="outlined"
         defaultValue={conversionData.small_hours}
-        onChange={(event) => SetSmall_hours(event.target.value)}
+        onBlur={(event) => handleData('small_hours', event.target.value)}
       />
       <TextField
         sx={{m:1}}
         label="Hours for M T-Shirt Size"
         variant="outlined"
         defaultValue={conversionData.medium_hours}
-        onChange={(event) => SetMedium_hours(event.target.value)}
+        onBlur={(event) => handleData('medium_hours', event.target.value)}
       />
       <TextField
         sx={{m:1}}
         label="Hours for L T-Shirt Size"
         variant="outlined"
         defaultValue={conversionData.large_hours}
-        onChange={(event) => SetLarge_hours(event.target.value)}
+        onBlur={(event) => handleData('large_hours', event.target.value)}
       />
       <TextField
         sx={{m:1}}
         label="Hours for XL T-Shirt Size"
         variant="outlined"
         defaultValue={conversionData.xlarge_hours}
-        onChange={(event) => SetXLarge_hours(event.target.value)}
+        onBlur={(event) => handleData('xlarge_hours', event.target.value)}
       />
       <TextField
         sx={{m:1}}
         label="Hourly Rate"
         variant="outlined"
         defaultValue={conversionData.hourly_rate}
-        onChange={(event) => SetHourly_rate(event.target.value)}
+        onBlur={(event) => handleData('hourly_rate', event.target.value)}
       />
       <Button onClick={handleUpdate}>Update Data</Button>
 
