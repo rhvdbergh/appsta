@@ -29,6 +29,8 @@ function AgencyDashboard() {
 
   const features = useSelector((store) => store.features);
 
+  const conversionData = useSelector((store) => store.agencyConversion);
+
   const dispatch = useDispatch();
 
   const [agency_name, setAgency_name] = useState(user.agency_name);
@@ -103,6 +105,10 @@ function AgencyDashboard() {
     }
   }, [open]);
 
+  useEffect(() => {
+    dispatch({ type: 'GET_AGENCY_CONVERSION', payload: user.agency_id });
+  }, []);
+
   return (
     <>
       <Box
@@ -116,7 +122,7 @@ function AgencyDashboard() {
           <Button onClick={handleClickOpen('body')}>
             Update Account Details
           </Button>
-          <AgencyConversionSettings />
+          <AgencyConversionSettings user={user} />
           <Dialog
             open={open}
             onClose={handleClose}
