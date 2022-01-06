@@ -39,12 +39,13 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-
 function Admin() {
 
     //set up MUI style 
     const { form, input } = useStyles();
 
+
+    //not used yet 
     const update = (event) => {
         event.preventDefault();
     }
@@ -58,7 +59,7 @@ function Admin() {
     const [feature_story, setFeature_story] = useState([]);
     const [feature_description, setFeature_description] = useState([]);
     const [image_url, setImage_url] = useState([]);
-
+    const [category_id, setCategory_id] =useState([]);
 
     //initialized dispatch 
     const dispatch = useDispatch();
@@ -67,7 +68,6 @@ function Admin() {
     useEffect(() => {
         dispatch({ type: 'FETCH_CATEGORY' });
     }, []);
-
 
     //copied from AgencyDashboard 
     const [open, setOpen] = useState(false);
@@ -91,8 +91,6 @@ function Admin() {
             }
         }
     }, [open]);
-
-
 
     return (
         <>
@@ -149,11 +147,18 @@ function Admin() {
                                     />
 
                                     {/* Drop Down  */}
-                                    <Select >
-                                        <MenuItem> 1</MenuItem>
-                                        <MenuItem> 1</MenuItem>
-                                        <MenuItem> 1</MenuItem>
-                                        <MenuItem> 1</MenuItem>
+                                    <Select 
+                                        label="category"
+                                        value={category_id}
+                                        onChange={(event) => setCategory_id(event, 'category_id')}>
+
+                                            {category.map((category) => {
+                                                return (
+                                                    <MenuItem  key={category.id} value={category.id}> 
+                                                    {category.category_name}
+                                                    </MenuItem>
+                                                )
+                                            })}
                                     </Select>
 
                                 </Stack>
