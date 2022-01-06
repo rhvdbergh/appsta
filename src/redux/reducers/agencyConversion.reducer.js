@@ -9,7 +9,7 @@ const emptyConversionData = {
   large_hours: null,
   xlarge_hours: null,
   hourly_rate: null,
-}
+};
 
 const agencyConversionReducer = (state = emptyConversionData, action) => {
   switch (action.type) {
@@ -17,6 +17,8 @@ const agencyConversionReducer = (state = emptyConversionData, action) => {
       return action.payload;
     case 'ADJUST_AGENCY_CONVERSION':
       return action.payload;
+    case 'REFRESH_DATA':
+      return emptyConversionData;
     case 'LOGOUT':
       return emptyConversionData;
     default:
