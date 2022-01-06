@@ -28,7 +28,7 @@ function AgencyConversionSettings({user}) {
   const handleChange = (data, value) => {
     dispatch({
       type: 'ADJUST_AGENCY_CONVERSION',
-      payload: {...conversionData, [data]: value},
+      payload: {...conversionData, [data]: parseInt(value)},
     })
   }
 
@@ -66,9 +66,9 @@ function AgencyConversionSettings({user}) {
         sx={{m:1}}
         label="Hours for XS T-Shirt Size"
         variant="outlined"
-        value={conversionData.xsmall_hours}
-        onChange={() => {
-          handleChange('xsmall_hours', conversionData.xsmall_hours)
+        value={conversionData.xsmall_hours || 0}
+        onChange={(event) => {
+          handleChange('xsmall_hours', event.target.value)
         }}
       />
       <TextField
