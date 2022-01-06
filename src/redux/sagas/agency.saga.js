@@ -14,6 +14,7 @@ function* postNewAgency(action) {
   }
 }
 
+// Generator function to PUT agency info to the DB
 function* updateAgencyInformation(action) {
   console.log(
     'this is updated information from dashboard',
