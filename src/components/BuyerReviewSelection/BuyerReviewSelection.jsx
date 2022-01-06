@@ -11,6 +11,8 @@ import OptionsList from '../OptionsList/OptionsList';
 function BuyerReviewSelection() {
   // set up history hook
   const history = useHistory();
+  // grab the user
+  const user = useSelector((store) => store.user);
   // grab selected category ID from redux Store
   const selectedCategory = useSelector((store) => store.selectedCategory);
   // set up dispatch hook
@@ -132,8 +134,16 @@ function BuyerReviewSelection() {
     dispatch({ type: 'REFRESH_AGENCY_QUOTE_DATA' });
     history.push('/BuyerOptions');
   };
+  //handles registration of user if not yet logged in or
+  // creates a new project if this user already has an account
+  // and is logged in
   const handleRegister = () => {
-    history.push('/BuyerRegistration');
+    // is the user logged in?
+    if (user.id) {
+      console.log('the user is logged in');
+    } else {
+      history.push('/BuyerRegistration');
+    }
   };
   console.log('Selected feature IDs are: ', selectedFeatureIDs);
   console.log('Quoting agency IDs are: ', quotingAgencyIDs);
@@ -173,7 +183,11 @@ function BuyerReviewSelection() {
             </Typography>
           )}
           <Button onClick={handleFeatureChange}>Change Features</Button>
-          <Button onClick={handleRegister}>Register to view quotes</Button>
+          {/* Conditionally render this button; if the user is logged in */}
+          {/* it means that this is not the first project they are starting */}
+          <Button onClick={handleRegister}>
+            {user.id ? 'View quotes' : 'Register to view quotes'}
+          </Button>
         </Box>
       </Box>
     </>
