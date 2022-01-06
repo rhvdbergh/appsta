@@ -42,8 +42,7 @@ router.put('/:agencyID', rejectUnauthenticated, (req, res) => {
   SET xsmall_hours = $2, small_hours = $3,
   medium_hours = $4, large_hours = $5,
   xlarge_hours = $6, hourly_rate = $7
-  WHERE agency_id = $1
-  RETURNING *;
+  WHERE agency_id = $1;
   `;
   // parameterize the values
   const values = [
@@ -58,7 +57,7 @@ router.put('/:agencyID', rejectUnauthenticated, (req, res) => {
   pool
     .query(agencyConversionQuery, values)
     .then((response) => {
-      res.send(response.rows);
+      res.sendStatus(204);
     })
     .catch((err) => {
       console.log('error adding new agency conversion data', err);

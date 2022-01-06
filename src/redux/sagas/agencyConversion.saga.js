@@ -22,7 +22,6 @@ function* updateAgencyConversion(action) {
       `api/conversion/${action.payload.agencyID}`,
       action.payload.conversionData
     );
-    yield put({ type: 'SET_AGENCY_CONVERSION', payload: response.data })
   } catch (error) {
     console.log('error in updating agency conversion', error);
     yield put({ type: 'UPDATE_AGENCY_CONVERSION_ERROR', })    
