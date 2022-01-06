@@ -18,9 +18,11 @@ function Admin() {
 
     return (
         <>
-            <h1> Admin Page </h1>
-            <p> Hello Admin. this is a stud ....</p>
-            <AdminForm />
+            <center>
+                <h1> Admin Page </h1>
+                <p> Hello Admin. this is a stud ....</p>
+                <AdminForm />
+            </center>
         </>
     )
 }
