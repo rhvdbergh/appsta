@@ -8,6 +8,7 @@ import navBarSaga from './navBar.saga';
 import agencyFeatureSaga from './agencyFeature.saga';
 import buyerSaga from './buyer.saga';
 import quotesSaga from './quotes.saga';
+import agencyConversionSaga from './agencyConversion.saga';
 import adminSaga from './admin.saga';
 
 // rootSaga is the primary saga.
@@ -29,5 +30,6 @@ export default function* rootSaga() {
     buyerSaga(),
     quotesSaga(),
     adminSaga(),
+    agencyConversionSaga(),
   ]);
 }
