@@ -1,11 +1,17 @@
-import React from 'react';
-
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import AdminForm from './AdminForm';
 
 
 
 function Admin() {
 
+    //initialized dispatch 
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch({ type: 'FETCH_CATEGORY' });
+    }, []);
 
 
     return (

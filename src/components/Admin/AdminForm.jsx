@@ -14,12 +14,18 @@ import Grid from '@mui/material/Grid';
 
 //import from react 
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 // import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 
 
 function AdminForm() {
 
+
+//grab categories from reducer found in navBar Saga 
+const category = useSelector ((store) => store.category);
+
+console.log('category', category);
 
 
     return (
@@ -40,9 +46,16 @@ function AdminForm() {
             <TextField
                 label="Image Url*"
             />
+
+
+
 {/* Drop Down  */}
             <Select > 
-             <MenuItem> </MenuItem>
+             <MenuItem> 1</MenuItem>
+             <MenuItem> 1</MenuItem>
+             <MenuItem> 1</MenuItem>
+             <MenuItem> 1</MenuItem>
+
              </Select>
                
 
