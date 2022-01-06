@@ -18,7 +18,7 @@ router.get('/:agencyID', rejectUnauthenticated, (req, res) => {
   pool
     .query(conversionSearchQuery, [req.params.agencyID])
     .then((response) => {
-      res.send(response.rows);
+      res.send(response.rows[0]);
     })
     .catch((err) => {
       console.log('error fetching conversion data', err);
