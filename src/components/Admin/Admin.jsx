@@ -46,8 +46,8 @@ function Admin() {
 
 
     //not used yet 
-    const update = (event) => {
-        event.preventDefault();
+    const handlePost = () => {
+        dispatch({ type: 'POST_NEW_FEATURE', payload: newFeature });
     }
 
     //grab categories from reducer found in navBar Saga 
@@ -55,16 +55,27 @@ function Admin() {
     console.log('category', category);
 
     //Set Local State 
-    const [feature_name, setFeature_name] = useState([]);
-    const [feature_story, setFeature_story] = useState([]);
-    const [feature_description, setFeature_description] = useState([]);
-    const [image_url, setImage_url] = useState([]);
-    const [category_id, setCategory_id] =useState([]);
+    const [newFeature, setNewFeature] = useState({
+        feature_name: '',
+        feature_story: '',
+        feature_description: '',
+        image_url: '',
+        category_id: '',
+    })
+  
+    //when input is filled out
+    const handlePropertyChange = (event, property) => {
+        setNewFeature({
+            ...newFeature,
+            [property]: event.target.value,
+        })
+    };
 
     //initialized dispatch 
     const dispatch = useDispatch();
     const history = useHistory();
 
+    //get categories from Store
     useEffect(() => {
         dispatch({ type: 'FETCH_CATEGORY' });
     }, []);
@@ -102,7 +113,7 @@ function Admin() {
                         Create New Feature
                     </Button>
 
-                    <Dialog 
+                    <Dialog
                         open={open}
                         onClose={handleClose}
                         scroll={scroll}
@@ -120,53 +131,53 @@ function Admin() {
                                 <Stack>
                                     <TextField
                                         label="Feature Name*"
-                                        value={feature_name}
+                                        value={newFeature.feature_name}
                                         variant="outlined"
-                                        onChange={(event) => setFeature_name(event.target.value)}
+                                        onChange={(event) => handlePropertyChange(event, "feature_name")}
                                     />
 
                                     <TextField
                                         label="Feature Story*"
-                                        value={feature_story}
+                                        value={newFeature.feature_story}
                                         variant="outlined"
-                                        onChange={(event) => setFeature_story(event.target.value)}
+                                        onChange={(event) => handlePropertyChange(event, "feature_story")}
                                     />
 
                                     <TextField
                                         label="Provide Description of Feature*"
-                                        value={feature_description}
+                                        value={newFeature.feature_description}
                                         variant="outlined"
-                                        onChange={(event) => setFeature_description(event.target.value)}
+                                        onChange={(event) => handlePropertyChange(event, "feature_description")}
                                     />
 
                                     <TextField
                                         label="Image Url*"
-                                        value={image_url}
+                                        value={newFeature.image_url}
                                         variant="outlined"
-                                        onChange={(event) => setImage_url(event.target.value)}
+                                        onChange={(event) => handlePropertyChange(event, "image_url")}
                                     />
 
                                     {/* Drop Down  */}
-                                    <Select 
+                                    <Select
                                         label="category"
-                                        value={category_id}
-                                        onChange={(event) => setCategory_id(event, 'category_id')}>
+                                        value={newFeature.category_id}
+                                        onChange={(event) => handlePropertyChange(event, 'category_id')}>
 
-                                            {category.map((category) => {
-                                                return (
-                                                    <MenuItem  key={category.id} value={category.id}> 
+                                        {category.map((category) => {
+                                            return (
+                                                <MenuItem key={category.id} value={category.id}>
                                                     {category.category_name}
-                                                    </MenuItem>
-                                                )
-                                            })}
+                                                </MenuItem>
+                                            )
+                                        })}
                                     </Select>
 
                                 </Stack>
                             </DialogContentText>
                         </DialogContent>
                         <DialogActions>
-                            <Button onClick={handleClose}>Cancel</Button>
-                            {/* <Button onClick={handleUpdate}>Add Feature </Button> */}
+                            <Button onClick={handleClose}> Cancel </Button>
+                            <Button onClick={handlePost}> Add Feature </Button>
                         </DialogActions>
                     </Dialog>
                 </Box>
