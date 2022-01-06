@@ -16,7 +16,7 @@ function* getAgencyConversion(action) {
 
 // Create function to update agency conversion info to the DB
 function* updateAgencyConversion(action) {
-  console.log('update conversion info from agency dashboard for ID', action.payload.agencyID);
+  console.log('conversion data:', action.payload.conversionData);
   try {
     yield axios.put(
       `api/conversion/${action.payload.agencyID}`,

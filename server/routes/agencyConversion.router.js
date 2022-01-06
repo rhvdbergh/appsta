@@ -32,6 +32,10 @@ router.put('/:agencyID', rejectUnauthenticated, (req, res) => {
   // define the data we'll insert into the DB
   const id = req.params.agencyID;
   const conv = req.body;
+  console.log('Checking our query variables, ID: ', id);
+  console.log('Checking our query variables, conv: ', conv);
+
+  
   // build SQL query
   const agencyConversionQuery = `
   UPDATE "agency_conversion"
