@@ -21,12 +21,16 @@ import { useDispatch } from 'react-redux';
 
 function AdminForm() {
 
+    //grab categories from reducer found in navBar Saga 
+    const category = useSelector((store) => store.category);
+    console.log('category', category);
 
-//grab categories from reducer found in navBar Saga 
-const category = useSelector ((store) => store.category);
 
-console.log('category', category);
-
+    //Set Local State 
+    const [feature_name, setFeature_name] = useState([]);
+    const [feature_story, setFeature_story] = useState([]);
+    const [feature_description, setFeature_description] = useState([]);
+    const [image_url, setImage_url] = useState([]);
 
     return (
         <>
@@ -49,15 +53,15 @@ console.log('category', category);
 
 
 
-{/* Drop Down  */}
-            <Select > 
-             <MenuItem> 1</MenuItem>
-             <MenuItem> 1</MenuItem>
-             <MenuItem> 1</MenuItem>
-             <MenuItem> 1</MenuItem>
+            {/* Drop Down  */}
+            <Select >
+                <MenuItem> 1</MenuItem>
+                <MenuItem> 1</MenuItem>
+                <MenuItem> 1</MenuItem>
+                <MenuItem> 1</MenuItem>
 
-             </Select>
-               
+            </Select>
+
 
 
         </>
