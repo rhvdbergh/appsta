@@ -1,3 +1,4 @@
+//
 import React, { useEffect } from 'react';
 import {
   HashRouter as Router,
@@ -13,12 +14,9 @@ import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
+import Admin from '../Admin/Admin';
 import AboutPage from '../AboutPage/AboutPage';
-import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
-import LoginPage from '../LoginPage/LoginPage';
-import RegisterPage from '../RegisterPage/RegisterPage';
 import BuyerOptionsPage from '../BuyerOptionsPage/BuyerOptionsPage';
 import AgencyLoginPage from '../AgencyLoginPage/AgencyLoginPage';
 import AgencyRegistration from '../AgencyRegistration/AgencyRegistration';
@@ -30,6 +28,8 @@ import BuyerRegistration from '../BuyerRegistration/BuyerRegistration';
 import BuyerCompareQuotes from '../BuyerCompareQuotes/BuyerCompareQuotes';
 import BuyerReviewFeatures from '../BuyerReviewFeatures/BuyerReviewFeatures';
 
+
+//import MUI 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
@@ -75,7 +75,7 @@ function App() {
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
-    dispatch({ type: 'GET_FEATURES'})
+    dispatch({ type: 'GET_FEATURES' })
   }, [dispatch]);
 
   return (
@@ -94,44 +94,6 @@ function App() {
             >
               <AboutPage />
             </Route>
-            {/* For protected routes, the view could show one of several things on the same route.
-            Visiting localhost:3000/user will show the UserPage if the user is logged in.
-            If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
-            Even though it seems like they are different pages, the user is always on localhost:3000/user */}
-            {/* <ProtectedRoute
-            // logged in shows UserPage else shows LoginPage
-            exact
-            path="/user"
-          >
-            <UserPage />
-          </ProtectedRoute> */}
-            {/* <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/info"
-          >
-            <InfoPage />
-          </ProtectedRoute> */}
-            {/* <Route exact path="/login">
-            {user.id ? (
-              // If the user is already logged in,
-              // redirect to the /user page
-              <Redirect to="/user" />
-            ) : (
-              // Otherwise, show the LandingPage
-              <LandingPage />
-            )}
-          </Route> */}
-            {/* <Route exact path="/registration">
-            {user.id ? (
-              // If the user is already logged in,
-              // redirect them to the /user page
-              <Redirect to="/user" />
-            ) : (
-              // Otherwise, show the registration page
-              <RegisterPage />
-            )}
-          </Route> */}
 
             <Route exact path="/LandingPage">
               {user.id && user.isBuyer ? (
@@ -140,12 +102,12 @@ function App() {
                 // redirect them to the /BuyerDashboard page
                 <Redirect to="/BuyerDashboard" />
               ) : // but if they're an agency, to the agency page
-              user.id && !user.isBuyer ? (
-                <Redirect to="/AgencyDashboard" />
-              ) : (
-                // Otherwise, show the Landing page
-                <LandingPage />
-              )}
+                user.id && !user.isBuyer ? (
+                  <Redirect to="/AgencyDashboard" />
+                ) : (
+                  // Otherwise, show the Landing page
+                  <LandingPage />
+                )}
             </Route>
             <Route exact path="/BuyerReview">
               <BuyerReviewSelection />
@@ -211,11 +173,21 @@ function App() {
               )}
             </ProtectedRoute>
 
+    {/* Adding in an Admin Route  */}
+          <Route exact path="/Admin">
+            {/* {user.isAdmin ? ( */}
+             <Admin />
+             {/* ) : (
+            <Redirect to="/LandingPage" />
+            )} */}
+          </Route>
+
             {/* If none of the other routes matched, we will show a 404. */}
             <Route>
               <h1>404</h1>
             </Route>
           </Switch>
+
           <Footer />
         </div>
       </Router>
