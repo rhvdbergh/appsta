@@ -66,7 +66,7 @@ function AgencyConversionSettings({user}) {
         sx={{m:1}}
         label="Hours for XS T-Shirt Size"
         variant="outlined"
-        value={conversionData.xsmall_hours || 0}
+        value={conversionData.xsmall_hours || ''}
         onChange={(event) => {
           handleChange('xsmall_hours', event.target.value)
         }}
@@ -75,45 +75,45 @@ function AgencyConversionSettings({user}) {
         sx={{m:1}}
         label="Hours for S T-Shirt Size"
         variant="outlined"
-        value={conversionData.small_hours}
-        onChange={() => {
-          handleChange('xsmall_hours', conversionData.xsmall_hours)
+        value={conversionData.small_hours || ''}
+        onChange={(event) => {
+          handleChange('small_hours', event.target.value)
         }}
       />
       <TextField
         sx={{m:1}}
         label="Hours for M T-Shirt Size"
         variant="outlined"
-        value={conversionData.medium_hours}
-        onChange={() => {
-          handleChange('xsmall_hours', conversionData.xsmall_hours)
+        value={conversionData.medium_hours || ''}
+        onChange={(event) => {
+          handleChange('medium_hours', event.target.value)
         }}
       />
       <TextField
         sx={{m:1}}
         label="Hours for L T-Shirt Size"
         variant="outlined"
-        value={conversionData.large_hours}
-        onChange={() => {
-          handleChange('xsmall_hours', conversionData.xsmall_hours)
+        value={conversionData.large_hours || ''}
+        onChange={(event) => {
+          handleChange('large_hours', event.target.value)
         }}
       />
       <TextField
         sx={{m:1}}
         label="Hours for XL T-Shirt Size"
         variant="outlined"
-        value={conversionData.xlarge_hours}
-        onChange={() => {
-          handleChange('xsmall_hours', conversionData.xsmall_hours)
+        value={conversionData.xlarge_hours || ''}
+        onChange={(event) => {
+          handleChange('xlarge_hours', event.target.value)
         }}
       />
       <TextField
         sx={{m:1}}
         label="Hourly Rate"
         variant="outlined"
-        value={conversionData.hourly_rate}
-        onChange={() => {
-          handleChange('xsmall_hours', conversionData.xsmall_hours)
+        value={conversionData.hourly_rate || ''}
+        onChange={(event) => {
+          handleChange('hourly_rate', event.target.value)
         }}
       />
       <Button onClick={handleUpdate}>Update Data</Button>
