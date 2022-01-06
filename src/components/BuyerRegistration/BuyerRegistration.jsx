@@ -68,7 +68,7 @@ function BuyerRegistration() {
         setActiveStep(0);
     };
 
-
+//on button click 
     const handleNext = () => {
         let newSkipped = skipped;
         if (isStepSkipped(activeStep)) {
@@ -81,9 +81,9 @@ function BuyerRegistration() {
                           {
                             buyer: buyer,
                             project_features: selectedFeatures,
+                            history: history,
                            }
-                      })
-            history.push('/BuyerCompareQuotes');
+                      });
         }
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
     }
