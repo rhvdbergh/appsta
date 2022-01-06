@@ -26,9 +26,8 @@ function BuyerOptionsPage() {
         )
       );
     // dispatch to save in the redux store
-    dispatch({ type: 'SET_SELECTED_FEATURES', payload: selectedFeatures }); 
+    dispatch({ type: 'SET_SELECTED_FEATURES', payload: selectedFeatures });
     console.log('Quote Submitted', selectedFeatures);
-    // move the user to the review page
     history.push('/BuyerReview');
   };
 
@@ -37,6 +36,10 @@ function BuyerOptionsPage() {
 
   useEffect(() => {
     dispatch({ type: 'GET_FEATURES' });
+    dispatch({ type: 'REFRESH_QUOTING_AGENCIES_DATA' });
+    dispatch({ type: 'REFRESH_AGENCY_QUOTE_DATA' });
+    dispatch({ type: 'REFRESH_PROJECT_AGENCIES_DATA' });
+    dispatch({ type: 'REFRESH_PROJECT_FEATURES_DATA' });
   }, []);
 
   return (
