@@ -4,6 +4,8 @@ import { put, takeLatest } from 'redux-saga/effects';
 // Get agency conversion data for a given agency ID from the DB
 function* getAgencyConversion(action) {
   try {
+    console.log('In getAgencyConversion with ID:', action.payload);
+    
     const response = yield axios.get(`api/conversion/${action.payload}`);
     yield put({ type: 'SET_AGENCY_CONVERSION', payload: response.data });
   } catch (error) {

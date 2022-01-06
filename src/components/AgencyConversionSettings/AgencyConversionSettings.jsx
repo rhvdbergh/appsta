@@ -13,12 +13,15 @@ function AgencyConversionSettings(user) {
   
   
   
+  
   useEffect(() => {
-    dispatch({ type: 'GET_CONVERSION_DATA' });
+    dispatch({ type: 'GET_AGENCY_CONVERSION', payload: user.user.agency_id });
   }, []);
   
+  console.log('User is: ', user);
+  console.log('User ID is: ', user.user.agency_id);
   return (
-    <Box>
+    <Box sx = {{my:2}}>
       <Typography type="h6">Agency Conversion Settings</Typography>
 
 

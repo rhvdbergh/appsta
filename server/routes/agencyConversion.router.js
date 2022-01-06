@@ -9,14 +9,14 @@ const encryptLib = require('../modules/encryption');
 // retrieve agency conversion data for a given agency ID
 // GET /api/conversion/:agencyID
 
-router.get('/', rejectUnauthenticated, (req, res) => {
+router.get('/:agencyID', rejectUnauthenticated, (req, res) => {
   // build SQL query, using agency_id from the user object
   const conversionSearchQuery = `
   SELECT * FROM agency_conversion
-  WHERE agency_id = ${req.user.agency_id}; 
+  WHERE agency_id = $1; 
   `;
   pool
-    .query(conversionSearchQuery)
+    .query(conversionSearchQuery, [req.params.agencyID])
     .then((response) => {
       res.send(response.rows);
     })
