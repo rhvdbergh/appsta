@@ -15,6 +15,8 @@ const agencyConversionReducer = (state = emptyConversionData, action) => {
   switch (action.type) {
     case 'SET_AGENCY_CONVERSION':
       return action.payload;
+    case 'ADJUST_AGENCY_CONVERSION':
+      return action.payload;
     case 'LOGOUT':
       return emptyConversionData;
     default:
