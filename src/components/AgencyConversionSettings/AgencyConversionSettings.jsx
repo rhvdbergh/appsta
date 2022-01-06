@@ -2,8 +2,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { Box, Typography, TextField, Button } from '@mui/material';
 
-
-
 function AgencyConversionSettings(user) {
   // initialize the dispatch variable
   const dispatch = useDispatch();
@@ -25,7 +23,6 @@ function AgencyConversionSettings(user) {
     });
   }
   
-  
   useEffect(() => {
     dispatch({ type: 'GET_AGENCY_CONVERSION', payload: user.user.agency_id });
   }, []);
@@ -35,7 +32,7 @@ function AgencyConversionSettings(user) {
   console.log('Conversion data is:', conversionData);
   return (
     <Box sx = {{my:2}}>
-      <Typography type="h6" sx={{my:2}}>Set Your Estimate Parameters</Typography>
+      <Typography type="h6" sx={{my:2}}>Update Your Estimate Data</Typography>
       <TextField
         sx={{m:1}}
         label="Hours for XS T-Shirt Size"
@@ -47,35 +44,35 @@ function AgencyConversionSettings(user) {
         sx={{m:1}}
         label="Hours for S T-Shirt Size"
         variant="outlined"
-        value={conversionData.small_hours}
+        defaultValue={conversionData.small_hours}
         onChange={(event) => handleData('small_hours', event.target.value)}
       />
       <TextField
         sx={{m:1}}
         label="Hours for M T-Shirt Size"
         variant="outlined"
-        value={conversionData.medium_hours}
+        defaultValue={conversionData.medium_hours}
         onChange={(event) => handleData('medium_hours', event.target.value)}
       />
       <TextField
         sx={{m:1}}
         label="Hours for L T-Shirt Size"
         variant="outlined"
-        value={conversionData.large_hours}
+        defaultValue={conversionData.large_hours}
         onChange={(event) => handleData('large_hours', event.target.value)}
       />
       <TextField
         sx={{m:1}}
         label="Hours for XL T-Shirt Size"
         variant="outlined"
-        value={conversionData.xlarge_hours}
+        defaultValue={conversionData.xlarge_hours}
         onChange={(event) => handleData('xlarge_hours', event.target.value)}
       />
       <TextField
         sx={{m:1}}
         label="Hourly Rate"
         variant="outlined"
-        value={conversionData.hourly_rate}
+        defaultValue={conversionData.hourly_rate}
         onChange={(event) => handleData('hourly_rate', event.target.value)}
       />
       <Button onClick={handleUpdate}>Update Data</Button>
