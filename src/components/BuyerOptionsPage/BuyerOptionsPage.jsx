@@ -36,10 +36,9 @@ function BuyerOptionsPage() {
 
   useEffect(() => {
     dispatch({ type: 'GET_FEATURES' });
-    dispatch({ type: 'REFRESH_QUOTING_AGENCIES_DATA' });
-    dispatch({ type: 'REFRESH_AGENCY_QUOTE_DATA' });
-    dispatch({ type: 'REFRESH_PROJECT_AGENCIES_DATA' });
-    dispatch({ type: 'REFRESH_PROJECT_FEATURES_DATA' });
+    // clear out the reducers to ensure no old values are
+    // used when creating a new project
+    dispatch({ type: 'REFRESH_DATA' });
   }, []);
 
   return (

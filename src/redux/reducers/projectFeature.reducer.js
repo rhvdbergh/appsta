@@ -2,7 +2,7 @@ const projectFeatureReducer = (state = [], action) => {
   switch (action.type) {
     case 'SET_PROJECT_FEATURES':
       return action.payload;
-    case 'REFRESH_PROJECT_FEATURES_DATA':
+    case 'REFRESH_DATA':
       return [];
     case 'LOGOUT':
       return [];
