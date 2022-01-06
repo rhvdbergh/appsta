@@ -103,6 +103,8 @@ function Admin() {
         }
     }, [open]);
 
+
+    console.log('payload of newFeature', newFeature);
     return (
         <>
             <Box sx={{ display: 'flex', }} >
