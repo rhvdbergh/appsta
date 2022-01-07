@@ -39,6 +39,9 @@ function BuyerOptionsPage() {
 
   useEffect(() => {
     dispatch({ type: 'GET_FEATURES' });
+    // clear out the reducers to ensure no old values are
+    // used when creating a new project
+    dispatch({ type: 'REFRESH_DATA' });
   }, []);
 
   return (

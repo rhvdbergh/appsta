@@ -9,6 +9,7 @@ import agencyFeatureSaga from './agencyFeature.saga';
 import buyerSaga from './buyer.saga';
 import quotesSaga from './quotes.saga';
 import agencyConversionSaga from './agencyConversion.saga';
+import projectsSaga from './project.saga';
 import adminSaga from './admin.saga';
 
 // rootSaga is the primary saga.
@@ -31,5 +32,6 @@ export default function* rootSaga() {
     quotesSaga(),
     adminSaga(),
     agencyConversionSaga(),
+    projectsSaga(),
   ]);
 }

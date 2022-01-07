@@ -3,6 +3,7 @@ const selectedCategoryReducer = (state = 1, action) => {
     case 'SET_SELECTED_CATEGORY':
       return action.payload;
     case 'REFRESH_SELECTED_CATEGORY_DATA':
+    case 'REFRESH_DATA':
       return 1;
     case 'LOGOUT':
       return 1;
