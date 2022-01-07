@@ -11,6 +11,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Button from '@mui/material/Button';
+import { useHistory } from 'react-router-dom';
 
 export default function Navbar({
   headerText, //
@@ -22,6 +23,8 @@ export default function Navbar({
   fxn3,
   onBuyerDashboard, // text is different on buyer dashboard
 }) {
+  // set up history hook to navigate
+  const history = useHistory();
   // get the categories list from the Redux store
   const categories = useSelector((store) => store.category);
   // get the selected category from the redux store
@@ -85,33 +88,32 @@ export default function Navbar({
               </ListItem>
             ))}
           </List>
-
         )}
-          {btn1text && (
-            <Button onClick={fxn1} variant="contained">
-              {btn1text}
-            </Button>
-          )}
-          {btn2text && (
-            <Button onClick={fxn2} variant="contained">
-              {btn2text}
-            </Button>
-          )}
-          {btn3text && (
-            <Button onClick={fxn3} variant="contained">
-              {btn3text}
-            </Button>
-          )}
-          {user.id && (
-            <Button
-              onClick={fxn3}
-              variant="contained"
-              onClick={() => dispatch({ type: 'LOGOUT' })}
-            >
-              LOGOUT
-            </Button>
-          )}
-        </Drawer>
+        {btn1text && (
+          <Button onClick={fxn1} variant="contained">
+            {btn1text}
+          </Button>
+        )}
+        {btn2text && (
+          <Button onClick={fxn2} variant="contained">
+            {btn2text}
+          </Button>
+        )}
+        {btn3text && (
+          <Button onClick={fxn3} variant="contained">
+            {btn3text}
+          </Button>
+        )}
+        {user.id && (
+          <Button
+            onClick={fxn3}
+            variant="contained"
+            onClick={() => dispatch({ type: 'LOGOUT', payload: history })}
+          >
+            LOGOUT
+          </Button>
+        )}
+      </Drawer>
     </div>
   );
 }

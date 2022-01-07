@@ -44,7 +44,14 @@ function BuyerDashboard() {
 
   const handleStartNewQuote = () => {
     // TODO:
-    console.log('in handleStartNewQuote');
+    if (
+      confirm(
+        'Do you want to start a new project? This will delete your previous project and quotes.'
+      )
+    ) {
+      history.push('/BuyerOptions');
+    } else {
+    }
   };
 
   return (

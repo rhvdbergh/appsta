@@ -20,6 +20,12 @@ const emptyNewAgency = {
   contact_last_name: null,
   phone_number: null,
   logo_url: null,
+  xsmall_hours: null,
+  small_hours: null,
+  medium_hours: null,
+  large_hours: null,
+  xlarge_hours: null,
+  hourly_rate: null,
 };
 
 const newAgencyReducer = (state = emptyNewAgency, action) => {

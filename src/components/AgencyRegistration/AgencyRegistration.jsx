@@ -1,4 +1,4 @@
-//import MUI components 
+//import MUI components
 import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
@@ -6,19 +6,20 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-//import from components 
+//import from components
 import AgencyRegistrationForm1 from './AgencyRegistrationForm1';
 import AgencyRegistrationForm2 from './AgencyRegistrationForm2';
 import AgencyRegistrationForm3 from './AgencyRegistrationForm3';
 import AgencyRegistrationForm4 from './AgencyRegistrationForm4';
+import AgencyRegistrationForm5 from './AgencyRegistrationForm5';
 
-//import react 
+//import react
 import { useState, Fragment } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 function AgencyRegistration() {
-  const steps = ['Step 1', 'Step 2', 'Step 3', 'Step 4'];
+  const steps = ['Step 1', 'Step 2', 'Step 3', 'Step 4', 'Step 5'];
 
   const [activeStep, setActiveStep] = useState(0);
   const [canMoveForward, setCanMoveForward] = useState(false);
@@ -90,6 +91,10 @@ function AgencyRegistration() {
         return (
           <AgencyRegistrationForm4 setCanMoveForward={setCanMoveForward} />
         );
+      case 4:
+        return (
+          <AgencyRegistrationForm5 setCanMoveForward={setCanMoveForward} />
+        );
     }
   };
 
@@ -133,6 +138,8 @@ function AgencyRegistration() {
                   {activeStep === 0 ? 'Cancel' : 'Back'}
                 </Button>
                 <Box sx={{ flex: '1 1 auto' }} />
+                {/* Button only displays if validation succeeds */}
+                {/* On the last step, this shows submit instead of next */}
                 {canMoveForward && (
                   <Button onClick={handleNext}>
                     {activeStep === steps.length - 1 ? 'Submit' : 'Next'}

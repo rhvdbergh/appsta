@@ -26,8 +26,10 @@ function BuyerOptionsPage() {
         )
       );
     // dispatch to save in the redux store
-    dispatch({ type: 'SET_SELECTED_FEATURES', payload: selectedFeatures }); 
+    dispatch({ type: 'SET_SELECTED_FEATURES', payload: selectedFeatures });
     console.log('Quote Submitted', selectedFeatures);
+    // clear the selectedCategory reducer data
+    dispatch({ type: 'REFRESH_SELECTED_CATEGORY_DATA' });
     // move the user to the review page
     history.push('/BuyerReview');
   };
@@ -37,6 +39,9 @@ function BuyerOptionsPage() {
 
   useEffect(() => {
     dispatch({ type: 'GET_FEATURES' });
+    // clear out the reducers to ensure no old values are
+    // used when creating a new project
+    dispatch({ type: 'REFRESH_DATA' });
   }, []);
 
   return (
