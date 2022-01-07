@@ -69,7 +69,7 @@ router.get('/project/:buyer_id', rejectUnauthenticated, (req, res) => {
   const query = `
   SELECT * FROM projects
   WHERE buyer_id = $1
-  ORDER BY date_of_project DESC;
+  ORDER BY id DESC;
   `;
 
   // run the query
