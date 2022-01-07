@@ -105,6 +105,20 @@ function Admin() {
 
 
     console.log('payload of newFeature', newFeature);
+
+
+    // add data to the redux store
+  const handleData = (data, value) => {
+    // check to see that the data field is not empty
+    if (data !== '') {
+      dispatch({
+        type: 'POST_NEW_FEATURE',
+        payload: { ...newFeature, [data]: value },
+      });
+    }
+  };
+
+
     return (
         <>
             <Box sx={{ display: 'flex', }} >
@@ -136,6 +150,9 @@ function Admin() {
                                         value={newFeature.feature_name}
                                         variant="outlined"
                                         onChange={(event) => handlePropertyChange(event, "feature_name")}
+                                        onBlur={() => {
+                                            handleData ('feature_name', feature_name);
+                                        }}
                                     />
 
                                     <TextField
