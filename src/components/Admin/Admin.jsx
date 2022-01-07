@@ -203,7 +203,7 @@ function Admin() {
                         </DialogActions>
                     </Dialog>
                     <Box>
-                        <OptionsList features={features} />
+                        <OptionsList features={features} listType= "admin-features" />
                     </Box>
                 </Box>
 

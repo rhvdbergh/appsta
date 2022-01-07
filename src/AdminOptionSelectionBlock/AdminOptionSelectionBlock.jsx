@@ -10,11 +10,15 @@ function AdminOptionSelectionBlock({ feature }) {
         dispatch({ type: 'DELETE_FEATURE', payload: feature.id})
     }
 
+    const handleEdit = () => {
+        // dispatch({ type: 'EDIT_FEATURE', payload: feature.id})
+    }
+
     console.log('in admin, feature', feature.id)
     return (
         <>
             <Button onClick={handleDelete}>Delete</Button>
-            <Button>Edit</Button>
+            <Button onClick={handleEdit}>Edit</Button>
         </>
     )
 }

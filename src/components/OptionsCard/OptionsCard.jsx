@@ -55,17 +55,9 @@ function OptionsCard({ feature, listType, quoteData }) {
             {/* //conditionally render block - if buyer vs agency display different blocks */}
             {!user.isBuyer && !user.is_admin && user.id ? (
               <AgencyOptionsSelectionBlock feature={feature} />
-            ) : listType !== 'buyer-review-features' ? (
+            ) : listType !== 'buyer-review-features' && listType !== 'admin-features' ? (
               <BuyerOptionsSelectionBlock feature={feature} />
             ) : (
-              <></>
-            )}
-
-            {user.is_admin ? (
-              <AdminOptionSelectionBlock feature={feature} />
-            ) : listType === 'admin-features' ? (
-              <AdminOptionSelectionBlock feature={feature} />
-            ):(
               <></>
             )}
 
