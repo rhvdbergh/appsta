@@ -16,6 +16,8 @@ function* deleteFeature(action){
     console.log('this is the id of the feature to delete', action.payload)
     try{
         yield axios.delete(`/api/admin/${action.payload}`)
+        //get the page to rerender after delete 
+        // yield put({ type: 'SET_FEATURES' });
     }catch(error) {
         console.log('error in delete features route', error)
     }
