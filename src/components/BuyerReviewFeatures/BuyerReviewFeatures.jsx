@@ -55,7 +55,7 @@ function BuyerReviewFeatures() {
       type: 'GET_QUOTING_AGENCIES',
       payload: projectFeatures.map((f) => f.feature_id),
     });
-  }, []);
+  }, [projectFeatures]);
 
   // when we have the agencies, get the cost estimate data
   useEffect(() => {
