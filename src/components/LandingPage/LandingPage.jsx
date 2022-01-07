@@ -16,7 +16,6 @@ function LandingPage() {
   return (
     <div>
       <center>
-        <h1>Buyer Login</h1>
         
           <LoginForm />
   
