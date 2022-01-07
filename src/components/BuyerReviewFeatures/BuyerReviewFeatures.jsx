@@ -55,7 +55,7 @@ function BuyerReviewFeatures() {
       type: 'GET_QUOTING_AGENCIES',
       payload: projectFeatures.map((f) => f.feature_id),
     });
-  }, []);
+  }, [projectFeatures]);
 
   // when we have the agencies, get the cost estimate data
   useEffect(() => {
@@ -158,7 +158,8 @@ function BuyerReviewFeatures() {
           <Typography variant="h5">
             Review the features of your project
           </Typography>
-          {quoteData.length > 0 && (
+          {quoteData.length > 0 && 
+            projectFeatures.length > 0 && (
             <OptionsList
               features={projectFeatures}
               listType={'buyer-review-features'}
@@ -167,18 +168,21 @@ function BuyerReviewFeatures() {
               totalCost={totalCost}
             />
           )}
-          {quoteData.length === 0 && (
+          {quoteData.length === 0 && 
+            projectFeatures.length > 0 && (
             <Typography variant="h6">
               Sorry, no agencies can provide all of your selected features.
             </Typography>
           )}
-          {categoryQuotes.length > 0 && (
+          {categoryQuotes.length > 0 && 
+            projectFeatures.length > 0 && (
             <Typography variant="h6" sx={{ my: 1 }}>
               Cost range for {categoryName} group:{' '}
               {totalCost(categoryQuotes, quotingAgencies)}
             </Typography>
           )}
-          {quoteData.length > 0 && (
+          {quoteData.length > 0 && 
+            projectFeatures.length && (
             <Typography variant="h6" sx={{ my: 1 }}>
               Cost range for project: {totalCost(quoteData, quotingAgencies)}
             </Typography>
