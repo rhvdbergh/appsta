@@ -15,7 +15,7 @@ function* postNewFeature(action) {
 function* deleteFeature(action){
     console.log('this is the id of the feature to delete', action.payload)
     try{
-        yield axios.delete('/api/admin', action.payload)
+        yield axios.delete(`/api/admin/${action.payload}`)
     }catch(error) {
         console.log('error in delete features route', error)
     }
