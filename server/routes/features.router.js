@@ -49,8 +49,22 @@ router.get('/:project_id', (req, res) => {
 });
 
 
-router.post('/api/newFeature', (req, res) => {
+router.post('/newFeature', (req, res) => {
   //build a query 
+  const query = `
+  INSERT INTO "features" (feature_name, feature_story, feature_description, category_id, image_url)
+  VALUES ($1, $2, $3, $4, $5);
+  `;
+  const inf = req.body;
+
+  pool.query(query, [inf.feature_name, inf.feature_story, inf.feature_description, inf.category_id, inf.image_url])
+    .then(result => {
+      res.sendStatus(201);
+    })
+    .catch(err => {
+      console.log(err);
+      res.sendStatus(500)
+    })
 })
 
 module.exports = router;
