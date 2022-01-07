@@ -152,7 +152,10 @@ function BuyerReviewFeatures() {
       <Box sx={{ display: 'flex' }}>
         <Navbar
           btn1text={'Go Back'}
-          fxn1={() => history.push('/BuyerDashboard')}
+          fxn1={() => {
+            history.push('/BuyerDashboard');
+            dispatch({ type: 'REFRESH_DATA' });
+          }}
         />
         <Box>
           <Typography variant="h5">

@@ -199,9 +199,11 @@ function BuyerReviewSelection() {
           <Button onClick={handleFeatureChange}>Change Features</Button>
           {/* Conditionally render this button; if the user is logged in */}
           {/* it means that this is not the first project they are starting */}
-          <Button onClick={handleRegister}>
-            {user.id ? 'View quotes' : 'Register to view quotes'}
-          </Button>
+          {quotingAgencies.length > 0 && 
+            (<Button onClick={handleRegister}>
+              {user.id ? 'View quotes' : 'Register to view quotes'}
+            </Button>)
+          }
         </Box>
       </Box>
     </>
