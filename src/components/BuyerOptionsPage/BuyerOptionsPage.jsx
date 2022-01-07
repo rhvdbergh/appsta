@@ -57,7 +57,6 @@ function BuyerOptionsPage() {
               be based on selected features.{' '}
             </p>
             <OptionsList features={features} />
-            <p> Selected Category ID is: {selectedCategory}</p>
           </Box>
         </Box>
       </div>

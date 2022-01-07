@@ -28,8 +28,7 @@ import BuyerRegistration from '../BuyerRegistration/BuyerRegistration';
 import BuyerCompareQuotes from '../BuyerCompareQuotes/BuyerCompareQuotes';
 import BuyerReviewFeatures from '../BuyerReviewFeatures/BuyerReviewFeatures';
 
-
-//import MUI 
+//import MUI
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
@@ -75,14 +74,13 @@ function App() {
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
-    dispatch({ type: 'GET_FEATURES' })
+    dispatch({ type: 'GET_FEATURES' });
   }, [dispatch]);
 
   return (
     <ThemeProvider theme={theme}>
       <Router>
         <div>
-          <Nav />
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/LandingPage */}
             <Redirect exact from="/" to="/LandingPage" />
@@ -102,12 +100,12 @@ function App() {
                 // redirect them to the /BuyerDashboard page
                 <Redirect to="/BuyerDashboard" />
               ) : // but if they're an agency, to the agency page
-                user.id && !user.isBuyer ? (
-                  <Redirect to="/AgencyDashboard" />
-                ) : (
-                  // Otherwise, show the Landing page
-                  <LandingPage />
-                )}
+              user.id && !user.isBuyer ? (
+                <Redirect to="/AgencyDashboard" />
+              ) : (
+                // Otherwise, show the Landing page
+                <LandingPage />
+              )}
             </Route>
             <Route exact path="/BuyerReview">
               <BuyerReviewSelection />
@@ -173,22 +171,20 @@ function App() {
               )}
             </ProtectedRoute>
 
-    {/* Adding in an Admin Route  */}
-          <Route exact path="/Admin">
-            {/* {user.isAdmin ? ( */}
-             <Admin />
-             {/* ) : (
+            {/* Adding in an Admin Route  */}
+            <Route exact path="/Admin">
+              {/* {user.isAdmin ? ( */}
+              <Admin />
+              {/* ) : (
             <Redirect to="/LandingPage" />
             )} */}
-          </Route>
+            </Route>
 
             {/* If none of the other routes matched, we will show a 404. */}
             <Route>
               <h1>404</h1>
             </Route>
           </Switch>
-
-          <Footer />
         </div>
       </Router>
     </ThemeProvider>
