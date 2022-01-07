@@ -8,6 +8,8 @@ function* postNewAgency(action) {
     yield axios.post('/api/agency/new', action.payload);
     // automatically log a user in after registration
     yield put({ type: 'LOGIN', payload: action.payload });
+    // clear the local storage, since the agency has successfully registered
+    localStorage.clear();
   } catch (error) {
     console.log('error in post new agency', error);
     yield put({ type: 'POST_AGENCY_ERROR' });
