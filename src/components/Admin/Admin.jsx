@@ -15,7 +15,8 @@ import {
     Button,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-
+import Navbar from '../Navbar/Navbar';
+import OptionsList from '../OptionsList/OptionsList';
 
 import { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -45,13 +46,9 @@ function Admin() {
     const { form, input } = useStyles();
 
 
-    //not used yet 
-    const handlePost = () => {
-        dispatch({ type: 'POST_NEW_FEATURE', payload: newFeature });
-    }
-
     //grab categories from reducer found in navBar Saga 
     const category = useSelector((store) => store.category);
+    const features = useSelector((store) => store.features)
     console.log('category', category);
 
     //Set Local State 
@@ -62,7 +59,23 @@ function Admin() {
         image_url: '',
         category_id: '',
     })
-  
+
+    //not used yet 
+    const handlePost = () => {
+        if (
+            newFeature.feature_name !== '' &&
+            newFeature.feature_story !== '' &&
+            newFeature.feature_description !== '' &&
+            newFeature.image_url !== '' &&
+            newFeature.category_id !== ''
+        ) {
+            dispatch({ type: 'POST_NEW_FEATURE', payload: newFeature });
+            setOpen(false)
+        } else {
+            alert('Please fill in all fields!')
+        }
+
+    }
     //when input is filled out
     const handlePropertyChange = (event, property) => {
         setNewFeature({
@@ -103,25 +116,18 @@ function Admin() {
         }
     }, [open]);
 
-
-    console.log('payload of newFeature', newFeature);
-
-
-    // add data to the redux store
-  const handleData = (data, value) => {
-    // check to see that the data field is not empty
-    if (data !== '') {
-      dispatch({
-        type: 'POST_NEW_FEATURE',
-        payload: { ...newFeature, [data]: value },
-      });
+    const handleLogOut = () => {
+        dispatch({ type: 'LOGOUT' });
     }
-  };
-
 
     return (
         <>
             <Box sx={{ display: 'flex', }} >
+                <Navbar
+                    headerText={'Hello Admin'}
+                    btn1text={'LogOut'}
+                    fxn1={handleLogOut}
+                />
                 <Box>
                     <h1> Admin Page </h1>
                     <p> Hello Admin. this is a stud ....</p>
@@ -150,9 +156,6 @@ function Admin() {
                                         value={newFeature.feature_name}
                                         variant="outlined"
                                         onChange={(event) => handlePropertyChange(event, "feature_name")}
-                                        onBlur={() => {
-                                            handleData ('feature_name', feature_name);
-                                        }}
                                     />
 
                                     <TextField
@@ -199,7 +202,11 @@ function Admin() {
                             <Button onClick={handlePost}> Add Feature </Button>
                         </DialogActions>
                     </Dialog>
+                    <Box>
+                        <OptionsList features={features} />
+                    </Box>
                 </Box>
+
             </Box>
         </>
     )

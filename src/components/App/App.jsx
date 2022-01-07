@@ -100,12 +100,12 @@ function App() {
                 // redirect them to the /BuyerDashboard page
                 <Redirect to="/BuyerDashboard" />
               ) : // but if they're an agency, to the agency page
-              user.id && !user.isBuyer ? (
-                <Redirect to="/AgencyDashboard" />
-              ) : (
-                // Otherwise, show the Landing page
-                <LandingPage />
-              )}
+                user.id && !user.isBuyer ? (
+                  <Redirect to="/AgencyDashboard" />
+                ) : (
+                  // Otherwise, show the Landing page
+                  <LandingPage />
+                )}
             </Route>
             <Route exact path="/BuyerReview">
               <BuyerReviewSelection />
@@ -166,19 +166,19 @@ function App() {
             <ProtectedRoute exact path="/BuyerCompareQuotes">
               {user.isBuyer ? (
                 <BuyerCompareQuotes />
-              ) : (
+              ) : !user.is_admin ? (
                 <Redirect to="/AgencyDashboard" />
-              )}
+              ) : (<Redirect to="/Admin" />)}
             </ProtectedRoute>
 
             {/* Adding in an Admin Route  */}
-            <Route exact path="/Admin">
-              {/* {user.isAdmin ? ( */}
-              <Admin />
-              {/* ) : (
-            <Redirect to="/LandingPage" />
-            )} */}
-            </Route>
+            <ProtectedRoute exact path="/Admin">
+              {user.is_admin ? (
+                <Admin />
+              ) : (
+                <Redirect to="/LandingPage" />
+              )}
+            </ProtectedRoute>
 
             {/* If none of the other routes matched, we will show a 404. */}
             <Route>
