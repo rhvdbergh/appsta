@@ -4,6 +4,7 @@ import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
+import CardMedia from '@mui/material/CardMedia';
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
@@ -70,7 +71,15 @@ export default function Navbar({
         variant="permanent"
         anchor="left"
       >
-        <Toolbar />
+        <Toolbar>
+          <CardMedia
+            component="img"
+            height="140"
+            image="https://images.unsplash.com/photo-1617691763432-8b45e6748b71?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Z2Vja298ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60"
+            alt="green iguana"
+            onClick={() => history.push('/')}
+          />
+        </Toolbar>
         <Divider />
         {/* Conditinally renders a heading text when on buyer dashboard */}
         {onBuyerDashboard && <Typography>{headerText}</Typography>}
