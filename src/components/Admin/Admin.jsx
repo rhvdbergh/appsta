@@ -45,10 +45,7 @@ function Admin() {
     const { form, input } = useStyles();
 
 
-    //not used yet 
-    const handlePost = () => {
-        dispatch({ type: 'POST_NEW_FEATURE', payload: newFeature });
-    }
+
 
     //grab categories from reducer found in navBar Saga 
     const category = useSelector((store) => store.category);
@@ -62,7 +59,22 @@ function Admin() {
         image_url: '',
         category_id: '',
     })
-  
+
+    //not used yet 
+    const handlePost = () => {
+        if (
+            newFeature.feature_name !== '' &&
+            newFeature.feature_story !== '' &&
+            newFeature.feature_description !== '' &&
+            newFeature.image_url !== '' &&
+            newFeature.category_id !== ''
+        ){
+            dispatch({ type: 'POST_NEW_FEATURE', payload: newFeature });
+        }else{
+            alert('Please fill in all fields!')
+        }
+           
+    }
     //when input is filled out
     const handlePropertyChange = (event, property) => {
         setNewFeature({
@@ -103,22 +115,6 @@ function Admin() {
         }
     }, [open]);
 
-
-    console.log('payload of newFeature', newFeature);
-
-
-//     // add data to the redux store
-//   const handleData = (data, value) => {
-//     // check to see that the data field is not empty
-//     if (data !== '') {
-//       dispatch({
-//         type: 'POST_NEW_FEATURE',
-//         payload: { ...newFeature, [data]: value },
-//       });
-//     }
-//   };
-
-
     return (
         <>
             <Box sx={{ display: 'flex', }} >
@@ -150,9 +146,6 @@ function Admin() {
                                         value={newFeature.feature_name}
                                         variant="outlined"
                                         onChange={(event) => handlePropertyChange(event, "feature_name")}
-                                        // onBlur={() => {
-                                        //     handleData ('feature_name', feature_name);
-                                        // }}
                                     />
 
                                     <TextField
