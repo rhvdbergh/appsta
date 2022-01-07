@@ -22,6 +22,8 @@ const quotesRouter = require('./routes/quotes.router');
 
 const agencyConversionRouter = require('./routes/agencyConversion.router');
 
+const adminRouter = require('./routes/admin.router');
+
 // Body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -47,6 +49,8 @@ app.use('/api/category', categoryRouter);
 app.use('/api/quotes', quotesRouter);
 
 app.use('/api/conversion', agencyConversionRouter);
+
+app.use('/api/admin', adminRouter);
 
 
 // Serve static files

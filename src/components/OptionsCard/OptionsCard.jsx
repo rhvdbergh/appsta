@@ -53,7 +53,7 @@ function OptionsCard({ feature, listType, quoteData }) {
             }}
           >
             {/* //conditionally render block - if buyer vs agency display different blocks */}
-            {!user.isBuyer && user.id ? (
+            {!user.isBuyer && !user.is_admin && user.id ? (
               <AgencyOptionsSelectionBlock feature={feature} />
             ) : listType !== 'buyer-review-features' ? (
               <BuyerOptionsSelectionBlock feature={feature} />
@@ -68,7 +68,7 @@ function OptionsCard({ feature, listType, quoteData }) {
             ):(
               <></>
             )}
-            
+
           </CardContent>
         </>
       )}
