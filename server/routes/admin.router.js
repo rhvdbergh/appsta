@@ -26,7 +26,7 @@ router.post('/newFeature', (req, res) => {
 
 router.delete('/:id', (req, res) => {
     const id = req.params.id
-    console.log('this is the id from action payload(which is the feature) id', id)
+    console.log('delete action payload(which is the feature) id', id)
 
     const query = `
       DELETE FROM "features"
@@ -40,6 +40,34 @@ router.delete('/:id', (req, res) => {
             console.log(err);
             res.sendStatus(500)
         })
+})
+
+router.put('/edit/:id', (req, res) => {
+    const id = req.params.id
+    console.log('edit action payload(which is the feature) id', id)
+
+    const query = `
+    UPDATE "features"
+    SET feature_name = $1, feature_story = $2, feature_description = $3, category_id = $4, image_url = $5
+    WHERE "id" = $6;`;
+
+    const values = [
+        req.body.feature_name,
+        req.body.feature_story,
+        req.body.feature_description,
+        req.body.category_id,
+        req.body.image_url,
+        id
+      ];
+      pool
+    .query(query, values)
+    .then((response) => {
+      res.sendStatus(204);
+    })
+    .catch((err) => {
+      console.log('error updating the admin feature', err);
+      res.sendStatus(500);
+    });
 })
 
 module.exports = router;

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { put, takeLatest } from 'redux-saga/effects';
+import { put, take, takeLatest } from 'redux-saga/effects';
 
 
 function* postNewFeature(action) {
@@ -12,11 +12,20 @@ function* postNewFeature(action) {
     }
 }
 
-function* deleteFeature(action){
+function* deleteFeature(action) {
     console.log('this is the id of the feature to delete', action.payload)
-    try{
+    try {
         yield axios.delete(`/api/admin/${action.payload}`)
-    }catch(error) {
+    } catch (error) {
+        console.log('error in delete features route', error)
+    }
+}
+
+function* editFeature(action) {
+    console.log('this is the id of the feature to edit', action.payload)
+    try {
+        yield axios.put(`/api/admin/edit/${action.payload}`)
+    } catch (error) {
         console.log('error in delete features route', error)
     }
 }
@@ -24,6 +33,7 @@ function* deleteFeature(action){
 function* adminSaga() {
     yield takeLatest('POST_NEW_FEATURE', postNewFeature)
     yield takeLatest('DELETE_FEATURE', deleteFeature)
+    yield takeLatest('EDIT_FEATURE', editFeature)
 }
 
 export default adminSaga;
