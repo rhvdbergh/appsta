@@ -13,6 +13,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import AdminOptionSelectionBlock from '../../AdminOptionSelectionBlock/AdminOptionSelectionBlock';
 
 function OptionsCard({ feature, listType, quoteData }) {
   const theme = useTheme();
@@ -59,6 +60,15 @@ function OptionsCard({ feature, listType, quoteData }) {
             ) : (
               <></>
             )}
+
+            {user.is_admin ? (
+              <AdminOptionSelectionBlock feature={feature} />
+            ) : listType === 'admin-features' ? (
+              <AdminOptionSelectionBlock feature={feature} />
+            ):(
+              <></>
+            )}
+            
           </CardContent>
         </>
       )}
@@ -69,6 +79,9 @@ function OptionsCard({ feature, listType, quoteData }) {
 
       {listType === 'buyer-review-features' && (
         <BuyerReviewFeaturesBlock feature={feature} quoteData={quoteData} />
+      )}
+      {listType === 'admin-features' && (
+        <AdminOptionSelectionBlock feature={feature} />
       )}
     </Card>
   );
