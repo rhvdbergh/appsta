@@ -36,6 +36,8 @@ function* loginUser(action) {
 }
 
 // worker Saga: will be fired on "LOGOUT" actions
+// the expected payload is the history object from react-router-dom
+// so we can navigate back to the landing page
 function* logoutUser(action) {
   try {
     const config = {
@@ -53,6 +55,7 @@ function* logoutUser(action) {
     // remove the client-side user object to let
     // the client-side code know the user is logged out
     yield put({ type: 'UNSET_USER' });
+    yield action.payload.push('/LandingPage');
   } catch (error) {
     console.log('Error with user logout:', error);
   }
