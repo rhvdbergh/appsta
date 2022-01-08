@@ -30,6 +30,14 @@ function OptionsList({
               />
             );
           })}
+      {features.filter((feature) => feature.category_id === selectedCategory)
+        .length === 0 && (
+          <Typography
+            variant="h6">
+              No features selected for this category.
+            </Typography>
+        )
+      }
     </>
   );
 }
