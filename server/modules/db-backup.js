@@ -11,16 +11,22 @@ const dbBackup = (server) => {
   pool
     .query(query)
     .then((response) => {
-      console.log(response.rows);
+      const tables = response.rows.map((t) => t.table_name);
+
+      console.log(tables);
+      console.log('Backup complete: closing server...');
+      server.close();
+      process.exit();
     })
-    .catch((err) =>
+    .catch((err) => {
       console.log(
         'there was an error while retrieving the tables in the database:',
         err
-      )
-    );
-  console.log('Backup complete: closing server...');
-  server.close();
+      );
+      console.log('Closing server...');
+      server.close();
+      process.exit();
+    });
 };
 
 module.exports = dbBackup;
