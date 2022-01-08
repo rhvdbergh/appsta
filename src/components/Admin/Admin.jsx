@@ -130,7 +130,6 @@ function Admin() {
                 />
                 <Box>
                     <h1> Admin Page </h1>
-                    <p> Hello Admin. this is a stud ....</p>
                     <Button onClick={handleClickOpen('body')}>
                         Create New Feature
                     </Button>
