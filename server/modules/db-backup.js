@@ -31,7 +31,9 @@ const dbBackup = (server) => {
         'agency_conversion',
       ];
 
-      tables.forEach((table) => backupTable(table));
+      for (let i = 0; i < tables.length; i++) {
+        backupTable(tables[i]);
+      }
 
       console.log('Backup complete: closing server...');
 
