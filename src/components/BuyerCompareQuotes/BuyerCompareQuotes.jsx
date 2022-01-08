@@ -142,7 +142,10 @@ function BuyerCompareQuotes() {
       <Button
         variant="contained"
         disabled={!projectAgencies.length > 0}
-        onClick={() => history.push('/BuyerDashboard')}
+        onClick={() => {
+          dispatch({ type: 'REFRESH_DATA' });
+          history.push('/BuyerDashboard');
+        }}
       >
         Save Project
       </Button>
