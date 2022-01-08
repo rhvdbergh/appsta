@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 require('dotenv').config();
+const dbBackup = require('./modules/db-backup');
 
 const app = express();
 
@@ -10,7 +11,7 @@ const passport = require('./strategies/user.strategy');
 // Route includes
 const userRouter = require('./routes/user.router');
 
-const buyerRouter = require('./routes/buyer.router')
+const buyerRouter = require('./routes/buyer.router');
 
 const agencyRouter = require('./routes/agency.router');
 
@@ -38,7 +39,7 @@ app.use(passport.session());
 /* Routes */
 app.use('/api/user', userRouter);
 
-app.use('/api/buyer', buyerRouter)
+app.use('/api/buyer', buyerRouter);
 
 app.use('/api/agency', agencyRouter);
 
@@ -60,6 +61,17 @@ app.use(express.static('build'));
 const PORT = process.env.PORT || 5000;
 
 /** Listen * */
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`);
 });
+
+// grab any command line arguments from node
+// the first two arguments are the node path and the file path
+// but we only want the additional args
+const args = process.argv.slice(2);
+
+// if backup has been passsed as an argument,
+// we should run a backup of the PostgreSQL db
+if (args[0] === 'backup') {
+  dbBackup(server);
+}
