@@ -100,11 +100,12 @@ function App() {
                 // redirect them to the /BuyerDashboard page
                 <Redirect to="/BuyerDashboard" />
               ) : // but if they're an agency, to the agency page
-              user.id && !user.isBuyer ? (
+                user.id && !user.isBuyer && !user.is_admin ? (
                 <Redirect to="/AgencyDashboard" />
-              ) : (
-                // Otherwise, show the Landing page
-                <LandingPage />
+              ) : // if user is admin, to the admin page
+                user.id && user.is_admin ? (                 <Redirect to="/Admin" />
+              ) : ( // Otherwise, show the Landing page
+                  <LandingPage />
               )}
             </Route>
             <Route exact path="/BuyerReview">
@@ -124,7 +125,7 @@ function App() {
             </Route>
             {/* Adding router for Agency Login Page */}
             <Route exact path="/AgencyLogin">
-              {user.id && !user.isBuyer ? (
+              {user.id && !user.isBuyer && !user.isAdmin ? (
                 // If the user is already logged in,
                 // and the user is an agency,
                 // redirect them to the /AgencyDashboard page
@@ -148,37 +149,41 @@ function App() {
             </ProtectedRoute>
             {/* Protected Agency Dashboard Route */}
             <ProtectedRoute exact path="/AgencyDashboard">
-              {!user.isBuyer ? (
+              {!user.isBuyer && !user.is_admin ? (
                 <AgencyDashboard />
+              ) : user.is_admin ? (
+                <Redirect to="/Admin" />
               ) : (
                 <Redirect to="/BuyerDashboard" />
               )}
             </ProtectedRoute>
             {/* adding AgencyOptionsPage Route */}
             <ProtectedRoute exact path="/AgencyOptionsPage">
-              {!user.isBuyer ? (
+              {!user.is_admin && !user.isBuyer ? (
                 <AgencyOptionsPage />
+              ) : user.is_admin ? (
+                <Redirect to="/Admin" />
               ) : (
                 <Redirect to="/BuyerDashboard" />
-              )}
+              )} 
             </ProtectedRoute>
             {/* adding BuyerCompareQuotes Route */}
             <ProtectedRoute exact path="/BuyerCompareQuotes">
               {user.isBuyer ? (
                 <BuyerCompareQuotes />
-              ) : (
+              ) : !user.is_admin ? (
                 <Redirect to="/AgencyDashboard" />
-              )}
+              ) : (<Redirect to="/Admin" />)}
             </ProtectedRoute>
 
             {/* Adding in an Admin Route  */}
-            <Route exact path="/Admin">
-              {/* {user.isAdmin ? ( */}
-              <Admin />
-              {/* ) : (
-            <Redirect to="/LandingPage" />
-            )} */}
-            </Route>
+            <ProtectedRoute exact path="/Admin">
+              {user.is_admin ? (
+                <Admin />
+              ) : (
+                <Redirect to="/LandingPage" />
+              )}
+            </ProtectedRoute>
 
             {/* If none of the other routes matched, we will show a 404. */}
             <Route>

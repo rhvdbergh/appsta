@@ -38,8 +38,7 @@ function AgencyDashboard() {
   const [agency_blurb, setAgency_blurb] = useState(user.agency_blurb);
   const [logo_url, setLogo_url] = useState(user.logo_url);
   const [contact_first_name, setContact_first_name] = useState(
-    user.contact_first_name
-  );
+    user.contact_first_name);
   const [contact_last_name, setContact_last_name] = useState(
     user.contact_last_name
   );
