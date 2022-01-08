@@ -100,12 +100,13 @@ function App() {
                 // redirect them to the /BuyerDashboard page
                 <Redirect to="/BuyerDashboard" />
               ) : // but if they're an agency, to the agency page
-                user.id && !user.isBuyer ? (
-                  <Redirect to="/AgencyDashboard" />
-                ) : (
-                  // Otherwise, show the Landing page
+                user.id && !user.isBuyer && !user.is_admin ? (
+                <Redirect to="/AgencyDashboard" />
+              ) : // if user is admin, to the admin page
+                user.id && user.is_admin ? (                 <Redirect to="/Admin" />
+              ) : ( // Otherwise, show the Landing page
                   <LandingPage />
-                )}
+              )}
             </Route>
             <Route exact path="/BuyerReview">
               <BuyerReviewSelection />
