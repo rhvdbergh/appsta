@@ -76,7 +76,7 @@ const backupTable = (table) => {
         entries[entries.length - 1][headings[headings.length - 1]]
       }');`;
 
-      console.log(`${table} insertQuery: `, insertQuery);
+      console.log(insertQuery);
     })
     .catch((err) => {
       console.log('there was an error selecting from table', table);
