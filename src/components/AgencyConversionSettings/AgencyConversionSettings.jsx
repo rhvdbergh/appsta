@@ -116,7 +116,11 @@ function AgencyConversionSettings({user}) {
           handleChange('hourly_rate', event.target.value)
         }}
       />
-      <Button onClick={handleUpdate}>Update Data</Button>
+      <Button
+        variant="contained" 
+        onClick={handleUpdate}
+        >Update Data
+      </Button>
 
     </Box>
     
