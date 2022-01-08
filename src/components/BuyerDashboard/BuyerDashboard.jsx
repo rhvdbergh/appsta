@@ -39,6 +39,7 @@ function BuyerDashboard() {
   }, [activeProject]);
 
   const handleReviewFeatures = () => {
+    dispatch({ type: 'REFRESH_DATA' });
     history.push('/BuyerReviewFeatures');
   };
 
