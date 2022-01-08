@@ -20,6 +20,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Typography
 } from '@mui/material';
 import OptionsList from '../OptionsList/OptionsList';
 import AgencyConversionSettings from '../AgencyConversionSettings/AgencyConversionSettings';
@@ -37,8 +38,7 @@ function AgencyDashboard() {
   const [agency_blurb, setAgency_blurb] = useState(user.agency_blurb);
   const [logo_url, setLogo_url] = useState(user.logo_url);
   const [contact_first_name, setContact_first_name] = useState(
-    user.contact_first_name
-  );
+    user.contact_first_name);
   const [contact_last_name, setContact_last_name] = useState(
     user.contact_last_name
   );
@@ -118,8 +118,16 @@ function AgencyDashboard() {
       >
         <Navbar />
         <Box>
-          <h1> AGENCY DASHBOARD </h1>
-          <Button onClick={handleClickOpen('body')}>
+          <Typography
+            align="center"
+            sx={{m:2}}
+            variant="h4"
+          > 
+        Settings for {user.agency_name} 
+          </Typography>
+          <Button
+            variant="contained" 
+            onClick={handleClickOpen('body')}>
             Update Account Details
           </Button>
           <AgencyConversionSettings user={user} />

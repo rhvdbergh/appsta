@@ -39,7 +39,7 @@ passport.deserializeUser((id, done) => {
         // done takes an error (null in this case) and a user
         // check if this is a buyer or an agency
         // we can determine this by checking whether there is agency_name is null
-        if (user.agency_name === null) {
+        if (user.agency_name === null && user.is_admin === false) {
           // this is a buyer
           user.isBuyer = true;
         } else {
