@@ -1,7 +1,14 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Navbar from '../Navbar/Navbar';
-import { Card, Box, Typography, Modal } from '@mui/material';
+import {
+  Card,
+  CardContent,
+  Button,
+  Box,
+  Typography,
+  Modal,
+} from '@mui/material';
 import BuyerQuotesList from '../BuyerQuotesList/BuyerQuotesList';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -75,14 +82,29 @@ function BuyerDashboard() {
             transform: 'translate(-50%, -50%)',
             width: 400,
             bgcolor: 'background.paper',
-            p: 4,
+            p: 2,
           }}
         >
-          <Typography>
+          <Typography variant="h6">
             Do you want to start a new project? This will delete your previous
             project and quotes.
           </Typography>
-          {/* history.push('/BuyerOptions'); */}
+          <CardContent>
+            <Button
+              variant="contained"
+              color="error"
+              onClick={() => setModalOpen(false)}
+            >
+              Cancel
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => history.push('/BuyerOptions')}
+            >
+              Continue
+            </Button>
+          </CardContent>
         </Card>
       </Modal>
     </Box>
