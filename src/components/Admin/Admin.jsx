@@ -124,9 +124,9 @@ function Admin() {
         <>
             <Box sx={{ display: 'flex', }} >
                 <Navbar
-                    headerText={'Hello Admin'}
-                    btn1text={'LogOut'}
-                    fxn1={handleLogOut}
+                    // headerText={'Hello Admin'}
+                    // btn1text={'LogOut'}
+                    // fxn1={handleLogOut}
                 />
                 <Box>
                     <h1> Admin Page </h1>
