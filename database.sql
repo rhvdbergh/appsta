@@ -495,98 +495,7 @@ VALUES
   ('5', 'icons'),
   ('6', 'input fields');
 
-INSERT INTO
-  projects ("id", "buyer_id", "date_of_project")
-VALUES
-  (
-    '1',
-    '1',
-    '12/13/2021'
-  ),
-  (
-    '2',
-    '2',
-    '01/07/2022'
-  ),
-  (
-    '3',
-    '2',
-    '01/07/2022'
-  );
-
-INSERT INTO
-  project_features ("id", "project_id", "feature_id", "quantity")
-VALUES
-  ('1', '1', '4', '3'),
-  ('2', '2', '1', '1'),
-  ('3', '2', '2', '3'),
-  ('4', '2', '4', '3'),
-  ('5', '2', '6', '1'),
-  ('6', '2', '7', '1'),
-  ('7', '3', '1', '4'),
-  ('8', '3', '3', '2'),
-  ('9', '3', '4', '3'),
-  ('10', '3', '6', '1'),
-  ('11', '3', '8', '1'),
-  ('12', '3', '10', '2'),
-  ('13', '3', '11', '1');
-
-INSERT INTO
-  agency_features (
-    "id",
-    "agency_id",
-    "feature_id",
-    "feature_notes",
-    "t_shirt_size",
-    "confidence"
-  )
-VALUES
-  ('1', '1', '2', 'we got it!', 'XL', '70'),
-  ('2', '1', '1', 'no problem', 'S', '50'),
-  (
-    '3',
-    '2',
-    '4',
-    'ehhhhh, we have to check',
-    'XS',
-    '20'
-  ),
-  (
-    '4',
-    '2',
-    '6',
-    'whew, well this is awkward!',
-    'M',
-    '30'
-  ),
-  (
-    '5',
-    '2',
-    '2',
-    'whew, well this is awkward!',
-    'M',
-    '30'
-  ),
-  ('6', '1', '3', 'null', 'S', '20'),
-  ('7', '1', '4', 'null', 'XS', '50'),
-  ('9', '1', '6', 'null', 'M', '90'),
-  ('8', '1', '5', 'null', 'S', '85'),
-  ('10', '1', '7', 'null', 'M', '70'),
-  ('11', '1', '8', 'null', 'S', '70'),
-  ('12', '1', '9', 'null', 'S', '75'),
-  ('13', '1', '10', 'null', 'M', '30'),
-  ('14', '1', '11', 'null', 'L', '75'),
-  ('15', '3', '1', 'null', 'XS', '100'),
-  ('16', '3', '2', 'null', 'S', '100'),
-  ('17', '3', '3', 'null', 'S', '100'),
-  ('18', '3', '4', 'null', 'XS', '100'),
-  ('19', '3', '5', 'null', 'XL', '20'),
-  ('20', '3', '6', 'null', 'XS', '90'),
-  ('21', '3', '7', 'null', 'S', '100'),
-  ('22', '3', '8', 'null', 'S', '100'),
-  ('23', '3', '9', 'null', 'S', '100');
-
-INSERT INTO
+  INSERT INTO
   features (
     "id",
     "feature_name",
@@ -693,7 +602,7 @@ VALUES
     'https://lh3.googleusercontent.com/Cg9IlC6OWQ58eqWlbkPacWsO6vemJOcOzkRHsF7nnAVa6VD-GZgcMDGfPpHxcpS4FbhEqWiUO-W48Pd18FfR-cYrdPTo1bWjEIti=w1064-v0'
   );
 
-INSERT INTO
+  INSERT INTO
   agencies (
     "id",
     "user_id",
@@ -775,6 +684,97 @@ VALUES
     '555-555-7890',
     'https://w7.pngwing.com/pngs/471/512/png-transparent-superman-computer-cartoon-cartoon-computer-furniture-heroes-photography.png'
   );
+
+INSERT INTO
+  projects ("id", "buyer_id", "date_of_project")
+VALUES
+  (
+    '1',
+    '1',
+    '12/13/2021'
+  ),
+  (
+    '2',
+    '2',
+    '01/07/2022'
+  ),
+  (
+    '3',
+    '2',
+    '01/07/2022'
+  );
+
+INSERT INTO
+  project_features ("id", "project_id", "feature_id", "quantity")
+VALUES
+  ('1', '1', '4', '3'),
+  ('2', '2', '1', '1'),
+  ('3', '2', '2', '3'),
+  ('4', '2', '4', '3'),
+  ('5', '2', '6', '1'),
+  ('6', '2', '7', '1'),
+  ('7', '3', '1', '4'),
+  ('8', '3', '3', '2'),
+  ('9', '3', '4', '3'),
+  ('10', '3', '6', '1'),
+  ('11', '3', '8', '1'),
+  ('12', '3', '10', '2'),
+  ('13', '3', '11', '1');
+
+INSERT INTO
+  agency_features (
+    "id",
+    "agency_id",
+    "feature_id",
+    "feature_notes",
+    "t_shirt_size",
+    "confidence"
+  )
+VALUES
+  ('1', '1', '2', 'we got it!', 'XL', '70'),
+  ('2', '1', '1', 'no problem', 'S', '50'),
+  (
+    '3',
+    '2',
+    '4',
+    'ehhhhh, we have to check',
+    'XS',
+    '20'
+  ),
+  (
+    '4',
+    '2',
+    '6',
+    'whew, well this is awkward!',
+    'M',
+    '30'
+  ),
+  (
+    '5',
+    '2',
+    '2',
+    'whew, well this is awkward!',
+    'M',
+    '30'
+  ),
+  ('6', '1', '3', 'null', 'S', '20'),
+  ('7', '1', '4', 'null', 'XS', '50'),
+  ('9', '1', '6', 'null', 'M', '90'),
+  ('8', '1', '5', 'null', 'S', '85'),
+  ('10', '1', '7', 'null', 'M', '70'),
+  ('11', '1', '8', 'null', 'S', '70'),
+  ('12', '1', '9', 'null', 'S', '75'),
+  ('13', '1', '10', 'null', 'M', '30'),
+  ('14', '1', '11', 'null', 'L', '75'),
+  ('15', '3', '1', 'null', 'XS', '100'),
+  ('16', '3', '2', 'null', 'S', '100'),
+  ('17', '3', '3', 'null', 'S', '100'),
+  ('18', '3', '4', 'null', 'XS', '100'),
+  ('19', '3', '5', 'null', 'XL', '20'),
+  ('20', '3', '6', 'null', 'XS', '90'),
+  ('21', '3', '7', 'null', 'S', '100'),
+  ('22', '3', '8', 'null', 'S', '100'),
+  ('23', '3', '9', 'null', 'S', '100');
 
 INSERT INTO
   project_agencies ("id", "project_id", "agency_id")
