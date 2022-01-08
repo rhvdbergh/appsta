@@ -11,7 +11,25 @@ const dbBackup = (server) => {
   pool
     .query(query)
     .then((response) => {
-      const tables = response.rows.map((t) => t.table_name);
+      // uncomment this line to automatically detect the tables
+      // note that the inserts might not be in the correct order!
+      // also comment out the const tables below.
+      // const tables = response.rows.map((t) => t.table_name);
+
+      // these tables have been placed into the correct order
+      // for the insert statements to work
+      const tables = [
+        'users',
+        'buyers',
+        'feature_categories',
+        'features',
+        'agencies',
+        'projects',
+        'project_features',
+        'agency_features',
+        'project_agencies',
+        'agency_conversion',
+      ];
 
       tables.forEach((table) => backupTable(table));
 
