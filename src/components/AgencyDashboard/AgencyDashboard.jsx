@@ -20,6 +20,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Typography
 } from '@mui/material';
 import OptionsList from '../OptionsList/OptionsList';
 import AgencyConversionSettings from '../AgencyConversionSettings/AgencyConversionSettings';
@@ -117,8 +118,16 @@ function AgencyDashboard() {
       >
         <Navbar />
         <Box>
-          <h1> AGENCY DASHBOARD </h1>
-          <Button onClick={handleClickOpen('body')}>
+          <Typography
+            align="center"
+            sx={{m:2}}
+            variant="h4"
+          > 
+        Settings for {user.agency_name} 
+          </Typography>
+          <Button
+            variant="contained" 
+            onClick={handleClickOpen('body')}>
             Update Account Details
           </Button>
           <AgencyConversionSettings user={user} />
