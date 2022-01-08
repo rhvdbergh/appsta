@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Navbar from '../Navbar/Navbar';
-import { Box, Typography } from '@mui/material';
+import { Card, Box, Typography, Modal } from '@mui/material';
 import BuyerQuotesList from '../BuyerQuotesList/BuyerQuotesList';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -21,8 +21,8 @@ function BuyerDashboard() {
   const quotingAgencies = useSelector((store) => store.quotingAgencies);
   const activeProject = useSelector((store) => store.activeProject);
 
-  // // local state
-  // const [agenciesState, setAgenciesState] = useState([]);
+  // local state for modal
+  const [modalOpen, setModalOpen] = useState(false);
 
   // on page load, retrieve the latest project associated with this user as buyer
   // and save as the activeProject
@@ -44,15 +44,7 @@ function BuyerDashboard() {
   };
 
   const handleStartNewQuote = () => {
-    // TODO:
-    if (
-      confirm(
-        'Do you want to start a new project? This will delete your previous project and quotes.'
-      )
-    ) {
-      history.push('/BuyerOptions');
-    } else {
-    }
+    setModalOpen(!modalOpen);
   };
 
   return (
@@ -74,6 +66,25 @@ function BuyerDashboard() {
           />
         )}
       </Box>
+      <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
+        <Card
+          sx={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: 400,
+            bgcolor: 'background.paper',
+            p: 4,
+          }}
+        >
+          <Typography>
+            Do you want to start a new project? This will delete your previous
+            project and quotes.
+          </Typography>
+          {/* history.push('/BuyerOptions'); */}
+        </Card>
+      </Modal>
     </Box>
   );
 }
