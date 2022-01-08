@@ -80,16 +80,22 @@ function BuyerDashboard() {
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
-            width: 400,
+            width: 500,
             bgcolor: 'background.paper',
             p: 2,
           }}
         >
-          <Typography variant="h6">
-            Do you want to start a new project? This will delete your previous
-            project and quotes.
-          </Typography>
-          <CardContent>
+          <CardContent sx={{ textAlign: 'center' }}>
+            <Typography variant="h6">
+              Do you want to start a new project?
+            </Typography>
+            <Typography variant="h6">
+              This will delete your previous project and quotes.
+            </Typography>
+          </CardContent>
+          <CardContent
+            sx={{ display: 'flex', justifyContent: 'flex-end', p: 2 }}
+          >
             <Button
               variant="contained"
               color="error"
@@ -99,7 +105,6 @@ function BuyerDashboard() {
             </Button>
             <Button
               variant="contained"
-              color="primary"
               onClick={() => history.push('/BuyerOptions')}
             >
               Continue
