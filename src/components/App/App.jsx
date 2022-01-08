@@ -159,13 +159,13 @@ function App() {
             </ProtectedRoute>
             {/* adding AgencyOptionsPage Route */}
             <ProtectedRoute exact path="/AgencyOptionsPage">
-              {!user.isBuyer && !user.is_admin ? (
+              {!user.is_admin && !user.isBuyer ? (
                 <AgencyOptionsPage />
               ) : user.is_admin ? (
                 <Redirect to="/Admin" />
-              ) : user.id && user.isBuyer (
+              ) : (
                 <Redirect to="/BuyerDashboard" />
-              )}
+              )} 
             </ProtectedRoute>
             {/* adding BuyerCompareQuotes Route */}
             <ProtectedRoute exact path="/BuyerCompareQuotes">
