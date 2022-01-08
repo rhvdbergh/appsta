@@ -111,6 +111,9 @@ function QuotesCard({ agency, cost, displayingBuyerCompareQuotes }) {
               <CheckBoxOutlineBlankIcon />
             )}
           </Box>
+          <Box sx={{ mt: '10px', mb: '10px' }}>
+            <Typography>Staff Location: {agency.staffing_location}</Typography>
+          </Box>
         </Collapse>
         <CardContent>
           {/* Calculate the cost for this specific company */}
