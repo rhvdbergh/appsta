@@ -125,7 +125,7 @@ function App() {
             </Route>
             {/* Adding router for Agency Login Page */}
             <Route exact path="/AgencyLogin">
-              {user.id && !user.isBuyer ? (
+              {user.id && !user.isBuyer && !user.isAdmin ? (
                 // If the user is already logged in,
                 // and the user is an agency,
                 // redirect them to the /AgencyDashboard page
@@ -149,17 +149,21 @@ function App() {
             </ProtectedRoute>
             {/* Protected Agency Dashboard Route */}
             <ProtectedRoute exact path="/AgencyDashboard">
-              {!user.isBuyer ? (
+              {!user.isBuyer && !user.is_admin ? (
                 <AgencyDashboard />
+              ) : user.is_admin ? (
+                <Redirect to="/Admin" />
               ) : (
                 <Redirect to="/BuyerDashboard" />
               )}
             </ProtectedRoute>
             {/* adding AgencyOptionsPage Route */}
             <ProtectedRoute exact path="/AgencyOptionsPage">
-              {!user.isBuyer ? (
+              {!user.isBuyer && !user.is_admin ? (
                 <AgencyOptionsPage />
-              ) : (
+              ) : user.is_admin ? (
+                <Redirect to="/Admin" />
+              ) : user.id && user.isBuyer (
                 <Redirect to="/BuyerDashboard" />
               )}
             </ProtectedRoute>
