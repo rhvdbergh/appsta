@@ -97,6 +97,7 @@ function BuyerDashboard() {
             sx={{ display: 'flex', justifyContent: 'flex-end', p: 2 }}
           >
             <Button
+              sx={{ mr: '30px' }}
               variant="contained"
               color="error"
               onClick={() => setModalOpen(false)}
