@@ -138,8 +138,9 @@ function BuyerCompareQuotes() {
           displayingBuyerCompareQuotes={true}
         />
       </Box>
-      {/* only enable this button once at least one projectAgency has been selected */}
-      <Button
+      {/* only display if we are showing any quote cards. 
+      only enable this button once at least one projectAgency has been selected */}
+      {filteredAgencies.length > 0 && (<Button
         variant="contained"
         disabled={!projectAgencies.length > 0}
         onClick={() => {
@@ -149,6 +150,7 @@ function BuyerCompareQuotes() {
       >
         Save Project
       </Button>
+      )}
     </Box>
   );
 }
