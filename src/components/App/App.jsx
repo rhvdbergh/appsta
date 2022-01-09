@@ -131,7 +131,13 @@ function App() {
             </ProtectedRoute>
             {/* Adding a Buyer Options Route */}
             <Route exact path="/BuyerOptions">
-              {user.is_admin ? <Redirect to="/Admin" /> : <BuyerOptionsPage />}
+              {user.is_admin ? (
+                <Redirect to="/Admin" />
+              ) : user.id && !user.isBuyer ? (
+                <Redirect to="/LandingPage" />
+              ) : (
+                <BuyerOptionsPage />
+              )}
             </Route>
             {/* Adding Buyer Registration Route */}
             <Route exact path="/BuyerRegistration">
