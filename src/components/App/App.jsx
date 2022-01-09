@@ -157,6 +157,8 @@ function App() {
             <Route exact path="/AgencyReg">
               {user.is_admin ? (
                 <Redirect to="/Admin" />
+              ) : user.id ? (
+                <Redirect to="/LandingPage" />
               ) : (
                 <AgencyRegistration />
               )}
