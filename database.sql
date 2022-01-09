@@ -412,39 +412,7 @@ ADD
 
 -- Database status as of 1/8/22
 
-INSERT INTO
-  users ("username", "password", "is_admin")
-VALUES
-  (
-    'buyer@prime.io',
-    '$2a$10$G8YAWKsbI/PbdqevNIkpXelI7D2cxlX8BAMXTP2AtHqAzB7A42t0O',
-    'false'
-  ),
-  (
-    'agency@prime.io',
-    '$2a$10$7UnTgxd7SbutPPd14NmFhefPlCgpzGSyRyxog.lBfs.BqmTPDSzMK',
-    'false'
-  ),
-  (
-    'agency2@prime.io',
-    '$2a$10$dFW5miHngu0KH1qJkyHpvetPQCLf4nC.1XTB9rcDJkWDhjkYmIGwm',
-    'false'
-  ),
-  (
-    'admin@prime.io',
-    '$2a$10$l.67fm23RLQVZHg.PM5I2OPQswkDxyWLcTGIIpGstuz6Z1sFvCCSW',
-    'true'
-  ),
-  (
-    'super@prime.io',
-    '$2a$10$5k0I0/0qExYPjmrU0k0JKOiegGn5n9Yj/iJ8eJZf1FJBe9OPqy5yy',
-    'false'
-  ),
-  (
-    'ceo@teatime.com',
-    '$2a$10$h1jY8TjEZhhOLDunyXTKw.HY3hjhSb8sWxXG/I9ue5sPs36tl8t.O',
-    'false'
-  );
+INSERT INTO users ("username", "password", "is_admin") VALUES ('buyer@prime.io', '$2a$10$G8YAWKsbI/PbdqevNIkpXelI7D2cxlX8BAMXTP2AtHqAzB7A42t0O', 'false'), ('agency@prime.io', '$2a$10$7UnTgxd7SbutPPd14NmFhefPlCgpzGSyRyxog.lBfs.BqmTPDSzMK', 'false'), ('agency2@prime.io', '$2a$10$dFW5miHngu0KH1qJkyHpvetPQCLf4nC.1XTB9rcDJkWDhjkYmIGwm', 'false'), ('admin@prime.io', '$2a$10$l.67fm23RLQVZHg.PM5I2OPQswkDxyWLcTGIIpGstuz6Z1sFvCCSW', 'true'), ('super@prime.io', '$2a$10$5k0I0/0qExYPjmrU0k0JKOiegGn5n9Yj/iJ8eJZf1FJBe9OPqy5yy', 'false'), ('ceo@teatime.com', '$2a$10$h1jY8TjEZhhOLDunyXTKw.HY3hjhSb8sWxXG/I9ue5sPs36tl8t.O', 'false'), ('toni@codesprout.com', '$2a$10$7OuCd8REiqwktQ3QjKT/J.DqBPQSkNSsmr6GMjTY75Ppt5LawzsEy', 'false');
 
 INSERT INTO
   buyers (
@@ -479,12 +447,12 @@ VALUES
 INSERT INTO
   feature_categories ("category_name")
 VALUES
-  ('authenication'),
-  ('subscription'),
-  ('tables'),
-  ('calendars'),
-  ('menus'),
-  ('forms');
+  ('Authentication'),
+  ('Subscription'),
+  ('Tables'),
+  ('Calendars'),
+  ('Menus'),
+  ('Forms');
 
   INSERT INTO
   features (
@@ -594,84 +562,7 @@ VALUES
     'https://d2ydtwisqcxv72.cloudfront.net/client-intake-form.png'
   );
 
-  INSERT INTO
-  agencies (
-    "user_id",
-    "agency_name",
-    "agency_blurb",
-    "postal_code",
-    "city",
-    "state_province",
-    "country_code",
-    "team_size",
-    "minority_owned",
-    "woman_owned",
-    "veteran_owned",
-    "lgbt_owned",
-    "staffing_location",
-    "contact_first_name",
-    "contact_last_name",
-    "phone_number",
-    "logo_url"
-  )
-VALUES
-  (
-    '3',
-    'Jazzy Agency',
-    'We like jazzing things up',
-    '70118',
-    'New Orleans',
-    'null',
-    'null',
-    '14',
-    'false',
-    'true',
-    'true',
-    'false',
-    'Talent Offshore, Leadership Onshore',
-    'Alicia',
-    'Harvey',
-    '987-654-3210',
-    'https://images.unsplash.com/photo-1523875194681-bedd468c58bf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80'
-  ),
-  (
-    '2',
-    'Awesome Agency',
-    'Awesome Agency does awesome things!',
-    '02860',
-    'Providence',
-    'RI',
-    'US',
-    '67',
-    'true',
-    'false',
-    'false',
-    'true',
-    'Onshore Talent Only',
-    'Ridwan',
-    'Ali',
-    '555-555-1234',
-    'https://images.unsplash.com/photo-1622630732278-ca6d08c52b6f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1447&q=80'
-  ),
-  (
-    '5',
-    'Super Software',
-    'Here we come to save the day!',
-    '67890',
-    'Smallville',
-    'KS',
-    'US',
-    '123',
-    'true',
-    'false',
-    'true',
-    'false',
-    'Onshore Talent Only',
-    'Clark',
-    'Kent',
-    '555-555-7890',
-    'https://w7.pngwing.com/pngs/471/512/png-transparent-superman-computer-cartoon-cartoon-computer-furniture-heroes-photography.png'
-  );
+INSERT INTO agencies ("user_id", "agency_name", "agency_blurb", "postal_code", "city", "state_province", "country_code", "team_size", "minority_owned", "woman_owned", "veteran_owned", "lgbt_owned", "staffing_location", "contact_first_name", "contact_last_name", "phone_number", "logo_url") VALUES ('3', 'Jazzy Agency', 'We like jazzing things up', '70118', 'New Orleans', 'null', 'null', '14', 'false', 'true', 'true', 'false', 'Talent Offshore, Leadership Onshore', 'Alicia', 'Harvey', '987-654-3210', 'https://images.unsplash.com/photo-1523875194681-bedd468c58bf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80'), ('2', 'Awesome Agency', 'Awesome Agency does awesome things!', '02860', 'Providence', 'RI', 'US', '67', 'true', 'false', 'false', 'true', 'Onshore Talent Only', 'Ridwan', 'Ali', '555-555-1234', 'https://images.unsplash.com/photo-1622630732278-ca6d08c52b6f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1447&q=80'), ('5', 'Super Software', 'Here we come to save the day!', '67890', 'Smallville', 'KS', 'US', '123', 'true', 'false', 'true', 'false', 'Onshore Talent Only', 'Clark', 'Kent', '555-555-7890', 'https://w7.pngwing.com/pngs/471/512/png-transparent-superman-computer-cartoon-cartoon-computer-furniture-heroes-photography.png'), ('7', ' CodeSprout', 'Help us grow your business! For more than ten years, we have helped startups grow from seed to mighty tree. ', '12780', 'Cornwall', 'New York', '1', '32', 'false', 'false', 'false', 'true', 'Onshore Talent Only', 'Toni', 'Patel', '555-555-8907', 'https://images.unsplash.com/photo-1495908333425-29a1e0918c5f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8c3Byb3V0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60');
 
 INSERT INTO
   projects ("buyer_id", "date_of_project")
@@ -706,56 +597,8 @@ VALUES
   ('3', '10', '2'),
   ('3', '11', '1');
 
-INSERT INTO
-  agency_features (
-    "agency_id",
-    "feature_id",
-    "feature_notes",
-    "t_shirt_size",
-    "confidence"
-  )
-VALUES
-  ('1', '2', 'we got it!', 'XL', '70'),
-  ('1', '1', 'no problem', 'S', '50'),
-  (
-    '2',
-    '4',
-    'ehhhhh, we have to check',
-    'XS',
-    '20'
-  ),
-  (
-    '2',
-    '6',
-    'whew, well this is awkward!',
-    'M',
-    '30'
-  ),
-  (
-    '2',
-    '2',
-    'whew, well this is awkward!',
-    'M',
-    '30'
-  ),
-  ('1', '3', 'null', 'S', '20'),
-  ('1', '4', 'null', 'XS', '50'),
-  ('1', '6', 'null', 'M', '90'),
-  ('1', '5', 'null', 'S', '85'),
-  ('1', '7', 'null', 'M', '70'),
-  ('1', '8', 'null', 'S', '70'),
-  ('1', '9', 'null', 'S', '75'),
-  ('1', '10', 'null', 'M', '30'),
-  ('1', '11', 'null', 'L', '75'),
-  ('3', '1', 'null', 'XS', '100'),
-  ('3', '2', 'null', 'S', '100'),
-  ('3', '3', 'null', 'S', '100'),
-  ('3', '4', 'null', 'XS', '100'),
-  ('3', '5', 'null', 'XL', '20'),
-  ('3', '6', 'null', 'XS', '90'),
-  ('3', '7', 'null', 'S', '100'),
-  ('3', '8', 'null', 'S', '100'),
-  ('3', '9', 'null', 'S', '100');
+INSERT INTO agency_features ("agency_id", "feature_id", "feature_notes", "t_shirt_size", "confidence") VALUES ('1', '2', 'we got it!', 'XL', '70'), ('1', '1', 'no problem', 'S', '50'), ('2', '4', 'ehhhhh, we have to check', 'XS', '20'), ('2', '6', 'whew, well this is awkward!', 'M', '30'), ('2', '2', 'whew, well this is awkward!', 'M', '30'), ('1', '3', 'null', 'S', '20'), ('1', '4', 'null', 'XS', '50'), ('1', '6', 'null', 'M', '90'), ('1', '5', 'null', 'S', '85'), ('1', '7', 'null', 'M', '70'), ('1', '8', 'null', 'S', '70'), ('1', '9', 'null', 'S', '75'), ('1', '10', 'null', 'M', '30'), ('1', '11', 'null', 'L', '75'), ('3', '1', 'null', 'XS', '100'), ('3', '2', 'null', 'S', '100'), ('3', '3', 'null', 'S', '100'), ('3', '4', 'null', 'XS', '100'), ('3', '5', 'null', 'XL', '20'), ('3', '6', 'null', 'XS', '90'), ('3', '7', 'null', 'S', '100'), ('3', '8', 'null', 'S', '100'), ('3', '9', 'null', 'S', '100'), ('4', '2', 'null', 'M', '50'), ('4', '1', 'null', 'S', '75'), ('4', '3', 'null', 'M', '35'), ('4', '4', 'null', 'S', '50'), ('4', '5', 'null', 'L', '60'), ('4', '6', 'null', 'M', '45'), ('4', '7', 'null', 'L', '40'), ('4', '8', 'null', 'M', '30'), ('4', '9', 'null', 'XL', '40'), ('4', '10', 'null', 'S', '50'), ('4', '11', 'null', 'S', '65');
+
 
 INSERT INTO
   project_agencies ("project_id", "agency_id")
@@ -764,17 +607,4 @@ VALUES
   ('2', '3'),
   ('3', '1');
 
-INSERT INTO
-  agency_conversion (
-    "agency_id",
-    "xsmall_hours",
-    "small_hours",
-    "medium_hours",
-    "large_hours",
-    "xlarge_hours",
-    "hourly_rate"
-  )
-VALUES
-  ('2', '1', '3', '6', '10', '20', '100'),
-  ('1', '1', '2', '5', '10', '15', '175'),
-  ('3', '2', '3', '5', '8', '20', '225');
+INSERT INTO agency_conversion ("agency_id", "xsmall_hours", "small_hours", "medium_hours", "large_hours", "xlarge_hours", "hourly_rate") VALUES ('2', '1', '3', '6', '10', '20', '100'), ('1', '1', '2', '5', '10', '15', '175'), ('3', '2', '3', '5', '8', '20', '225'), ('4', '1', '5', '12', '25', '36', '125');
