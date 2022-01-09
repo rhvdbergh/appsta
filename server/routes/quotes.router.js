@@ -94,8 +94,12 @@ router.get('/project/:buyer_id', rejectUnauthenticated, (req, res) => {
 router.get('/savedagencies/:project_id', rejectUnauthenticated, (req, res) => {
   // build the sql query
   const query = `
-    SELECT * FROM project_agencies
+    SELECT 
+      project_agencies.*, agencies.*, 
+      users.username AS agency_email 
+    FROM project_agencies
     JOIN agencies ON agencies.id = project_agencies.agency_id
+    JOIN users ON users.id = agencies.user_id
     WHERE project_agencies.project_id = $1;
   `;
   // run the query
