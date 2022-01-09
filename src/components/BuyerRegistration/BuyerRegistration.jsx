@@ -101,9 +101,11 @@ function BuyerRegistration() {
   }, []);
 
   return (
-    <Container>
-      <Typography variant="h3">Appsta Registration</Typography>
-      <Typography variant="h6">
+    <Container sx={{ width: '40%' }}>
+      <Typography variant="h3" sx={{ my: 3 }}>
+        Appsta Registration
+      </Typography>
+      <Typography variant="h6" sx={{ my: 3 }}>
         Please complete all fields marked with * to continue.
       </Typography>
       <Box sx={{ width: '100%' }}>
@@ -121,33 +123,48 @@ function BuyerRegistration() {
             );
           })}
         </Stepper>
-        {activeStep === steps.length ? (
-          <Fragment>
-            <Typography sx={{ mt: 2, mb: 1 }}>
-              All steps completed - you&apos;re finished
-            </Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-              <Box sx={{ flex: '1 1 auto' }} />
-              <Button onClick={handleReset}>Reset</Button>
-            </Box>
-          </Fragment>
-        ) : (
-          <Fragment>
-            {/* handleRender conditionally renders the form */}
-            {handleRender()}
-            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-              <Button color="inherit" onClick={handleBack} sx={{ mr: 1 }}>
-                {activeStep === 0 ? 'Cancel' : 'Back'}
-              </Button>
-              <Box sx={{ flex: '1 1 auto' }} />
-              {canMoveForward && (
-                <Button onClick={handleNext}>
-                  {activeStep === steps.length - 1 ? 'Submit' : 'Next'}
+        <Box>
+          {activeStep === steps.length ? (
+            <Fragment>
+              <Typography sx={{ mt: 2, mb: 1 }}>
+                All steps completed - you&apos;re finished
+              </Typography>
+              <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+                <Box sx={{ flex: '1 1 auto' }} />
+                <Button onClick={handleReset} variant="containted">
+                  Reset
                 </Button>
-              )}
-            </Box>
-          </Fragment>
-        )}
+              </Box>
+            </Fragment>
+          ) : (
+            <Fragment>
+              {/* handleRender conditionally renders the form */}
+              {handleRender()}
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  pt: 2,
+                }}
+              >
+                <Button
+                  color={activeStep === 0 ? 'error' : 'primary'}
+                  onClick={handleBack}
+                  sx={{ mr: 1 }}
+                  variant="contained"
+                >
+                  {activeStep === 0 ? 'Cancel' : 'Back'}
+                </Button>
+                <Box sx={{ flex: '1 1 auto' }} />
+                {canMoveForward && (
+                  <Button onClick={handleNext} variant="contained">
+                    {activeStep === steps.length - 1 ? 'Submit' : 'Next'}
+                  </Button>
+                )}
+              </Box>
+            </Fragment>
+          )}
+        </Box>
       </Box>
     </Container>
   );
