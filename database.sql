@@ -517,11 +517,11 @@ VALUES
     'https://shots.jotform.com/welvin/shots/2019-11-22-012.png?1.0.449'
   ),
   (
-    'big red button',
-    'I can click on big red button',
-    'description of clicking on big red button',
+    'pop up',
+    'pop up subscription form appears when user loads page ',
+    'description of pop up',
     '2',
-    'https://www.royalroadcdn.com/public/covers-full/big-red-button-aacalrkedw8.jpg?time=1617332304'
+    'https://www.mailerlite.com/assets/features/popup-subscribe-form.jpeg'
   ),
   (
     'outlined button',
