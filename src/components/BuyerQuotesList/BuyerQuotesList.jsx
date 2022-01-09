@@ -1,7 +1,7 @@
-import { Box, Typography } from "@mui/material";
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import QuotesCard from "../QuotesCard/QuotesCard";
+import { Box, Typography } from '@mui/material';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import QuotesCard from '../QuotesCard/QuotesCard';
 
 function BuyerQuotesList({
   projectFeatures,
@@ -17,7 +17,7 @@ function BuyerQuotesList({
   // when we have list of the agencies
   useEffect(() => {
     dispatch({
-      type: "GET_AGENCY_QUOTE_DATA",
+      type: 'GET_AGENCY_QUOTE_DATA',
       payload: {
         selected_features: projectFeatures.map((f) => f.id),
         agency_ids: quotingAgencies.map((a) => a.id),
@@ -43,19 +43,19 @@ function BuyerQuotesList({
       let hours;
       // determine the hours based on this feature's t-shirt size
       switch (feature.t_shirt_size) {
-        case "XS":
+        case 'XS':
           hours = feature.xsmall_hours;
           break;
-        case "S":
+        case 'S':
           hours = feature.small_hours;
           break;
-        case "M":
+        case 'M':
           hours = feature.medium_hours;
           break;
-        case "L":
+        case 'L':
           hours = feature.large_hours;
           break;
-        case "XL":
+        case 'XL':
           hours = feature.xlarge_hours;
           break;
       }
@@ -70,11 +70,11 @@ function BuyerQuotesList({
     return cost;
   };
 
-  console.log("Agency quote data is: ", agencyQuoteData);
+  console.log('Agency quote data is: ', agencyQuoteData);
 
   return (
     <>
-      <Box sx={{ display: "flex" }}>
+      <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
         {agencyQuoteData.length > 0 &&
           projectFeatures.length > 0 &&
           quotingAgencies.map((agency) => {
@@ -89,7 +89,8 @@ function BuyerQuotesList({
           })}
         {agencyQuoteData.length === 0 && (
           <Typography variant="body1">
-            No agencies meeting selected criteria can provide your list of features. Please adjust your feature list or agency criteria.
+            No agencies meeting selected criteria can provide your list of
+            features. Please adjust your feature list or agency criteria.
           </Typography>
         )}
       </Box>
