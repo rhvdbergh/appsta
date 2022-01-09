@@ -524,25 +524,32 @@ VALUES
     'https://www.mailerlite.com/assets/features/popup-subscribe-form.jpeg'
   ),
   (
-    'outlined button',
-    'I can click the outlined button',
-    'description of clicking on outlined button',
+    'header',
+    'subscription form in header',
+    'description of header ',
     '2',
-    'https://storage.googleapis.com/spec-host-backup/mio-components%2Fassets%2F1b2CXpWNxh1k2YJUw_6B_CkkZUiHYYrzh%2Fspecs-outlined-button.png'
+    'https://assets.getsitecontrol.com/prod2/blog/lead-generation/7-great-email-newsletter-signup-examples/12.png?rev=e2143a474c'
   ),
   (
-    'colored table',
+    'footer',
+    'subscription form in footer',
+    'description of footer',
+    '2',
+    'https://help.outofthesandbox.com/hc/article_attachments/360032537374/footer-newsletter-parallax.png'
+  ),
+  (
+    'bootstrap table',
     'I can create a simple table',
     'colored table',
     '3',
     'https://reactjsexample.com/content/images/2019/01/material-table.jpg'
   ),
   (
-    'clear table',
+    'data table',
     'this table is clear',
     'clear table',
     '3',
-    'https://i.stack.imgur.com/jm4zL.png'
+    'https://s3-alpha.figma.com/hub/file/217425317/401965ec-d8b1-4315-b722-beefad4aa135-cover'
   ),
   (
     'calendars',
