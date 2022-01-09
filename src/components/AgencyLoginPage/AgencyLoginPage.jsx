@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Typography, CardMedia } from "@mui/material";
 
 // CUSTOM COMPONENTS
 import LoginForm from "../LoginForm/LoginForm";
@@ -15,6 +15,13 @@ function AgencyLoginPage() {
   return (
     <Box className="container">
       <center>
+      <CardMedia
+          component="img"
+          sx={{ width: "250px", mt: 3 }}
+          image={require("../../media/Appsta_Logo_Black_Outline_Large.png")}
+          alt="appsta logo"
+          onClick={() => history.push("/")}
+        />
         <LoginForm isAgency="true" />
         <Box>
           <Typography variant="h6"> First time agency?</Typography>

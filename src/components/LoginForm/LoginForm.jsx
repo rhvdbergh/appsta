@@ -10,17 +10,18 @@ import { makeStyles } from "@mui/styles";
 //added MUI styles for login form
 const useStyles = makeStyles(() => ({
   form: {
-    marginTop: "100px",
+    marginTop: "50px",
     marginBottom: "30px",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
-    height: "400px",
+    height: "300px",
     width: "300px",
     textAlign: "center",
   },
   input: {
     width: "100%",
+    color: "black",
   },
 }));
 

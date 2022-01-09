@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Button, Typography } from "@mui/material";
+import { Button, Typography, Paper, Box, CardMedia } from "@mui/material";
 
 // CUSTOM COMPONENTS
 import LoginForm from "../LoginForm/LoginForm";
@@ -16,6 +16,13 @@ function LandingPage() {
   return (
     <div>
       <center>
+        <CardMedia
+          component="img"
+          sx={{ width: "250px", mt: 3 }}
+          image={require("../../media/Appsta_Logo_Black_Outline_Large.png")}
+          alt="appsta logo"
+          onClick={() => history.push("/")}
+        />
         <LoginForm />
 
         <Typography variant="h5" sx={{ m: 2 }}>
