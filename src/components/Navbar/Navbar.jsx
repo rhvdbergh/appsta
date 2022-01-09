@@ -81,7 +81,7 @@ export default function Navbar({
           <CardMedia
             component="img"
             sx={{ width: '100px', mt: '15px', mb: '15px' }}
-            image={require('../../media/Appsta Logo Black Outline - Large.png')}
+            image={require('../../media/Appsta_Logo_Black_Outline_Large.png')}
             alt="appsta logo"
             onClick={() => history.push('/')}
           />
