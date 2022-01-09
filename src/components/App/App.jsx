@@ -131,7 +131,7 @@ function App() {
             </Route>
             {/* Adding Buyer Registration Route */}
             <Route exact path="/BuyerRegistration">
-              <BuyerRegistration />
+              {user.is_admin ? <Redirect to="/Admin" /> : <BuyerRegistration />}
             </Route>
             {/* Adding router for Agency Login Page */}
             <Route exact path="/AgencyLogin">
