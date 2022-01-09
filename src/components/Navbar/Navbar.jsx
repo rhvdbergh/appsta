@@ -87,11 +87,9 @@ export default function Navbar({
           />
         </Toolbar>
         <Divider />
-        {/* Conditinally renders a heading text when on buyer dashboard */}
-        {onBuyerDashboard && <Typography>{headerText}</Typography>}
         {/* The category list only shows when not on the buyer dashboard */}
         {!onBuyerDashboard && (
-          <List>
+          <List sx={{ my: 3 }}>
             {categories.map((category) => (
               <ListItem
                 button
@@ -105,22 +103,27 @@ export default function Navbar({
           </List>
         )}
         {btn1text && (
-          <Button onClick={fxn1} variant="contained">
+          <Button
+            onClick={fxn1}
+            variant="contained"
+            sx={{ m: 1, mt: onBuyerDashboard ? 30 : 1 }}
+          >
             {btn1text}
           </Button>
         )}
         {btn2text && (
-          <Button onClick={fxn2} variant="contained">
+          <Button onClick={fxn2} variant="contained" sx={{ m: 1 }}>
             {btn2text}
           </Button>
         )}
         {btn3text && (
-          <Button onClick={fxn3} variant="contained">
+          <Button onClick={fxn3} variant="contained" sx={{ m: 1 }}>
             {btn3text}
           </Button>
         )}
         {user.id && (
           <Button
+            sx={{ m: 1 }}
             onClick={fxn3}
             variant="contained"
             onClick={() => dispatch({ type: 'LOGOUT', payload: history })}
