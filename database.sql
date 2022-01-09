@@ -498,16 +498,23 @@ VALUES
   (
     'login',
     'username and password',
-    'description of object',
+    'description of login',
     '1',
     'https://miro.medium.com/max/1400/1*_tt-dyUruSDMokKv-kQz9Q.png'
   ),
   (
     'register',
-    'information in a bar chart',
-    'description of object',
+    'register new user',
+    'description of registration',
     '1',
-    'https://pnp.github.io/sp-dev-fx-controls-react/assets/BarChart.png'
+    'https://www.tutorialrepublic.com/snippets/designs/simple-registration-form.png'
+  ),
+  (
+    'password reset',
+    'user can reset lost password ',
+    'description of password reset',
+    '1',
+    'https://shots.jotform.com/welvin/shots/2019-11-22-012.png?1.0.449'
   ),
   (
     'big red button',
