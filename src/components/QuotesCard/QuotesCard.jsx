@@ -12,6 +12,7 @@ import {
 import PhoneIcon from '@mui/icons-material/Phone';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PersonIcon from '@mui/icons-material/Person';
+import EmailIcon from '@mui/icons-material/Email';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import { useEffect, useState } from 'react';
@@ -69,6 +70,10 @@ function QuotesCard({ agency, cost, displayingBuyerCompareQuotes }) {
               <Typography>{agency.phone_number}</Typography>
             </Box>
             <Box sx={{ display: 'flex' }}>
+              <EmailIcon />
+              <Typography>{agency.agency_email}</Typography>
+            </Box>
+            <Box sx={{ display: 'flex' }}>
               <PersonIcon />
               <Typography>
                 {agency.contact_first_name} {agency.contact_last_name}
@@ -110,6 +115,9 @@ function QuotesCard({ agency, cost, displayingBuyerCompareQuotes }) {
             ) : (
               <CheckBoxOutlineBlankIcon />
             )}
+          </Box>
+          <Box sx={{ mt: '10px', mb: '10px' }}>
+            <Typography>Staff Location: {agency.staffing_location}</Typography>
           </Box>
         </Collapse>
         <CardContent>
