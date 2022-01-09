@@ -479,12 +479,12 @@ VALUES
 INSERT INTO
   feature_categories ("category_name")
 VALUES
-  ('charts'),
-  ('buttons'),
+  ('authenication'),
+  ('subscription'),
   ('tables'),
   ('calendars'),
-  ('icons'),
-  ('input fields');
+  ('menu'),
+  ('forms');
 
   INSERT INTO
   features (
@@ -496,14 +496,14 @@ VALUES
   )
 VALUES
   (
-    'doughnut chart',
-    'information in a doughnut chart',
+    'login',
+    'username and password',
     'description of object',
     '1',
-    'https://pnp.github.io/sp-dev-fx-controls-react/assets/DoughnutChart.png'
+    'https://miro.medium.com/max/1400/1*_tt-dyUruSDMokKv-kQz9Q.png'
   ),
   (
-    'bar chart',
+    'register',
     'information in a bar chart',
     'description of object',
     '1',
