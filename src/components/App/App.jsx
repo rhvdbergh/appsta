@@ -59,7 +59,7 @@ const theme = createTheme({
     },
     text: {
       primary: '#000000',
-      secondary: '#EEEED1',
+      navbar: '#EEEED1',
       // disabled: '#efefeb',
     },
   },
@@ -100,12 +100,14 @@ function App() {
                 // redirect them to the /BuyerDashboard page
                 <Redirect to="/BuyerDashboard" />
               ) : // but if they're an agency, to the agency page
-                user.id && !user.isBuyer && !user.is_admin ? (
+              user.id && !user.isBuyer && !user.is_admin ? (
                 <Redirect to="/AgencyDashboard" />
               ) : // if user is admin, to the admin page
-                user.id && user.is_admin ? (                 <Redirect to="/Admin" />
-              ) : ( // Otherwise, show the Landing page
-                  <LandingPage />
+              user.id && user.is_admin ? (
+                <Redirect to="/Admin" />
+              ) : (
+                // Otherwise, show the Landing page
+                <LandingPage />
               )}
             </Route>
             <Route exact path="/BuyerReview">
@@ -165,7 +167,7 @@ function App() {
                 <Redirect to="/Admin" />
               ) : (
                 <Redirect to="/BuyerDashboard" />
-              )} 
+              )}
             </ProtectedRoute>
             {/* adding BuyerCompareQuotes Route */}
             <ProtectedRoute exact path="/BuyerCompareQuotes">
@@ -173,16 +175,14 @@ function App() {
                 <BuyerCompareQuotes />
               ) : !user.is_admin ? (
                 <Redirect to="/AgencyDashboard" />
-              ) : (<Redirect to="/Admin" />)}
+              ) : (
+                <Redirect to="/Admin" />
+              )}
             </ProtectedRoute>
 
             {/* Adding in an Admin Route  */}
             <ProtectedRoute exact path="/Admin">
-              {user.is_admin ? (
-                <Admin />
-              ) : (
-                <Redirect to="/LandingPage" />
-              )}
+              {user.is_admin ? <Admin /> : <Redirect to="/LandingPage" />}
             </ProtectedRoute>
 
             {/* If none of the other routes matched, we will show a 404. */}
