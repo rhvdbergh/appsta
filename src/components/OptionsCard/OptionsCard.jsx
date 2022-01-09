@@ -20,7 +20,7 @@ function OptionsCard({ feature, listType, quoteData }) {
   const user = useSelector((store) => store.user);
 
   return (
-    <Card sx={{ display: 'flex', m: 4, width: '70%' }}>
+    <Card sx={{ display: 'flex', m: 4, width: '800px' }}>
       {listType !== 'buyer-review' && listType !== 'buyer-review-features' && (
         <>
           {/* Text and Image  */}
@@ -52,6 +52,7 @@ function OptionsCard({ feature, listType, quoteData }) {
               justifyContent: 'center',
               color: 'text.primary',
               p: 2,
+              mx: 2,
             }}
           >
             {/* //conditionally render block - if buyer vs agency display different blocks */}
