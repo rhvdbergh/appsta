@@ -60,7 +60,8 @@ function BuyerOptionsSelectionBlock({ feature }) {
     <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', }}>
       <Button 
           color='secondary'
-          variant="contained" 
+          variant="contained"
+          sx={{mr:0.5}} 
           onClick={handleClick}>
         <Typography variant="body1">
           {addedToProject ? 'Remove from my project' : 'Add to my project'}
@@ -68,12 +69,13 @@ function BuyerOptionsSelectionBlock({ feature }) {
       </Button>
       
 
-      <FormControl fullWidth>
+      <FormControl sx={{width:"40%"}}>
         <InputLabel id="quantity">Quantity</InputLabel>
         <Select
           labelId="quantity"
           value={quantity}
           label="Quantity"
+          sx={{p:0.5}}
           onChange={handleQuantity}
         >
           <MenuItem value={1}>1</MenuItem>
