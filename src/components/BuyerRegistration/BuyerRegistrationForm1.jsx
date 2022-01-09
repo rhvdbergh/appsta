@@ -1,4 +1,4 @@
-//import from MUI 
+//import from MUI
 import {
   TextField,
   InputLabel,
@@ -11,11 +11,10 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Grid from '@mui/material/Grid';
 
-//import from react 
+//import from react
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-
 
 function BuyerRegistrationForm1({ setCanMoveForward }) {
   const dispatch = useDispatch();
@@ -43,11 +42,9 @@ function BuyerRegistrationForm1({ setCanMoveForward }) {
     isCompletedForm();
   }, [username, password, passwordConfirmation]);
 
-
-
   // check to see if everything is filled out and
   // the user can move forward
-  // black list 
+  // black list
   const isCompletedForm = () => {
     if (
       username !== null &&
@@ -86,7 +83,7 @@ function BuyerRegistrationForm1({ setCanMoveForward }) {
   console.log('this is buyer', buyer);
   return (
     <>
-      <Grid>
+      <Grid sx={{ display: 'flex', flexDirection: 'column' }}>
         <TextField
           label="Email*"
           variant="outlined"
