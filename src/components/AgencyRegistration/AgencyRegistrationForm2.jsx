@@ -85,7 +85,15 @@ function AgencyRegistrationForm2({ setCanMoveForward }) {
           }}
           // value
         />
-        <TextField label="Logo URL" variant="outlined" value={logo_url} />
+        <TextField
+          label="Logo URL"
+          variant="outlined"
+          value={logo_url}
+          onChange={(event) => setLogo_url(event.target.value)}
+          onBlur={() => {
+            handleData('logo_url', logo_url);
+          }}
+        />
         <TextField
           label="Contact First Name*"
           variant="outlined"
