@@ -20,7 +20,7 @@ function OptionsCard({ feature, listType, quoteData }) {
   const user = useSelector((store) => store.user);
 
   return (
-    <Card sx={{ display: 'flex' }}>
+    <Card sx={{ display: 'flex', m:4 }}>
       {listType !== 'buyer-review' && listType !== 'buyer-review-features' && (
         <>
           {/* Text and Image  */}
@@ -29,15 +29,16 @@ function OptionsCard({ feature, listType, quoteData }) {
               display: 'flex',
               flexDirection: 'column',
               color: 'text.primary',
+              m:2
             }}
           >
-            <Typography component="div" variant="h5">
+            <Typography component="div" variant="h5" sx={{m:2}}>
               {feature.feature_name}
             </Typography>
 
             <CardMedia
               component="img"
-              sx={{ width: 250 }}
+              sx={{ width: 250, m:2 }}
               image={feature.image_url}
               alt={feature.feature_description}
             />
@@ -50,6 +51,7 @@ function OptionsCard({ feature, listType, quoteData }) {
               flexDirection: 'column',
               justifyContent: 'center',
               color: 'text.primary',
+              p:2
             }}
           >
             {/* //conditionally render block - if buyer vs agency display different blocks */}
