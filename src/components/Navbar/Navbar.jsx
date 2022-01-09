@@ -64,7 +64,7 @@ export default function Navbar({
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
-            bgcolor: 'primary.dark',
+            bgcolor: 'primary.navbar',
             color: 'text.navbar',
           },
         }}

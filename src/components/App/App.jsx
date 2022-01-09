@@ -37,12 +37,14 @@ const theme = createTheme({
       main: '#9ccfca',
       light: '#efefeb',
       //dark is for NavBar
-      dark: '#3e3880',
+      // dark: '#3e3880',
+      navbar: '#3e3880',
     },
     secondary: {
       main: '#9596d6',
       //light is for highlights/ shadows
       light: '#f5e580',
+      dark: '#EEEED1',
     },
     //error is DANGER
     error: {

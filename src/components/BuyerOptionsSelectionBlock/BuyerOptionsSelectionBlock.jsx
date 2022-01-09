@@ -57,34 +57,36 @@ function BuyerOptionsSelectionBlock({ feature }) {
 
   return (
     <>
-    <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', }}>
-      <Button 
-          color='secondary'
+      <Box
+        sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+      >
+        <Button
+          color="secondary"
           variant="contained"
-          sx={{mr:0.5}} 
-          onClick={handleClick}>
-        <Typography variant="body1">
-          {addedToProject ? 'Remove from my project' : 'Add to my project'}
-        </Typography>
-      </Button>
-      
-
-      <FormControl sx={{width:"40%"}}>
-        <InputLabel id="quantity">Quantity</InputLabel>
-        <Select
-          labelId="quantity"
-          value={quantity}
-          label="Quantity"
-          sx={{p:0.5}}
-          onChange={handleQuantity}
+          sx={{ my: 3 }}
+          onClick={handleClick}
         >
-          <MenuItem value={1}>1</MenuItem>
-          <MenuItem value={2}>2</MenuItem>
-          <MenuItem value={3}>3</MenuItem>
-          <MenuItem value={4}>4</MenuItem>
-          <MenuItem value={5}>5</MenuItem>
-        </Select>
-      </FormControl>
+          <Typography variant="body1">
+            {addedToProject ? 'Remove from my project' : 'Add to my project'}
+          </Typography>
+        </Button>
+
+        <FormControl sx={{ width: '40%' }}>
+          <InputLabel id="quantity">Quantity</InputLabel>
+          <Select
+            labelId="quantity"
+            value={quantity}
+            label="Quantity"
+            sx={{ p: 0.5 }}
+            onChange={handleQuantity}
+          >
+            <MenuItem value={1}>1</MenuItem>
+            <MenuItem value={2}>2</MenuItem>
+            <MenuItem value={3}>3</MenuItem>
+            <MenuItem value={4}>4</MenuItem>
+            <MenuItem value={5}>5</MenuItem>
+          </Select>
+        </FormControl>
       </Box>
     </>
   );
