@@ -483,7 +483,7 @@ VALUES
   ('subscription'),
   ('tables'),
   ('calendars'),
-  ('menu'),
+  ('menus'),
   ('forms');
 
   INSERT INTO
@@ -546,8 +546,8 @@ VALUES
   ),
   (
     'data table',
-    'this table is clear',
-    'clear table',
+    'this is a data table ',
+    'data table',
     '3',
     'https://s3-alpha.figma.com/hub/file/217425317/401965ec-d8b1-4315-b722-beefad4aa135-cover'
   ),
@@ -566,32 +566,32 @@ VALUES
     'https://camo.githubusercontent.com/d3b80e150c29d8530b289054210aa68f6398cdba8f62fb2feac4ef15b94c9cc4/68747470733a2f2f73746f726167652e676f6f676c65617069732e636f6d2f6d6174657269616c2d64657369676e2f7075626c6973682f6d6174657269616c5f765f31322f6173736574732f304233333231735a4c6f505f484f545a6f55453156534778765246452f636f6d706f6e656e74732d7069636b6572732d64617465342e706e67'
   ),
   (
-    'icons',
-    'this is an icon list',
-    'description of object',
+    'top navigation ',
+    'this is header navigation',
+    'description of header nav ',
     '5',
-    'https://miro.medium.com/max/1400/1*2QQNpKIBeyTha-XcU9IHBw.png'
+    'https://cdn.dribbble.com/users/1774675/screenshots/15763538/media/76834f405a810f7d28ad39f4a26083a9.png?compress=1&resize=400x300'
   ),
   (
-    'icons',
-    'this is another icon list',
-    'description of object',
+    'bottom navigation',
+    'this is footer navigation',
+    'description of footer navigation',
     '5',
-    'https://icons.iconarchive.com/icons/custom-icon-design/mini/icons-390.jpg'
+    'https://camo.githubusercontent.com/1a6072b665137d805c35cdc52f079b2ce432fdb9fcfb40667ead0b48f048b1b2/687474703a2f2f692e696d6775722e636f6d2f5959374b4a73532e706e67'
   ),
   (
-    'input fields',
-    'here are some text fields',
-    'descirption of text fields',
+    'contact',
+    'contact form description',
+    'descirption of contact form',
     '6',
-    'https://i.pinimg.com/originals/61/6b/5e/616b5e964eb01bbcb554306ac6744326.png'
+    'https://bootstrapstudio.io/docs/img/guide/contact-form-example.png'
   ),
   (
-    'input fields',
-    'here are some more text fields',
-    'descirption of text fields',
+    'intake',
+    'client intake form',
+    'descirption of intake form',
     '6',
-    'https://lh3.googleusercontent.com/Cg9IlC6OWQ58eqWlbkPacWsO6vemJOcOzkRHsF7nnAVa6VD-GZgcMDGfPpHxcpS4FbhEqWiUO-W48Pd18FfR-cYrdPTo1bWjEIti=w1064-v0'
+    'https://d2ydtwisqcxv72.cloudfront.net/client-intake-form.png'
   );
 
   INSERT INTO
