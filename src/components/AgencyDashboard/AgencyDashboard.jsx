@@ -126,7 +126,8 @@ function AgencyDashboard() {
         Settings for {user.agency_name} 
           </Typography>
           <Button
-            variant="contained" 
+            variant="contained"
+            sx={{textSecondary:'text.secondary'}} 
             onClick={handleClickOpen('body')}>
             Update Account Details
           </Button>
