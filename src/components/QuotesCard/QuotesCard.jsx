@@ -67,9 +67,6 @@ function QuotesCard({ agency, cost, displayingBuyerCompareQuotes }) {
         </CardActions>
         <Collapse in={isExpanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <Box>
-              <Typography>{agency.agency_blurb}</Typography>
-            </Box>
             <Box sx={{ display: 'flex' }}>
               <PhoneIcon />
               <Typography>{agency.phone_number}</Typography>
@@ -87,6 +84,9 @@ function QuotesCard({ agency, cost, displayingBuyerCompareQuotes }) {
             <Box sx={{ display: 'flex' }}>
               <LocationOnIcon />
               <Typography>{agency.city}</Typography>
+            </Box>
+            <Box sx={{ mt: '10px', mb: '10px' }}>
+              <Typography>{agency.agency_blurb}</Typography>
             </Box>
           </CardContent>
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
