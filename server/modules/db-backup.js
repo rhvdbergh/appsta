@@ -69,7 +69,9 @@ const backupTable = (table) => {
       let insertQuery = `INSERT INTO ${table} (`;
 
       // add table headings, except last heading
-      for (let i = 0; i < headings.length - 1; i++) {
+      // we start form 1 because heading 0 is the "id"
+      // which we don't want!
+      for (let i = 1; i < headings.length - 1; i++) {
         insertQuery += `"${headings[i]}", `;
       }
       // add the last heading
@@ -80,7 +82,8 @@ const backupTable = (table) => {
       for (let j = 0; j < entries.length - 1; j++) {
         insertQuery += `(`;
         // for each heading except the last
-        for (let i = 0; i < headings.length - 1; i++) {
+        // we start form 1 to exclude the "id"
+        for (let i = 1; i < headings.length - 1; i++) {
           insertQuery += `'${entries[j][headings[i]]}', `;
         }
         insertQuery += `'${entries[j][headings[headings.length - 1]]}'), `;
@@ -89,7 +92,8 @@ const backupTable = (table) => {
       // now add the last entry
       insertQuery += `(`;
       // for each heading except the last
-      for (let i = 0; i < headings.length - 1; i++) {
+      // we start from 1 to exclude the "id"
+      for (let i = 1; i < headings.length - 1; i++) {
         insertQuery += `'${entries[entries.length - 1][headings[i]]}', `;
       }
       insertQuery += `'${
