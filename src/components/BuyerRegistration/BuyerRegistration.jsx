@@ -102,14 +102,14 @@ function BuyerRegistration() {
 
   return (
     <Container sx={{ width: '40%' }}>
-      <Typography variant="h3" sx={{ my: 3 }}>
+      <Typography variant="h3" sx={{ my: 3, textAlign: 'center' }}>
         Appsta Registration
       </Typography>
-      <Typography variant="h6" sx={{ my: 3 }}>
+      <Typography variant="h6" sx={{ my: 3, textAlign: 'center' }}>
         Please complete all fields marked with * to continue.
       </Typography>
       <Box sx={{ width: '100%' }}>
-        <Stepper activeStep={activeStep}>
+        <Stepper activeStep={activeStep} sx={{ mb: 5 }}>
           {steps.map((label, index) => {
             const stepProps = {};
             const labelProps = {};
