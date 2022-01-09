@@ -71,12 +71,18 @@ export default function Navbar({
         variant="permanent"
         anchor="left"
       >
-        <Toolbar>
+        <Toolbar
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignContent: 'center',
+          }}
+        >
           <CardMedia
             component="img"
-            height="140"
-            image="https://images.unsplash.com/photo-1617691763432-8b45e6748b71?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Z2Vja298ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60"
-            alt="green iguana"
+            sx={{ width: '100px', mt: '15px', mb: '15px' }}
+            image={require('../../media/Appsta Logo Black Outline - Large.png')}
+            alt="appsta logo"
             onClick={() => history.push('/')}
           />
         </Toolbar>
