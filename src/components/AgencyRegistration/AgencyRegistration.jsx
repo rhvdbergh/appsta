@@ -104,7 +104,7 @@ function AgencyRegistration() {
       <Container>
         <Typography variant="h3"> Agency Registration </Typography>
         <Typography variant="h6">
-          Please complete all fields marked with *
+          Please complete all fields marked with * to continue.
         </Typography>
 
         <Box sx={{ width: '100%' }}>
