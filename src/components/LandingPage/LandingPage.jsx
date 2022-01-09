@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import { Button, Typography, Paper, Box, CardMedia } from "@mui/material";
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { Button, Typography, Paper, Box, CardMedia } from '@mui/material';
 
 // CUSTOM COMPONENTS
-import LoginForm from "../LoginForm/LoginForm";
+import LoginForm from '../LoginForm/LoginForm';
 
 function LandingPage() {
   const history = useHistory();
@@ -18,20 +18,20 @@ function LandingPage() {
       <center>
         <CardMedia
           component="img"
-          sx={{ width: "250px", mt: 3 }}
-          image={require("../../media/Appsta_Logo_Black_Outline_Large.png")}
+          sx={{ width: '250px', mt: 3 }}
+          image={require('../../media/Appsta_Logo_Black_Outline_Large.png')}
           alt="appsta logo"
-          onClick={() => history.push("/")}
+          onClick={() => history.push('/')}
         />
         <LoginForm />
 
         <Typography variant="h5" sx={{ m: 2 }}>
-          {" "}
+          {' '}
           New to appsta?
           <Button
-            sx={{ color: "primary.dark" }}
+            sx={{ color: 'primary.navbar' }}
             onClick={() => {
-              history.push("/BuyerOptions");
+              history.push('/BuyerOptions');
             }}
           >
             <Typography variant="h6">GET STARTED</Typography>
@@ -42,12 +42,10 @@ function LandingPage() {
           color="secondary"
           variant="contained"
           onClick={() => {
-            history.push("/AgencyLogin");
+            history.push('/AgencyLogin');
           }}
         >
-          <Typography variant="h6" sx={{ color: "white" }}>
-            Agency Login
-          </Typography>
+          <Typography variant="h6">Agency Login</Typography>
         </Button>
       </center>
     </div>
