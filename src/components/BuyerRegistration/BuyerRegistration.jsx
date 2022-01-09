@@ -144,7 +144,7 @@ function BuyerRegistration() {
                 sx={{
                   display: 'flex',
                   flexDirection: 'row',
-                  pt: 2,
+                  pt: 5,
                 }}
               >
                 <Button
