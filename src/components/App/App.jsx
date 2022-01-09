@@ -146,6 +146,8 @@ function App() {
                 // and the user is an agency,
                 // redirect them to the /AgencyDashboard page
                 <Redirect to="/AgencyDashboard" />
+              ) : user.id && user.isBuyer ? (
+                <Redirect to="BuyerDashboard" />
               ) : (
                 // Otherwise, show the AgencyLoginPage
                 <AgencyLoginPage />
