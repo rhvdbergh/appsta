@@ -113,6 +113,8 @@ function App() {
             <Route exact path="/BuyerReview">
               {user.is_admin ? (
                 <Redirect to="/Admin" />
+              ) : user.id && !user.isBuyer ? (
+                <Redirect to="/LandingPage" />
               ) : (
                 <BuyerReviewSelection />
               )}
@@ -121,6 +123,8 @@ function App() {
             <ProtectedRoute exact path="/BuyerReviewFeatures">
               {user.is_admin ? (
                 <Redirect to="/Admin" />
+              ) : user.id && !user.isBuyer ? (
+                <Redirect to="/LandingPage" />
               ) : (
                 <BuyerReviewFeatures />
               )}
