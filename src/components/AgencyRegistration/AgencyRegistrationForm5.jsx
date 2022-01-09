@@ -40,7 +40,11 @@ function AgencyRegistrationForm5({ setCanMoveForward }) {
   return (
     <Box sx={{ my: 2 }}>
       <Typography type="h6" sx={{ my: 2 }}>
-        Select Your Estimate Data
+        Appsta uses T-Shirt sizes as a project estimation system. For instance,
+        a less complex task is rated as XS (extra small), and a complex task
+        that will take a long time is rated as XL (extra large). Please choose
+        the number of hours that your agency wants their T-Shirt sizes to
+        represent. Also enter your hourly rate.
       </Typography>
       <TextField
         sx={{ m: 1 }}
