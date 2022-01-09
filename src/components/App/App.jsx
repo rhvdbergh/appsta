@@ -59,7 +59,7 @@ const theme = createTheme({
     },
     text: {
       primary: '#000000',
-      secondary: '#EEEED1',
+      navbar: '#EEEED1',
       // disabled: '#efefeb',
     },
   },

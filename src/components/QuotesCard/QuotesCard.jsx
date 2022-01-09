@@ -52,12 +52,14 @@ function QuotesCard({ agency, cost, displayingBuyerCompareQuotes }) {
 
   return (
     <Box>
-      <Card>
+      <Card sx={{ width: '350px' }}>
         <CardHeader title={agency.agency_name} />
-        <CardMedia component="img" height="200" image={agency.logo_url} />
-        <CardContent>
-          <Typography>{agency.agency_blurb}</Typography>
-        </CardContent>
+        <CardMedia
+          component="img"
+          width="350"
+          image={agency.logo_url}
+          sx={{ height: '300px' }}
+        />
         <CardActions>
           <Button onClick={() => setIsExpanded(!isExpanded)}>
             {isExpanded ? 'Show Less' : 'Learn More'}
@@ -82,6 +84,9 @@ function QuotesCard({ agency, cost, displayingBuyerCompareQuotes }) {
             <Box sx={{ display: 'flex' }}>
               <LocationOnIcon />
               <Typography>{agency.city}</Typography>
+            </Box>
+            <Box sx={{ mt: '10px', mb: '10px' }}>
+              <Typography>{agency.agency_blurb}</Typography>
             </Box>
           </CardContent>
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
