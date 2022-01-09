@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import OptionsList from '../OptionsList/OptionsList';
 import Navbar from '../Navbar/Navbar';
-import Box from '@mui/material/Box';
+import { Box, Typography } from '@mui/material';
 import { useHistory } from 'react-router-dom';
 
 function BuyerOptionsPage() {
@@ -50,12 +50,18 @@ function BuyerOptionsPage() {
         <Box sx={{ display: 'flex' }}>
           <Navbar btn1text={'SUBMIT QUOTE'} fxn1={submitQuote} />
           <Box>
-            <h1> Start Building your Project! </h1>
-            <p>
+            <Typography
+              variant= "h4"
+              sx={{my:2, mx:4}}
+              > Start Building your Project! 
+            </Typography>
+            <Typography
+              variant="h6"
+              sx={{my:2, mx:4}}>
               {' '}
               Select the features to include in your project. Your estimate will
               be based on selected features.{' '}
-            </p>
+            </Typography>
             <OptionsList features={features} />
           </Box>
         </Box>

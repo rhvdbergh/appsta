@@ -13,6 +13,7 @@ import {
     DialogContentText,
     DialogTitle,
     Button,
+    Typography
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import Navbar from '../Navbar/Navbar';
@@ -129,7 +130,10 @@ function Admin() {
                     // fxn1={handleLogOut}
                 />
                 <Box>
-                    <h1> Admin Page </h1>
+                    <Typography
+                      variant="h4"
+                      > Admin Page 
+                    </Typography>
                     <Button onClick={handleClickOpen('body')}>
                         Create New Feature
                     </Button>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Button } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 
 // CUSTOM COMPONENTS
 import LoginForm from '../LoginForm/LoginForm';
@@ -13,19 +13,21 @@ function AgencyLoginPage() {
   };
 
   return (
-    <div className="container">
+    <Box className="container">
       <center>
-       
-          <LoginForm />
-
-        <p> First time here?
+        <LoginForm isAgency="true" />
+        <Box>
+          <Typography
+          variant="body"
+        > First time here?
+        </Typography>
           <Button 
             color="secondary"
             onClick={() => {
             history.push('/AgencyReg');
           }}>
-             Register Now </Button> </p>
-     
+             Register Now </Button>
+        </Box>
         <Button
           color='secondary'
           variant="contained"
@@ -34,8 +36,12 @@ function AgencyLoginPage() {
           }}>
           Not an Agency? Click Here
           </Button>
+
+
+        
+        
       </center>
-    </div>
+    </Box>
   );
 }
 
