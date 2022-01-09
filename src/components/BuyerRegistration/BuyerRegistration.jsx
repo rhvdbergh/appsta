@@ -105,9 +105,6 @@ function BuyerRegistration() {
       <Typography variant="h3" sx={{ my: 3, textAlign: 'center' }}>
         Appsta Registration
       </Typography>
-      <Typography variant="h6" sx={{ my: 3, textAlign: 'center' }}>
-        Please complete all fields marked with * to continue.
-      </Typography>
       <Box sx={{ width: '100%' }}>
         <Stepper activeStep={activeStep} sx={{ mb: 5 }}>
           {steps.map((label, index) => {
@@ -123,6 +120,9 @@ function BuyerRegistration() {
             );
           })}
         </Stepper>
+        <Typography variant="h6" sx={{ my: 5, textAlign: 'center' }}>
+          Please complete all fields marked with * to continue.
+        </Typography>
         <Box>
           {activeStep === steps.length ? (
             <Fragment>
