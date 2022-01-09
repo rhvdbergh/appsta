@@ -119,7 +119,11 @@ function App() {
             </Route>
             {/* This path is to display features associated with a saved project */}
             <ProtectedRoute exact path="/BuyerReviewFeatures">
-              <BuyerReviewFeatures />
+              {user.is_admin ? (
+                <Redirect to="/Admin" />
+              ) : (
+                <BuyerReviewFeatures />
+              )}
             </ProtectedRoute>
             {/* Adding a Buyer Options Route */}
             <Route exact path="/BuyerOptions">
