@@ -111,19 +111,43 @@ function App() {
               )}
             </Route>
             <Route exact path="/BuyerReview">
-              <BuyerReviewSelection />
+              {user.is_admin ? (
+                <Redirect to="/Admin" />
+              ) : user.id && !user.isBuyer ? (
+                <Redirect to="/LandingPage" />
+              ) : (
+                <BuyerReviewSelection />
+              )}
             </Route>
             {/* This path is to display features associated with a saved project */}
             <ProtectedRoute exact path="/BuyerReviewFeatures">
-              <BuyerReviewFeatures />
+              {user.is_admin ? (
+                <Redirect to="/Admin" />
+              ) : user.id && !user.isBuyer ? (
+                <Redirect to="/LandingPage" />
+              ) : (
+                <BuyerReviewFeatures />
+              )}
             </ProtectedRoute>
             {/* Adding a Buyer Options Route */}
             <Route exact path="/BuyerOptions">
-              <BuyerOptionsPage />
+              {user.is_admin ? (
+                <Redirect to="/Admin" />
+              ) : user.id && !user.isBuyer ? (
+                <Redirect to="/LandingPage" />
+              ) : (
+                <BuyerOptionsPage />
+              )}
             </Route>
             {/* Adding Buyer Registration Route */}
             <Route exact path="/BuyerRegistration">
-              <BuyerRegistration />
+              {user.is_admin ? (
+                <Redirect to="/Admin" />
+              ) : user.id ? (
+                <Redirect to="/LandingPage" />
+              ) : (
+                <BuyerRegistration />
+              )}
             </Route>
             {/* Adding router for Agency Login Page */}
             <Route exact path="/AgencyLogin">
@@ -132,6 +156,8 @@ function App() {
                 // and the user is an agency,
                 // redirect them to the /AgencyDashboard page
                 <Redirect to="/AgencyDashboard" />
+              ) : user.id && user.isBuyer ? (
+                <Redirect to="BuyerDashboard" />
               ) : (
                 // Otherwise, show the AgencyLoginPage
                 <AgencyLoginPage />
@@ -139,7 +165,13 @@ function App() {
             </Route>
             {/* Adding Agency Registration */}
             <Route exact path="/AgencyReg">
-              <AgencyRegistration />
+              {user.is_admin ? (
+                <Redirect to="/Admin" />
+              ) : user.id ? (
+                <Redirect to="/LandingPage" />
+              ) : (
+                <AgencyRegistration />
+              )}
             </Route>
             {/* Protected Buyer Dashboard Route */}
             <ProtectedRoute exact path="/BuyerDashboard">
