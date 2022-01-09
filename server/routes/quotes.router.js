@@ -11,10 +11,16 @@ const encryptLib = require('../modules/encryption');
 
 router.post('/findagencies', (req, res) => {
   // define SQL query text
+  // we also need the agency's email, which is
+  // the agency's user's username
   const queryText = `
-  SELECT af.agency_id, agencies.*, array_agg (af.feature_id) FROM agency_features af
+  SELECT 
+    af.agency_id, agencies.*, 
+    users.username AS agency_email,
+    array_agg (af.feature_id) FROM agency_features af
   JOIN agencies ON af.agency_id = agencies.id
-  GROUP BY af.agency_id, agencies.id
+  JOIN users ON users.id = agencies.user_id
+  GROUP BY af.agency_id, agencies.id, users.username
   HAVING array_agg(af.feature_id) @> ($1::INTEGER[]);
   `;
   // define the array of selected features from req.body
