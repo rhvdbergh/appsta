@@ -1,5 +1,6 @@
 //import MUI components
 import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
@@ -100,9 +101,11 @@ function AgencyRegistration() {
 
   return (
     <>
-      <div class="container">
-        <h1> Agency Registration Page </h1>
-        <p> lines with * are required </p>
+      <Container>
+        <Typography variant="h3"> Agency Registration </Typography>
+        <Typography variant="h6">
+          Please complete all fields marked with *
+        </Typography>
 
         <Box sx={{ width: '100%' }}>
           <Stepper activeStep={activeStep}>
@@ -149,7 +152,7 @@ function AgencyRegistration() {
             </Fragment>
           )}
         </Box>
-      </div>
+      </Container>
     </>
   );
 }
