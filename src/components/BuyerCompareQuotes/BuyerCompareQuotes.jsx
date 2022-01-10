@@ -107,22 +107,29 @@ function BuyerCompareQuotes() {
   // }
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex', minWidth: '100vw' }}>
       <Navbar
         onBuyerDashboard={true}
         btn1text={'Save Project'}
-        fxn1={() => {
-          dispatch({ type: 'REFRESH_DATA' });
-          history.push('/BuyerDashboard');
-        }}
-        fxn1Disabled={!filteredAgencies.length > 0}
+        fxn1={
+          projectAgencies.length > 0
+            ? () => {
+                dispatch({ type: 'REFRESH_DATA' });
+                history.push('/BuyerDashboard');
+              }
+            : () => {}
+        }
       />
-      <Box>
-        <Typography variant="h3" sx={{ textAlign: 'center' }}>
-          Compare Quotes
-        </Typography>
+      <Box sx={{ width: '100%' }}>
+        <Box sx={{ height: '8vh', width: '100%' }}>
+          <Typography variant="h3" sx={{ textAlign: 'center' }}>
+            Compare Quotes
+          </Typography>
+        </Box>
         <Box>
-          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Box
+            sx={{ display: 'flex', justifyContent: 'center', height: '8vh' }}
+          >
             <FormControl component="fieldset">
               <FormGroup row aria-label="agency-filters">
                 <FormControlLabel
@@ -168,11 +175,13 @@ function BuyerCompareQuotes() {
               </FormGroup>
             </FormControl>
           </Box>
-          <BuyerQuotesList
-            projectFeatures={projectFeatures}
-            quotingAgencies={filteredAgencies}
-            displayingBuyerCompareQuotes={true}
-          />
+          <Box sx={{ height: '84vh', overflow: 'scroll' }}>
+            <BuyerQuotesList
+              projectFeatures={projectFeatures}
+              quotingAgencies={filteredAgencies}
+              displayingBuyerCompareQuotes={true}
+            />
+          </Box>
         </Box>
       </Box>
     </Box>
