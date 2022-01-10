@@ -122,15 +122,13 @@ function AgencyDashboard() {
           <Typography sx={{ m: 4 }} variant='h4'>
            {user.agency_name} Settings
           </Typography>
-          <Typography align='center'>
             <Button
               variant='contained'
-              sx={{ textSecondary: "text.secondary" }}
+              sx={{ mx:4, my:2, textSecondary: "text.secondary" }}
               onClick={handleClickOpen("body")}
             >
-              Update Account Details
+              Update Account Information
             </Button>
-          </Typography>
 
           <AgencyConversionSettings user={user} />
           <Dialog
