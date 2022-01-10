@@ -1,6 +1,6 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { useState, useRef, useEffect } from 'react';
-import Navbar from '../Navbar/Navbar';
+import { useSelector, useDispatch } from "react-redux";
+import { useState, useRef, useEffect } from "react";
+import Navbar from "../Navbar/Navbar";
 
 import {
   TextField,
@@ -20,10 +20,10 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  Typography
-} from '@mui/material';
-import OptionsList from '../OptionsList/OptionsList';
-import AgencyConversionSettings from '../AgencyConversionSettings/AgencyConversionSettings';
+  Typography,
+} from "@mui/material";
+import OptionsList from "../OptionsList/OptionsList";
+import AgencyConversionSettings from "../AgencyConversionSettings/AgencyConversionSettings";
 
 function AgencyDashboard() {
   const user = useSelector((store) => store.user);
@@ -38,7 +38,8 @@ function AgencyDashboard() {
   const [agency_blurb, setAgency_blurb] = useState(user.agency_blurb);
   const [logo_url, setLogo_url] = useState(user.logo_url);
   const [contact_first_name, setContact_first_name] = useState(
-    user.contact_first_name);
+    user.contact_first_name
+  );
   const [contact_last_name, setContact_last_name] = useState(
     user.contact_last_name
   );
@@ -53,7 +54,7 @@ function AgencyDashboard() {
   const [country_code, setCountry_code] = useState(user.country_code);
   const [postal_code, setPostal_code] = useState(user.agencies_postal_code);
   const [staffing_location, setStaffing_location] = useState(
-    'Onshore Talent Only'
+    "Onshore Talent Only"
   );
 
   const agency = {
@@ -78,13 +79,13 @@ function AgencyDashboard() {
   const handleUpdate = () => {
     const agencyID = user.agency_id;
     dispatch({
-      type: 'UPDATE_AGENCY_INFORMATION',
+      type: "UPDATE_AGENCY_INFORMATION",
       payload: { agency, agencyID },
     });
   };
 
   const [open, setOpen] = useState(false);
-  const [scroll, setScroll] = useState('paper');
+  const [scroll, setScroll] = useState("paper");
 
   const handleClickOpen = (scrollType) => () => {
     setOpen(true);
@@ -106,29 +107,26 @@ function AgencyDashboard() {
   }, [open]);
 
   useEffect(() => {
-    dispatch({ type: 'GET_AGENCY_CONVERSION', payload: user.agency_id });
+    dispatch({ type: "GET_AGENCY_CONVERSION", payload: user.agency_id });
   }, []);
 
   return (
     <>
       <Box
         sx={{
-          display: 'flex',
+          display: "flex",
         }}
       >
         <Navbar />
         <Box>
-          <Typography
-            align="center"
-            sx={{m:2}}
-            variant="h4"
-          > 
-        Settings for {user.agency_name} 
+          <Typography align="center" sx={{ m: 2 }} variant="h4">
+            Account Settings for {user.agency_name}
           </Typography>
           <Button
             variant="contained"
-            sx={{textSecondary:'text.secondary'}} 
-            onClick={handleClickOpen('body')}>
+            sx={{ textSecondary: "text.secondary" }}
+            onClick={handleClickOpen("body")}
+          >
             Update Account Details
           </Button>
           <AgencyConversionSettings user={user} />
@@ -140,7 +138,7 @@ function AgencyDashboard() {
             aria-describedby="scroll-dialog-description"
           >
             <DialogTitle id="scroll-dialog-title">Subscribe</DialogTitle>
-            <DialogContent dividers={scroll === 'paper'}>
+            <DialogContent dividers={scroll === "paper"}>
               <DialogContentText
                 id="scroll-dialog-description"
                 ref={descriptionElementRef}
@@ -287,7 +285,7 @@ function AgencyDashboard() {
                       }
                     >
                       <FormControlLabel
-                        value={'Onshore Talent Only'}
+                        value={"Onshore Talent Only"}
                         control={<Radio />}
                         label="Onshore Talent Only"
                       />
