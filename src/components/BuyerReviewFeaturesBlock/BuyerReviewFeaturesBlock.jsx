@@ -56,22 +56,23 @@ function BuyerReviewFeaturesBlock({ feature, quoteData }) {
   console.log('Agency quote data is:', featureQuotes);
 
   return (
-    <Box sx={{ display: 'flex' }}>
-      <Box>
-        <Typography component="div" variant="body2">
-          AVERAGE ESTIMATED COST: {formatCurrency(quantity * avgCost)}
-        </Typography>
-        <Typography component="div" variant="h5">
+    <Card sx={{ display: 'flex', justifyContent: 'space-around' }}>
+      <Box sx={{ m:2, display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
+        <Typography sx={{ my:2}} component="div" variant="h5">
           {feature.feature_name}
         </Typography>
+        <Typography sx={{my:2}} component="div" variant="h6">
+          AVERAGE ESTIMATED COST: {formatCurrency(quantity * avgCost)}
+        </Typography>
+        
       </Box>
       <CardMedia
         component="img"
-        sx={{ width: 75 }}
+        sx={{ m:2, width: '20%' }}
         image={feature.image_url}
         alt={feature.feature_description}
       />
-    </Box>
+    </Card>
   );
 }
 export default BuyerReviewFeaturesBlock;
