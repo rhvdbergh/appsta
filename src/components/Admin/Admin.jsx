@@ -4,9 +4,6 @@ import {
   MenuItem,
   Box,
   TextField,
-  FormGroup,
-  FormControlLabel,
-  FormControl,
   Dialog,
   DialogActions,
   DialogContent,
@@ -120,14 +117,16 @@ function Admin() {
   return (
     <>
       <Box sx={{ display: 'flex' }}>
-        <Navbar
-        // headerText={'Hello Admin'}
-        // btn1text={'LogOut'}
-        // fxn1={handleLogOut}
-        />
+        <Navbar />
         <Box>
-          <Typography variant="h4"> Admin Page</Typography>
-          <Button variant="contained" onClick={handleClickOpen('body')}>
+          <Typography variant="h4" sx={{ m: 4 }}>
+            Admin Page
+          </Typography>
+          <Button
+            variant="contained"
+            sx={{ mx: 4, my: 2, textSecondary: 'text.secondary' }}
+            onClick={handleClickOpen('body')}
+          >
             Create New Feature
           </Button>
 
@@ -138,15 +137,19 @@ function Admin() {
             aria-labelledby="scroll-dialog-title"
             aria-describedby="scroll-dialog-description"
           >
-            <DialogTitle id="scroll-dialog-title">Add Feature</DialogTitle>
+            <DialogTitle id="scroll-dialog-title" sx={{ textAlign: 'center' }}>
+              Add Feature
+            </DialogTitle>
             <DialogContent dividers={scroll === 'paper'}>
               <DialogContentText
                 id="scroll-dialog-description"
                 ref={descriptionElementRef}
                 tabIndex={-1}
+                sx={{ width: 300 }}
               >
                 <Stack>
                   <TextField
+                    sx={{ my: 2 }}
                     label="Feature Name*"
                     value={newFeature.feature_name}
                     variant="outlined"
@@ -156,8 +159,11 @@ function Admin() {
                   />
 
                   <TextField
+                    sx={{ mb: 2 }}
                     label="Feature Story*"
                     value={newFeature.feature_story}
+                    multiline={true}
+                    rows={3}
                     variant="outlined"
                     onChange={(event) =>
                       handlePropertyChange(event, 'feature_story')
@@ -165,6 +171,7 @@ function Admin() {
                   />
 
                   <TextField
+                    sx={{ mb: 2 }}
                     label="Provide Description of Feature*"
                     value={newFeature.feature_description}
                     variant="outlined"
@@ -174,6 +181,7 @@ function Admin() {
                   />
 
                   <TextField
+                    sx={{ mb: 2 }}
                     label="Image Url*"
                     value={newFeature.image_url}
                     variant="outlined"
@@ -190,6 +198,9 @@ function Admin() {
                       handlePropertyChange(event, 'category_id')
                     }
                   >
+                    <MenuItem key={-1} value={''} disabled>
+                      Select Category
+                    </MenuItem>
                     {category.map((category) => {
                       return (
                         <MenuItem key={category.id} value={category.id}>
