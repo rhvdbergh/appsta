@@ -16,9 +16,9 @@ function AdminOptionSelectionBlock({ feature }) {
         width: '100%',
         height: '10%',
         display: 'flex',
-        flexDirection: 'row',
+        flexDirection: 'column',
         justifyContent: 'center',
-        alignContent: 'center',
+        alignItems: 'center',
       }}
     >
       <Button onClick={handleDelete} variant="contained" color="error">

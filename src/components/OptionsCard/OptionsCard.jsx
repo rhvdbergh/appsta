@@ -20,7 +20,13 @@ function OptionsCard({ feature, listType, quoteData }) {
   const user = useSelector((store) => store.user);
 
   return (
-    <Card sx={{ display: 'flex', m: 4, width: '800px' }}>
+    <Card
+      sx={{
+        display: 'flex',
+        m: 4,
+        width: listType === 'admin-features' ? '400px' : '800px',
+      }}
+    >
       {listType !== 'buyer-review' && listType !== 'buyer-review-features' && (
         <>
           {/* Text and Image  */}
