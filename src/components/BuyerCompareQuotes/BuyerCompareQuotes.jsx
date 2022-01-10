@@ -1,13 +1,20 @@
-import Checkbox from '@mui/material/Checkbox';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
+import {
+  Checkbox,
+  Box,
+  Button,
+  FormGroup,
+  FormControlLabel,
+  FormControl,
+  Typography,
+  Modal,
+  Card,
+  CardContent,
+} from '@mui/material';
 import { useEffect, useReducer, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import BuyerQuotesList from '../BuyerQuotesList/BuyerQuotesList';
 import { useHistory } from 'react-router-dom';
+import Navbar from '../Navbar/Navbar';
 
 function BuyerCompareQuotes() {
   // set up the dispatch
@@ -29,6 +36,9 @@ function BuyerCompareQuotes() {
   const [veteran_owned, setVeteran_owned] = useState(false);
   const [lgbt_owned, setLgbt_owned] = useState(false);
   const [onsite_talent, setOnsite_talent] = useState(false);
+
+  // local state for modal
+  const [modalOpen, setModalOpen] = useState(false);
 
   // initialize a filter array which will be populated with strings corresponding to the criteria to check
 
@@ -84,73 +94,118 @@ function BuyerCompareQuotes() {
   }, [projectFeatures]);
 
   return (
-    <Box>
-      <Box>
-        <Box>
-          <FormControl component="fieldset">
-            <FormGroup row aria-label="agency-filters">
-              <FormControlLabel
-                control={<Checkbox />}
-                label="Minority Owned"
-                onChange={(event) => {
-                  console.log('Minority owned clicked');
-                  setMinority_owned(event.target.checked);
-                }}
-              />
-              <FormControlLabel
-                control={<Checkbox />}
-                label="Woman Owned"
-                onChange={(event) => {
-                  console.log('Woman owned clicked');
-                  setWoman_owned(event.target.checked);
-                }}
-              />
-              <FormControlLabel
-                control={<Checkbox />}
-                label="Veteran Owned"
-                onChange={(event) => {
-                  console.log('Veteran owned clicked');
-                  setVeteran_owned(event.target.checked);
-                }}
-              />
-              <FormControlLabel
-                control={<Checkbox />}
-                label="LGBT Owned"
-                onChange={(event) => {
-                  console.log('LGBT owned clicked');
-                  setLgbt_owned(event.target.checked);
-                }}
-              />
-              <FormControlLabel
-                control={<Checkbox />}
-                label="Only Onshore Talent"
-                onChange={(event) => {
-                  console.log('Onshore talent clicked');
-                  setOnsite_talent(event.target.checked);
-                }}
-              />
-            </FormGroup>
-          </FormControl>
+    <Box sx={{ display: 'flex', minWidth: '100vw' }}>
+      <Navbar
+        onBuyerDashboard={true}
+        btn1text={'Save Project'}
+        fxn1={
+          projectAgencies.length > 0
+            ? () => {
+                dispatch({ type: 'REFRESH_DATA' });
+                history.push('/BuyerDashboard');
+              }
+            : () => {
+                setModalOpen(true);
+              }
+        }
+      />
+      <Box sx={{ width: '100%' }}>
+        <Box sx={{ height: '10vh', width: '100%' }}>
+          <Typography variant="h3" sx={{ my: 3, textAlign: 'center' }}>
+            Compare and Save Quotes
+          </Typography>
         </Box>
-        <BuyerQuotesList
-          projectFeatures={projectFeatures}
-          quotingAgencies={filteredAgencies}
-          displayingBuyerCompareQuotes={true}
-        />
+        <Box sx={{ width: '100%' }}>
+          <Box
+            sx={{ display: 'flex', justifyContent: 'center', height: '8vh' }}
+          >
+            <FormControl component="fieldset">
+              <FormGroup row aria-label="agency-filters">
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label="Minority Owned"
+                  onChange={(event) => {
+                    console.log('Minority owned clicked');
+                    setMinority_owned(event.target.checked);
+                  }}
+                />
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label="Woman Owned"
+                  onChange={(event) => {
+                    console.log('Woman owned clicked');
+                    setWoman_owned(event.target.checked);
+                  }}
+                />
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label="Veteran Owned"
+                  onChange={(event) => {
+                    console.log('Veteran owned clicked');
+                    setVeteran_owned(event.target.checked);
+                  }}
+                />
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label="LGBT Owned"
+                  onChange={(event) => {
+                    console.log('LGBT owned clicked');
+                    setLgbt_owned(event.target.checked);
+                  }}
+                />
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label="Only Onshore Talent"
+                  onChange={(event) => {
+                    console.log('Onshore talent clicked');
+                    setOnsite_talent(event.target.checked);
+                  }}
+                />
+              </FormGroup>
+            </FormControl>
+          </Box>
+          <Box sx={{ height: '78vh', overflow: 'scroll', width: '100%' }}>
+            <BuyerQuotesList
+              projectFeatures={projectFeatures}
+              quotingAgencies={filteredAgencies}
+              displayingBuyerCompareQuotes={true}
+            />
+          </Box>
+        </Box>
       </Box>
-      {/* only display if we are showing any quote cards. 
-      only enable this button once at least one projectAgency has been selected */}
-      {filteredAgencies.length > 0 && (<Button
-        variant="contained"
-        disabled={!projectAgencies.length > 0}
-        onClick={() => {
-          dispatch({ type: 'REFRESH_DATA' });
-          history.push('/BuyerDashboard');
-        }}
-      >
-        Save Project
-      </Button>
-      )}
+      <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
+        <Card
+          sx={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: 500,
+            bgcolor: 'background.paper',
+            p: 2,
+          }}
+        >
+          <CardContent sx={{ textAlign: 'center' }}>
+            <Typography variant="h6">
+              You haven't saved any agencies yet!
+            </Typography>
+            <Typography variant="h6">
+              Please select at least one quote to continue.
+            </Typography>
+          </CardContent>
+          <CardContent
+            sx={{ display: 'flex', justifyContent: 'flex-end', p: 2 }}
+          >
+            <Button
+              sx={{ mr: '30px' }}
+              variant="contained"
+              onClick={() => setModalOpen(false)}
+            >
+              OK
+            </Button>
+          </CardContent>
+        </Card>
+      </Modal>
     </Box>
   );
 }

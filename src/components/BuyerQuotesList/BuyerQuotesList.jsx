@@ -73,8 +73,8 @@ function BuyerQuotesList({
   console.log('Agency quote data is: ', agencyQuoteData);
 
   return (
-    <>
-      <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+    <Box sx={{ width: '100%' }}>
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
         {agencyQuoteData.length > 0 &&
           projectFeatures.length > 0 &&
           quotingAgencies.map((agency) => {
@@ -94,7 +94,7 @@ function BuyerQuotesList({
           </Typography>
         )}
       </Box>
-    </>
+    </Box>
   );
 }
 
