@@ -1,21 +1,21 @@
 //import MUI
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import Stepper from "@mui/material/Stepper";
+import Step from "@mui/material/Step";
+import StepLabel from "@mui/material/StepLabel";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 
 //import React
-import { useState, Fragment, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useState, Fragment, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
 //import form
-import BuyerRegistrationForm1 from './BuyerRegistrationForm1';
-import BuyerRegistrationForm2 from './BuyerRegistrationForm2';
-import BuyerRegistrationForm3 from './BuyerRegistrationForm3';
+import BuyerRegistrationForm1 from "./BuyerRegistrationForm1";
+import BuyerRegistrationForm2 from "./BuyerRegistrationForm2";
+import BuyerRegistrationForm3 from "./BuyerRegistrationForm3";
 
 function BuyerRegistration() {
   const buyer = useSelector((store) => store.newBuyer);
@@ -36,7 +36,7 @@ function BuyerRegistration() {
       )
     );
 
-  const steps = ['Step 1', 'Step 2', 'Step 3'];
+  const steps = ["Step 1", "Step 2", "Step 3"];
 
   const [activeStep, setActiveStep] = useState(0);
 
@@ -56,7 +56,7 @@ function BuyerRegistration() {
     // if we're at the first page, send the user back to the
     // LandingPage
     if (activeStep === 0) {
-      history.push('/LandingPage');
+      history.push("/LandingPage");
     }
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
@@ -74,7 +74,7 @@ function BuyerRegistration() {
     }
     if (canMoveForward && activeStep === steps.length - 1) {
       dispatch({
-        type: 'ADD_NEW_BUYER',
+        type: "ADD_NEW_BUYER",
         payload: {
           buyer: buyer,
           project_features: selectedFeatures,
@@ -97,17 +97,16 @@ function BuyerRegistration() {
   };
 
   useEffect(() => {
-    dispatch({ type: 'GET_FEATURES' });
+    dispatch({ type: "GET_FEATURES" });
   }, []);
 
   return (
-    <Container>
-      <Typography variant="h3">Appsta Registration</Typography>
-      <Typography variant="h6">
-        Please complete all fields marked with * to continue.
+    <Container sx={{ width: "40%" }}>
+      <Typography variant="h3" sx={{ my: 3, textAlign: "center" }}>
+        Appsta Registration
       </Typography>
-      <Box sx={{ width: '100%' }}>
-        <Stepper activeStep={activeStep}>
+      <Box sx={{ width: "100%" }}>
+        <Stepper activeStep={activeStep} sx={{ mb: 5 }}>
           {steps.map((label, index) => {
             const stepProps = {};
             const labelProps = {};
@@ -121,33 +120,53 @@ function BuyerRegistration() {
             );
           })}
         </Stepper>
-        {activeStep === steps.length ? (
-          <Fragment>
-            <Typography sx={{ mt: 2, mb: 1 }}>
-              All steps completed - you&apos;re finished
-            </Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-              <Box sx={{ flex: '1 1 auto' }} />
-              <Button onClick={handleReset}>Reset</Button>
-            </Box>
-          </Fragment>
-        ) : (
-          <Fragment>
-            {/* handleRender conditionally renders the form */}
-            {handleRender()}
-            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-              <Button color="inherit" onClick={handleBack} sx={{ mr: 1 }}>
-                {activeStep === 0 ? 'Cancel' : 'Back'}
-              </Button>
-              <Box sx={{ flex: '1 1 auto' }} />
-              {canMoveForward && (
-                <Button onClick={handleNext}>
-                  {activeStep === steps.length - 1 ? 'Submit' : 'Next'}
+        <Typography variant="h6" sx={{ my: 5, textAlign: "center" }}>
+          Please complete all fields marked with * to continue.
+        </Typography>
+        <Box>
+          {activeStep === steps.length ? (
+            <Fragment>
+              <Typography sx={{ mt: 2, mb: 1 }}>
+                All steps completed - you&apos;re finished
+              </Typography>
+              <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
+                <Box sx={{ flex: "1 1 auto" }} />
+                <Button onClick={handleReset} variant="containted">
+                  Reset
                 </Button>
-              )}
-            </Box>
-          </Fragment>
-        )}
+              </Box>
+            </Fragment>
+          ) : (
+            <Fragment>
+              <Box sx={{ minHeight: "45vh" }}>
+                {/* handleRender conditionally renders the form */}
+                {handleRender()}
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  pt: 5,
+                }}
+              >
+                <Button
+                  color={activeStep === 0 ? "error" : "primary"}
+                  onClick={handleBack}
+                  sx={{ mr: 1 }}
+                  variant="contained"
+                >
+                  {activeStep === 0 ? "Cancel" : "Back"}
+                </Button>
+                <Box sx={{ flex: "1 1 auto" }} />
+                {canMoveForward && (
+                  <Button onClick={handleNext} variant="contained">
+                    {activeStep === steps.length - 1 ? "Submit" : "Next"}
+                  </Button>
+                )}
+              </Box>
+            </Fragment>
+          )}
+        </Box>
       </Box>
     </Container>
   );

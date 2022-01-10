@@ -1,7 +1,7 @@
-import React from 'react';
-import OptionsCard from '../OptionsCard/OptionsCard';
-import { useSelector } from 'react-redux';
-import { Typography } from '@mui/material';
+import React from "react";
+import OptionsCard from "../OptionsCard/OptionsCard";
+import { useSelector } from "react-redux";
+import { Typography } from "@mui/material";
 
 function OptionsList({
   features,
@@ -32,12 +32,10 @@ function OptionsList({
           })}
       {features.filter((feature) => feature.category_id === selectedCategory)
         .length === 0 && (
-          <Typography
-            variant="h6">
-              No features selected for this category.
-            </Typography>
-        )
-      }
+        <Typography variant="h6" sx={{ m: 4 }}>
+          No features selected for this category.
+        </Typography>
+      )}
     </>
   );
 }

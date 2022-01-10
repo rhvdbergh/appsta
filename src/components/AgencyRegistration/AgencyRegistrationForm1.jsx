@@ -5,13 +5,14 @@ import {
   FormControl,
   InputAdornment,
   IconButton,
-} from '@mui/material';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import Grid from '@mui/material/Grid';
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+  Box,
+} from "@mui/material";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import Grid from "@mui/material/Grid";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 function AgencyRegistrationForm1({ setCanMoveForward }) {
   const dispatch = useDispatch();
 
@@ -43,9 +44,9 @@ function AgencyRegistrationForm1({ setCanMoveForward }) {
   const isCompletedForm = () => {
     if (
       username !== null &&
-      username !== '' &&
+      username !== "" &&
       password !== null &&
-      password !== '' &&
+      password !== "" &&
       passwordConfirmation !== null &&
       password === passwordConfirmation
     ) {
@@ -58,46 +59,59 @@ function AgencyRegistrationForm1({ setCanMoveForward }) {
   const handleData = (data, value) => {
     // validate the user password
     // both password fields should have the same content and not be empty
-    if (data === 'password' || data === 'passwordConfirmation') {
-      if (password === passwordConfirmation && password !== '') {
+    if (data === "password" || data === "passwordConfirmation") {
+      if (password === passwordConfirmation && password !== "") {
         dispatch({
-          type: 'SET_NEW_AGENCY',
+          type: "SET_NEW_AGENCY",
           payload: { ...agency, password: value },
         });
       } // end if check equal passwords
     } // end if data === password
-    else if (data !== '') {
+    else if (data !== "") {
       // check to see that the data field is not empty
       dispatch({
-        type: 'SET_NEW_AGENCY',
+        type: "SET_NEW_AGENCY",
         payload: { ...agency, [data]: value },
       });
     }
     isCompletedForm();
   };
 
-  console.log('this is agency', agency);
+  console.log("this is agency", agency);
   return (
-    <>
-      <Grid>
+    <Grid
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignContent: "center",
+        justifyContent: "center",
+      }}
+    >
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
         <TextField
+          sx={{ width: "60%", maxWidth: "350px", my: 2 }}
           label="Email Address*"
           variant="outlined"
           value={username}
           onChange={(event) => setUsername(event.target.value)}
           onBlur={() => {
-            handleData('username', username);
+            handleData("username", username);
           }}
         />
-        <FormControl variant="filled">
+      </Box>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <FormControl
+          variant="filled"
+          sx={{ width: "60%", maxWidth: "350px", my: 2 }}
+        >
           <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
           <OutlinedInput
             id="filled-adornment-password"
-            type={passwordShown ? 'text' : 'password'}
+            type={passwordShown ? "text" : "password"}
             value={password}
             onChange={(event) => setPassword(event.target.value)}
             onBlur={() => {
-              handleData('password', password);
+              handleData("password", password);
             }}
             endAdornment={
               <InputAdornment position="end">
@@ -112,17 +126,22 @@ function AgencyRegistrationForm1({ setCanMoveForward }) {
             }
           />
         </FormControl>
-        <FormControl variant="filled">
+      </Box>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <FormControl
+          variant="filled"
+          sx={{ width: "60%", maxWidth: "350px", my: 2 }}
+        >
           <InputLabel htmlFor="filled-adornment-password">
             Confirm Password
           </InputLabel>
           <OutlinedInput
             id="filled-adornment-password"
-            type={passwordConfirmationShown ? 'text' : 'password'}
+            type={passwordConfirmationShown ? "text" : "password"}
             value={passwordConfirmation}
             onChange={(event) => setPasswordConfirmation(event.target.value)}
             onBlur={() => {
-              handleData('passwordConfirmation', passwordConfirmation);
+              handleData("passwordConfirmation", passwordConfirmation);
             }}
             endAdornment={
               <InputAdornment position="end">
@@ -143,8 +162,8 @@ function AgencyRegistrationForm1({ setCanMoveForward }) {
             }
           />
         </FormControl>
-      </Grid>
-    </>
+      </Box>
+    </Grid>
   );
 }
 
