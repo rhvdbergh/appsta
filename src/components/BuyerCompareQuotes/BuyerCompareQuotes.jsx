@@ -209,7 +209,7 @@ function BuyerCompareQuotes() {
               You haven't saved any agencies yet!
             </Typography>
             <Typography variant="h6">
-              Please select at least one agency to continue.
+              Please select at least one quote to continue.
             </Typography>
           </CardContent>
           <CardContent
