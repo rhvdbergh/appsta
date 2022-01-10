@@ -100,7 +100,7 @@ function AgencyRegistration() {
   };
 
   return (
-    <Container sx={{ width: '40%' }}>
+    <Container sx={{ width: '60%' }}>
       <Typography variant="h3" sx={{ my: 3, textAlign: 'center' }}>
         Agency Registration
       </Typography>
@@ -145,7 +145,7 @@ function AgencyRegistration() {
               <Button
                 color={activeStep === 0 ? 'error' : 'primary'}
                 onClick={handleBack}
-                sx={{ mr: 1 }}
+                sx={{ ml: '30%' }}
                 variant="contained"
               >
                 {activeStep === 0 ? 'Cancel' : 'Back'}
@@ -154,7 +154,11 @@ function AgencyRegistration() {
               {/* Button only displays if validation succeeds */}
               {/* On the last step, this shows submit instead of next */}
               {canMoveForward && (
-                <Button onClick={handleNext} variant="contained">
+                <Button
+                  onClick={handleNext}
+                  variant="contained"
+                  sx={{ mr: '30%' }}
+                >
                   {activeStep === steps.length - 1 ? 'Submit' : 'Next'}
                 </Button>
               )}
