@@ -158,7 +158,7 @@ function BuyerReviewFeatures() {
           }}
         />
         <Box>
-          <Typography variant="h5">
+        <Typography sx={{ m: 4, mt: 5 }} variant="h4">
             Review the features of your project
           </Typography>
           {quoteData.length > 0 && 
@@ -179,14 +179,14 @@ function BuyerReviewFeatures() {
           )}
           {categoryQuotes.length > 0 && 
             projectFeatures.length > 0 && (
-            <Typography variant="h6" sx={{ my: 1 }}>
+            <Typography variant="h6" sx={{ m: 4 }}>
               Cost range for {categoryName} group:{' '}
               {totalCost(categoryQuotes, quotingAgencies)}
             </Typography>
           )}
           {quoteData.length > 0 && 
             projectFeatures.length && (
-            <Typography variant="h6" sx={{ my: 1 }}>
+            <Typography variant="h6" sx={{ m : 4 }}>
               Cost range for project: {totalCost(quoteData, quotingAgencies)}
             </Typography>
           )}

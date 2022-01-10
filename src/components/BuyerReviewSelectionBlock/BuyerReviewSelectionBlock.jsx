@@ -68,7 +68,7 @@ function BuyerReviewSelectionBlock({ feature, quoteData }) {
             </Box>
             <CardMedia
                 component="img"
-                sx={{ m:2, width: '30%' }}
+                sx={{ m:2, width: '20%' }}
                 image={feature.image_url}
                 alt={feature.feature_description}
             />
