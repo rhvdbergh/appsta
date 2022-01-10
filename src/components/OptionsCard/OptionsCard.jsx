@@ -81,7 +81,19 @@ function OptionsCard({ feature, listType, quoteData }) {
         <BuyerReviewFeaturesBlock feature={feature} quoteData={quoteData} />
       )}
       {listType === 'admin-features' && (
-        <AdminOptionSelectionBlock feature={feature} />
+        <CardContent
+          sx={{
+            flex: '1 0 auto',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            color: 'text.primary',
+            p: 2,
+            mx: 2,
+          }}
+        >
+          <AdminOptionSelectionBlock feature={feature} />
+        </CardContent>
       )}
     </Card>
   );
