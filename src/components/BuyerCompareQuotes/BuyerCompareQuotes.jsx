@@ -93,25 +93,6 @@ function BuyerCompareQuotes() {
     // we only need the ids for both the agency ids and the feature ids
   }, [projectFeatures]);
 
-  {
-    /* only display if we are showing any quote cards. 
-      only enable this button once at least one projectAgency has been selected */
-  }
-  // {
-  //   filteredAgencies.length > 0 && (
-  //     <Button
-  //       variant="contained"
-  //       disabled={!projectAgencies.length > 0}
-  //       onClick={() => {
-  //         dispatch({ type: 'REFRESH_DATA' });
-  //         history.push('/BuyerDashboard');
-  //       }}
-  //     >
-  //       Save Project
-  //     </Button>
-  //   );
-  // }
-
   return (
     <Box sx={{ display: 'flex', minWidth: '100vw' }}>
       <Navbar
