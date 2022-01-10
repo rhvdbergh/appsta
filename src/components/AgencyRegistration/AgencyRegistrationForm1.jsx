@@ -5,6 +5,7 @@ import {
   FormControl,
   InputAdornment,
   IconButton,
+  Box,
 } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -78,9 +79,17 @@ function AgencyRegistrationForm1({ setCanMoveForward }) {
 
   console.log('this is agency', agency);
   return (
-    <>
-      <Grid>
+    <Grid
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignContent: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <TextField
+          sx={{ width: '60%', maxWidth: '350px', my: 2 }}
           label="Email Address*"
           variant="outlined"
           value={username}
@@ -89,7 +98,12 @@ function AgencyRegistrationForm1({ setCanMoveForward }) {
             handleData('username', username);
           }}
         />
-        <FormControl variant="filled">
+      </Box>
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <FormControl
+          variant="filled"
+          sx={{ width: '60%', maxWidth: '350px', my: 2 }}
+        >
           <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
           <OutlinedInput
             id="filled-adornment-password"
@@ -112,7 +126,12 @@ function AgencyRegistrationForm1({ setCanMoveForward }) {
             }
           />
         </FormControl>
-        <FormControl variant="filled">
+      </Box>
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <FormControl
+          variant="filled"
+          sx={{ width: '60%', maxWidth: '350px', my: 2 }}
+        >
           <InputLabel htmlFor="filled-adornment-password">
             Confirm Password
           </InputLabel>
@@ -143,8 +162,8 @@ function AgencyRegistrationForm1({ setCanMoveForward }) {
             }
           />
         </FormControl>
-      </Grid>
-    </>
+      </Box>
+    </Grid>
   );
 }
 
