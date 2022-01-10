@@ -57,7 +57,7 @@ function BuyerRegistrationForm3({ setCanMoveForward }) {
     >
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <TextField
-          sx={{ width: '60%', my: 3 }}
+          sx={{ width: '60%', maxWidth: '350px', my: 2 }}
           label="Company Name"
           value={company_name}
           variant="outlined"
@@ -69,7 +69,7 @@ function BuyerRegistrationForm3({ setCanMoveForward }) {
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <TextField
-          sx={{ width: '60%', my: 3 }}
+          sx={{ width: '60%', maxWidth: '350px', my: 2 }}
           label="Project Name*"
           value={project_name}
           variant="outlined"
@@ -81,7 +81,7 @@ function BuyerRegistrationForm3({ setCanMoveForward }) {
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <TextField
-          sx={{ width: '60%', my: 3 }}
+          sx={{ width: '60%', maxWidth: '350px', my: 2 }}
           label="City*"
           value={city}
           variant="outlined"
@@ -93,7 +93,7 @@ function BuyerRegistrationForm3({ setCanMoveForward }) {
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <TextField
-          sx={{ width: '60%', my: 3 }}
+          sx={{ width: '60%', maxWidth: '350px', my: 2 }}
           label="Zip Code*"
           value={postal_code}
           variant="outlined"

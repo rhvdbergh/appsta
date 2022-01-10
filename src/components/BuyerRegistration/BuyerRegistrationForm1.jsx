@@ -92,7 +92,7 @@ function BuyerRegistrationForm1({ setCanMoveForward }) {
     >
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <TextField
-          sx={{ width: '60%', my: 3 }}
+          sx={{ width: '60%', maxWidth: '350px', my: 1.5 }}
           label="Email*"
           variant="outlined"
           value={username}
@@ -103,7 +103,10 @@ function BuyerRegistrationForm1({ setCanMoveForward }) {
         />
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-        <FormControl variant="filled" sx={{ width: '60%', my: 3 }}>
+        <FormControl
+          variant="filled"
+          sx={{ width: '60%', maxWidth: '350px', my: 1.5 }}
+        >
           <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
           <OutlinedInput
             id="filled-adornment-password"
@@ -128,7 +131,10 @@ function BuyerRegistrationForm1({ setCanMoveForward }) {
         </FormControl>
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-        <FormControl variant="filled" sx={{ width: '60%', my: 3 }}>
+        <FormControl
+          variant="filled"
+          sx={{ width: '60%', maxWidth: '350px', my: 1.5 }}
+        >
           <InputLabel htmlFor="filled-adornment-password">
             Confirm Password
           </InputLabel>

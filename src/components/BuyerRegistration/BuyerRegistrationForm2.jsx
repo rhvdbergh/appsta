@@ -55,7 +55,7 @@ function BuyerRegistrationForm2({ setCanMoveForward }) {
     >
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <TextField
-          sx={{ width: '60%', my: 3 }}
+          sx={{ width: '60%', maxWidth: '350px', my: 1.5 }}
           label="First name*"
           value={first_name}
           variant="outlined"
@@ -67,7 +67,7 @@ function BuyerRegistrationForm2({ setCanMoveForward }) {
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <TextField
-          sx={{ width: '60%', my: 3 }}
+          sx={{ width: '60%', maxWidth: '350px', my: 1.5 }}
           label="Last name*"
           value={last_name}
           variant="outlined"

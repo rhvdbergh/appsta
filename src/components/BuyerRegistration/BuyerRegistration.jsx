@@ -138,7 +138,7 @@ function BuyerRegistration() {
             </Fragment>
           ) : (
             <Fragment>
-              <Box sx={{ minHeight: '50vh' }}>
+              <Box sx={{ minHeight: '45vh' }}>
                 {/* handleRender conditionally renders the form */}
                 {handleRender()}
               </Box>
