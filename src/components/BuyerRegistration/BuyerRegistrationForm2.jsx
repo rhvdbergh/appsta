@@ -1,4 +1,4 @@
-import { TextField, Stack } from '@mui/material';
+import { TextField, Grid, Box } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 
@@ -9,7 +9,6 @@ function BuyerRegistrationForm2({ setCanMoveForward }) {
 
   const [first_name, setFirst_name] = useState(null);
   const [last_name, setLast_name] = useState('');
- 
 
   // on page load, set the local state to what has already been
   // entered in the buyer object, if that was done previously
@@ -28,10 +27,7 @@ function BuyerRegistrationForm2({ setCanMoveForward }) {
   const isCompletedForm = () => {
     // these three fields are required; only move forward if they
     // have some content
-    if (
-        first_name !== null &&
-        last_name !== null 
-    ) {
+    if (first_name !== null && last_name !== null) {
       setCanMoveForward(true);
     } else {
       setCanMoveForward(false);
@@ -50,9 +46,16 @@ function BuyerRegistrationForm2({ setCanMoveForward }) {
   };
 
   return (
-    <>
-      <Stack>
+    <Grid
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignContent: 'center',
+      }}
+    >
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <TextField
+          sx={{ width: '60%', my: 3 }}
           label="First name*"
           value={first_name}
           variant="outlined"
@@ -61,7 +64,10 @@ function BuyerRegistrationForm2({ setCanMoveForward }) {
             handleData('first_name', first_name);
           }}
         />
+      </Box>
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <TextField
+          sx={{ width: '60%', my: 3 }}
           label="Last name*"
           value={last_name}
           variant="outlined"
@@ -70,8 +76,8 @@ function BuyerRegistrationForm2({ setCanMoveForward }) {
             handleData('last_name', last_name);
           }}
         />
-      </Stack>
-    </>
+      </Box>
+    </Grid>
   );
 }
 

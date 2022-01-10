@@ -6,6 +6,7 @@ import {
   FormControl,
   InputAdornment,
   IconButton,
+  Box,
 } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -82,66 +83,83 @@ function BuyerRegistrationForm1({ setCanMoveForward }) {
 
   console.log('this is buyer', buyer);
   return (
-    <Grid sx={{ display: 'flex', flexDirection: 'column', minHeight: '500px' }}>
-      <TextField
-        label="Email*"
-        variant="outlined"
-        value={username}
-        onChange={(event) => setUsername(event.target.value)}
-        onBlur={() => {
-          handleData('username', username);
-        }}
-      />
-      <FormControl variant="filled">
-        <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
-        <OutlinedInput
-          id="filled-adornment-password"
-          type={passwordShown ? 'text' : 'password'}
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
+    <Grid
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignContent: 'center',
+      }}
+    >
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <TextField
+          sx={{ width: '60%', my: 3 }}
+          label="Email*"
+          variant="outlined"
+          value={username}
+          onChange={(event) => setUsername(event.target.value)}
           onBlur={() => {
-            handleData('password', password);
+            handleData('username', username);
           }}
-          endAdornment={
-            <InputAdornment position="end">
-              <IconButton
-                aria-label="toggle password visibility"
-                onClick={() => setPasswordShown(!passwordShown)}
-                edge="end"
-              >
-                {passwordShown ? <VisibilityOff /> : <Visibility />}
-              </IconButton>
-            </InputAdornment>
-          }
         />
-      </FormControl>
-      <FormControl variant="filled">
-        <InputLabel htmlFor="filled-adornment-password">
-          Confirm Password
-        </InputLabel>
-        <OutlinedInput
-          id="filled-adornment-password"
-          type={passwordConfirmationShown ? 'text' : 'password'}
-          value={passwordConfirmation}
-          onChange={(event) => setPasswordConfirmation(event.target.value)}
-          onBlur={() => {
-            handleData('passwordConfirmation', passwordConfirmation);
-          }}
-          endAdornment={
-            <InputAdornment position="end">
-              <IconButton
-                aria-label="toggle password visibility"
-                onClick={() =>
-                  setPasswordConfirmationShown(!passwordConfirmationShown)
-                }
-                edge="end"
-              >
-                {passwordConfirmationShown ? <VisibilityOff /> : <Visibility />}
-              </IconButton>
-            </InputAdornment>
-          }
-        />
-      </FormControl>
+      </Box>
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <FormControl variant="filled" sx={{ width: '60%', my: 3 }}>
+          <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
+          <OutlinedInput
+            id="filled-adornment-password"
+            type={passwordShown ? 'text' : 'password'}
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            onBlur={() => {
+              handleData('password', password);
+            }}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={() => setPasswordShown(!passwordShown)}
+                  edge="end"
+                >
+                  {passwordShown ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+          />
+        </FormControl>
+      </Box>
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <FormControl variant="filled" sx={{ width: '60%', my: 3 }}>
+          <InputLabel htmlFor="filled-adornment-password">
+            Confirm Password
+          </InputLabel>
+          <OutlinedInput
+            id="filled-adornment-password"
+            type={passwordConfirmationShown ? 'text' : 'password'}
+            value={passwordConfirmation}
+            onChange={(event) => setPasswordConfirmation(event.target.value)}
+            onBlur={() => {
+              handleData('passwordConfirmation', passwordConfirmation);
+            }}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={() =>
+                    setPasswordConfirmationShown(!passwordConfirmationShown)
+                  }
+                  edge="end"
+                >
+                  {passwordConfirmationShown ? (
+                    <VisibilityOff />
+                  ) : (
+                    <Visibility />
+                  )}
+                </IconButton>
+              </InputAdornment>
+            }
+          />
+        </FormControl>
+      </Box>
     </Grid>
   );
 }

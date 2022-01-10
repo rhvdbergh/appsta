@@ -138,8 +138,10 @@ function BuyerRegistration() {
             </Fragment>
           ) : (
             <Fragment>
-              {/* handleRender conditionally renders the form */}
-              {handleRender()}
+              <Box sx={{ minHeight: '50vh' }}>
+                {/* handleRender conditionally renders the form */}
+                {handleRender()}
+              </Box>
               <Box
                 sx={{
                   display: 'flex',

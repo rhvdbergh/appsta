@@ -1,4 +1,4 @@
-import { TextField, Stack } from "@mui/material";
+import { TextField, Grid, Box } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 
@@ -12,7 +12,7 @@ function BuyerRegistrationForm3({ setCanMoveForward }) {
   const [city, setCity] = useState(null);
   const [postal_code, setPostal_code] = useState(null);
 
-  // on page load, set the local state to what has been previously 
+  // on page load, set the local state to what has been previously
   // entered in the buyer object if the new agency user is returning
   useEffect(() => {
     setProject_name(buyer.project_name);
@@ -29,11 +29,7 @@ function BuyerRegistrationForm3({ setCanMoveForward }) {
   // validate that required form fields are filled out
   const isCompletedForm = () => {
     // only move forward if the required fields of city and postal code have non-null, non-empty content
-    if (
-      city !== null &&
-      postal_code !== null &&
-      project_name !== null 
-    ) {
+    if (city !== null && postal_code !== null && project_name !== null) {
       setCanMoveForward(true);
     } else {
       setCanMoveForward(false);
@@ -52,18 +48,28 @@ function BuyerRegistrationForm3({ setCanMoveForward }) {
   };
 
   return (
-    <>
-      <Stack>
-
+    <Grid
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignContent: 'center',
+      }}
+    >
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <TextField
+          sx={{ width: '60%', my: 3 }}
           label="Company Name"
           value={company_name}
           variant="outlined"
           onChange={(event) => setCompany_name(event.target.value)}
           onBlur={() => {
             handleData('company_name', company_name);
-          }} />
+          }}
+        />
+      </Box>
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <TextField
+          sx={{ width: '60%', my: 3 }}
           label="Project Name*"
           value={project_name}
           variant="outlined"
@@ -72,8 +78,10 @@ function BuyerRegistrationForm3({ setCanMoveForward }) {
             handleData('project_name', project_name);
           }}
         />
-
+      </Box>
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <TextField
+          sx={{ width: '60%', my: 3 }}
           label="City*"
           value={city}
           variant="outlined"
@@ -82,7 +90,10 @@ function BuyerRegistrationForm3({ setCanMoveForward }) {
             handleData('city', city);
           }}
         />
+      </Box>
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <TextField
+          sx={{ width: '60%', my: 3 }}
           label="Zip Code*"
           value={postal_code}
           variant="outlined"
@@ -91,10 +102,9 @@ function BuyerRegistrationForm3({ setCanMoveForward }) {
             handleData('postal_code', postal_code);
           }}
         />
-      </Stack>
-
-    </>
-  )
+      </Box>
+    </Grid>
+  );
 }
 
 export default BuyerRegistrationForm3;
