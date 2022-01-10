@@ -112,7 +112,7 @@ function AgencyRegistrationForm5({ setCanMoveForward }) {
         />
         <TextField
           sx={{ width: '60%', maxWidth: '250px', m: 2 }}
-          label="Hourly Rate"
+          label="Hourly Rate (in USD)"
           variant="outlined"
           type="number"
           value={agency.hourly_rate || ''}
