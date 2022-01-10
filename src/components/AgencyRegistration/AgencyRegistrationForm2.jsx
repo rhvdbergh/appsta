@@ -1,5 +1,4 @@
-import { TextField, Stack } from '@mui/material';
-import Grid from '@mui/material/Grid';
+import { TextField, Grid, Box } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 
@@ -62,9 +61,17 @@ function AgencyRegistrationForm2({ setCanMoveForward }) {
   };
 
   return (
-    <>
-      <Stack>
+    <Grid
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignContent: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <TextField
+          sx={{ width: '60%', maxWidth: '350px', m: 2 }}
           label="Agency Name*"
           value={agency_name}
           variant="outlined"
@@ -74,45 +81,7 @@ function AgencyRegistrationForm2({ setCanMoveForward }) {
           }}
         />
         <TextField
-          label="Tell us more about your company"
-          multiline={true}
-          rows={3}
-          sx={{ width: 0.3, height: 100 }}
-          value={agency_blurb}
-          onChange={(event) => setAgency_blurb(event.target.value)}
-          onBlur={() => {
-            handleData('agency_blurb', agency_blurb);
-          }}
-          // value
-        />
-        <TextField
-          label="Logo URL"
-          variant="outlined"
-          value={logo_url}
-          onChange={(event) => setLogo_url(event.target.value)}
-          onBlur={() => {
-            handleData('logo_url', logo_url);
-          }}
-        />
-        <TextField
-          label="Contact First Name*"
-          variant="outlined"
-          value={contact_first_name}
-          onChange={(event) => setContact_first_name(event.target.value)}
-          onBlur={() => {
-            handleData('contact_first_name', contact_first_name);
-          }}
-        />
-        <TextField
-          label="Contact Last Name*"
-          variant="outlined"
-          value={contact_last_name}
-          onChange={(event) => setContact_last_name(event.target.value)}
-          onBlur={() => {
-            handleData('contact_last_name', contact_last_name);
-          }}
-        />
-        <TextField
+          sx={{ width: '60%', maxWidth: '350px', m: 2 }}
           label="Phone Number"
           variant="outlined"
           type="tel"
@@ -122,8 +91,54 @@ function AgencyRegistrationForm2({ setCanMoveForward }) {
             handleData('phone_number', phone_number);
           }}
         />
-      </Stack>
-    </>
+      </Box>
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <TextField
+          sx={{ width: '60%', maxWidth: '350px', m: 2 }}
+          label="Contact First Name*"
+          variant="outlined"
+          value={contact_first_name}
+          onChange={(event) => setContact_first_name(event.target.value)}
+          onBlur={() => {
+            handleData('contact_first_name', contact_first_name);
+          }}
+        />
+        <TextField
+          sx={{ width: '60%', maxWidth: '350px', m: 2 }}
+          label="Contact Last Name*"
+          variant="outlined"
+          value={contact_last_name}
+          onChange={(event) => setContact_last_name(event.target.value)}
+          onBlur={() => {
+            handleData('contact_last_name', contact_last_name);
+          }}
+        />
+      </Box>
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <TextField
+          label="Tell us more about your company"
+          multiline={true}
+          rows={3}
+          sx={{ width: '60%', maxWidth: '350px', height: 90, m: 2 }}
+          value={agency_blurb}
+          onChange={(event) => setAgency_blurb(event.target.value)}
+          onBlur={() => {
+            handleData('agency_blurb', agency_blurb);
+          }}
+          // value
+        />
+        <TextField
+          sx={{ width: '60%', maxWidth: '350px', m: 2 }}
+          label="Logo URL"
+          variant="outlined"
+          value={logo_url}
+          onChange={(event) => setLogo_url(event.target.value)}
+          onBlur={() => {
+            handleData('logo_url', logo_url);
+          }}
+        />
+      </Box>
+    </Grid>
   );
 }
 
