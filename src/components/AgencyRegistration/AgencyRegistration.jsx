@@ -1,26 +1,26 @@
 //import MUI components
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import Stepper from "@mui/material/Stepper";
+import Step from "@mui/material/Step";
+import StepLabel from "@mui/material/StepLabel";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 
 //import from components
-import AgencyRegistrationForm1 from './AgencyRegistrationForm1';
-import AgencyRegistrationForm2 from './AgencyRegistrationForm2';
-import AgencyRegistrationForm3 from './AgencyRegistrationForm3';
-import AgencyRegistrationForm4 from './AgencyRegistrationForm4';
-import AgencyRegistrationForm5 from './AgencyRegistrationForm5';
+import AgencyRegistrationForm1 from "./AgencyRegistrationForm1";
+import AgencyRegistrationForm2 from "./AgencyRegistrationForm2";
+import AgencyRegistrationForm3 from "./AgencyRegistrationForm3";
+import AgencyRegistrationForm4 from "./AgencyRegistrationForm4";
+import AgencyRegistrationForm5 from "./AgencyRegistrationForm5";
 
 //import react
-import { useState, Fragment } from 'react';
-import { useHistory } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useState, Fragment } from "react";
+import { useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
 function AgencyRegistration() {
-  const steps = ['Step 1', 'Step 2', 'Step 3', 'Step 4', 'Step 5'];
+  const steps = ["Step 1", "Step 2", "Step 3", "Step 4", "Step 5"];
 
   const [activeStep, setActiveStep] = useState(0);
   const [canMoveForward, setCanMoveForward] = useState(false);
@@ -52,9 +52,9 @@ function AgencyRegistration() {
     // filled out
     // if so, do a dispatch of the agency object that we built
     if (canMoveForward && activeStep === steps.length - 1) {
-      dispatch({ type: 'ADD_NEW_AGENCY', payload: agency });
+      dispatch({ type: "ADD_NEW_AGENCY", payload: agency });
       // move the user to the agency options page
-      history.push('/AgencyOptionsPage');
+      history.push("/AgencyOptionsPage");
     }
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     setSkipped(newSkipped);
@@ -65,7 +65,7 @@ function AgencyRegistration() {
     // if we're at the first page, send the user back to the
     // LandingPage
     if (activeStep === 0) {
-      history.push('/LandingPage');
+      history.push("/LandingPage");
     }
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
@@ -100,60 +100,73 @@ function AgencyRegistration() {
   };
 
   return (
-    <>
-      <Container>
-        <Typography variant="h3"> Agency Registration </Typography>
-        <Typography variant="h6">
+    <Container sx={{ width: "60%" }}>
+      <Typography variant="h3" sx={{ my: 3, textAlign: "center" }}>
+        Agency Registration
+      </Typography>
+
+      <Box sx={{ width: "100%" }}>
+        <Stepper activeStep={activeStep}>
+          {steps.map((label, index) => {
+            const stepProps = {};
+            const labelProps = {};
+            if (isStepSkipped(index)) {
+              stepProps.completed = false;
+            }
+            return (
+              <Step key={label} {...stepProps}>
+                <StepLabel {...labelProps}>{label}</StepLabel>
+              </Step>
+            );
+          })}
+        </Stepper>
+        <Typography variant="h6" sx={{ my: 5, textAlign: "center" }}>
           Please complete all fields marked with * to continue.
         </Typography>
-
-        <Box sx={{ width: '100%' }}>
-          <Stepper activeStep={activeStep}>
-            {steps.map((label, index) => {
-              const stepProps = {};
-              const labelProps = {};
-              if (isStepSkipped(index)) {
-                stepProps.completed = false;
-              }
-              return (
-                <Step key={label} {...stepProps}>
-                  <StepLabel {...labelProps}>{label}</StepLabel>
-                </Step>
-              );
-            })}
-          </Stepper>
-          {activeStep === steps.length ? (
-            <Fragment>
-              <Typography sx={{ mt: 2, mb: 1 }}>
-                All steps completed - you&apos;re finished
-              </Typography>
-              <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-                <Box sx={{ flex: '1 1 auto' }} />
-                <Button onClick={handleReset}>Reset</Button>
-              </Box>
-            </Fragment>
-          ) : (
-            <Fragment>
+        {activeStep === steps.length ? (
+          <Fragment>
+            <Typography sx={{ mt: 2, mb: 1 }}>
+              All steps completed - you&apos;re finished
+            </Typography>
+            <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
+              <Box sx={{ flex: "1 1 auto" }} />
+              <Button onClick={handleReset} variant="contained">
+                Reset
+              </Button>
+            </Box>
+          </Fragment>
+        ) : (
+          <Fragment>
+            <Box sx={{ minHeight: "52vh" }}>
               {/* handleRender conditionally renders the form */}
               {handleRender()}
-              <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-                <Button color="inherit" onClick={handleBack} sx={{ mr: 1 }}>
-                  {activeStep === 0 ? 'Cancel' : 'Back'}
+            </Box>
+            <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
+              <Button
+                color={activeStep === 0 ? "error" : "primary"}
+                onClick={handleBack}
+                sx={{ ml: "30%" }}
+                variant="contained"
+              >
+                {activeStep === 0 ? "Cancel" : "Back"}
+              </Button>
+              <Box sx={{ flex: "1 1 auto" }} />
+              {/* Button only displays if validation succeeds */}
+              {/* On the last step, this shows submit instead of next */}
+              {canMoveForward && (
+                <Button
+                  onClick={handleNext}
+                  variant="contained"
+                  sx={{ mr: "30%" }}
+                >
+                  {activeStep === steps.length - 1 ? "Submit" : "Next"}
                 </Button>
-                <Box sx={{ flex: '1 1 auto' }} />
-                {/* Button only displays if validation succeeds */}
-                {/* On the last step, this shows submit instead of next */}
-                {canMoveForward && (
-                  <Button onClick={handleNext}>
-                    {activeStep === steps.length - 1 ? 'Submit' : 'Next'}
-                  </Button>
-                )}
-              </Box>
-            </Fragment>
-          )}
-        </Box>
-      </Container>
-    </>
+              )}
+            </Box>
+          </Fragment>
+        )}
+      </Box>
+    </Container>
   );
 }
 

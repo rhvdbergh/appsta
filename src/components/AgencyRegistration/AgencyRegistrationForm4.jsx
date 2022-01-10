@@ -1,10 +1,8 @@
-import { TextField } from '@mui/material';
-import Stack from '@mui/material/Grid';
+import { TextField, Grid, Box } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 
@@ -61,10 +59,19 @@ function AgencyRegistrationForm4({ setCanMoveForward }) {
   };
 
   return (
-    <>
-      <Stack>
+    <Grid
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignContent: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <TextField
+          sx={{ width: '60%', maxWidth: '350px', my: 2 }}
           label="Team Size (0-9999)*"
+          type="number"
           variant="outlined"
           value={team_size}
           onChange={(event) => setTeam_size(event.target.value)}
@@ -72,8 +79,13 @@ function AgencyRegistrationForm4({ setCanMoveForward }) {
             handleData('team_size', team_size);
           }}
         />
+      </Box>
 
-        <FormControl component="fieldset">
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <FormControl
+          component="fieldset"
+          sx={{ width: '60%', maxWidth: '350px', my: 2 }}
+        >
           <FormGroup row aria-label="minority-owned">
             <FormControlLabel
               control={<Checkbox />}
@@ -118,8 +130,8 @@ function AgencyRegistrationForm4({ setCanMoveForward }) {
             />
           </FormGroup>
         </FormControl>
-      </Stack>
-    </>
+      </Box>
+    </Grid>
   );
 }
 
