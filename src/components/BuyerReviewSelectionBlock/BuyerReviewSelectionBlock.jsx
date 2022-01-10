@@ -56,7 +56,7 @@ function BuyerReviewSelectionBlock({ feature, quoteData }) {
   console.log('Agency quote data is:', featureQuotes);  
   
     return (
-        <Box sx={{ display: 'flex' }}>
+        <Card sx={{ display: 'flex'}}>
             <Box sx={{ m:2, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                 <Typography sx={{my:2}} component="div" variant="h5">
                     {feature.feature_name}
@@ -72,7 +72,7 @@ function BuyerReviewSelectionBlock({ feature, quoteData }) {
                 image={feature.image_url}
                 alt={feature.feature_description}
             />
-        </Box>
+        </Card>
     )
 }
 export default BuyerReviewSelectionBlock;
