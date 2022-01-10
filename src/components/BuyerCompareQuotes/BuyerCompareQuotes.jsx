@@ -115,7 +115,7 @@ function BuyerCompareQuotes() {
             Compare and Save Quotes
           </Typography>
         </Box>
-        <Box>
+        <Box sx={{ width: '100%' }}>
           <Box
             sx={{ display: 'flex', justifyContent: 'center', height: '8vh' }}
           >
@@ -164,7 +164,7 @@ function BuyerCompareQuotes() {
               </FormGroup>
             </FormControl>
           </Box>
-          <Box sx={{ height: '78vh', overflow: 'scroll' }}>
+          <Box sx={{ height: '78vh', overflow: 'scroll', width: '100%' }}>
             <BuyerQuotesList
               projectFeatures={projectFeatures}
               quotingAgencies={filteredAgencies}
