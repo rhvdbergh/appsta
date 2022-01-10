@@ -1,6 +1,6 @@
-import { TextField, Grid, Box } from '@mui/material';
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { TextField, Grid, Box } from "@mui/material";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
 
 function BuyerRegistrationForm2({ setCanMoveForward }) {
   const dispatch = useDispatch();
@@ -8,7 +8,7 @@ function BuyerRegistrationForm2({ setCanMoveForward }) {
   const buyer = useSelector((store) => store.newBuyer);
 
   const [first_name, setFirst_name] = useState(null);
-  const [last_name, setLast_name] = useState('');
+  const [last_name, setLast_name] = useState("");
 
   // on page load, set the local state to what has already been
   // entered in the buyer object, if that was done previously
@@ -37,9 +37,9 @@ function BuyerRegistrationForm2({ setCanMoveForward }) {
   // add data to the redux store
   const handleData = (data, value) => {
     // check to see that the data field is not empty
-    if (data !== '') {
+    if (data !== "") {
       dispatch({
-        type: 'SET_NEW_BUYER',
+        type: "SET_NEW_BUYER",
         payload: { ...buyer, [data]: value },
       });
     }
@@ -48,32 +48,32 @@ function BuyerRegistrationForm2({ setCanMoveForward }) {
   return (
     <Grid
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignContent: 'center',
+        display: "flex",
+        flexDirection: "column",
+        alignContent: "center",
       }}
     >
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
         <TextField
-          sx={{ width: '60%', maxWidth: '350px', my: 1.5 }}
+          sx={{ width: "60%", maxWidth: "350px", my: 1.5 }}
           label="First name*"
           value={first_name}
           variant="outlined"
           onChange={(event) => setFirst_name(event.target.value)}
           onBlur={() => {
-            handleData('first_name', first_name);
+            handleData("first_name", first_name);
           }}
         />
       </Box>
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
         <TextField
-          sx={{ width: '60%', maxWidth: '350px', my: 1.5 }}
+          sx={{ width: "60%", maxWidth: "350px", my: 1.5 }}
           label="Last name*"
           value={last_name}
           variant="outlined"
           onChange={(event) => setLast_name(event.target.value)}
           onBlur={() => {
-            handleData('last_name', last_name);
+            handleData("last_name", last_name);
           }}
         />
       </Box>
