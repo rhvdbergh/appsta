@@ -130,7 +130,9 @@ function AgencyRegistration() {
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
               <Box sx={{ flex: '1 1 auto' }} />
-              <Button onClick={handleReset}>Reset</Button>
+              <Button onClick={handleReset} variant="contained">
+                Reset
+              </Button>
             </Box>
           </Fragment>
         ) : (
@@ -140,14 +142,19 @@ function AgencyRegistration() {
               {handleRender()}
             </Box>
             <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-              <Button color="inherit" onClick={handleBack} sx={{ mr: 1 }}>
+              <Button
+                color={activeStep === 0 ? 'error' : 'primary'}
+                onClick={handleBack}
+                sx={{ mr: 1 }}
+                variant="contained"
+              >
                 {activeStep === 0 ? 'Cancel' : 'Back'}
               </Button>
               <Box sx={{ flex: '1 1 auto' }} />
               {/* Button only displays if validation succeeds */}
               {/* On the last step, this shows submit instead of next */}
               {canMoveForward && (
-                <Button onClick={handleNext}>
+                <Button onClick={handleNext} variant="contained">
                   {activeStep === steps.length - 1 ? 'Submit' : 'Next'}
                 </Button>
               )}
