@@ -120,15 +120,15 @@ function AgencyDashboard() {
         <Navbar />
         <Box>
           <Typography sx={{ m: 4 }} variant='h4'>
-           {user.agency_name} Settings
+            {user.agency_name} Settings
           </Typography>
-            <Button
-              variant='contained'
-              sx={{ mx:4, my:2, textSecondary: "text.secondary" }}
-              onClick={handleClickOpen("body")}
-            >
-              Update Account Information
-            </Button>
+          <Button
+            variant='contained'
+            sx={{ mx: 4, my: 2, textSecondary: "text.secondary" }}
+            onClick={handleClickOpen("body")}
+          >
+            Update Account Information
+          </Button>
 
           <AgencyConversionSettings user={user} />
           <Dialog
@@ -138,7 +138,9 @@ function AgencyDashboard() {
             aria-labelledby='scroll-dialog-title'
             aria-describedby='scroll-dialog-description'
           >
-            <DialogTitle id='scroll-dialog-title'>Update Account Information</DialogTitle>
+            <DialogTitle id='scroll-dialog-title'>
+              Update Account Information
+            </DialogTitle>
             <DialogContent dividers={scroll === "paper"}>
               <DialogContentText
                 id='scroll-dialog-description'
@@ -147,14 +149,14 @@ function AgencyDashboard() {
               >
                 <Stack>
                   <TextField
-                    sx={{my:2}}
+                    sx={{ my: 2 }}
                     label='Agency Name*'
                     value={agency_name}
                     variant='outlined'
                     onChange={(event) => setAgency_name(event.target.value)}
                   />
                   <TextField
-                    sx={{mb:2}}
+                    sx={{ mb: 2 }}
                     label='Tell us more about your company'
                     multiline={true}
                     rows={3}
@@ -163,14 +165,14 @@ function AgencyDashboard() {
                     onChange={(event) => setAgency_blurb(event.target.value)}
                   />
                   <TextField
-                    sx={{my:2}}
+                    sx={{ my: 2 }}
                     label='Logo URL'
                     variant='outlined'
                     value={user.logo_url}
                     onChange={(event) => setLogo_url(event.target.value)}
                   />
                   <TextField
-                    sx={{mb:2}}
+                    sx={{ mb: 2 }}
                     label='Contact First Name*'
                     variant='outlined'
                     value={contact_first_name}
@@ -179,7 +181,7 @@ function AgencyDashboard() {
                     }
                   />
                   <TextField
-                    sx={{mb:2}}
+                    sx={{ mb: 2 }}
                     label='Contact Last Name*'
                     variant='outlined'
                     value={contact_last_name}
@@ -188,7 +190,7 @@ function AgencyDashboard() {
                     }
                   />
                   <TextField
-                    sx={{mb:2}}
+                    sx={{ mb: 2 }}
                     label='Phone Number'
                     variant='outlined'
                     type='tel'
@@ -198,7 +200,7 @@ function AgencyDashboard() {
                 </Stack>
                 <Stack>
                   <TextField
-                    sx={{mb:2}}
+                    sx={{ mb: 2 }}
                     label='Team Size (0-9999)*'
                     type='number'
                     variant='outlined'
@@ -255,16 +257,16 @@ function AgencyDashboard() {
                       />
                     </FormGroup>
                   </FormControl>
-                  <Grid >
+                  <Grid>
                     <TextField
-                      sx={{m:1}}
+                      sx={{ m: 1 }}
                       label='City*'
                       value={city}
                       variant='outlined'
                       onChange={(event) => setCity(event.target.value)}
                     />
                     <TextField
-                      sx={{m:1}}
+                      sx={{ m: 1 }}
                       label='State/Province'
                       value={state_province}
                       variant='outlined'
@@ -273,14 +275,14 @@ function AgencyDashboard() {
                       }
                     />
                     <TextField
-                      sx={{m:1}}
+                      sx={{ m: 1 }}
                       label='Country Code'
                       value={country_code}
                       variant='outlined'
                       onChange={(event) => setCountry_code(event.target.value)}
                     />
                     <TextField
-                      sx={{m:1}}
+                      sx={{ m: 1 }}
                       label='Zip/Postal Code*'
                       value={postal_code}
                       variant='outlined'
@@ -323,8 +325,12 @@ function AgencyDashboard() {
               </DialogContentText>
             </DialogContent>
             <DialogActions>
-              <Button variant="contained" onClick={handleClose}>Cancel</Button>
-              <Button variant="contained" onClick={handleUpdate}>Update</Button>
+              <Button variant='contained' onClick={handleClose}>
+                Cancel
+              </Button>
+              <Button variant='contained' onClick={handleUpdate}>
+                Update
+              </Button>
             </DialogActions>
           </Dialog>
           <Box>
