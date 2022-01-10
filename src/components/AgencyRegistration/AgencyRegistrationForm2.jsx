@@ -1,6 +1,6 @@
-import { TextField, Grid, Box } from '@mui/material';
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { TextField, Grid, Box } from "@mui/material";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
 
 function AgencyRegistrationForm2({ setCanMoveForward }) {
   const dispatch = useDispatch();
@@ -8,7 +8,7 @@ function AgencyRegistrationForm2({ setCanMoveForward }) {
   const agency = useSelector((store) => store.newAgency);
 
   const [agency_name, setAgency_name] = useState(null);
-  const [agency_blurb, setAgency_blurb] = useState('');
+  const [agency_blurb, setAgency_blurb] = useState("");
   const [logo_url, setLogo_url] = useState(null);
   const [contact_first_name, setContact_first_name] = useState(null);
   const [contact_last_name, setContact_last_name] = useState(null);
@@ -37,11 +37,11 @@ function AgencyRegistrationForm2({ setCanMoveForward }) {
     // have some content
     if (
       agency_name !== null &&
-      agency_name !== '' &&
+      agency_name !== "" &&
       contact_first_name !== null &&
-      contact_first_name !== '' &&
+      contact_first_name !== "" &&
       contact_last_name &&
-      contact_last_name !== ''
+      contact_last_name !== ""
     ) {
       setCanMoveForward(true);
     } else {
@@ -52,9 +52,9 @@ function AgencyRegistrationForm2({ setCanMoveForward }) {
   // add data to the redux store
   const handleData = (data, value) => {
     // check to see that the data field is not empty
-    if (data !== '') {
+    if (data !== "") {
       dispatch({
-        type: 'SET_NEW_AGENCY',
+        type: "SET_NEW_AGENCY",
         payload: { ...agency, [data]: value },
       });
     }
@@ -63,78 +63,78 @@ function AgencyRegistrationForm2({ setCanMoveForward }) {
   return (
     <Grid
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignContent: 'center',
-        justifyContent: 'center',
+        display: "flex",
+        flexDirection: "column",
+        alignContent: "center",
+        justifyContent: "center",
       }}
     >
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
         <TextField
-          sx={{ width: '60%', maxWidth: '350px', m: 2 }}
+          sx={{ width: "60%", maxWidth: "350px", m: 2 }}
           label="Agency Name*"
           value={agency_name}
           variant="outlined"
           onChange={(event) => setAgency_name(event.target.value)}
           onBlur={() => {
-            handleData('agency_name', agency_name);
+            handleData("agency_name", agency_name);
           }}
         />
         <TextField
-          sx={{ width: '60%', maxWidth: '350px', m: 2 }}
+          sx={{ width: "60%", maxWidth: "350px", m: 2 }}
           label="Phone Number"
           variant="outlined"
           type="tel"
           value={phone_number}
           onChange={(event) => setPhone_number(event.target.value)}
           onBlur={() => {
-            handleData('phone_number', phone_number);
+            handleData("phone_number", phone_number);
           }}
         />
       </Box>
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
         <TextField
-          sx={{ width: '60%', maxWidth: '350px', m: 2 }}
+          sx={{ width: "60%", maxWidth: "350px", m: 2 }}
           label="Contact First Name*"
           variant="outlined"
           value={contact_first_name}
           onChange={(event) => setContact_first_name(event.target.value)}
           onBlur={() => {
-            handleData('contact_first_name', contact_first_name);
+            handleData("contact_first_name", contact_first_name);
           }}
         />
         <TextField
-          sx={{ width: '60%', maxWidth: '350px', m: 2 }}
+          sx={{ width: "60%", maxWidth: "350px", m: 2 }}
           label="Contact Last Name*"
           variant="outlined"
           value={contact_last_name}
           onChange={(event) => setContact_last_name(event.target.value)}
           onBlur={() => {
-            handleData('contact_last_name', contact_last_name);
+            handleData("contact_last_name", contact_last_name);
           }}
         />
       </Box>
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
         <TextField
           label="Tell us more about your company"
           multiline={true}
           rows={3}
-          sx={{ width: '60%', maxWidth: '350px', height: 90, m: 2 }}
+          sx={{ width: "60%", maxWidth: "350px", height: 90, m: 2 }}
           value={agency_blurb}
           onChange={(event) => setAgency_blurb(event.target.value)}
           onBlur={() => {
-            handleData('agency_blurb', agency_blurb);
+            handleData("agency_blurb", agency_blurb);
           }}
           // value
         />
         <TextField
-          sx={{ width: '60%', maxWidth: '350px', m: 2 }}
+          sx={{ width: "60%", maxWidth: "350px", m: 2 }}
           label="Logo URL"
           variant="outlined"
           value={logo_url}
           onChange={(event) => setLogo_url(event.target.value)}
           onBlur={() => {
-            handleData('logo_url', logo_url);
+            handleData("logo_url", logo_url);
           }}
         />
       </Box>

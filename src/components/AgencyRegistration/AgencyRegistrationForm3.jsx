@@ -7,9 +7,9 @@ import {
   FormControlLabel,
   Grid,
   Box,
-} from '@mui/material';
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
+} from "@mui/material";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
 
 function AgencyRegistrationForm3({ setCanMoveForward }) {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ function AgencyRegistrationForm3({ setCanMoveForward }) {
   const [country_code, setCountry_code] = useState(null);
   const [postal_code, setPostal_code] = useState(null);
   const [staffing_location, setStaffing_location] = useState(
-    'Onshore Talent Only'
+    "Onshore Talent Only"
   );
 
   // on page load, set the local state to what has been previously
@@ -44,11 +44,11 @@ function AgencyRegistrationForm3({ setCanMoveForward }) {
     // only move forward if the required fields of city and postal code have non-null, non-empty content
     if (
       city !== null &&
-      city !== '' &&
+      city !== "" &&
       postal_code !== null &&
-      postal_code !== '' &&
+      postal_code !== "" &&
       staffing_location !== null &&
-      staffing_location !== ''
+      staffing_location !== ""
     ) {
       setCanMoveForward(true);
     } else {
@@ -59,9 +59,9 @@ function AgencyRegistrationForm3({ setCanMoveForward }) {
   // add data to the redux store
   const handleData = (data, value) => {
     // check to see that the data field is not empty
-    if (data !== '') {
+    if (data !== "") {
       dispatch({
-        type: 'SET_NEW_AGENCY',
+        type: "SET_NEW_AGENCY",
         payload: { ...agency, [data]: value },
       });
     }
@@ -93,58 +93,58 @@ function AgencyRegistrationForm3({ setCanMoveForward }) {
   return (
     <Grid
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignContent: 'center',
-        justifyContent: 'center',
+        display: "flex",
+        flexDirection: "column",
+        alignContent: "center",
+        justifyContent: "center",
       }}
     >
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
         <TextField
-          sx={{ width: '60%', maxWidth: '350px', m: 2 }}
+          sx={{ width: "60%", maxWidth: "350px", m: 2 }}
           label="City*"
           value={city}
           variant="outlined"
           onChange={(event) => setCity(event.target.value)}
           onBlur={() => {
-            handleData('city', city);
+            handleData("city", city);
           }}
         />
         <TextField
-          sx={{ width: '60%', maxWidth: '350px', m: 2 }}
+          sx={{ width: "60%", maxWidth: "350px", m: 2 }}
           label="State/Province"
           value={state_province}
           variant="outlined"
           onChange={(event) => setState_province(event.target.value)}
           onBlur={() => {
-            handleData('state_province', state_province);
+            handleData("state_province", state_province);
           }}
         />
       </Box>
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
         <TextField
-          sx={{ width: '60%', maxWidth: '350px', m: 2 }}
+          sx={{ width: "60%", maxWidth: "350px", m: 2 }}
           label="Country Code"
           value={country_code}
           variant="outlined"
           onChange={(event) => setCountry_code(event.target.value)}
           onBlur={() => {
-            handleData('country_code', country_code);
+            handleData("country_code", country_code);
           }}
         />
         <TextField
-          sx={{ width: '60%', maxWidth: '350px', m: 2 }}
+          sx={{ width: "60%", maxWidth: "350px", m: 2 }}
           label="Zip/Postal Code*"
           value={postal_code}
           variant="outlined"
           onChange={(event) => setPostal_code(event.target.value)}
           onBlur={() => {
-            handleData('postal_code', postal_code);
+            handleData("postal_code", postal_code);
           }}
         />
       </Box>
 
-      <Box sx={{ display: 'flex', justifyContent: 'center', mt: '5vh' }}>
+      <Box sx={{ display: "flex", justifyContent: "center", mt: "5vh" }}>
         <FormControl component="fieldset">
           <FormLabel component="legend">Staff Location*</FormLabel>
           <RadioGroup
@@ -153,7 +153,7 @@ function AgencyRegistrationForm3({ setCanMoveForward }) {
             value={staffing_location}
             onChange={(event) => setStaffing_location(event.target.value)}
             onBlur={() => {
-              handleData('staffing_location', staffing_location);
+              handleData("staffing_location", staffing_location);
             }}
           >
             <FormControlLabel
@@ -178,7 +178,7 @@ function AgencyRegistrationForm3({ setCanMoveForward }) {
             />
           </RadioGroup>
         </FormControl>
-        <Box sx={{ width: '60%', maxWidth: '350px' }}></Box>
+        <Box sx={{ width: "60%", maxWidth: "350px" }}></Box>
       </Box>
     </Grid>
   );
