@@ -71,7 +71,6 @@ function OptionsCard({ feature, listType, quoteData }) {
       {listType === 'buyer-review' && (
         <BuyerReviewSelectionBlock feature={feature} quoteData={quoteData} />
       )}
-
       {listType === 'buyer-review-features' && (
         <BuyerReviewFeaturesBlock feature={feature} quoteData={quoteData} />
       )}
