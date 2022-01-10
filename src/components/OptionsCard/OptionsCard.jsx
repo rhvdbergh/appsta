@@ -20,7 +20,13 @@ function OptionsCard({ feature, listType, quoteData }) {
   const user = useSelector((store) => store.user);
 
   return (
-    <Card sx={{ display: 'flex', m: 4, width: '800px' }}>
+    <Card
+      sx={{
+        display: 'flex',
+        m: 4,
+        width: listType === 'admin-features' ? '400px' : '800px',
+      }}
+    >
       {listType !== 'buyer-review' && listType !== 'buyer-review-features' && (
         <>
           {/* Text and Image  */}
@@ -75,7 +81,19 @@ function OptionsCard({ feature, listType, quoteData }) {
         <BuyerReviewFeaturesBlock feature={feature} quoteData={quoteData} />
       )}
       {listType === 'admin-features' && (
-        <AdminOptionSelectionBlock feature={feature} />
+        <CardContent
+          sx={{
+            flex: '1 0 auto',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            color: 'text.primary',
+            p: 2,
+            mx: 2,
+          }}
+        >
+          <AdminOptionSelectionBlock feature={feature} />
+        </CardContent>
       )}
     </Card>
   );
