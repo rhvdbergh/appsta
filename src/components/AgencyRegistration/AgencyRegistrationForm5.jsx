@@ -1,4 +1,4 @@
-import { Box, Typography, TextField, Button } from '@mui/material';
+import { Box, Typography, TextField } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
@@ -38,7 +38,14 @@ function AgencyRegistrationForm5({ setCanMoveForward }) {
   };
 
   return (
-    <Box sx={{ my: 2 }}>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignContent: 'center',
+        justifyContent: 'center',
+      }}
+    >
       <Typography type="h6" sx={{ my: 2 }}>
         Appsta uses T-Shirt sizes as a project estimation system. For instance,
         a less complex task is rated as XS (extra small), and a complex task
@@ -46,66 +53,74 @@ function AgencyRegistrationForm5({ setCanMoveForward }) {
         the number of hours that your agency wants their T-Shirt sizes to
         represent. Also enter your hourly rate.
       </Typography>
-      <TextField
-        sx={{ m: 1 }}
-        label="Hours for XS T-Shirt Size"
-        variant="outlined"
-        type="number"
-        value={agency.xsmall_hours || ''}
-        onChange={(event) => {
-          handleChange('xsmall_hours', event.target.value);
-        }}
-      />
-      <TextField
-        sx={{ m: 1 }}
-        label="Hours for S T-Shirt Size"
-        variant="outlined"
-        type="number"
-        value={agency.small_hours || ''}
-        onChange={(event) => {
-          handleChange('small_hours', event.target.value);
-        }}
-      />
-      <TextField
-        sx={{ m: 1 }}
-        label="Hours for M T-Shirt Size"
-        variant="outlined"
-        type="number"
-        value={agency.medium_hours || ''}
-        onChange={(event) => {
-          handleChange('medium_hours', event.target.value);
-        }}
-      />
-      <TextField
-        sx={{ m: 1 }}
-        label="Hours for L T-Shirt Size"
-        variant="outlined"
-        type="number"
-        value={agency.large_hours || ''}
-        onChange={(event) => {
-          handleChange('large_hours', event.target.value);
-        }}
-      />
-      <TextField
-        sx={{ m: 1 }}
-        label="Hours for XL T-Shirt Size"
-        variant="outlined"
-        type="number"
-        value={agency.xlarge_hours || ''}
-        onChange={(event) => {
-          handleChange('xlarge_hours', event.target.value);
-        }}
-      />
-      <TextField
-        sx={{ m: 1 }}
-        label="Hourly Rate"
-        variant="outlined"
-        type="number"
-        value={agency.hourly_rate || ''}
-        onChange={(event) => {
-          handleChange('hourly_rate', event.target.value);
-        }}
-      />
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <TextField
+          sx={{ width: '60%', maxWidth: '250px', m: 2 }}
+          label="Hours for XS T-Shirt Size"
+          variant="outlined"
+          type="number"
+          value={agency.xsmall_hours || ''}
+          onChange={(event) => {
+            handleChange('xsmall_hours', event.target.value);
+          }}
+        />
+        <TextField
+          sx={{ width: '60%', maxWidth: '250px', m: 2 }}
+          label="Hours for S T-Shirt Size"
+          variant="outlined"
+          type="number"
+          value={agency.small_hours || ''}
+          onChange={(event) => {
+            handleChange('small_hours', event.target.value);
+          }}
+        />
+      </Box>
+
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <TextField
+          sx={{ width: '60%', maxWidth: '250px', m: 2 }}
+          label="Hours for M T-Shirt Size"
+          variant="outlined"
+          type="number"
+          value={agency.medium_hours || ''}
+          onChange={(event) => {
+            handleChange('medium_hours', event.target.value);
+          }}
+        />
+        <TextField
+          sx={{ width: '60%', maxWidth: '250px', m: 2 }}
+          label="Hours for L T-Shirt Size"
+          variant="outlined"
+          type="number"
+          value={agency.large_hours || ''}
+          onChange={(event) => {
+            handleChange('large_hours', event.target.value);
+          }}
+        />
+      </Box>
+
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <TextField
+          sx={{ width: '60%', maxWidth: '250px', m: 2 }}
+          label="Hours for XL T-Shirt Size"
+          variant="outlined"
+          type="number"
+          value={agency.xlarge_hours || ''}
+          onChange={(event) => {
+            handleChange('xlarge_hours', event.target.value);
+          }}
+        />
+        <TextField
+          sx={{ width: '60%', maxWidth: '250px', m: 2 }}
+          label="Hourly Rate"
+          variant="outlined"
+          type="number"
+          value={agency.hourly_rate || ''}
+          onChange={(event) => {
+            handleChange('hourly_rate', event.target.value);
+          }}
+        />
+      </Box>
     </Box>
   );
 }

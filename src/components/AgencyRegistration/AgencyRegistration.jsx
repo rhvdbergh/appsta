@@ -137,7 +137,7 @@ function AgencyRegistration() {
           </Fragment>
         ) : (
           <Fragment>
-            <Box sx={{ minHeight: '55vh' }}>
+            <Box sx={{ minHeight: '52vh' }}>
               {/* handleRender conditionally renders the form */}
               {handleRender()}
             </Box>
