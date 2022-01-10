@@ -11,6 +11,8 @@ import {
   DialogTitle,
   Button,
   Typography,
+  FormControl,
+  InputLabel,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import Navbar from '../Navbar/Navbar';
@@ -191,35 +193,44 @@ function Admin() {
                   />
 
                   {/* Drop Down  */}
-                  <Select
-                    label="category"
-                    value={newFeature.category_id}
-                    onChange={(event) =>
-                      handlePropertyChange(event, 'category_id')
-                    }
-                  >
-                    <MenuItem key={-1} value={''} disabled>
+                  <FormControl>
+                    <InputLabel id="select-category">
                       Select Category
-                    </MenuItem>
-                    {category.map((category) => {
-                      return (
-                        <MenuItem key={category.id} value={category.id}>
-                          {category.category_name}
-                        </MenuItem>
-                      );
-                    })}
-                  </Select>
+                    </InputLabel>
+                    <Select
+                      label="category"
+                      value={newFeature.category_id}
+                      placeholder="Select Category"
+                      onChange={(event) =>
+                        handlePropertyChange(event, 'category_id')
+                      }
+                    >
+                      <MenuItem key={-1} value={''} disabled>
+                        Select Category
+                      </MenuItem>
+                      {category.map((category) => {
+                        return (
+                          <MenuItem key={category.id} value={category.id}>
+                            {category.category_name}
+                          </MenuItem>
+                        );
+                      })}
+                    </Select>
+                  </FormControl>
                 </Stack>
               </DialogContentText>
             </DialogContent>
             <DialogActions>
-              <Button onClick={handleClose} variant="contained" color="error">
-                {' '}
-                Cancel{' '}
+              <Button
+                sx={{ m: 1 }}
+                onClick={handleClose}
+                variant="contained"
+                color="error"
+              >
+                Cancel
               </Button>
-              <Button onClick={handlePost} variant="contained">
-                {' '}
-                Add Feature{' '}
+              <Button sx={{ m: 1 }} onClick={handlePost} variant="contained">
+                Add Feature
               </Button>
             </DialogActions>
           </Dialog>
