@@ -1,13 +1,17 @@
-import Checkbox from '@mui/material/Checkbox';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
+import {
+  Checkbox,
+  Box,
+  Button,
+  FormGroup,
+  FormControlLabel,
+  FormControl,
+  Typography,
+} from '@mui/material';
 import { useEffect, useReducer, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import BuyerQuotesList from '../BuyerQuotesList/BuyerQuotesList';
 import { useHistory } from 'react-router-dom';
+import Navbar from '../Navbar/Navbar';
 
 function BuyerCompareQuotes() {
   // set up the dispatch
@@ -83,74 +87,93 @@ function BuyerCompareQuotes() {
     // we only need the ids for both the agency ids and the feature ids
   }, [projectFeatures]);
 
+  {
+    /* only display if we are showing any quote cards. 
+      only enable this button once at least one projectAgency has been selected */
+  }
+  // {
+  //   filteredAgencies.length > 0 && (
+  //     <Button
+  //       variant="contained"
+  //       disabled={!projectAgencies.length > 0}
+  //       onClick={() => {
+  //         dispatch({ type: 'REFRESH_DATA' });
+  //         history.push('/BuyerDashboard');
+  //       }}
+  //     >
+  //       Save Project
+  //     </Button>
+  //   );
+  // }
+
   return (
-    <Box>
-      <Box>
-        <Box>
-          <FormControl component="fieldset">
-            <FormGroup row aria-label="agency-filters">
-              <FormControlLabel
-                control={<Checkbox />}
-                label="Minority Owned"
-                onChange={(event) => {
-                  console.log('Minority owned clicked');
-                  setMinority_owned(event.target.checked);
-                }}
-              />
-              <FormControlLabel
-                control={<Checkbox />}
-                label="Woman Owned"
-                onChange={(event) => {
-                  console.log('Woman owned clicked');
-                  setWoman_owned(event.target.checked);
-                }}
-              />
-              <FormControlLabel
-                control={<Checkbox />}
-                label="Veteran Owned"
-                onChange={(event) => {
-                  console.log('Veteran owned clicked');
-                  setVeteran_owned(event.target.checked);
-                }}
-              />
-              <FormControlLabel
-                control={<Checkbox />}
-                label="LGBT Owned"
-                onChange={(event) => {
-                  console.log('LGBT owned clicked');
-                  setLgbt_owned(event.target.checked);
-                }}
-              />
-              <FormControlLabel
-                control={<Checkbox />}
-                label="Only Onshore Talent"
-                onChange={(event) => {
-                  console.log('Onshore talent clicked');
-                  setOnsite_talent(event.target.checked);
-                }}
-              />
-            </FormGroup>
-          </FormControl>
-        </Box>
-        <BuyerQuotesList
-          projectFeatures={projectFeatures}
-          quotingAgencies={filteredAgencies}
-          displayingBuyerCompareQuotes={true}
-        />
-      </Box>
-      {/* only display if we are showing any quote cards. 
-      only enable this button once at least one projectAgency has been selected */}
-      {filteredAgencies.length > 0 && (<Button
-        variant="contained"
-        disabled={!projectAgencies.length > 0}
-        onClick={() => {
+    <Box sx={{ display: 'flex' }}>
+      <Navbar
+        onBuyerDashboard={true}
+        btn1text={'Save Project'}
+        fxn1={() => {
           dispatch({ type: 'REFRESH_DATA' });
           history.push('/BuyerDashboard');
         }}
-      >
-        Save Project
-      </Button>
-      )}
+      />
+      <Box>
+        <Typography variant="h3" sx={{ textAlign: 'center' }}>
+          Compare Quotes
+        </Typography>
+        <Box>
+          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+            <FormControl component="fieldset">
+              <FormGroup row aria-label="agency-filters">
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label="Minority Owned"
+                  onChange={(event) => {
+                    console.log('Minority owned clicked');
+                    setMinority_owned(event.target.checked);
+                  }}
+                />
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label="Woman Owned"
+                  onChange={(event) => {
+                    console.log('Woman owned clicked');
+                    setWoman_owned(event.target.checked);
+                  }}
+                />
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label="Veteran Owned"
+                  onChange={(event) => {
+                    console.log('Veteran owned clicked');
+                    setVeteran_owned(event.target.checked);
+                  }}
+                />
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label="LGBT Owned"
+                  onChange={(event) => {
+                    console.log('LGBT owned clicked');
+                    setLgbt_owned(event.target.checked);
+                  }}
+                />
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label="Only Onshore Talent"
+                  onChange={(event) => {
+                    console.log('Onshore talent clicked');
+                    setOnsite_talent(event.target.checked);
+                  }}
+                />
+              </FormGroup>
+            </FormControl>
+          </Box>
+          <BuyerQuotesList
+            projectFeatures={projectFeatures}
+            quotingAgencies={filteredAgencies}
+            displayingBuyerCompareQuotes={true}
+          />
+        </Box>
+      </Box>
     </Box>
   );
 }
