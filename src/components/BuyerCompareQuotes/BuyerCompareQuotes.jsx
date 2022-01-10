@@ -112,7 +112,7 @@ function BuyerCompareQuotes() {
       <Box sx={{ width: '100%' }}>
         <Box sx={{ height: '10vh', width: '100%' }}>
           <Typography variant="h3" sx={{ my: 3, textAlign: 'center' }}>
-            Compare Quotes
+            Compare and Save Quotes
           </Typography>
         </Box>
         <Box>
