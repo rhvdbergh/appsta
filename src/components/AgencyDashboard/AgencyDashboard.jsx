@@ -119,8 +119,8 @@ function AgencyDashboard() {
       >
         <Navbar />
         <Box>
-          <Typography align='center' sx={{ m: 2 }} variant='h4'>
-            Account Settings for {user.agency_name}
+          <Typography sx={{ m: 4 }} variant='h4'>
+           {user.agency_name} Settings
           </Typography>
           <Typography align='center'>
             <Button

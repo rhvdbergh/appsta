@@ -60,9 +60,10 @@ function AgencyConversionSettings({user}) {
   console.log('User ID is: ', user.agency_id);
   console.log('Conversion data is:', conversionData);
   return (
-    <Box sx = {{my:2}}>
-      <Typography type="h6" sx={{my:2}}>Update Your Estimate Data</Typography>
-      <TextField
+    <Box sx={{m:4}}>
+        <Typography  variant="h5" sx={{my:4}}>Update Your Estimate Data</Typography>
+      <Typography align="center">
+        <TextField
         sx={{m:1}}
         label="Hours for XS T-Shirt Size"
         variant="outlined"
@@ -116,11 +117,15 @@ function AgencyConversionSettings({user}) {
           handleChange('hourly_rate', event.target.value)
         }}
       />
-      <Button
+      </Typography>
+      <Typography>
+        <Button
         variant="contained" 
         onClick={handleUpdate}
         >Update Data
       </Button>
+      </Typography>
+      
 
     </Box>
     
