@@ -65,9 +65,10 @@ function BuyerDashboard() {
         fxn2={handleStartNewQuote}
       />
       <Box>
-        <Typography variant="h4">Welcome, {user.first_name}</Typography>
+        <Typography sx={{m:4}} variant="h4">Welcome, {user.first_name}</Typography>
         {quotingAgencies.length > 0 && projectFeatures.length > 0 && (
           <BuyerQuotesList
+            sx={{m:4}}
             projectFeatures={projectFeatures}
             quotingAgencies={quotingAgencies}
           />
