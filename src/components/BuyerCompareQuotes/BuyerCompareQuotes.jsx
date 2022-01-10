@@ -110,8 +110,8 @@ function BuyerCompareQuotes() {
         }
       />
       <Box sx={{ width: '100%' }}>
-        <Box sx={{ height: '8vh', width: '100%' }}>
-          <Typography variant="h3" sx={{ textAlign: 'center' }}>
+        <Box sx={{ height: '10vh', width: '100%' }}>
+          <Typography variant="h3" sx={{ my: 3, textAlign: 'center' }}>
             Compare Quotes
           </Typography>
         </Box>
@@ -164,7 +164,7 @@ function BuyerCompareQuotes() {
               </FormGroup>
             </FormControl>
           </Box>
-          <Box sx={{ height: '84vh', overflow: 'scroll' }}>
+          <Box sx={{ height: '78vh', overflow: 'scroll' }}>
             <BuyerQuotesList
               projectFeatures={projectFeatures}
               quotingAgencies={filteredAgencies}
