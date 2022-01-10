@@ -1,12 +1,12 @@
-import * as React from 'react';
-import { useEffect } from 'react';
-import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { useDispatch, useSelector } from 'react-redux';
+import * as React from "react";
+import { useEffect } from "react";
+import { useTheme } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import { useDispatch, useSelector } from "react-redux";
 
 function BuyerReviewFeaturesBlock({ feature, quoteData }) {
   const projectFeatures = useSelector((store) => store.projectFeatures);
@@ -18,25 +18,25 @@ function BuyerReviewFeaturesBlock({ feature, quoteData }) {
   // helper function to convert T-shirt size to quote field
   const tShirtField = (shirtSize) => {
     switch (shirtSize) {
-      case 'XS':
-        return 'xsmall_hours';
-      case 'S':
-        return 'small_hours';
-      case 'M':
-        return 'medium_hours';
-      case 'L':
-        return 'large_hours';
-      case 'XL':
-        return 'xlarge_hours';
+      case "XS":
+        return "xsmall_hours";
+      case "S":
+        return "small_hours";
+      case "M":
+        return "medium_hours";
+      case "L":
+        return "large_hours";
+      case "XL":
+        return "xlarge_hours";
     }
   };
 
   // helper function to convert an integer to currency format
 
   function formatCurrency(number) {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
       maximumFractionDigits: 0,
     }).format(number);
   }
@@ -52,23 +52,29 @@ function BuyerReviewFeaturesBlock({ feature, quoteData }) {
   // quotes
   const avgCost = agencyCosts.reduce((a, b) => a + b) / agencyCosts.length;
 
-  console.log('Project features are: ', projectFeatures);
-  console.log('Agency quote data is:', featureQuotes);
+  console.log("Project features are: ", projectFeatures);
+  console.log("Agency quote data is:", featureQuotes);
 
   return (
-    <Card sx={{ display: 'flex', justifyContent: 'space-around' }}>
-      <Box sx={{ m:2, display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
-        <Typography sx={{ my:2}} component="div" variant="h5">
+    <Card sx={{ display: "flex", justifyContent: "space-around" }}>
+      <Box
+        sx={{
+          m: 2,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+        }}
+      >
+        <Typography sx={{ my: 2 }} component="div" variant="h5">
           {feature.feature_name}
         </Typography>
-        <Typography sx={{my:2}} component="div" variant="h6">
+        <Typography sx={{ my: 2 }} component="div" variant="h6">
           AVERAGE ESTIMATED COST: {formatCurrency(quantity * avgCost)}
         </Typography>
-        
       </Box>
       <CardMedia
         component="img"
-        sx={{ m:2, width: '20%' }}
+        sx={{ m: 2, width: "20%" }}
         image={feature.image_url}
         alt={feature.feature_description}
       />
