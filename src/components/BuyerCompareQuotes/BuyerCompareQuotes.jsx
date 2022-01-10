@@ -115,6 +115,7 @@ function BuyerCompareQuotes() {
           dispatch({ type: 'REFRESH_DATA' });
           history.push('/BuyerDashboard');
         }}
+        fxn1Disabled={!filteredAgencies.length > 0}
       />
       <Box>
         <Typography variant="h3" sx={{ textAlign: 'center' }}>
