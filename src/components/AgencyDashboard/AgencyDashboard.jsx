@@ -352,8 +352,7 @@ function AgencyDashboard() {
             </DialogActions>
           </Dialog>
           <Box>
-            {/* if no listType is passed as a prop to OptionsList */}
-            {/* OptionsList defaults to AgencyDashboard or AgencyOptionsPage */}
+            {/* populate the list with feature options */}
             <OptionsList features={features} />
           </Box>
         </Box>
