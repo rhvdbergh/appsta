@@ -35,6 +35,8 @@ function AgencyOptionsPage() {
           display: 'flex',
         }}
       >
+        {/* the one button with its function is passed */}
+        {/* to navbar as props */}
         <Navbar btn1text={'HOME'} fxn1={returnHome} />
         <Box>
           <Typography variant="h5" sx={{ m: 3 }}>
