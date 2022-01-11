@@ -34,8 +34,10 @@ function AgencyRegistration() {
   const [activeStep, setActiveStep] = useState(0);
   const [canMoveForward, setCanMoveForward] = useState(false);
 
+  // set up the redux dispatch
   const dispatch = useDispatch();
 
+  // set up the history hook to navigate
   const history = useHistory();
 
   // the newAgency object in the redux store
