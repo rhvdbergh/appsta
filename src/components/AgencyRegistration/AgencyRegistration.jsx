@@ -66,10 +66,18 @@ function AgencyRegistration() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
+  // this will only be used if there was an error
+  // and the user was not registered
   const handleReset = () => {
     setActiveStep(0);
   };
 
+  // this function returns the component
+  // that corresponds to the active step
+  // that the stepper is on
+  // setCanMoveForward is passed down so the
+  // component can validate the input and declare
+  // whether the user can move forward
   const handleRender = () => {
     switch (activeStep) {
       case 0:
