@@ -1,16 +1,13 @@
-import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Box, Button, Typography, CardMedia } from '@mui/material';
 
-// CUSTOM COMPONENTS
+// import custom components
 import LoginForm from '../LoginForm/LoginForm';
 
+// this component is the main view for agency's to log in
 function AgencyLoginPage() {
+  // set up the router history to navigate
   const history = useHistory();
-
-  const onLogin = (event) => {
-    history.push('/login');
-  };
 
   return (
     <Box className="container">
