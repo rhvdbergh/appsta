@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { Button, Typography, Paper, Box, CardMedia } from '@mui/material';
+import { Button, Typography, CardMedia } from '@mui/material';
 
 // CUSTOM COMPONENTS
 import LoginForm from '../LoginForm/LoginForm';
@@ -27,7 +27,7 @@ function LandingPage() {
 
         <Typography variant="h5" sx={{ m: 2 }}>
           {' '}
-          New to appsta?
+          New to Appsta?
           <Button
             sx={{ color: 'primary.navbar' }}
             onClick={() => {
