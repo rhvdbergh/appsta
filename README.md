@@ -34,11 +34,11 @@ Please see these instructions for how to get a copy of this project up and runni
 1. Create a database named "appsta"
 2. The queries in the database.sql file are set up to create and populate all of the needed tables for your application to run correctly. This project was built on [Postgres](https://www.postgresql.org/), so be sure to have it installed. We used `Postico` and highly recommend that do too, to run the queries.
 3. Open your choice of edit and run an npm install
-4. Run npm run server in your terminal 
-5. Run npm run client in your terminal 
+4. Run `npm run server` in your terminal 
+5. Run `npm run client` in your terminal 
 6. The npm run client command will open up a new browser tab, where your app will spin up. 
 
-# Development Installation
+# Development Setup Instructions
 
 - Create a `.env` file at the root of the project and paste this line into the file:
   ```
@@ -53,7 +53,7 @@ Please see these instructions for how to get a copy of this project up and runni
 
 
 
-## Built with 
+# Built with 
 
 JavaScript 
 
@@ -82,21 +82,6 @@ Postman- for testing
 Postico- for the database
 
 
-
-
-## Development Setup Instructions
-
-
-
-## Debugging
-
-To debug, you will need to run the client-side separately from the server. Start the client by running the command `npm run client`. Start the debugging server by selecting the Debug button.
-
-![VSCode Toolbar](documentation/images/vscode-toolbar.png)
-
-Then make sure `Launch Program` is selected from the dropdown, then click the green play arrow.
-
-![VSCode Debug Bar](documentation/images/vscode-debug-bar.png)
 
 ## Testing Routes with Postman
 
