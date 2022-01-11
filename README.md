@@ -10,10 +10,18 @@ To see the fully functioning site, please visit: DEPLOYED VERSION OF APP (HEROKU
 
 # Screenshots 
 
+Login View 
 ![Log in](./public/Login.png)
+
+Quotes View
+![Quotes](./public/Quotes.png)
+
+Review Saved Quotes 
+![Saved Quotes](./public/SavedQuotes.png)
 
 
 # Prerequisites 
+
 
 [Node.js](https://nodejs.org/en/)
 
