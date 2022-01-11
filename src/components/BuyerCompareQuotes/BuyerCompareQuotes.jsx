@@ -10,20 +10,25 @@ import {
   Card,
   CardContent,
 } from '@mui/material';
-import { useEffect, useReducer, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import BuyerQuotesList from '../BuyerQuotesList/BuyerQuotesList';
 import { useHistory } from 'react-router-dom';
+
+// import custom components
+import BuyerQuotesList from '../BuyerQuotesList/BuyerQuotesList';
 import Navbar from '../Navbar/Navbar';
 
+// this component is the main view for buyers to compare quotes
 function BuyerCompareQuotes() {
-  // set up the dispatch
+  // set up the redux dispatch
   const dispatch = useDispatch();
 
   // set up the history to navigate
   const history = useHistory();
 
-  // retrieve the user, list of agencies that can offer the buyer's selection of features
+  // retrieve the user, list of agencies
+  // that can offer the buyer's selection of features
+  // and the active project, if there is one
   const user = useSelector((store) => store.user);
   const projectFeatures = useSelector((store) => store.projectFeatures);
   const projectAgencies = useSelector((store) => store.projectAgencies);
@@ -41,13 +46,9 @@ function BuyerCompareQuotes() {
   const [modalOpen, setModalOpen] = useState(false);
 
   // initialize a filter array which will be populated with strings corresponding to the criteria to check
-
-  const filters = [];
   let filteredAgencies = quotingAgencies.filter((agency) =>
     filterAgency(agency)
   );
-  console.log('Quoting agencies are: ', quotingAgencies);
-  console.log('Filtered agencies are', filteredAgencies);
 
   // create a function to filter an agency list based on the checked criteria
   function filterAgency(agency) {
@@ -95,10 +96,20 @@ function BuyerCompareQuotes() {
 
   return (
     <Box sx={{ display: 'flex', minWidth: '100vw' }}>
+      {/* This box above this comment contains the navbar and the rest of the page */}
+      {/* The rest of the page is contained in a Box */}
+      {/* There should only be two children for this first Box */}
+      {/* A button text and associated function is passed to the Navbar */}
+      {/* And a prop to show that the user is on the buyer dashboard (or compare quotes) */}
+      {/* this boolean value affects the rendering of the navbar */}
       <Navbar
         onBuyerDashboard={true}
         btn1text={'Save Project'}
         fxn1={
+          // save project simply moves the buyer to the dashboard
+          // the project has already been saved
+          // but the user has to have selected at least one agency
+          // otherwise the modal pops up asking the user to select at least one
           projectAgencies.length > 0
             ? () => {
                 dispatch({ type: 'REFRESH_DATA' });
@@ -116,6 +127,7 @@ function BuyerCompareQuotes() {
           </Typography>
         </Box>
         <Box sx={{ width: '100%' }}>
+          {/* This box contains the search filters */}
           <Box
             sx={{ display: 'flex', justifyContent: 'center', height: '8vh' }}
           >
@@ -165,6 +177,8 @@ function BuyerCompareQuotes() {
             </FormControl>
           </Box>
           <Box sx={{ height: '78vh', overflow: 'scroll', width: '100%' }}>
+            {/* displayingBuyerCompareQuotes makes the "select" button */}
+            {/* show up on cards */}
             <BuyerQuotesList
               projectFeatures={projectFeatures}
               quotingAgencies={filteredAgencies}
@@ -173,6 +187,8 @@ function BuyerCompareQuotes() {
           </Box>
         </Box>
       </Box>
+      {/* Modal to inform user that at least one agency should be selected */}
+      {/* before saving project */}
       <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
         <Card
           sx={{

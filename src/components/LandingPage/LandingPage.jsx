@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { Button, Typography, CardMedia } from '@mui/material';
+import { Box, Button, Typography, CardMedia } from '@mui/material';
 
 // CUSTOM COMPONENTS
 import LoginForm from '../LoginForm/LoginForm';
@@ -14,7 +14,7 @@ function LandingPage() {
   // };
 
   return (
-    <div>
+    <Box className="container">
       <center>
         <CardMedia
           component="img"
@@ -48,7 +48,7 @@ function LandingPage() {
           <Typography variant="h6">Agency Login</Typography>
         </Button>
       </center>
-    </div>
+    </Box>
   );
 }
 

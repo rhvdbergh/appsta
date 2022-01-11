@@ -1,9 +1,10 @@
-import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Button } from '@mui/material';
 import { Box } from '@mui/material';
 
+// component used in the OptionsCard when in admin view
 function AdminOptionSelectionBlock({ feature }) {
+  // set up the redux dispatch
   const dispatch = useDispatch();
 
   const handleDelete = () => {

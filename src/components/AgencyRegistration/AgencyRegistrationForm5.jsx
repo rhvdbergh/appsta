@@ -1,18 +1,23 @@
-import { Box, Typography, TextField } from "@mui/material";
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { Box, Typography, TextField } from '@mui/material';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 
+// this component displays on the AgencyRegistration main view
+// setCanMoveForward requires validation to move to the next form
 function AgencyRegistrationForm5({ setCanMoveForward }) {
   // set up the redux dispatch
   const dispatch = useDispatch();
 
-  // fetch the new agency object being built in the redux store
+  // retrieve the agency object from the redux store
+  // this is the agency object that will be submitted to the database
+  // each successive "step" on the AgencyRegistration page fills
+  // out more details of this object
   const agency = useSelector((store) => store.newAgency);
 
   // handle changes to the object
   const handleChange = (data, value) => {
     dispatch({
-      type: "SET_NEW_AGENCY",
+      type: 'SET_NEW_AGENCY',
       payload: { ...agency, [data]: parseInt(value) },
     });
   };
@@ -22,6 +27,8 @@ function AgencyRegistrationForm5({ setCanMoveForward }) {
     isCompletedForm();
   }, [agency]);
 
+  // check to see if everything is filled out and
+  // the user can move forward
   const isCompletedForm = () => {
     if (
       agency.xsmall_hours &&
@@ -40,10 +47,10 @@ function AgencyRegistrationForm5({ setCanMoveForward }) {
   return (
     <Box
       sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignContent: "center",
-        justifyContent: "center",
+        display: 'flex',
+        flexDirection: 'column',
+        alignContent: 'center',
+        justifyContent: 'center',
       }}
     >
       <Typography type="h6" sx={{ my: 2 }}>
@@ -53,70 +60,70 @@ function AgencyRegistrationForm5({ setCanMoveForward }) {
         the number of hours that your agency wants their T-Shirt sizes to
         represent. Also enter your hourly rate.
       </Typography>
-      <Box sx={{ display: "flex", justifyContent: "center" }}>
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <TextField
-          sx={{ width: "60%", maxWidth: "250px", m: 2 }}
+          sx={{ width: '60%', maxWidth: '250px', m: 2 }}
           label="Hours for XS T-Shirt Size"
           variant="outlined"
           type="number"
-          value={agency.xsmall_hours || ""}
+          value={agency.xsmall_hours || ''}
           onChange={(event) => {
-            handleChange("xsmall_hours", event.target.value);
+            handleChange('xsmall_hours', event.target.value);
           }}
         />
         <TextField
-          sx={{ width: "60%", maxWidth: "250px", m: 2 }}
+          sx={{ width: '60%', maxWidth: '250px', m: 2 }}
           label="Hours for S T-Shirt Size"
           variant="outlined"
           type="number"
-          value={agency.small_hours || ""}
+          value={agency.small_hours || ''}
           onChange={(event) => {
-            handleChange("small_hours", event.target.value);
+            handleChange('small_hours', event.target.value);
           }}
         />
       </Box>
 
-      <Box sx={{ display: "flex", justifyContent: "center" }}>
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <TextField
-          sx={{ width: "60%", maxWidth: "250px", m: 2 }}
+          sx={{ width: '60%', maxWidth: '250px', m: 2 }}
           label="Hours for M T-Shirt Size"
           variant="outlined"
           type="number"
-          value={agency.medium_hours || ""}
+          value={agency.medium_hours || ''}
           onChange={(event) => {
-            handleChange("medium_hours", event.target.value);
+            handleChange('medium_hours', event.target.value);
           }}
         />
         <TextField
-          sx={{ width: "60%", maxWidth: "250px", m: 2 }}
+          sx={{ width: '60%', maxWidth: '250px', m: 2 }}
           label="Hours for L T-Shirt Size"
           variant="outlined"
           type="number"
-          value={agency.large_hours || ""}
+          value={agency.large_hours || ''}
           onChange={(event) => {
-            handleChange("large_hours", event.target.value);
+            handleChange('large_hours', event.target.value);
           }}
         />
       </Box>
 
-      <Box sx={{ display: "flex", justifyContent: "center" }}>
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <TextField
-          sx={{ width: "60%", maxWidth: "250px", m: 2 }}
+          sx={{ width: '60%', maxWidth: '250px', m: 2 }}
           label="Hours for XL T-Shirt Size"
           variant="outlined"
           type="number"
-          value={agency.xlarge_hours || ""}
+          value={agency.xlarge_hours || ''}
           onChange={(event) => {
-            handleChange("xlarge_hours", event.target.value);
+            handleChange('xlarge_hours', event.target.value);
           }}
         />
         <TextField
-          sx={{ width: "60%", maxWidth: "250px", m: 2 }}
+          sx={{ width: '60%', maxWidth: '250px', m: 2 }}
           label="Hourly Rate (in USD)"
           variant="outlined"
-          value={agency.hourly_rate || ""}
+          value={agency.hourly_rate || ''}
           onChange={(event) => {
-            handleChange("hourly_rate", event.target.value);
+            handleChange('hourly_rate', event.target.value);
           }}
         />
       </Box>
