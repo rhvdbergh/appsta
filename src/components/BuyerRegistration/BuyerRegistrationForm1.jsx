@@ -30,7 +30,6 @@ function BuyerRegistrationForm1({ setCanMoveForward }) {
   const buyer = useSelector((store) => store.newBuyer);
 
   // define local state to capture user input
-
   const [username, setUsername] = useState(null);
   const [password, setPassword] = useState(null);
   const [passwordShown, setPasswordShown] = useState(false);
