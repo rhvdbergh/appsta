@@ -53,17 +53,19 @@ function QuotesCard({ agency, cost, displayingBuyerCompareQuotes }) {
   return (
     <Box>
       <Card elevation={3} sx={{ width: '350px', m: 1 }}>
-        <CardHeader title={agency.agency_name} />
+        <CardHeader align="center" title={agency.agency_name} />
         <CardMedia
           component="img"
           width="350"
           image={agency.logo_url}
           sx={{ height: '300px' }}
         />
-        <CardActions>
-          <Button onClick={() => setIsExpanded(!isExpanded)}>
-            {isExpanded ? 'Show Less' : 'Learn More'}
-          </Button>
+        <CardActions sx={{ display: 'flex', justifyContent: 'right' }}>
+          <Box>
+            <Button onClick={() => setIsExpanded(!isExpanded)}>
+              {isExpanded ? 'Show Less' : 'Learn More'}
+            </Button>
+          </Box>
         </CardActions>
         <Collapse in={isExpanded} timeout="auto" unmountOnExit>
           <CardContent>
@@ -131,7 +133,9 @@ function QuotesCard({ agency, cost, displayingBuyerCompareQuotes }) {
         </Collapse>
         <CardContent>
           {/* Calculate the cost for this specific company */}
-          <Typography>Cost: ${cost}</Typography>
+          <Typography variant="h5" align="center">
+            Cost: ${cost}
+          </Typography>
         </CardContent>
       </Card>
       {/* The select button should only display on buyer compare quotes page */}
