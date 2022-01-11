@@ -60,6 +60,12 @@ function BuyerRegistrationForm1({ setCanMoveForward }) {
     }
   };
 
+  const handleDemo = () => {
+    setUsername('sam.s@prime.io');
+    setPassword("password");
+    setPasswordConfirmation("password");
+  }
+
   const handleData = (data, value) => {
     // validate the user password
     // both password fields should have the same content and not be empty
@@ -90,6 +96,7 @@ function BuyerRegistrationForm1({ setCanMoveForward }) {
         alignContent: "center",
       }}
     >
+      <p onClick={handleDemo}>*</p>
       <Box sx={{ display: "flex", justifyContent: "center" }}>
         <TextField
           sx={{ width: "60%", maxWidth: "350px", my: 1.5 }}

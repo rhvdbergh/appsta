@@ -47,6 +47,13 @@ function BuyerRegistrationForm3({ setCanMoveForward }) {
     }
   };
 
+  const handleDemo = () => {
+    setProject_name("Start-up");
+    setCompany_name("...");
+    setCity("Minneapolis");
+    setPostal_code("55409");
+  }
+
   return (
     <Grid
       sx={{
@@ -55,6 +62,7 @@ function BuyerRegistrationForm3({ setCanMoveForward }) {
         alignContent: 'center',
       }}
     >
+      <p onClick={handleDemo}>*</p>
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <TextField
           sx={{ width: '60%', maxWidth: '350px', my: 2 }}

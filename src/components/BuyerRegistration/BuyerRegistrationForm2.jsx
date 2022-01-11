@@ -45,6 +45,11 @@ function BuyerRegistrationForm2({ setCanMoveForward }) {
     }
   };
 
+  const handleDemo = () => {
+    setFirst_name("Sam");
+    setLast_name("Ruffle");
+  }
+
   return (
     <Grid
       sx={{
@@ -53,6 +58,7 @@ function BuyerRegistrationForm2({ setCanMoveForward }) {
         alignContent: "center",
       }}
     >
+      <p onClick={handleDemo}>*</p>
       <Box sx={{ display: "flex", justifyContent: "center" }}>
         <TextField
           sx={{ width: "60%", maxWidth: "350px", my: 1.5 }}
