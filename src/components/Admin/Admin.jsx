@@ -99,6 +99,9 @@ function Admin() {
 
   return (
     <>
+      {/* This box contains the navbar and the rest of the page */}
+      {/* The rest of the page is contained in a Box */}
+      {/* There should only be two children for this first Box */}
       <Box sx={{ display: 'flex' }}>
         <Navbar />
         <Box>

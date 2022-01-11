@@ -1,11 +1,10 @@
-import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Navbar from '../Navbar/Navbar';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import { useHistory } from 'react-router-dom';
+import { Box, Typography } from '@mui/material';
+
+// import custom components
+import Navbar from '../Navbar/Navbar';
 import OptionsList from '../OptionsList/OptionsList';
 
 // this component shows the logged in buyer the features
@@ -13,18 +12,23 @@ import OptionsList from '../OptionsList/OptionsList';
 function BuyerReviewFeatures() {
   // set up history hook
   const history = useHistory();
+
   // grab selected category ID from redux Store
+
   const selectedCategory = useSelector((store) => store.selectedCategory);
+
   // set up dispatch hook
   const dispatch = useDispatch();
+
   // grab the categories list from the redux store
   const categories = useSelector((store) => store.category);
   // extract the selected category name based on selected category ID
   let categoryName = selectedCategory
     ? categories.find((c) => c.id === selectedCategory)?.category_name
     : '';
+
   // retrieve the buyers feature set, the agencies that can provide
-  // that feature set, and the cost estimate data.
+  // that feature set, and the cost estimate data from the redux store
   const projectFeatures = useSelector((store) => store.projectFeatures);
   const quotingAgencies = useSelector((store) => store.quotingAgencies);
   const quoteData = useSelector((store) => store.agencyQuoteData);
@@ -43,13 +47,17 @@ function BuyerReviewFeatures() {
     dispatch({ type: 'FETCH_CATEGORY' });
   }, []);
 
-  // next, make sure the projectFeatures reducer is up to date
+  // next, once we have the activeProject id,
+  // make sure the projectFeatures reducer is up to date
   useEffect(() => {
     dispatch({ type: 'GET_PROJECT_FEATURES', payload: activeProject });
   }, [activeProject]);
 
-  // next, get the agencies that provide
+  // next, once we have the features associated with the project,
+  // get the agencies that provide
   // the feature set
+  // we need the feature IDs to pass to the saga
+  // so we need to filter
   useEffect(() => {
     dispatch({
       type: 'GET_QUOTING_AGENCIES',
@@ -58,6 +66,8 @@ function BuyerReviewFeatures() {
   }, [projectFeatures]);
 
   // when we have the agencies, get the cost estimate data
+  // we need the feature IDs and a list of agency IDs
+  // so we need to filter
   useEffect(() => {
     dispatch({
       type: 'GET_AGENCY_QUOTE_DATA',
@@ -74,7 +84,6 @@ function BuyerReviewFeatures() {
   }, [quoteData]);
 
   // helper function to convert T-shirt size to quote field
-
   const tShirtField = (shirtSize) => {
     switch (shirtSize) {
       case 'XS':
@@ -91,7 +100,6 @@ function BuyerReviewFeatures() {
   };
 
   // helper function to convert an integer to currency format
-
   function formatCurrency(number) {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -141,15 +149,15 @@ function BuyerReviewFeatures() {
     return `${formatCurrency(minTotal)} - ${formatCurrency(maxTotal)}`;
   };
 
-  console.log(
-    'Project feature IDs are: ',
-    projectFeatures.map((f) => f.feature_id)
-  );
-  console.log('Agency quote data is:', quoteData);
-
   return (
     <>
+      {/* This box contains the navbar and the rest of the page */}
+      {/* The rest of the page is contained in a Box */}
+      {/* There should only be two children for this first Box */}
       <Box sx={{ display: 'flex' }}>
+        {/* passing a button and function as properties to the nav */}
+        {/* refreshing the data to make sure old data doesn't  */}
+        {/* show up on new pages */}
         <Navbar
           btn1text={'Go Back'}
           fxn1={() => {
@@ -158,11 +166,12 @@ function BuyerReviewFeatures() {
           }}
         />
         <Box>
-        <Typography sx={{ m: 4, mt: 5 }} variant="h4">
+          <Typography sx={{ m: 4, mt: 5 }} variant="h4">
             Review the features of your project
           </Typography>
-          {quoteData.length > 0 && 
-            projectFeatures.length > 0 && (
+          {/* We should only display the OptionsList */}
+          {/* if we have information to display, else calculations will break */}
+          {quoteData.length > 0 && projectFeatures.length > 0 && (
             <OptionsList
               features={projectFeatures}
               listType={'buyer-review-features'}
@@ -171,22 +180,24 @@ function BuyerReviewFeatures() {
               totalCost={totalCost}
             />
           )}
-          {quoteData.length === 0 && 
-            projectFeatures.length > 0 && (
+          {/* If no agencies can provide this feature, inform the user */}
+          {quoteData.length === 0 && projectFeatures.length > 0 && (
             <Typography variant="h6">
               Sorry, no agencies can provide all of your selected features.
             </Typography>
           )}
-          {categoryQuotes.length > 0 && 
-            projectFeatures.length > 0 && (
+          {/* Only display this information if there are features */}
+          {/* selected for this category */}
+          {categoryQuotes.length > 0 && projectFeatures.length > 0 && (
             <Typography variant="h6" sx={{ m: 4 }}>
               Cost range for {categoryName} group:{' '}
               {totalCost(categoryQuotes, quotingAgencies)}
             </Typography>
           )}
-          {quoteData.length > 0 && 
-            projectFeatures.length && (
-            <Typography variant="h6" sx={{ m : 4 }}>
+          {/* only display this information if there are agencies */}
+          {/* that can provide all of the features */}
+          {quoteData.length > 0 && projectFeatures.length && (
+            <Typography variant="h6" sx={{ m: 4 }}>
               Cost range for project: {totalCost(quoteData, quotingAgencies)}
             </Typography>
           )}
