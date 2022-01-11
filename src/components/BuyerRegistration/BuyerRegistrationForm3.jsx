@@ -2,11 +2,19 @@ import { TextField, Grid, Box } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 
+// this component displays on the BuyerRegistration main view
+// setCanMoveForward requires validation to move to the next form
 function BuyerRegistrationForm3({ setCanMoveForward }) {
+  // set up the redux dispatch
   const dispatch = useDispatch();
 
+  // retrieve the buyer object from the redux store
+  // this is the buyer object that will be submitted to the database
+  // each successive "step" on the BuyerRegistration page fills
+  // out more details of this object
   const buyer = useSelector((store) => store.newBuyer);
 
+  // define local state to capture user input
   const [project_name, setProject_name] = useState(null);
   const [company_name, setCompany_name] = useState(null);
   const [city, setCity] = useState(null);
@@ -37,6 +45,7 @@ function BuyerRegistrationForm3({ setCanMoveForward }) {
   };
 
   // add data to the redux store
+  // data expects a string with the property to set on the newBuyer reducer
   const handleData = (data, value) => {
     // check to see that the data field is not empty
     if (data !== '') {
@@ -56,6 +65,8 @@ function BuyerRegistrationForm3({ setCanMoveForward }) {
       }}
     >
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        {/* onBlur captures the information as soon as the user moves */}
+        {/* out of the field */}
         <TextField
           sx={{ width: '60%', maxWidth: '350px', my: 2 }}
           label="Company Name"
