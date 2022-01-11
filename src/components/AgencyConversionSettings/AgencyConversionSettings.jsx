@@ -55,6 +55,7 @@ function AgencyConversionSettings({ user }) {
         Update Your T-Shirt Size Estimation Settings
       </Typography>
       <Box align="center" sx={{ my: 2 }}>
+        {/* input fields for the data to be captured */}
         <TextField
           sx={{ m: 1 }}
           label="Hours for XS T-Shirt Size"
@@ -115,12 +116,14 @@ function AgencyConversionSettings({ user }) {
           Update Estimation Settings
         </Button>
       </Typography>
+      {/* Snackbar to confirm updates to user */}
       <Snackbar
         open={snackbarOpen}
         autoHideDuration={4000}
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
         onClose={() => setSnackbarOpen(false)}
       >
+        {/* defines type of snackbar */}
         <Alert
           variant="filled"
           onClose={() => setSnackbarOpen(false)}
