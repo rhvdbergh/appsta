@@ -34,8 +34,6 @@ function AgencyRegistration() {
   const [activeStep, setActiveStep] = useState(0);
   const [canMoveForward, setCanMoveForward] = useState(false);
 
-  const [skipped, setSkipped] = useState(new Set());
-
   const dispatch = useDispatch();
 
   const history = useHistory();
@@ -45,17 +43,7 @@ function AgencyRegistration() {
   // we want to submit this object that we have built
   const agency = useSelector((store) => store.newAgency);
 
-  const isStepSkipped = (step) => {
-    return skipped.has(step);
-  };
-
   const handleNext = () => {
-    let newSkipped = skipped;
-    if (isStepSkipped(activeStep)) {
-      newSkipped = new Set(newSkipped.values());
-      newSkipped.delete(activeStep);
-    }
-
     // check to see if we're on the last step and
     // everything on the last registration form has been
     // filled out
@@ -66,7 +54,6 @@ function AgencyRegistration() {
       history.push('/AgencyOptionsPage');
     }
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    setSkipped(newSkipped);
     setCanMoveForward(false);
   };
 
@@ -119,9 +106,6 @@ function AgencyRegistration() {
           {steps.map((label, index) => {
             const stepProps = {};
             const labelProps = {};
-            if (isStepSkipped(index)) {
-              stepProps.completed = false;
-            }
             return (
               <Step key={label} {...stepProps}>
                 <StepLabel {...labelProps}>{label}</StepLabel>
