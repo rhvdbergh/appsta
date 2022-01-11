@@ -9,31 +9,20 @@ import {
   Alert,
 } from '@mui/material';
 
+// this component serves to help the agency
+// update the agency conversion settings
 function AgencyConversionSettings({ user }) {
   // initialize the dispatch variable
   const dispatch = useDispatch();
 
+  // retrieve data from the redux store
   const conversionData = useSelector((store) => store.agencyConversion);
-
-  // const [xsmall_hours, setXsmall_hours] = useState(null);
-  // const [small_hours, setSmall_hours] = useState(null);
-  // const [medium_hours, setMedium_hours] = useState(null);
-  // const [large_hours, setLarge_hours] = useState(null);
-  // const [xlarge_hours, setXlarge_hours] = useState(null);
-  // const [hourly_rate, setHourly_rate] = useState(null);
-
-  // const updateData = {
-  //   xsmall_hours,
-  //   small_hours,
-  //   medium_hours,
-  //   large_hours,
-  //   xlarge_hours,
-  //   hourly_rate
-  // }
 
   // local state to control snackbar
   const [snackbarOpen, setSnackbarOpen] = useState(false);
 
+  // when input is filled out, set the state of the reducer
+  // data expects a string with the property name to set on the reducer
   const handleChange = (data, value) => {
     dispatch({
       type: 'ADJUST_AGENCY_CONVERSION',
@@ -41,6 +30,7 @@ function AgencyConversionSettings({ user }) {
     });
   };
 
+  // update the db with the latest conversion settings data
   const handleUpdate = () => {
     dispatch({
       type: 'UPDATE_AGENCY_CONVERSION',
@@ -49,31 +39,23 @@ function AgencyConversionSettings({ user }) {
         conversionData: conversionData,
       },
     });
+    // provide feedback to user that the settings have been updated
     setSnackbarOpen(true);
   };
 
+  // on page load, make sure that this agency's conversion rates
+  // are set on the reducer
   useEffect(() => {
     dispatch({ type: 'GET_AGENCY_CONVERSION', payload: user.agency_id });
   }, []);
 
-  // useEffect(() => {
-  //   setXsmall_hours(conversionData.xsmall_hours);
-  //   setSmall_hours(conversionData.small_hours);
-  //   setMedium_hours(conversionData.medium_hours);
-  //   setLarge_hours(conversionData.large_hours);
-  //   setXlarge_hours(conversionData.xlarge_hours);
-  //   setHourly_rate(conversionData.hourly_rate);
-  // }, [])
-
-  console.log('User is: ', user);
-  console.log('User ID is: ', user.agency_id);
-  console.log('Conversion data is:', conversionData);
   return (
     <Box sx={{ m: 4 }}>
       <Typography variant="h5" sx={{ my: 3 }}>
         Update Your T-Shirt Size Estimation Settings
       </Typography>
       <Box align="center" sx={{ my: 2 }}>
+        {/* input fields for the data to be captured */}
         <TextField
           sx={{ m: 1 }}
           label="Hours for XS T-Shirt Size"
@@ -134,12 +116,14 @@ function AgencyConversionSettings({ user }) {
           Update Estimation Settings
         </Button>
       </Typography>
+      {/* Snackbar to confirm updates to user */}
       <Snackbar
         open={snackbarOpen}
         autoHideDuration={4000}
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
         onClose={() => setSnackbarOpen(false)}
       >
+        {/* defines type of snackbar */}
         <Alert
           variant="filled"
           onClose={() => setSnackbarOpen(false)}

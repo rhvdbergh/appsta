@@ -29,7 +29,7 @@ const convertNumberToSize = (num) => {
   }
 };
 
-// sets the t-shirt size
+// sets the t-shirt size displayed on the component
 const tShirtSizesMarks = [
   {
     value: 0,
@@ -57,7 +57,7 @@ const tShirtSizesMarks = [
   },
 ];
 
-// sets the confidence level
+// sets the confidence level displayed on the component
 const confidenceMarks = [
   {
     value: 0,
@@ -69,6 +69,8 @@ const confidenceMarks = [
   },
 ];
 
+// this component is displayed in OptionsList when the user
+// is on the AgencyOptions page or the agency dashboard
 function AgencyOptionsSelectionBlock({ feature }) {
   // set up the redux dispatch
   const dispatch = useDispatch();
@@ -79,14 +81,14 @@ function AgencyOptionsSelectionBlock({ feature }) {
   const savedFeature = useSelector((store) =>
     store.agencyFeatures.find((f) => f.feature_id === feature.id)
   );
-  // grab the user from the store
+  // grab the user from redux the store
   const user = useSelector((store) => store.user);
 
-  // local state for the t-shirt`size and confidence level
+  // local state for the t-shirt size and confidence level
   const [tShirtSize, setTShirtSize] = useState(0);
   const [confidence, setConfidence] = useState(50);
 
-  // on page load
+  // on page load, refresh the agency features
   useEffect(() => {
     dispatch({ type: 'GET_AGENCY_FEATURES' });
   }, []);
@@ -100,7 +102,10 @@ function AgencyOptionsSelectionBlock({ feature }) {
     savedFeature && setConfidence(savedFeature.confidence);
   }, [savedFeature]);
 
+  // handles changes on the slider to a new t-shirt size
   const handleTShirtChange = (event) => {
+    // if this feature has previously been set,
+    // there will be a savedFeature
     if (savedFeature && tShirtSize === 0) {
       // user has set slider to "not offered", remove this as a saved feature
       dispatch({ type: 'REMOVE_AGENCY_FEATURE', payload: savedFeature });
@@ -131,7 +136,10 @@ function AgencyOptionsSelectionBlock({ feature }) {
     } // end if savedFeature && val === 0
   };
 
+  // handles changes on the slider to a new confidence level
   const handleConfidenceChange = (event) => {
+    // if this feature has previously been set,
+    // there will be a savedFeature
     if (savedFeature) {
       // update the feature
       dispatch({

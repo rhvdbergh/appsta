@@ -1,7 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useRef, useEffect } from 'react';
-import Navbar from '../Navbar/Navbar';
-
 import {
   TextField,
   Stack,
@@ -22,21 +20,22 @@ import {
   DialogTitle,
   Typography,
 } from '@mui/material';
+
+// import custom components
+import Navbar from '../Navbar/Navbar';
 import OptionsList from '../OptionsList/OptionsList';
 import AgencyConversionSettings from '../AgencyConversionSettings/AgencyConversionSettings';
 
+// this component is the main agency dashboard view
 function AgencyDashboard() {
+  // grab the user and features from the redux store
   const user = useSelector((store) => store.user);
-
   const features = useSelector((store) => store.features);
 
-  const conversionData = useSelector((store) => store.agencyConversion);
-
-  // local state to control snackbar
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
-
+  // set up the redux dispatch
   const dispatch = useDispatch();
 
+  // set up local state to capture agency information in the dialog modal
   const [agency_name, setAgency_name] = useState(user.agency_name);
   const [agency_blurb, setAgency_blurb] = useState(user.agency_blurb);
   const [logo_url, setLogo_url] = useState(user.logo_url);
@@ -60,6 +59,7 @@ function AgencyDashboard() {
     'Onshore Talent Only'
   );
 
+  // create the agency object
   const agency = {
     agency_name,
     agency_blurb,
@@ -79,27 +79,32 @@ function AgencyDashboard() {
     staffing_location,
   };
 
+  // updates the db with newly captured agency information
   const handleUpdate = () => {
+    // the logged in user's user object contains the agency's id
     const agencyID = user.agency_id;
     dispatch({
       type: 'UPDATE_AGENCY_INFORMATION',
       payload: { agency, agencyID },
     });
-    setSnackbarOpen(true);
   };
 
+  // local state to control the dialog modal
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = useState('paper');
 
+  // handler to open the dialog modal
   const handleClickOpen = (scrollType) => () => {
     setOpen(true);
     setScroll(scrollType);
   };
 
+  // handler to close the dialog modal
   const handleClose = () => {
     setOpen(false);
   };
 
+  // handle the focus of the dialog
   const descriptionElementRef = useRef(null);
   useEffect(() => {
     if (open) {
@@ -110,17 +115,24 @@ function AgencyDashboard() {
     }
   }, [open]);
 
+  // on page load, update the agency conversion settings
+  // this helps prepopulate if the user opens AgencyConversionSettings
   useEffect(() => {
     dispatch({ type: 'GET_AGENCY_CONVERSION', payload: user.agency_id });
   }, []);
 
   return (
     <>
+      {/* This box contains the navbar and the rest of the page */}
+      {/* The rest of the page is contained in a Box */}
+      {/* There should only be two children for this first Box */}
       <Box
         sx={{
           display: 'flex',
         }}
       >
+        {/* no extra buttons or information needed on the navbar */}
+        {/* so no props are needed on this component */}
         <Navbar />
         <Box>
           <Typography sx={{ m: 4 }} variant="h4">
@@ -133,8 +145,9 @@ function AgencyDashboard() {
           >
             Update Account Information
           </Button>
-
+          {/* Component to update agency's conversion settings information */}
           <AgencyConversionSettings user={user} />
+          {/* Dialog to allow user to change agency's information */}
           <Dialog
             open={open}
             onClose={handleClose}
@@ -152,6 +165,7 @@ function AgencyDashboard() {
                 tabIndex={-1}
               >
                 <Stack>
+                  {/* These are the input fields to capture agency information */}
                   <TextField
                     sx={{ my: 2 }}
                     label="Agency Name*"
@@ -338,6 +352,7 @@ function AgencyDashboard() {
             </DialogActions>
           </Dialog>
           <Box>
+            {/* populate the list with feature options */}
             <OptionsList features={features} />
           </Box>
         </Box>

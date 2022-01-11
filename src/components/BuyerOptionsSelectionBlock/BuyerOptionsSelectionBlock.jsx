@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   Button,
   Typography,
@@ -8,8 +8,10 @@ import {
   Select,
 } from '@mui/material';
 
+// import custom components
 import Box from '@mui/material/Box';
 
+// component used in the OptionsCard when in buyer options view
 function BuyerOptionsSelectionBlock({ feature }) {
   // grab the feature from the store, if it already exists
   // else localStorage will set this to null
@@ -38,13 +40,14 @@ function BuyerOptionsSelectionBlock({ feature }) {
     }
   };
 
+  // toggles whether this feature is added to the project or not
   const handleClick = (event) => {
     setAddedToProject(!addedToProject);
     // update the localStorage
     if (savedFeature === null) {
       // we add the quantity here so we can retrieve it later
-      feature.quantity = quantity;
       // it has not been added yet, so add it
+      feature.quantity = quantity;
       // we need to JSON.stringify because localStorage can't store objects
       localStorage.setItem(`feature_${feature.id}`, JSON.stringify(feature));
     } else {
@@ -60,6 +63,7 @@ function BuyerOptionsSelectionBlock({ feature }) {
       <Box
         sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
       >
+        {/* button to toggle whether feature is added to project or not */}
         <Button
           color="secondary"
           variant="contained"
@@ -71,6 +75,7 @@ function BuyerOptionsSelectionBlock({ feature }) {
           </Typography>
         </Button>
 
+        {/* drop down to allow setting of quantity */}
         <FormControl sx={{ width: '40%' }}>
           <InputLabel id="quantity">Quantity</InputLabel>
           <Select
