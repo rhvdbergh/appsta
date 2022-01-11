@@ -10,21 +10,21 @@ To see the fully functioning site, please visit: DEPLOYED VERSION OF APP (HEROKU
 
 # Screenshots 
 
-
+![Log in](./public/Login.png)
 
 
 # Prerequisites 
 
 [Node.js](https://nodejs.org/en/)
+
 [Postgres](https://www.postgresql.org/)
 
 
 # Installation 
 
-Create a database named "appsta"
-The queries in the sql file are set up to create and populate all of the needed tables for your application to run correctly. 
-This project was built on [Postgres](https://www.postgresql.org/), so be sure to have it installed. 
-We used Postico and highly recommend that do too, to run the queries.
+1. Create a database named "appsta"
+2. The queries in the sql file are set up to create and populate all of the needed tables for your application to run correctly. This project was built on [Postgres](https://www.postgresql.org/), so be sure to have it installed. We used Postico and highly recommend that do too, to run the queries.
+3.Open your choice of edit and run an npm install
 
 
 
@@ -34,12 +34,12 @@ We used Postico and highly recommend that do too, to run the queries.
 
 
 
-# EDA Project
-This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
+
+# EDA ProjectThis version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
 
 We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
 
-## Use the Template for This Repository (Don't Clone)
+## Use the Template forThis Repository (Don't Clone)
 
 - Don't Fork or Clone. Instead, click the `Use this Template` button, and make a copy to your personal account.
 
@@ -106,7 +106,7 @@ After running the login route above, you can try any other route you've created 
 
 ## Production Build
 
-Before pushing to Heroku, run `npm run build` in terminal. This will create a build folder that contains the code Heroku will be pointed at. You can test this build by typing `npm start`. Keep in mind that `npm start` will let you preview the production build but will **not** auto update.
+Before pushing to Heroku, run `npm run build` in terminal.This will create a build folder that contains the code Heroku will be pointed at. You can test this build by typing `npm start`. Keep in mind that `npm start` will let you preview the production build but will **not** auto update.
 
 - Start postgres if not running already by using `brew services start postgresql`
 - Run `npm start`
@@ -126,7 +126,6 @@ Directory Structure:
 - `public/` contains static assets for the client-side
 - `build/` after you build the project, contains the transpiled code from `src/` and `public/` that will be viewed on the production site
 - `server/` contains the Express App
-
 This code is also heavily commented. We recommend reading through the comments, getting a lay of the land, and becoming comfortable with how the code works before you start making too many changes. If you're wondering where to start, consider reading through component file comments in the following order:
 
 - src/components
