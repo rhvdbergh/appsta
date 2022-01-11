@@ -80,6 +80,9 @@ function BuyerQuotesList({
 
   return (
     <Box sx={{ width: '100%' }}>
+      {/* we only want to display this component if there are */}
+      {/* agencyQuoteData and projectFeatures to display, */}
+      {/* otherwise there are calculations with undefined */}
       <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
         {agencyQuoteData.length > 0 &&
           projectFeatures.length > 0 &&
@@ -93,6 +96,7 @@ function BuyerQuotesList({
               />
             );
           })}
+        {/* If no agencies can provide this, let the user know */}
         {agencyQuoteData.length === 0 && (
           <Typography variant="body1">
             No agencies meeting selected criteria can provide your list of
