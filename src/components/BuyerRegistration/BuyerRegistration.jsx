@@ -28,33 +28,37 @@ function BuyerRegistration() {
   const features = useSelector((store) => store.features);
 
   // build the selectedFeatures from local storage
+  // this will be sent along with the buyer's information
+  // to save a project with its features in the database
   const selectedFeatures = [];
   features
     // filter through features and check if it is in localStorage
     .filter((feature) => localStorage.getItem(`feature_${feature.id}`) !== null)
     // retrieve all those in localStorage and add them to selectedFeatures array
     // this includes the quantity
+    // localStorage can't save objects, so we need to parse
+    // the string to make it an object
     .forEach((feature) =>
       selectedFeatures.push(
         JSON.parse(localStorage.getItem(`feature_${feature.id}`))
       )
     );
 
+  // build an array of steps, containing the step names
+  // the length of this array helps determine where
+  // the user is at
   const steps = ['Step 1', 'Step 2', 'Step 3'];
 
+  // local state for keeping track of where the user is
+  // and whether the user's input has been validated (and can move forward)
   const [activeStep, setActiveStep] = useState(0);
-
   const [canMoveForward, setCanMoveForward] = useState(false);
 
-  const [skipped, setSkipped] = useState(new Set());
-
+  // set up the redux dispatch
   const dispatch = useDispatch();
 
+  // set up the history hook to navigate
   const history = useHistory();
-
-  const isStepSkipped = (step) => {
-    return skipped.has(step);
-  };
 
   const handleBack = () => {
     // if we're at the first page, send the user back to the
@@ -65,17 +69,14 @@ function BuyerRegistration() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
+  // this will only be used if there was an error
+  // and the user was not registered
   const handleReset = () => {
     setActiveStep(0);
   };
 
   //on button click
   const handleNext = () => {
-    let newSkipped = skipped;
-    if (isStepSkipped(activeStep)) {
-      newSkipped = new Set(newSkipped.values());
-      newSkipped.delete(activeStep);
-    }
     if (canMoveForward && activeStep === steps.length - 1) {
       dispatch({
         type: 'ADD_NEW_BUYER',
@@ -114,9 +115,6 @@ function BuyerRegistration() {
           {steps.map((label, index) => {
             const stepProps = {};
             const labelProps = {};
-            if (isStepSkipped(index)) {
-              stepProps.completed = false;
-            }
             return (
               <Step key={label} {...stepProps}>
                 <StepLabel {...labelProps}>{label}</StepLabel>
