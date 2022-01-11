@@ -21,6 +21,7 @@ function OptionsCard({ feature, listType, quoteData }) {
 
   return (
     <Card
+      elevation={3}
       sx={{
         display: 'flex',
         m: 4,
