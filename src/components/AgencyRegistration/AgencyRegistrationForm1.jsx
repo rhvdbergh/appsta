@@ -101,6 +101,8 @@ function AgencyRegistrationForm1({ setCanMoveForward }) {
       }}
     >
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        {/* onBlur captures the information as soon as the user moves */}
+        {/* out of the field */}
         <TextField
           sx={{ width: '60%', maxWidth: '350px', my: 2 }}
           label="Email Address*"
