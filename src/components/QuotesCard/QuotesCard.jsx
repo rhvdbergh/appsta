@@ -52,7 +52,7 @@ function QuotesCard({ agency, cost, displayingBuyerCompareQuotes }) {
 
   return (
     <Box>
-      <Card sx={{ width: '350px', m:1 }}>
+      <Card sx={{ width: '350px', m: 1 }}>
         <CardHeader title={agency.agency_name} />
         <CardMedia
           component="img"
@@ -132,10 +132,12 @@ function QuotesCard({ agency, cost, displayingBuyerCompareQuotes }) {
       </Card>
       {/* The select button should only display on buyer compare quotes page */}
       {displayingBuyerCompareQuotes && (
-        <Button variant="contained" onClick={handleSelect}>
-          {/* checks whether this agency has already been selected */}
-          {isSelected ? 'Remove' : 'Select'}
-        </Button>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', m: 1, mb: 3 }}>
+          <Button variant="contained" onClick={handleSelect}>
+            {/* checks whether this agency has already been selected */}
+            {isSelected ? 'Remove' : 'Select'}
+          </Button>
+        </Box>
       )}
     </Box>
   );
