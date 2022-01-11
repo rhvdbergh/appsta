@@ -52,90 +52,100 @@ function QuotesCard({ agency, cost, displayingBuyerCompareQuotes }) {
 
   return (
     <Box>
-      <Card sx={{ width: '350px', m:1 }}>
-        <CardHeader title={agency.agency_name} />
+      <Card elevation={3} sx={{ width: '350px', m: 1 }}>
+        <CardHeader align="center" title={agency.agency_name} />
         <CardMedia
           component="img"
           width="350"
           image={agency.logo_url}
           sx={{ height: '300px' }}
         />
-        <CardActions>
-          <Button onClick={() => setIsExpanded(!isExpanded)}>
-            {isExpanded ? 'Show Less' : 'Learn More'}
-          </Button>
+        <CardActions sx={{ display: 'flex', justifyContent: 'right' }}>
+          <Box>
+            <Button onClick={() => setIsExpanded(!isExpanded)}>
+              {isExpanded ? 'Show Less' : 'Learn More'}
+            </Button>
+          </Box>
         </CardActions>
         <Collapse in={isExpanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <Box sx={{ display: 'flex' }}>
+            <Box sx={{ display: 'flex', my: 0.5 }}>
               <PhoneIcon />
               <Typography>{agency.phone_number}</Typography>
             </Box>
-            <Box sx={{ display: 'flex' }}>
+            <Box sx={{ display: 'flex', my: 0.5 }}>
               <EmailIcon />
               <Typography>{agency.agency_email}</Typography>
             </Box>
-            <Box sx={{ display: 'flex' }}>
+            <Box sx={{ display: 'flex', my: 0.5 }}>
               <PersonIcon />
               <Typography>
                 {agency.contact_first_name} {agency.contact_last_name}
               </Typography>
             </Box>
-            <Box sx={{ display: 'flex' }}>
+            <Box sx={{ display: 'flex', my: 0.5 }}>
               <LocationOnIcon />
               <Typography>{agency.city}</Typography>
             </Box>
-            <Box sx={{ mt: '10px', mb: '10px' }}>
+            <Box sx={{ my: 2 }}>
               <Typography>{agency.agency_blurb}</Typography>
             </Box>
+            <Box>
+              <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Typography>Minority Owned: </Typography>
+                {agency.minority_owned ? (
+                  <CheckBoxIcon />
+                ) : (
+                  <CheckBoxOutlineBlankIcon />
+                )}
+              </Box>
+              <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Typography>Woman Owned: </Typography>
+                {agency.woman_owned ? (
+                  <CheckBoxIcon />
+                ) : (
+                  <CheckBoxOutlineBlankIcon />
+                )}
+              </Box>
+              <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Typography>Veteran Owned: </Typography>
+                {agency.veteran_owned ? (
+                  <CheckBoxIcon />
+                ) : (
+                  <CheckBoxOutlineBlankIcon />
+                )}
+              </Box>
+              <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Typography>LGBT Owned: </Typography>
+                {agency.lgbt_owned ? (
+                  <CheckBoxIcon />
+                ) : (
+                  <CheckBoxOutlineBlankIcon />
+                )}
+              </Box>
+              <Box sx={{ my: 2 }}>
+                <Typography>
+                  Staff Location: {agency.staffing_location}
+                </Typography>
+              </Box>
+            </Box>
           </CardContent>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Typography>Minority Owned: </Typography>
-            {agency.minority_owned ? (
-              <CheckBoxIcon />
-            ) : (
-              <CheckBoxOutlineBlankIcon />
-            )}
-          </Box>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Typography>Woman Owned: </Typography>
-            {agency.woman_owned ? (
-              <CheckBoxIcon />
-            ) : (
-              <CheckBoxOutlineBlankIcon />
-            )}
-          </Box>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Typography>Veteran Owned: </Typography>
-            {agency.veteran_owned ? (
-              <CheckBoxIcon />
-            ) : (
-              <CheckBoxOutlineBlankIcon />
-            )}
-          </Box>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Typography>LGBT Owned: </Typography>
-            {agency.lgbt_owned ? (
-              <CheckBoxIcon />
-            ) : (
-              <CheckBoxOutlineBlankIcon />
-            )}
-          </Box>
-          <Box sx={{ mt: '10px', mb: '10px' }}>
-            <Typography>Staff Location: {agency.staffing_location}</Typography>
-          </Box>
         </Collapse>
         <CardContent>
           {/* Calculate the cost for this specific company */}
-          <Typography>Cost: ${cost}</Typography>
+          <Typography variant="h5" align="center">
+            Cost: ${cost}
+          </Typography>
         </CardContent>
       </Card>
       {/* The select button should only display on buyer compare quotes page */}
       {displayingBuyerCompareQuotes && (
-        <Button variant="contained" onClick={handleSelect}>
-          {/* checks whether this agency has already been selected */}
-          {isSelected ? 'Remove' : 'Select'}
-        </Button>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', m: 1, mb: 3 }}>
+          <Button variant="contained" onClick={handleSelect}>
+            {/* checks whether this agency has already been selected */}
+            {isSelected ? 'Remove' : 'Select'}
+          </Button>
+        </Box>
       )}
     </Box>
   );
