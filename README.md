@@ -1,3 +1,38 @@
+# Appsta 
+
+## Description 
+Duration: 2 week sprint 
+
+Project description. problem we solved. how we solved it. 
+
+
+To see the fully functioning site, please visit: DEPLOYED VERSION OF APP (HEROKU)
+
+# Screenshots 
+
+
+
+
+# Prerequisites 
+
+[Node.js](https://nodejs.org/en/)
+[Postgres](https://www.postgresql.org/)
+
+
+# Installation 
+
+Create a database named "appsta"
+The queries in the sql file are set up to create and populate all of the needed tables for your application to run correctly. 
+This project was built on [Postgres](https://www.postgresql.org/), so be sure to have it installed. 
+We used Postico and highly recommend that do too, to run the queries.
+
+
+
+
+
+
+
+
 
 # EDA Project
 This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
