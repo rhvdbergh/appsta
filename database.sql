@@ -418,7 +418,7 @@ VALUES
     'false'
   ),
   (
-    'admin@prime.io',
+    'admin@appsta.com',
     '$2a$10$l.67fm23RLQVZHg.PM5I2OPQswkDxyWLcTGIIpGstuz6Z1sFvCCSW',
     'true'
   ),
