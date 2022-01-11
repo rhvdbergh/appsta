@@ -69,67 +69,67 @@ function QuotesCard({ agency, cost, displayingBuyerCompareQuotes }) {
         </CardActions>
         <Collapse in={isExpanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <Box sx={{ display: 'flex' }}>
+            <Box sx={{ display: 'flex', my: 0.5 }}>
               <PhoneIcon />
               <Typography>{agency.phone_number}</Typography>
             </Box>
-            <Box sx={{ display: 'flex' }}>
+            <Box sx={{ display: 'flex', my: 0.5 }}>
               <EmailIcon />
               <Typography>{agency.agency_email}</Typography>
             </Box>
-            <Box sx={{ display: 'flex' }}>
+            <Box sx={{ display: 'flex', my: 0.5 }}>
               <PersonIcon />
               <Typography>
                 {agency.contact_first_name} {agency.contact_last_name}
               </Typography>
             </Box>
-            <Box sx={{ display: 'flex' }}>
+            <Box sx={{ display: 'flex', my: 0.5 }}>
               <LocationOnIcon />
               <Typography>{agency.city}</Typography>
             </Box>
-            <Box sx={{ mt: 1, mb: 1 }}>
+            <Box sx={{ my: 2 }}>
               <Typography>{agency.agency_blurb}</Typography>
             </Box>
+            <Box>
+              <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Typography>Minority Owned: </Typography>
+                {agency.minority_owned ? (
+                  <CheckBoxIcon />
+                ) : (
+                  <CheckBoxOutlineBlankIcon />
+                )}
+              </Box>
+              <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Typography>Woman Owned: </Typography>
+                {agency.woman_owned ? (
+                  <CheckBoxIcon />
+                ) : (
+                  <CheckBoxOutlineBlankIcon />
+                )}
+              </Box>
+              <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Typography>Veteran Owned: </Typography>
+                {agency.veteran_owned ? (
+                  <CheckBoxIcon />
+                ) : (
+                  <CheckBoxOutlineBlankIcon />
+                )}
+              </Box>
+              <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Typography>LGBT Owned: </Typography>
+                {agency.lgbt_owned ? (
+                  <CheckBoxIcon />
+                ) : (
+                  <CheckBoxOutlineBlankIcon />
+                )}
+              </Box>
+              <Box sx={{ my: 2 }}>
+                <Typography>
+                  Staff Location: {agency.staffing_location}
+                </Typography>
+              </Box>
+            </Box>
           </CardContent>
-          <Box sx={{ ml: 2, mr: 2 }}>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-              <Typography>Minority Owned: </Typography>
-              {agency.minority_owned ? (
-                <CheckBoxIcon />
-              ) : (
-                <CheckBoxOutlineBlankIcon />
-              )}
-            </Box>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-              <Typography>Woman Owned: </Typography>
-              {agency.woman_owned ? (
-                <CheckBoxIcon />
-              ) : (
-                <CheckBoxOutlineBlankIcon />
-              )}
-            </Box>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-              <Typography>Veteran Owned: </Typography>
-              {agency.veteran_owned ? (
-                <CheckBoxIcon />
-              ) : (
-                <CheckBoxOutlineBlankIcon />
-              )}
-            </Box>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-              <Typography>LGBT Owned: </Typography>
-              {agency.lgbt_owned ? (
-                <CheckBoxIcon />
-              ) : (
-                <CheckBoxOutlineBlankIcon />
-              )}
-            </Box>
-            <Box sx={{ mt: '10px', mb: '10px' }}>
-              <Typography>
-                Staff Location: {agency.staffing_location}
-              </Typography>
-            </Box>
-          </Box>
         </Collapse>
         <CardContent>
           {/* Calculate the cost for this specific company */}
