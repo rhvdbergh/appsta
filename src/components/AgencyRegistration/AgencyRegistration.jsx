@@ -110,6 +110,8 @@ function AgencyRegistration() {
       </Typography>
 
       <Box sx={{ width: '100%' }}>
+        {/* The stepper determines which of the steps the user is on */}
+        {/* and displays the corresponding component */}
         <Stepper activeStep={activeStep}>
           {steps.map((label, index) => {
             const stepProps = {};
@@ -124,6 +126,7 @@ function AgencyRegistration() {
         <Typography variant="h6" sx={{ my: 5, textAlign: 'center' }}>
           Please complete all fields marked with * to continue.
         </Typography>
+        {/* Conditionally render whether components should show or reset button */}
         {activeStep === steps.length ? (
           <Fragment>
             <Typography sx={{ mt: 2, mb: 1 }}>
@@ -143,6 +146,7 @@ function AgencyRegistration() {
               {handleRender()}
             </Box>
             <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+              {/* Buttons move user backward; color, msg determined by user's step position */}
               <Button
                 color={activeStep === 0 ? 'error' : 'primary'}
                 onClick={handleBack}
@@ -153,6 +157,7 @@ function AgencyRegistration() {
               </Button>
               <Box sx={{ flex: '1 1 auto' }} />
               {/* Button only displays if validation succeeds */}
+              {/* validation is done on the registration component itself */}
               {/* On the last step, this shows submit instead of next */}
               {canMoveForward && (
                 <Button
