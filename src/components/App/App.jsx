@@ -15,7 +15,6 @@ import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import Admin from '../Admin/Admin';
-import AboutPage from '../AboutPage/AboutPage';
 import LandingPage from '../LandingPage/LandingPage';
 import BuyerOptionsPage from '../BuyerOptionsPage/BuyerOptionsPage';
 import AgencyLoginPage from '../AgencyLoginPage/AgencyLoginPage';
@@ -86,15 +85,6 @@ function App() {
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/LandingPage */}
             <Redirect exact from="/" to="/LandingPage" />
-            {/* Visiting localhost:3000/about will show the about page. */}
-            <Route
-              // shows AboutPage at all times (logged in or not)
-              exact
-              path="/about"
-            >
-              <AboutPage />
-            </Route>
-
             <Route exact path="/LandingPage">
               {user.id && user.isBuyer ? (
                 // If the user is already logged in,
