@@ -90,6 +90,12 @@ function BuyerRegistration() {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
+  // this function returns the component
+  // that corresponds to the active step
+  // that the stepper is on
+  // setCanMoveForward is passed down so the
+  // component can validate the input and declare
+  // whether the user can move forward
   const handleRender = () => {
     switch (activeStep) {
       case 0:
@@ -101,6 +107,7 @@ function BuyerRegistration() {
     }
   };
 
+  // on page load, refresh the features
   useEffect(() => {
     dispatch({ type: 'GET_FEATURES' });
   }, []);
@@ -111,6 +118,8 @@ function BuyerRegistration() {
         Appsta Registration
       </Typography>
       <Box sx={{ width: '100%' }}>
+        {/* The stepper determines which of the steps the user is on */}
+        {/* and displays the corresponding component */}
         <Stepper activeStep={activeStep} sx={{ mb: 5 }}>
           {steps.map((label, index) => {
             const stepProps = {};
@@ -126,6 +135,7 @@ function BuyerRegistration() {
           Please complete all fields marked with * to continue.
         </Typography>
         <Box>
+          {/* Conditionally render whether components should show or reset button */}
           {activeStep === steps.length ? (
             <Fragment>
               <Typography sx={{ mt: 2, mb: 1 }}>
@@ -151,6 +161,7 @@ function BuyerRegistration() {
                   pt: 5,
                 }}
               >
+                {/* Buttons move user backward; color, msg determined by user's step position */}
                 <Button
                   color={activeStep === 0 ? 'error' : 'primary'}
                   onClick={handleBack}
@@ -160,6 +171,9 @@ function BuyerRegistration() {
                   {activeStep === 0 ? 'Cancel' : 'Back'}
                 </Button>
                 <Box sx={{ flex: '1 1 auto' }} />
+                {/* Button only displays if validation succeeds */}
+                {/* validation is done on the registration component itself */}
+                {/* On the last step, this shows submit instead of next */}
                 {canMoveForward && (
                   <Button onClick={handleNext} variant="contained">
                     {activeStep === steps.length - 1 ? 'Submit' : 'Next'}
