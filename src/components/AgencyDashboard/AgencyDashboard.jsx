@@ -123,11 +123,16 @@ function AgencyDashboard() {
 
   return (
     <>
+      {/* This box contains the navbar and the rest of the page */}
+      {/* The rest of the page is contained in a Box */}
+      {/* There should only be two children for this first Box */}
       <Box
         sx={{
           display: 'flex',
         }}
       >
+        {/* no extra buttons or information needed on the navbar */}
+        {/* so no props are needed on this component */}
         <Navbar />
         <Box>
           <Typography sx={{ m: 4 }} variant="h4">
@@ -140,8 +145,9 @@ function AgencyDashboard() {
           >
             Update Account Information
           </Button>
-
+          {/* Component to update agency's conversion settings information */}
           <AgencyConversionSettings user={user} />
+          {/* Dialog to allow user to change agency's information */}
           <Dialog
             open={open}
             onClose={handleClose}
@@ -159,6 +165,7 @@ function AgencyDashboard() {
                 tabIndex={-1}
               >
                 <Stack>
+                  {/* These are the input fields to capture agency information */}
                   <TextField
                     sx={{ my: 2 }}
                     label="Agency Name*"
@@ -345,6 +352,8 @@ function AgencyDashboard() {
             </DialogActions>
           </Dialog>
           <Box>
+            {/* if no listType is passed as a prop to OptionsList */}
+            {/* OptionsList defaults to AgencyDashboard */}
             <OptionsList features={features} />
           </Box>
         </Box>
