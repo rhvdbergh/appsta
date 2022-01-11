@@ -139,7 +139,8 @@ ADD
 ALTER TABLE
   "agency_features"
 ADD
-  CONSTRAINT "agency_features_fk1" FOREIGN KEY ("feature_id") REFERENCES "features"("id");
+  CONSTRAINT "agency_features_fk1" FOREIGN KEY ("feature_id") REFERENCES "features"("id")
+  ON DELETE CASCADE;
 
 ALTER TABLE
   "project_features"
@@ -149,7 +150,8 @@ ADD
 ALTER TABLE
   "project_features"
 ADD
-  CONSTRAINT "project_features_fk1" FOREIGN KEY ("feature_id") REFERENCES "features"("id");
+  CONSTRAINT "project_features_fk1" FOREIGN KEY ("feature_id") REFERENCES "features"("id")
+  ON DELETE CASCADE;
 
 ALTER TABLE
   "project_agencies"
