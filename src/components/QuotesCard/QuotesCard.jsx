@@ -99,6 +99,7 @@ function QuotesCard({ agency, cost, displayingBuyerCompareQuotes }) {
             <Box sx={{ my: 2 }}>
               <Typography>{agency.agency_blurb}</Typography>
             </Box>
+            {/* Checkboxes are conditionally rendered based on boolean values */}
             <Box>
               <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Typography>Minority Owned: </Typography>
@@ -132,6 +133,7 @@ function QuotesCard({ agency, cost, displayingBuyerCompareQuotes }) {
                   <CheckBoxOutlineBlankIcon />
                 )}
               </Box>
+              {/* agency.staffing_location is a string */}
               <Box sx={{ my: 2 }}>
                 <Typography>
                   Staff Location: {agency.staffing_location}
