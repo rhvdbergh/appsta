@@ -113,6 +113,7 @@ function Admin() {
             Create New Feature
           </Button>
 
+          {/* This dialog modal is for adding new features */}
           <Dialog
             open={open}
             onClose={handleClose}
@@ -130,6 +131,7 @@ function Admin() {
                 tabIndex={-1}
                 sx={{ width: 300 }}
               >
+                {/* These are the input fields to capture feature data */}
                 <Stack>
                   <TextField
                     sx={{ my: 2 }}
@@ -186,6 +188,7 @@ function Admin() {
                         handlePropertyChange(event, 'category_id')
                       }
                     >
+                      {/* The first menu item is disabled and acts as a heading */}
                       <MenuItem key={-1} value={''} disabled>
                         Select Category
                       </MenuItem>
@@ -216,6 +219,8 @@ function Admin() {
             </DialogActions>
           </Dialog>
           <Box>
+            {/* The listType defines what the OptionsList and OptionsCard */}
+            {/* will look like and what components they display */}
             <OptionsList features={features} listType="admin-features" />
           </Box>
         </Box>
