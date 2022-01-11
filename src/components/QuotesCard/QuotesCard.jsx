@@ -52,7 +52,7 @@ function QuotesCard({ agency, cost, displayingBuyerCompareQuotes }) {
 
   return (
     <Box>
-      <Card sx={{ width: '350px', m: 1 }}>
+      <Card elevation={3} sx={{ width: '350px', m: 1 }}>
         <CardHeader title={agency.agency_name} />
         <CardMedia
           component="img"
