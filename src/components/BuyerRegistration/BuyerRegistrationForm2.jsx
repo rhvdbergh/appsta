@@ -57,6 +57,10 @@ function BuyerRegistrationForm2({ setCanMoveForward }) {
   const handleDemo = () => {
     setFirst_name('Sam');
     setLast_name('Ruffle');
+    dispatch({
+      type: 'SET_NEW_BUYER',
+      payload: {...buyer, first_name: 'Sam', last_name: 'Ruffle'}
+    })
   };
 
   return (

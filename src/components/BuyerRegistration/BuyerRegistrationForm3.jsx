@@ -61,6 +61,10 @@ function BuyerRegistrationForm3({ setCanMoveForward }) {
     setCompany_name("Storerrific");
     setCity("Minneapolis");
     setPostal_code("55409");
+    dispatch({
+      type: 'SET_NEW_BUYER',
+      payload: { ...buyer, project_name: "Really Cool Retail", company_name: "Storerrific", city: "Minneapolis", postal_code: "55409"  },
+    });
   }
 
   return (

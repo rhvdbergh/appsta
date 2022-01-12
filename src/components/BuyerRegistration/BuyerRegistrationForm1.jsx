@@ -75,6 +75,10 @@ function BuyerRegistrationForm1({ setCanMoveForward }) {
     setUsername('sam.s@prime.io');
     setPassword("password");
     setPasswordConfirmation("password");
+    dispatch({
+      type: 'SET_NEW_BUYER',
+      payload: {...buyer, username: 'sam.s@prime.io', password: 'password'}
+    })
   }
 
   // data expects a string with the property to set on the newBuyer reducer
