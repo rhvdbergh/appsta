@@ -4,17 +4,16 @@ const router = express.Router();
 const {
   rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
-const encryptLib = require('../modules/encryption');
 
 // retrieve agency conversion data for a given agency ID
 // GET /api/conversion/:agencyID
-
 router.get('/:agencyID', rejectUnauthenticated, (req, res) => {
   // build SQL query, using agency_id from the user object
   const conversionSearchQuery = `
   SELECT * FROM agency_conversion
   WHERE agency_id = $1; 
   `;
+  // run the query
   pool
     .query(conversionSearchQuery, [req.params.agencyID])
     .then((response) => {
@@ -32,10 +31,7 @@ router.put('/:agencyID', rejectUnauthenticated, (req, res) => {
   // define the data we'll insert into the DB
   const id = req.params.agencyID;
   const conv = req.body;
-  console.log('Checking our query variables, ID: ', id);
-  console.log('Checking our query variables, conv: ', conv);
 
-  
   // build SQL query
   const agencyConversionQuery = `
   UPDATE "agency_conversion"
@@ -52,8 +48,9 @@ router.put('/:agencyID', rejectUnauthenticated, (req, res) => {
     conv.medium_hours,
     conv.large_hours,
     conv.xlarge_hours,
-    conv.hourly_rate
+    conv.hourly_rate,
   ];
+  // run the query
   pool
     .query(agencyConversionQuery, values)
     .then((response) => {
@@ -61,9 +58,8 @@ router.put('/:agencyID', rejectUnauthenticated, (req, res) => {
     })
     .catch((err) => {
       console.log('error adding new agency conversion data', err);
-      res.sendStatus(500);      
+      res.sendStatus(500);
     });
 });
-
 
 module.exports = router;

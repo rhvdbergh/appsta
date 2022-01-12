@@ -1,4 +1,7 @@
 const express = require('express');
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
 const router = express.Router();
 
@@ -10,6 +13,7 @@ router.get('/', (req, res) => {
     SELECT * FROM "features";
   `;
 
+  // run the query
   pool
     .query(queryText)
     .then((response) => {
@@ -24,7 +28,7 @@ router.get('/', (req, res) => {
 // route for GET /api/features/:project_id
 // returns a list of all the project features in the db
 // associated with this project id
-router.get('/:project_id', (req, res) => {
+router.get('/:project_id', rejectUnauthenticated, (req, res) => {
   // build a sql query
   const queryText = `
     SELECT * FROM project_features
@@ -36,10 +40,10 @@ router.get('/:project_id', (req, res) => {
   // parameterize the user input
   const values = [req.params.project_id];
 
+  // run the query
   pool
     .query(queryText, values)
     .then((response) => {
-      console.log(`the buyer's project features are:`, response.rows)
       res.send(response.rows);
     })
     .catch((err) => {
