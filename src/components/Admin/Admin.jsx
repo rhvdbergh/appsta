@@ -86,6 +86,16 @@ function Admin() {
     setOpen(false);
   };
 
+  const handleDemo = () => {
+    setNewFeature({
+      ...newFeature,
+      feature_name: "Survey",
+      feature_story: "Allow users to provide feedback on their website experience.",
+      feature_description: "Ask customers for ratings and comments.",
+      image_url: "https://assets-global.website-files.com/5eff9c5e4dba181f8aa2d1e0/601860ff35def60e10cd7cb0_5f52643bb8fb49abc85f65b8_Surveys.svg"
+    })
+  }
+
   // handle the focus of the dialog
   const descriptionElementRef = useRef(null);
   useEffect(() => {
@@ -136,9 +146,10 @@ function Admin() {
               >
                 {/* These are the input fields to capture feature data */}
                 <Stack>
+                <Box sx={{width:250, height: 30}} onClick={handleDemo} ></Box>
                   <TextField
                     sx={{ my: 2 }}
-                    label="Feature Name*"
+                    helperText="Feature Name*"
                     value={newFeature.feature_name}
                     variant="outlined"
                     onChange={(event) =>
@@ -148,7 +159,7 @@ function Admin() {
 
                   <TextField
                     sx={{ mb: 2 }}
-                    label="Feature Story*"
+                    helperText="Feature Story*"
                     value={newFeature.feature_story}
                     multiline={true}
                     rows={3}
@@ -160,7 +171,7 @@ function Admin() {
 
                   <TextField
                     sx={{ mb: 2 }}
-                    label="Provide Description of Feature*"
+                    helperText="Provide Description of Feature*"
                     value={newFeature.feature_description}
                     variant="outlined"
                     onChange={(event) =>
@@ -170,7 +181,7 @@ function Admin() {
 
                   <TextField
                     sx={{ mb: 2 }}
-                    label="Image Url*"
+                    helperText="Image Url*"
                     value={newFeature.image_url}
                     variant="outlined"
                     onChange={(event) =>
