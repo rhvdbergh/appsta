@@ -39,34 +39,36 @@ Please see these instructions for how to get a copy of this project up and runni
 6. The npm run client command will open up a new browser tab, where your app will spin up. 
 # Usage 
 
-1.  New Buyer will use the application by clicking "Get Started" 
+1.  New Buyer will use the application by clicking "Get Started".
+2. New Buyer can select feature categories from the side navigation bar.
+3. New Buyer can then select features and quantities to add to project.  
+4. New Buyer can submit project for project cost estimate range and feature cost estimate range. 
+5. New Buyer can click "Get Quotes" and  be taken to a registration screen.  
+6. New Buyer registration is a 3 step process.  Complete each required field to populate the next button to move forward with registration. 
+7. After completing registration, the New User will be able to view a list of agencies and their quote for the submitted project.  
+8.  The New User can filter through the quotes by the tags listed on the top of the page.
+9.  The New User can select agencies and their quotes to save to their dashboard. 
+10.  The New User can see contact information for Agencies by clicking "learn more" on the Agency cards.
+11. The New User can chose to start a new project and chose new features to get an estimate and quotes for.  
 
 
 
 # Built with 
 
-JavaScript 
-
-React 
-
-Redux 
-
-Saga
-
-Express 
-
-Passport
-
-Node.js
-
-HTML
-
-CSS
-
-Material UI 
-
-PostgreSQL
-
-Postman- for testing 
-
+JavaScript, 
+React, 
+Redux,
+Saga,
+Express, 
+Passport,
+Node.js,
+HTML,
+CSS,
+Material UI,
+PostgreSQL,
+Postman- for testing, and
 Postico- for the database
+
+# Acknowledgement
+Thank you Lee Zuvanich for presenting our team with the opportunity to work on Appsta.   Thanks to Prime Digital Academy who equipped and helped us to make this application a reality. Our instructors Dane, Liz, and Kris.
+
