@@ -7,6 +7,7 @@ function* loginUser(action) {
     // clear any existing error on the login page
     yield put({ type: 'CLEAR_LOGIN_ERROR' });
 
+    // needed to send the right credentials for authentication
     const config = {
       headers: { 'Content-Type': 'application/json' },
       withCredentials: true,

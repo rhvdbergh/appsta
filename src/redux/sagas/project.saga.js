@@ -10,6 +10,8 @@ function* addNewProject(action) {
       features: action.payload.features,
     });
     yield put({ type: 'SET_ACTIVE_PROJECT', payload: response.data.id });
+    // the new project has successfully been saved
+    // so push the user to the buyer compare quotes page
     yield action.payload.history.push('/BuyerCompareQuotes');
   } catch (err) {
     console.log('error in add new project saga', error);
