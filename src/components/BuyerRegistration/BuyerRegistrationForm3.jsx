@@ -57,8 +57,8 @@ function BuyerRegistrationForm3({ setCanMoveForward }) {
   };
 
   const handleDemo = () => {
-    setProject_name("Start-up");
-    setCompany_name("...");
+    setProject_name("Really Cool Retail");
+    setCompany_name("Storerrific");
     setCity("Minneapolis");
     setPostal_code("55409");
   }
@@ -71,13 +71,13 @@ function BuyerRegistrationForm3({ setCanMoveForward }) {
         alignContent: 'center',
       }}
     >
-      <p onClick={handleDemo}>*</p>
+      <Box sx={{width:500, height: 30}} onClick={handleDemo}></Box>
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         {/* onBlur captures the information as soon as the user moves */}
         {/* out of the field */}
         <TextField
           sx={{ width: '60%', maxWidth: '350px', my: 2 }}
-          label="Company Name"
+          helperText="Company Name"
           value={company_name}
           variant="outlined"
           onChange={(event) => setCompany_name(event.target.value)}
@@ -89,7 +89,7 @@ function BuyerRegistrationForm3({ setCanMoveForward }) {
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <TextField
           sx={{ width: '60%', maxWidth: '350px', my: 2 }}
-          label="Project Name*"
+          helperText="Project Name*"
           value={project_name}
           variant="outlined"
           onChange={(event) => setProject_name(event.target.value)}
@@ -101,7 +101,7 @@ function BuyerRegistrationForm3({ setCanMoveForward }) {
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <TextField
           sx={{ width: '60%', maxWidth: '350px', my: 2 }}
-          label="City*"
+          helperText="City*"
           value={city}
           variant="outlined"
           onChange={(event) => setCity(event.target.value)}
@@ -113,7 +113,7 @@ function BuyerRegistrationForm3({ setCanMoveForward }) {
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <TextField
           sx={{ width: '60%', maxWidth: '350px', my: 2 }}
-          label="Zip Code*"
+          helperText="Zip Code*"
           value={postal_code}
           variant="outlined"
           onChange={(event) => setPostal_code(event.target.value)}

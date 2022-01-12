@@ -108,7 +108,7 @@ function BuyerRegistrationForm1({ setCanMoveForward }) {
         alignContent: 'center',
       }}
     >
-      <p onClick={handleDemo}>*</p>
+      <Box sx={{width:500, height: 30}} onClick={handleDemo}></Box>
       <Box 
 
         sx={{ display: 'flex', justifyContent: 'center' }}>

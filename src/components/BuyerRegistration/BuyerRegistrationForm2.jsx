@@ -67,13 +67,13 @@ function BuyerRegistrationForm2({ setCanMoveForward }) {
         alignContent: 'center',
       }}
     >
-      <p onClick={handleDemo}>*</p>
+      <Box sx={{width:500, height: 30}} onClick={handleDemo}></Box> 
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         {/* onBlur captures the information as soon as the user moves */}
         {/* out of the field */}
         <TextField
           sx={{ width: '60%', maxWidth: '350px', my: 1.5 }}
-          label="First name*"
+          helperText="First name*"
           value={first_name}
           variant="outlined"
           onChange={(event) => setFirst_name(event.target.value)}
@@ -85,7 +85,7 @@ function BuyerRegistrationForm2({ setCanMoveForward }) {
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <TextField
           sx={{ width: '60%', maxWidth: '350px', my: 1.5 }}
-          label="Last name*"
+          helperText="Last name*"
           value={last_name}
           variant="outlined"
           onChange={(event) => setLast_name(event.target.value)}
