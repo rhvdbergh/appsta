@@ -1,17 +1,14 @@
-import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Box, Button, Typography, CardMedia } from '@mui/material';
 
-// CUSTOM COMPONENTS
+// import custom components
 import LoginForm from '../LoginForm/LoginForm';
 
+// this is the main page for people landing on the site
+// it's at path /
 function LandingPage() {
+  // set up the history hook to navigate
   const history = useHistory();
-
-  //not used on this page..... used on LOGIN FORM
-  // const onLogin = (event) => {
-  //   history.push('/login');
-  // };
 
   return (
     <Box className="container">
@@ -23,10 +20,10 @@ function LandingPage() {
           alt="appsta logo"
           onClick={() => history.push('/')}
         />
+        {/* Component to log in buyers (and also admin, agency will work) */}
         <LoginForm />
-
+        {/* Button below starts the buyer's selection process */}
         <Typography variant="h5" sx={{ m: 2 }}>
-          {' '}
           New to Appsta?
           <Button
             sx={{ color: 'primary.navbar' }}

@@ -1,12 +1,12 @@
-import React from "react";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import Navbar from "../Navbar/Navbar";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import { useHistory } from "react-router-dom";
-import OptionsList from "../OptionsList/OptionsList";
+import React from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Navbar from '../Navbar/Navbar';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import { useHistory } from 'react-router-dom';
+import OptionsList from '../OptionsList/OptionsList';
 
 // before finally submitting the project features,
 // this component allows the user to review features
@@ -15,20 +15,25 @@ import OptionsList from "../OptionsList/OptionsList";
 function BuyerReviewSelection() {
   // set up history hook
   const history = useHistory();
+
   // grab the user
   const user = useSelector((store) => store.user);
+
   // grab selected category ID from redux Store
   const selectedCategory = useSelector((store) => store.selectedCategory);
+
   // set up dispatch hook
   const dispatch = useDispatch();
+
   // grab the categories list from the redux store
   const categories = useSelector((store) => store.category);
   // extract the selected category name based on selected category ID
   let categoryName = selectedCategory
     ? categories.find((c) => c.id === selectedCategory)?.category_name
-    : "";
+    : '';
+
   // retrieve the buyers feature set, the agencies that can provide
-  // that feature set, and the cost estimate data.
+  // that feature set, and the cost estimate data from the redux store
   const selectedFeatures = useSelector((store) => store.selectedFeatures);
   const selectedFeatureIDs = selectedFeatures.map((feature) => feature.id);
   const quotingAgencies = useSelector((store) => store.quotingAgencies);
@@ -39,50 +44,47 @@ function BuyerReviewSelection() {
     (q) => q.category_id === selectedCategory
   );
 
-  // }
-  // on page load, get the agencies that provide
-  // the feature set
+  // on page load, make sure that we have a list of agencies
+  // that can provide the selected features
   useEffect(() => {
-    dispatch({ type: "GET_QUOTING_AGENCIES", payload: selectedFeatureIDs });
+    dispatch({ type: 'GET_QUOTING_AGENCIES', payload: selectedFeatureIDs });
   }, []);
+
   // when we have the agencies, get the cost estimate data
   useEffect(() => {
     dispatch({
-      type: "GET_AGENCY_QUOTE_DATA",
+      type: 'GET_AGENCY_QUOTE_DATA',
       payload: {
         selected_features: selectedFeatureIDs,
         agency_ids: quotingAgencyIDs,
       },
     });
   }, [quotingAgencies]);
+
   // once we have the cost estimate data, perform one final calc/render
-  useEffect(() => {
-    console.log("Final useEffect and render");
-  }, [quoteData]);
+  useEffect(() => {}, [quoteData]);
 
   // helper function to convert T-shirt size to quote field
-
   const tShirtField = (shirtSize) => {
     switch (shirtSize) {
-      case "XS":
-        return "xsmall_hours";
-      case "S":
-        return "small_hours";
-      case "M":
-        return "medium_hours";
-      case "L":
-        return "large_hours";
-      case "XL":
-        return "xlarge_hours";
+      case 'XS':
+        return 'xsmall_hours';
+      case 'S':
+        return 'small_hours';
+      case 'M':
+        return 'medium_hours';
+      case 'L':
+        return 'large_hours';
+      case 'XL':
+        return 'xlarge_hours';
     }
   };
 
   // helper function to convert an integer to currency format
-
   function formatCurrency(number) {
-    return new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
       maximumFractionDigits: 0,
     }).format(number);
   }
@@ -97,13 +99,13 @@ function BuyerReviewSelection() {
     for (let agency of agencies) {
       // filter the quote data to extract the rows associated with the agency
       let agencyQuote = quotes.filter((q) => q.agency_id === agency.id);
-      console.log("agencyQuote is:", agencyQuote);
+      console.log('agencyQuote is:', agencyQuote);
       // now loop through all the feature quotes for the agency and add the quantity from the selected features
       for (let quote of agencyQuote) {
         console.log(
-          "in the loop, and quote is:",
+          'in the loop, and quote is:',
           quote,
-          "and selectedFeatures is:",
+          'and selectedFeatures is:',
           selectedFeatures
         );
         let quantity =
@@ -120,7 +122,7 @@ function BuyerReviewSelection() {
         )
         // then reduce the array to get the total
         .reduce((a, b) => a + b);
-      console.log("Min, max and agency are:", minTotal, maxTotal, agencyTotal);
+      console.log('Min, max and agency are:', minTotal, maxTotal, agencyTotal);
       // use conditionals to change minTotal and maxTotal as appropriate
       if (maxTotal === 0 && agencyTotal > 0) {
         minTotal = agencyTotal;
@@ -134,21 +136,24 @@ function BuyerReviewSelection() {
     return `${formatCurrency(minTotal)} - ${formatCurrency(maxTotal)}`;
   };
 
+  // this takes the buyer back to buyer options so they
+  // can select different features
   const handleFeatureChange = () => {
-    dispatch({ type: "REFRESH_DATA" });
-    history.push("/BuyerOptions");
+    dispatch({ type: 'REFRESH_DATA' });
+    history.push('/BuyerOptions');
   };
+
   //handles registration of user if not yet logged in or
   // creates a new project if this user already has an account
   // and is logged in
   const handleRegister = () => {
     // is the user logged in?
     if (user.id) {
-      console.log("the user is logged in");
+      // yes, the user is logged in
       // this will create a new project with the selected features
       // and then move the buyer to the buyercomparequotes screen
       dispatch({
-        type: "ADD_NEW_PROJECT",
+        type: 'ADD_NEW_PROJECT',
         payload: {
           buyer_id: user.buyers_id,
           features: selectedFeatures,
@@ -156,43 +161,49 @@ function BuyerReviewSelection() {
         },
       });
     } else {
-      history.push("/BuyerRegistration");
+      // this is a new user, so make them register
+      history.push('/BuyerRegistration');
     }
   };
-  console.log("Selected feature IDs are: ", selectedFeatureIDs);
-  console.log("Quoting agency IDs are: ", quotingAgencyIDs);
-  console.log("Agency quote data is:", quoteData);
 
   return (
     <>
-      <Box sx={{ display: "flex" }}>
+      {/* This box contains the navbar and the rest of the page */}
+      {/* The rest of the page is contained in a Box */}
+      {/* There should only be two children for this first Box */}
+      <Box sx={{ display: 'flex' }}>
         <Navbar />
         <Box>
           <Typography sx={{ m: 4, mt: 5 }} variant="h4">
             Review your project
           </Typography>
+          {/* Only display the OptionsList if there are agencies */}
+          {/* that can provide these features */}
           {quoteData.length > 0 && (
             <OptionsList
               features={selectedFeatures}
-              listType={"buyer-review"}
+              listType={'buyer-review'}
               quoteData={quoteData}
               quotingAgencies={quotingAgencies}
               totalCost={totalCost}
             />
           )}
+          {/* if no agencies can provide the features, let the user know */}
           {quoteData.length === 0 && (
-            <Typography variant="h6" sx={{ m : 4 }}>
+            <Typography variant="h6" sx={{ m: 4 }}>
               Sorry, no agencies can provide all of your selected features.
             </Typography>
           )}
+          {/* Only show this information if features in this category is selected */}
           {categoryQuotes.length > 0 &&
             quoteData.length > 0 &&
             quotingAgencies.length > 0 && (
               <Typography variant="h6" sx={{ m: 4 }}>
-                Cost range for {categoryName} group:{" "}
+                Cost range for {categoryName} group:{' '}
                 {totalCost(categoryQuotes, quotingAgencies)}
               </Typography>
             )}
+          {/* Only show this information if there is an agency that can provide the features */}
           {quoteData.length > 0 && quotingAgencies.length > 0 && (
             <Typography variant="h6" sx={{ m: 4 }}>
               Cost range for project: {totalCost(quoteData, quotingAgencies)}
@@ -214,7 +225,7 @@ function BuyerReviewSelection() {
                 variant="contained"
                 onClick={handleRegister}
               >
-                {user.id ? "View quotes" : "Register to view quotes"}
+                {user.id ? 'View quotes' : 'Register to view quotes'}
               </Button>
             )}
           </Box>
