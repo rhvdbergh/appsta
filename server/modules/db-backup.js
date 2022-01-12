@@ -7,7 +7,6 @@ const dbBackup = (server) => {
     FROM information_schema.tables
     WHERE table_schema = 'public';
   `;
-  console.log('in dbBackup');
   pool
     .query(query)
     .then((response) => {
@@ -34,11 +33,6 @@ const dbBackup = (server) => {
       for (let i = 0; i < tables.length; i++) {
         backupTable(tables[i]);
       }
-
-      console.log('Backup complete: closing server...');
-
-      // server.close();
-      // process.exit();
     })
     .catch((err) => {
       console.log(
