@@ -1,8 +1,15 @@
 import { Box, Typography } from '@mui/material';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+
+// import custom components
 import QuotesCard from '../QuotesCard/QuotesCard';
 
+// this component is used on several pages
+// displayingBuyerCompareQuotes is a boolean
+// that shows where the list is being displayed
+// and conditionally renders select buttons on the compare
+// quotes view
 function BuyerQuotesList({
   projectFeatures,
   quotingAgencies,
@@ -14,7 +21,8 @@ function BuyerQuotesList({
   // retrieve the list of agencies that can offer the buyer's selection of features
   const agencyQuoteData = useSelector((store) => store.agencyQuoteData);
 
-  // when we have list of the agencies
+  // when we have a list of the agencies,
+  // get their quote data
   useEffect(() => {
     dispatch({
       type: 'GET_AGENCY_QUOTE_DATA',
@@ -70,10 +78,11 @@ function BuyerQuotesList({
     return cost;
   };
 
-  console.log('Agency quote data is: ', agencyQuoteData);
-
   return (
     <Box sx={{ width: '100%' }}>
+      {/* we only want to display this component if there are */}
+      {/* agencyQuoteData and projectFeatures to display, */}
+      {/* otherwise there are calculations with undefined */}
       <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
         {agencyQuoteData.length > 0 &&
           projectFeatures.length > 0 &&
@@ -87,6 +96,7 @@ function BuyerQuotesList({
               />
             );
           })}
+        {/* If no agencies can provide this, let the user know */}
         {agencyQuoteData.length === 0 && (
           <Typography variant="body1">
             No agencies meeting selected criteria can provide your list of

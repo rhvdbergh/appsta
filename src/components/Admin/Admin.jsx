@@ -14,41 +14,21 @@ import {
   FormControl,
   InputLabel,
 } from '@mui/material';
-import { makeStyles } from '@mui/styles';
-import Navbar from '../Navbar/Navbar';
-import OptionsList from '../OptionsList/OptionsList';
-
 import { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-//added MUI styles for login form
-const useStyles = makeStyles(() => ({
-  form: {
-    marginTop: '100px',
-    marginBottom: '30px',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    height: '400px',
-    width: '300px',
-    textAlign: 'center',
-  },
-  input: {
-    width: '100%',
-  },
-}));
+// import custom components
+import Navbar from '../Navbar/Navbar';
+import OptionsList from '../OptionsList/OptionsList';
 
+// this component is the main Admin view
 function Admin() {
-  //set up MUI style
-  const { form, input } = useStyles();
-
-  //grab categories from reducer found in navBar Saga
+  //grab categories and features from reducer found in navBar Saga
   const category = useSelector((store) => store.category);
   const features = useSelector((store) => store.features);
-  console.log('category', category);
 
-  //Set Local State
+  // set local state to capture a feature
   const [newFeature, setNewFeature] = useState({
     feature_name: '',
     feature_story: '',
@@ -57,7 +37,7 @@ function Admin() {
     category_id: '',
   });
 
-  //not used yet
+  // adds a feature after validation
   const handlePost = () => {
     if (
       newFeature.feature_name !== '' &&
@@ -66,13 +46,16 @@ function Admin() {
       newFeature.image_url !== '' &&
       newFeature.category_id !== ''
     ) {
+      // validation has passed, so add this feature to the db
       dispatch({ type: 'POST_NEW_FEATURE', payload: newFeature });
+      // close the dialog modal
       setOpen(false);
     } else {
       alert('Please fill in all fields!');
     }
   };
-  //when input is filled out
+  // when input is filled out, set the state of the reducer
+  // property expects a string of the property to set on the reducer
   const handlePropertyChange = (event, property) => {
     setNewFeature({
       ...newFeature,
@@ -80,9 +63,8 @@ function Admin() {
     });
   };
 
-  //initialized dispatch
+  // initialize redux dispatch
   const dispatch = useDispatch();
-  const history = useHistory();
 
   //get categories from Store
   useEffect(() => {
@@ -93,15 +75,18 @@ function Admin() {
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = useState('paper');
 
+  // handle open of dialog modal
   const handleClickOpen = (scrollType) => () => {
     setOpen(true);
     setScroll(scrollType);
   };
 
+  // handle close of dialog modal
   const handleClose = () => {
     setOpen(false);
   };
 
+  // handle the focus of the dialog
   const descriptionElementRef = useRef(null);
   useEffect(() => {
     if (open) {
@@ -112,12 +97,11 @@ function Admin() {
     }
   }, [open]);
 
-  const handleLogOut = () => {
-    dispatch({ type: 'LOGOUT' });
-  };
-
   return (
     <>
+      {/* This box contains the navbar and the rest of the page */}
+      {/* The rest of the page is contained in a Box */}
+      {/* There should only be two children for this first Box */}
       <Box sx={{ display: 'flex' }}>
         <Navbar />
         <Box>
@@ -132,6 +116,7 @@ function Admin() {
             Create New Feature
           </Button>
 
+          {/* This dialog modal is for adding new features */}
           <Dialog
             open={open}
             onClose={handleClose}
@@ -149,6 +134,7 @@ function Admin() {
                 tabIndex={-1}
                 sx={{ width: 300 }}
               >
+                {/* These are the input fields to capture feature data */}
                 <Stack>
                   <TextField
                     sx={{ my: 2 }}
@@ -205,6 +191,7 @@ function Admin() {
                         handlePropertyChange(event, 'category_id')
                       }
                     >
+                      {/* The first menu item is disabled and acts as a heading */}
                       <MenuItem key={-1} value={''} disabled>
                         Select Category
                       </MenuItem>
@@ -235,6 +222,8 @@ function Admin() {
             </DialogActions>
           </Dialog>
           <Box>
+            {/* The listType defines what the OptionsList and OptionsCard */}
+            {/* will look like and what components they display */}
             <OptionsList features={features} listType="admin-features" />
           </Box>
         </Box>

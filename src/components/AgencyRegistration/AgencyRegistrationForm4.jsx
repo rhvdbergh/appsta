@@ -1,14 +1,25 @@
-import { TextField, Grid, Box } from '@mui/material';
-import Checkbox from '@mui/material/Checkbox';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
+import {
+  TextField,
+  Grid,
+  Box,
+  Checkbox,
+  FormGroup,
+  FormControlLabel,
+  FormControl,
+} from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 
+// this component displays on the AgencyRegistration main view
+// setCanMoveForward requires validation to move to the next form
 function AgencyRegistrationForm4({ setCanMoveForward }) {
+  // set up the redux dispatch
   const dispatch = useDispatch();
 
+  // retrieve the agency object from the redux store
+  // this is the agency object that will be submitted to the database
+  // each successive "step" on the AgencyRegistration page fills
+  // out more details of this object
   const agency = useSelector((store) => store.newAgency);
 
   // define the state variables the component will be altering
@@ -35,12 +46,7 @@ function AgencyRegistrationForm4({ setCanMoveForward }) {
 
   // validate that required fields in the form are filled out
   const isCompletedForm = () => {
-    if (
-      team_size !== null
-      // minority_owned !== null &&
-      // woman_owned !== null &&
-      // veteran_owned !== null
-    ) {
+    if (team_size !== null) {
       setCanMoveForward(true);
     } else {
       setCanMoveForward(false);
@@ -48,6 +54,7 @@ function AgencyRegistrationForm4({ setCanMoveForward }) {
   };
 
   // add data to the redux store
+  // data expects a string with the property to set on the newAgency reducer
   const handleData = (data, value) => {
     // check to see that the data field is not empty
     if (data !== '') {
@@ -68,6 +75,8 @@ function AgencyRegistrationForm4({ setCanMoveForward }) {
       }}
     >
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        {/* onBlur captures the information as soon as the user moves */}
+        {/* out of the field */}
         <TextField
           sx={{ width: '60%', maxWidth: '350px', my: 2 }}
           label="Team Size (0-9999)*"
