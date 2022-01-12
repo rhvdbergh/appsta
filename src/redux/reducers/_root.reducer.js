@@ -6,7 +6,6 @@ import features from './feature.reducer';
 import category from './category.reducer';
 import selectedCategory from './selectedCategory.reducer';
 import selectedFeatures from './selectedFeatures.reducer';
-
 import newBuyer from './buyer.reducer';
 import agencyFeatures from './agencyFeature.reducer';
 import quotingAgencies from './quotingAgencies.reducer';
@@ -25,7 +24,7 @@ import agencyConversion from './agencyConversion.reducer';
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
-  features,
+  features, // will have all the features in the system that's currently in the database
   newAgency, // will store the registration info for a new agency
   category, // will store the array of categories currently in DB
   selectedCategory, // will store the category clicked on the Navbar

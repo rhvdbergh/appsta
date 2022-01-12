@@ -94,7 +94,8 @@ function* deleteProjectAgency(action) {
 }
 
 // adds a specific agency to the saved list of a project
-// expected payload is an object with two properties, activeProject and agency_id
+// expected payload is an object with two properties,
+// activeProject and agency_id
 function* addProjectAgency(action) {
   try {
     yield axios.post(

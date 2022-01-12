@@ -4,6 +4,8 @@ import { put, takeLatest } from 'redux-saga/effects';
 // worker Saga: will be fired on "FETCH_USER" actions
 function* fetchUser() {
   try {
+    // this config is necessary to supply
+    // the correct credentials for authentication
     const config = {
       headers: { 'Content-Type': 'application/json' },
       withCredentials: true,

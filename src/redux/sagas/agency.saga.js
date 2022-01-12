@@ -2,8 +2,8 @@ import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
 //Create function to POST new agency to db
+// expected payload is the new agency object
 function* postNewAgency(action) {
-  console.log('received payload in postNewAgency', action.payload);
   try {
     yield axios.post('/api/agency/new', action.payload);
     // automatically log a user in after registration
@@ -17,16 +17,15 @@ function* postNewAgency(action) {
 }
 
 // Generator function to PUT agency info to the DB
+// expected payload is the new information for the agency
+// as agency and the agency id as agencyID
 function* updateAgencyInformation(action) {
-  console.log(
-    'this is updated information from dashboard',
-    action.payload.agencyID
-  );
   try {
     yield axios.put(
       `api/agency/${action.payload.agencyID}`,
       action.payload.agency
     );
+    // refresh the user reducer
     yield put({ type: 'FETCH_USER' });
   } catch (error) {
     console.log('error in agency information update', error);
