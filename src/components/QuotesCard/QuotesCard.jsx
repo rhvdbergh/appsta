@@ -15,23 +15,31 @@ import PersonIcon from '@mui/icons-material/Person';
 import EmailIcon from '@mui/icons-material/Email';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+// this component is a card that shows details of an agency
+// that is providing a quote
 function QuotesCard({ agency, cost, displayingBuyerCompareQuotes }) {
   // set up the redux dispatch
   const dispatch = useDispatch();
+
   // keep track of whether Learn More section is open or not
   const [isExpanded, setIsExpanded] = useState(false);
+
   // get the saved agencies from the redux store
   const projectAgencies = useSelector((store) => store.projectAgencies);
-  // get the active project id
+
+  // get the active project id from the redux store
   const activeProject = useSelector((store) => store.activeProject);
+
   // local state to keep track of whether this agency has been selected or not
   const [isSelected, setIsSelected] = useState(
     projectAgencies.map((a) => a.agency_id).includes(agency.id)
   );
 
+  // function to toggle whether this quote is selected or not
+  // only shows up if the select button is showing
   const handleSelect = () => {
     if (isSelected) {
       // we need to remove this from the db
@@ -62,6 +70,7 @@ function QuotesCard({ agency, cost, displayingBuyerCompareQuotes }) {
         />
         <CardActions sx={{ display: 'flex', justifyContent: 'right' }}>
           <Box>
+            {/* This button toggles whether the expand */}
             <Button onClick={() => setIsExpanded(!isExpanded)}>
               {isExpanded ? 'Show Less' : 'Learn More'}
             </Button>
@@ -90,6 +99,7 @@ function QuotesCard({ agency, cost, displayingBuyerCompareQuotes }) {
             <Box sx={{ my: 2 }}>
               <Typography>{agency.agency_blurb}</Typography>
             </Box>
+            {/* Checkboxes are conditionally rendered based on boolean values */}
             <Box>
               <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Typography>Minority Owned: </Typography>
@@ -123,6 +133,7 @@ function QuotesCard({ agency, cost, displayingBuyerCompareQuotes }) {
                   <CheckBoxOutlineBlankIcon />
                 )}
               </Box>
+              {/* agency.staffing_location is a string */}
               <Box sx={{ my: 2 }}>
                 <Typography>
                   Staff Location: {agency.staffing_location}

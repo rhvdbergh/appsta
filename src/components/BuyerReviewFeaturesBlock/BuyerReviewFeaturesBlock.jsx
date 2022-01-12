@@ -1,14 +1,13 @@
-import * as React from "react";
-import { useEffect } from "react";
-import { useTheme } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import { useDispatch, useSelector } from "react-redux";
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import { useSelector } from 'react-redux';
 
+// component used in the OptionsCard when in BuyerReviewFeatures view
 function BuyerReviewFeaturesBlock({ feature, quoteData }) {
+  // retrieve the project features from the redux store
+  // we need this to calculate the quantity
   const projectFeatures = useSelector((store) => store.projectFeatures);
 
   // determine the quantity the client wants for the given feature
@@ -18,28 +17,28 @@ function BuyerReviewFeaturesBlock({ feature, quoteData }) {
   // helper function to convert T-shirt size to quote field
   const tShirtField = (shirtSize) => {
     switch (shirtSize) {
-      case "XS":
-        return "xsmall_hours";
-      case "S":
-        return "small_hours";
-      case "M":
-        return "medium_hours";
-      case "L":
-        return "large_hours";
-      case "XL":
-        return "xlarge_hours";
+      case 'XS':
+        return 'xsmall_hours';
+      case 'S':
+        return 'small_hours';
+      case 'M':
+        return 'medium_hours';
+      case 'L':
+        return 'large_hours';
+      case 'XL':
+        return 'xlarge_hours';
     }
   };
 
   // helper function to convert an integer to currency format
-
   function formatCurrency(number) {
-    return new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
       maximumFractionDigits: 0,
     }).format(number);
   }
+
   // extract the quote data for the particular feature
   const featureQuotes = quoteData.filter((d) => d.feature_id === feature.id);
 
@@ -52,17 +51,14 @@ function BuyerReviewFeaturesBlock({ feature, quoteData }) {
   // quotes
   const avgCost = agencyCosts.reduce((a, b) => a + b) / agencyCosts.length;
 
-  console.log("Project features are: ", projectFeatures);
-  console.log("Agency quote data is:", featureQuotes);
-
   return (
-    <Card sx={{ display: "flex", justifyContent: "space-around" }}>
+    <Card sx={{ display: 'flex', justifyContent: 'space-around' }}>
       <Box
         sx={{
           m: 2,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
         }}
       >
         <Typography sx={{ my: 2 }} component="div" variant="h5">
@@ -74,7 +70,7 @@ function BuyerReviewFeaturesBlock({ feature, quoteData }) {
       </Box>
       <CardMedia
         component="img"
-        sx={{ m: 2, width: "20%" }}
+        sx={{ m: 2, width: '20%' }}
         image={feature.image_url}
         alt={feature.feature_description}
       />

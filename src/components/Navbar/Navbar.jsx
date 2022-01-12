@@ -1,21 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Drawer from '@mui/material/Drawer';
-import CssBaseline from '@mui/material/CssBaseline';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import CardMedia from '@mui/material/CardMedia';
-import List from '@mui/material/List';
-import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import Button from '@mui/material/Button';
 import { useHistory } from 'react-router-dom';
+import {
+  Drawer,
+  Toolbar,
+  CardMedia,
+  List,
+  Divider,
+  ListItem,
+  ListItemText,
+  Button,
+} from '@mui/material';
 
+// navbar component, appears on most screens
+// accepts three button texts and associated functions
+// so the navbar can be used with different buttons
+// and functions passed down from its parent component
+// the text is different on the BuyerDashboard,
+// so a boolean prop controls this
 export default function Navbar({
-  headerText, //
   btn1text,
   fxn1,
   btn2text,
@@ -26,16 +29,22 @@ export default function Navbar({
 }) {
   // set up history hook to navigate
   const history = useHistory();
+
   // get the categories list from the Redux store
   const categories = useSelector((store) => store.category);
+
   // get the selected category from the redux store
   const selectedCategory = useSelector((store) => store.selectedCategory);
+
   // get the user object from the redux store
   const user = useSelector((store) => store.user);
+
   // set dispatch hook
   const dispatch = useDispatch();
+
   // setting a drawer width for the Navbar
   const drawerWidth = 240;
+
   // define a function to select a category
   const categorySelect = (category) => {
     console.log('Category clicked is:', category.category_name);
@@ -43,17 +52,11 @@ export default function Navbar({
     dispatch({ type: 'SET_SELECTED_CATEGORY', payload: category.id });
   };
 
-  // call useEffect to populate the categories list
+  // call useEffect on page load
+  // to populate the categories list
   useEffect(() => {
     dispatch({ type: 'FETCH_CATEGORY' });
   }, [dispatch]);
-
-  console.log('Category list is:', categories);
-  console.log('onBuyerDashboard is:', onBuyerDashboard);
-  console.log(
-    'onBuyerDashboard ? true : false',
-    onBuyerDashboard ? true : false
-  );
 
   return (
     <div>
@@ -78,6 +81,7 @@ export default function Navbar({
             alignContent: 'center',
           }}
         >
+          {/* Contains Appsta logo */}
           <CardMedia
             component="img"
             sx={{ width: '100px', mt: '15px', mb: '15px' }}
@@ -102,6 +106,8 @@ export default function Navbar({
             ))}
           </List>
         )}
+        {/* if the category list is not displayed, add */}
+        {/* extra margins to the first button for spacing */}
         {btn1text && (
           <Button
             onClick={fxn1}
@@ -121,6 +127,8 @@ export default function Navbar({
             {btn3text}
           </Button>
         )}
+        {/* if the user is logged in, a logout button appears */}
+        {/* clicking this button dispatches the LOGOUT action */}
         {user.id && (
           <Button
             sx={{ m: 1 }}
