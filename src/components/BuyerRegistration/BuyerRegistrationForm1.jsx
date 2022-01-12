@@ -8,6 +8,7 @@ import {
   IconButton,
   Box,
   Grid,
+  FormHelperText
 } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -108,12 +109,14 @@ function BuyerRegistrationForm1({ setCanMoveForward }) {
       }}
     >
       <p onClick={handleDemo}>*</p>
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+      <Box 
+
+        sx={{ display: 'flex', justifyContent: 'center' }}>
         {/* onBlur captures the information as soon as the user moves */}
         {/* out of the field */}
         <TextField
           sx={{ width: '60%', maxWidth: '350px', my: 1.5 }}
-          label="Email*"
+          helperText="Email*"
           variant="outlined"
           value={username}
           onChange={(event) => setUsername(event.target.value)}
@@ -127,7 +130,7 @@ function BuyerRegistrationForm1({ setCanMoveForward }) {
           variant="filled"
           sx={{ width: '60%', maxWidth: '350px', my: 1.5 }}
         >
-          <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
+          
           <OutlinedInput
             id="filled-adornment-password"
             type={passwordShown ? 'text' : 'password'}
@@ -148,6 +151,7 @@ function BuyerRegistrationForm1({ setCanMoveForward }) {
               </InputAdornment>
             }
           />
+          <FormHelperText id="filled-adornment-password">Password</FormHelperText>
         </FormControl>
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
@@ -155,9 +159,7 @@ function BuyerRegistrationForm1({ setCanMoveForward }) {
           variant="filled"
           sx={{ width: '60%', maxWidth: '350px', my: 1.5 }}
         >
-          <InputLabel htmlFor="filled-adornment-password">
-            Confirm Password
-          </InputLabel>
+          
           <OutlinedInput
             id="filled-adornment-password"
             type={passwordConfirmationShown ? 'text' : 'password'}
@@ -184,6 +186,9 @@ function BuyerRegistrationForm1({ setCanMoveForward }) {
               </InputAdornment>
             }
           />
+          <FormHelperText id="filled-adornment-password">
+            Confirm Password
+          </FormHelperText>
         </FormControl>
       </Box>
     </Grid>
