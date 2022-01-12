@@ -27,6 +27,8 @@ passport.deserializeUser((id, done) => {
     LEFT JOIN "agencies" ON "agencies".user_id = "users".id
     WHERE "users".id = $1;
 `;
+
+  // run the query
   pool
     .query(queryText, [id])
     .then((result) => {

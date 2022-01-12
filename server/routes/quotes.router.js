@@ -4,11 +4,10 @@ const router = express.Router();
 const {
   rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
-const encryptLib = require('../modules/encryption');
 
-// Retrieve a list of agency ID's that provide all of the selected
-// features
-
+// Retrieve a list of agency ID's that provide
+// all of the selected features
+// POST /api/quotes/findagencies
 router.post('/findagencies', (req, res) => {
   // define SQL query text
   // we also need the agency's email, which is
@@ -25,7 +24,6 @@ router.post('/findagencies', (req, res) => {
   `;
   // define the array of selected features from req.body
   const values = [req.body];
-  console.log('Selected features are: ', req.body);
 
   // run the query
   pool
@@ -41,9 +39,8 @@ router.post('/findagencies', (req, res) => {
 
 // retrieve a list of agency feature data needed for a quote,
 // given the list of agency ID's and the selected feature ID's
-
+// POST /api/quotes/agencyquote
 router.post('/agencyquote', (req, res) => {
-  console.log('in GET /api/quotes/agencyquote, req.body is: ', req.body);
   // define SQL query text
   const queryText = `
   SELECT af.*, ac.*, features.category_id FROM agency_features af
@@ -52,8 +49,10 @@ router.post('/agencyquote', (req, res) => {
   JOIN features ON af.feature_id = features.id
   WHERE af.feature_id = ANY ($1) AND agencies.id = ANY ($2);
   `;
+
   // define the values to be passed into the query
   const values = [req.body.selected_features, req.body.agency_ids];
+
   // run the query
   pool
     .query(queryText, values)
@@ -102,6 +101,7 @@ router.get('/savedagencies/:project_id', rejectUnauthenticated, (req, res) => {
     JOIN users ON users.id = agencies.user_id
     WHERE project_agencies.project_id = $1;
   `;
+
   // run the query
   pool
     .query(query, [req.params.project_id])
@@ -126,8 +126,10 @@ router.delete(
     DELETE FROM project_agencies
     WHERE project_id = $1 AND agency_id = $2;
   `;
+
     // parameterize the input
     const values = [req.params.project_id, req.params.agency_id];
+
     // run the query
     pool
       .query(query, values)
@@ -155,8 +157,10 @@ router.post(
       VALUES
       ($1, $2);
     `;
+
     // parameterize the input
     const values = [req.params.project_id, req.params.agency_id];
+
     // run the query
     pool
       .query(query, values)

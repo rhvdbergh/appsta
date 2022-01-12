@@ -2,19 +2,23 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-
-router.get('/',(req, res) => {
-    const query = `
+// retrieves all the feature categories from the database
+// GET /api/category
+router.get('/', (req, res) => {
+  // build a sql query
+  const query = `
     SELECT * FROM "feature_categories";
     `;
-    pool.query(query)
-    .then(result => {
+  // run the query
+  pool
+    .query(query)
+    .then((result) => {
       res.send(result.rows);
     })
-    .catch(err => {
+    .catch((err) => {
       console.log('ERROR: GET categories', err);
-      res.sendStatus(500)
-    })
+      res.sendStatus(500);
+    });
 });
 
 module.exports = router;
