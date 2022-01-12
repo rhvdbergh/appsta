@@ -54,6 +54,11 @@ function BuyerRegistrationForm2({ setCanMoveForward }) {
     }
   };
 
+  const handleDemo = () => {
+    setFirst_name('Sam');
+    setLast_name('Ruffle');
+  };
+
   return (
     <Grid
       sx={{
@@ -62,6 +67,7 @@ function BuyerRegistrationForm2({ setCanMoveForward }) {
         alignContent: 'center',
       }}
     >
+      <p onClick={handleDemo}>*</p>
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         {/* onBlur captures the information as soon as the user moves */}
         {/* out of the field */}

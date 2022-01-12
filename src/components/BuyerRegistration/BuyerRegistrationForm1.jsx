@@ -70,6 +70,12 @@ function BuyerRegistrationForm1({ setCanMoveForward }) {
     }
   };
 
+  const handleDemo = () => {
+    setUsername('sam.s@prime.io');
+    setPassword("password");
+    setPasswordConfirmation("password");
+  }
+
   // data expects a string with the property to set on the newBuyer reducer
   const handleData = (data, value) => {
     // validate the user password
@@ -101,6 +107,7 @@ function BuyerRegistrationForm1({ setCanMoveForward }) {
         alignContent: 'center',
       }}
     >
+      <p onClick={handleDemo}>*</p>
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         {/* onBlur captures the information as soon as the user moves */}
         {/* out of the field */}
