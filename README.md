@@ -3,7 +3,7 @@
 ## Description 
 Duration: 2 week sprint 
 
-Appsta is an easy to use web development marketplace for Startups. Startups can browse a variety of web development features, interact with these features, and select those relevant to their project. This application will help Startups plan, budget, and review their web development needs in a non-threatening environment. 
+Appsta is an easy to use web development marketplace for Startups. Startups can browse a variety of web development features, interact with these features, and select those relevant to their project. This application will helps startups plan, budget, and review their web development needs in a non-threatening environment. 
   
 The site is deployed at [https://appsta-prime.herokuapp.com/](https://appsta-prime.herokuapp.com/)
 
